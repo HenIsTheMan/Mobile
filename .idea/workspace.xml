@@ -31,19 +31,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[FUHQWOGILFHE6T8D]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -98,7 +93,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -212,6 +207,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="595" y="255" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607417971769" />
+    <state x="562" y="306" key="FileChooserDialogImpl" timestamp="1607430458375">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="562" y="306" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607430458375" />
     <state width="1347" height="258" key="GridCell.Tab.0.bottom" timestamp="1607419130773">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -228,13 +227,17 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1347" height="258" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607419130773" />
-    <state x="461" y="164" key="SettingsEditor" timestamp="1607420285043">
+    <state x="545" y="219" width="998" height="710" key="SettingsEditor" timestamp="1607430494087">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607420285043" />
+    <state x="545" y="219" width="998" height="710" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607430494087" />
     <state x="723" y="234" width="585" height="534" key="find.popup" timestamp="1607420226721">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="723" y="234" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607420226721" />
+    <state x="477" y="410" width="621" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1607422454863">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="477" y="410" width="621" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607422454863" />
   </component>
 </project>
