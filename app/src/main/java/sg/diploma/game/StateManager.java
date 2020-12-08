@@ -47,7 +47,7 @@ public class StateManager {
         // Extra to add if possible : throw some warning if next state function fails
     }
 
-    void Update(float _dt)
+    public void Update(float _dt)
     {
         if (nextState != currState)
         {
@@ -63,20 +63,18 @@ public class StateManager {
         currState.Update(_dt);
     }
 
-    void Render(Canvas _canvas)
-    {
+    public void Render(Canvas _canvas){
         currState.Render(_canvas);
     }
 
-    String GetCurrentState()
-    {
+    public String GetCurrentState(){
         if (currState == null)
             return "INVALID";
 
         return currState.GetName();
     }
 
-    void Start(String _newCurrent)
+    public void Start(String _newCurrent)
     {
         // Make sure only can call once at the start
         if (currState != null || nextState != null)

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import sg.diploma.game.thread.UpdateThread;
+
 // Created by TanSiewLan2020
 // GameView is the SurfaceView
 
@@ -25,8 +27,8 @@ public class GameView extends SurfaceView {
                 @Override
                 public void surfaceCreated(SurfaceHolder holder) {
                     //Setup some stuff to indicate whether thread is running and initialized
-                    if (!updateThread.IsRunning())
-                        updateThread.Initialize();
+                    if (!updateThread.GetIsRunning())
+                        updateThread.Init();
 
                     if (!updateThread.isAlive())
                         updateThread.start();

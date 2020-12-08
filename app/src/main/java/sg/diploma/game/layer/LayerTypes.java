@@ -1,6 +1,6 @@
 package sg.diploma.game.layer;
 
-public class LayerTypes{
+public final class LayerTypes{
     enum LayerType{
         BG,
         UI,
