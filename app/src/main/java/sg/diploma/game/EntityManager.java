@@ -7,9 +7,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-class EntityManager {
+// Created by TanSiewLan2019
+
+public class EntityManager {
+
     public final static EntityManager Instance = new EntityManager();
-    private LinkedList<IEntity> entityList = new LinkedList<IEntity>();
+    private LinkedList<EntityBase> entityList = new LinkedList<EntityBase>();
     private SurfaceView view = null;
 
     private EntityManager()
@@ -23,7 +26,7 @@ class EntityManager {
 
     public void Update(float _dt)
     {
-        LinkedList<IEntity> removalList = new LinkedList<IEntity>();
+        LinkedList<EntityBase> removalList = new LinkedList<EntityBase>();
 
         // Update all
         for(int i = 0; i < entityList.size(); ++i)
@@ -43,7 +46,7 @@ class EntityManager {
             }
         }
 
-        for (IEntity currEntity : entityList)
+        for (EntityBase currEntity : entityList)
         {
             // Lets check if is init, initialize if not
             if (!currEntity.IsInit())
@@ -59,33 +62,34 @@ class EntityManager {
         }
 
         // Remove all entities that are done
-        for (IEntity currEntity : removalList) {
+        for (EntityBase currEntity : removalList) {
             entityList.remove(currEntity);
         }
         removalList.clear(); // Clean up of removal list
 
         // Collision Check
+        // If 2 entities collided, what to do?
         for (int i = 0; i < entityList.size(); ++i)
         {
-            IEntity currEntity = entityList.get(i);
+            EntityBase currEntity = entityList.get(i);
 
-            if (currEntity instanceof ICollidable)
+            if (currEntity instanceof Collidable)
             {
-                ICollidable first = (ICollidable) currEntity;
+                Collidable first = (Collidable) currEntity;
 
                 for (int j = i+1; j < entityList.size(); ++j)
                 {
-                    IEntity otherEntity = entityList.get(j);
+                    EntityBase otherEntity = entityList.get(j);
 
-                    if (otherEntity instanceof ICollidable)
+                    if (otherEntity instanceof Collidable)
                     {
-                        ICollidable second = (ICollidable) otherEntity;
+                        Collidable second = (Collidable) otherEntity;
 
                         if (Collision.SphereToSphere(first.GetPosX(), first.GetPosY(), first.GetRadius(), second.GetPosX(), second.GetPosY(), second.GetRadius()))
                         {
                             first.OnHit(second);
                             second.OnHit(first);
-                        }
+                        } // Change this if you are using other methods
                     }
                 }
             }
@@ -97,7 +101,7 @@ class EntityManager {
         }
 
         // Remove all entities that are done
-        for (IEntity currEntity : removalList) {
+        for (EntityBase currEntity : removalList) {
             entityList.remove(currEntity);
         }
         removalList.clear();
@@ -105,11 +109,11 @@ class EntityManager {
 
     public void Render(Canvas _canvas)
     {
-
+      
         // Use the new "rendering layer" to sort the render order
-        Collections.sort(entityList, new Comparator<IEntity>() {
+        Collections.sort(entityList, new Comparator<EntityBase>() {
             @Override
-            public int compare(IEntity o1, IEntity o2) {
+            public int compare(EntityBase o1, EntityBase o2) {
                 return o1.GetRenderLayer() - o2.GetRenderLayer();
             }
         });
@@ -118,13 +122,9 @@ class EntityManager {
         {
             entityList.get(i).Render(_canvas);
         }
-
-        /*for (IEntity currEntity : entityList) {
-            currEntity.Render(_canvas);
-        }*/
     }
 
-    public void AddEntity(IEntity _newEntity, IEntity.ENTITY_TYPE entity_type)
+    public void AddEntity(EntityBase _newEntity, EntityBase.ENTITY_TYPE entity_type)
     {
         entityList.add(_newEntity);
     }
