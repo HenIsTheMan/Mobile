@@ -8,8 +8,7 @@ import android.view.SurfaceView;
 
 import java.util.HashMap;
 
-public class StateManager {
-    // Singleton Instance
+public class StateManager{ //Singleton
     public static final StateManager Instance = new StateManager();
 
     // Container to store all our states!

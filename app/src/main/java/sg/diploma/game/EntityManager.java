@@ -10,9 +10,7 @@ import java.util.LinkedList;
 import sg.diploma.game.math.CheckCollision;
 import sg.diploma.game.math.Vector2;
 
-// Created by TanSiewLan2019
-
-public class EntityManager {
+public class EntityManager{ //Singleton
 
     public final static EntityManager Instance = new EntityManager();
     private LinkedList<IEntity> entityList = new LinkedList<IEntity>();

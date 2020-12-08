@@ -15,6 +15,9 @@ public final class Vector2{
 		this.y = y;
 	}
 
+	public float x;
+	public float y;
+
 	public static final Vector2 zero;
 	public static final Vector2 up;
 	public static final Vector2 down;
@@ -28,7 +31,4 @@ public final class Vector2{
 		left = new Vector2(-1.0f, 0.0f);
 		right = new Vector2(1.0f, 0.0f);
 	}
-
-	public float x;
-	public float y;
 }

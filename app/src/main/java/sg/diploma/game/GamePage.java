@@ -28,14 +28,8 @@ public class GamePage extends Activity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
-        // WE are hijacking the touch event into our own system
-        int x = (int) event.getX();
-        int y = (int) event.getY();
-
-        TouchManager.Instance.Update(x, y, event.getAction());
-
+        TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
         return true;
     }
-
 }
 

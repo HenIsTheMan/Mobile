@@ -1,59 +1,38 @@
 package sg.diploma.game;
 
-import android.view.MotionEvent;
-
-// Created by TanSiewLan2020
-// Manages the touch events
-
-public class TouchManager {
-    public final static TouchManager Instance = new TouchManager();
-
+public final class TouchManager{ //Singleton
     private TouchManager(){
-
+        xPos = 0.0f;
+        yPos = 0.0f;
+        motionEventAction = -999;
     }
 
-    public enum TouchState{
-        NONE,
-        DOWN,
-        MOVE
+    public void Update(final float xPos, final float yPos, final int motionEventAction){
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.motionEventAction = motionEventAction;
     }
 
-    private int posX, posY;
-    private TouchState status = TouchState.NONE; //Set to default as NONE
-
-    public boolean HasTouch(){  // Check for a touch status on screen
-        return status == TouchState.DOWN || status == TouchState.MOVE;
+    public float GetXPos(){
+        return xPos;
     }
 
-    public boolean IsDown(){
-        return status == TouchState.DOWN;
+    public float GetYPos(){
+        return yPos;
     }
 
-    public int GetPosX(){
-        return posX;
+    public int GetMotionEventAction(){
+        return motionEventAction;
     }
 
-    public int GetPosY(){
-        return posY;
-    }
+    private float xPos;
+    private float yPos;
+    private int motionEventAction;
 
-    public void Update(int _posX, int _posY, int _motionEventStatus){
-        posX = _posX;
-        posY = _posY;
+    public final static TouchManager Instance;
 
-        switch (_motionEventStatus){
-            case MotionEvent.ACTION_DOWN:
-                status = TouchState.DOWN;
-                break;
-
-            case MotionEvent.ACTION_MOVE:
-                status = TouchState.MOVE;
-                break;
-
-            case MotionEvent.ACTION_UP:
-                status = TouchState.NONE;
-                break;
-        }
+    static{
+        Instance = new TouchManager();
     }
 }
 

@@ -24,27 +24,6 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         GameSystem.Instance.Init(view);
     }
 
-    static final long targetFPS;
-
-    static{
-        targetFPS = 60;
-    }
-
-    private boolean isRunning;
-    private SurfaceHolder holder;
-
-    public boolean GetIsRunning(){
-        return isRunning;
-    }
-
-    public void Init(){
-        isRunning = true;
-    }
-
-    public void Terminate(){
-        isRunning = false;
-    }
-
     @Override
     public void run(){
         long framePerSecond = 1000 / targetFPS;
@@ -83,6 +62,27 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
                 Terminate();
             }
         }
+    }
+
+    public boolean GetIsRunning(){
+        return isRunning;
+    }
+
+    public void Init(){
+        isRunning = true;
+    }
+
+    public void Terminate(){
+        isRunning = false;
+    }
+
+    private boolean isRunning;
+    private SurfaceHolder holder;
+
+    static final long targetFPS;
+
+    static{
+        targetFPS = 60;
     }
 }
 

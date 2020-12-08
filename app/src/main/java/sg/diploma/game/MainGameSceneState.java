@@ -1,6 +1,7 @@
 package sg.diploma.game;
 
 import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.SurfaceView;
 
 // Created by TanSiewLan2020
@@ -35,13 +36,10 @@ public class MainGameSceneState implements IState{
 
     @Override
     public void Update(float _dt) {
-
         EntityManager.Instance.Update(_dt);
 
-        if (TouchManager.Instance.IsDown()) {
-			
-            //Example of touch on screen in the main game to trigger back to Main menu
-            StateManager.Instance.ChangeState("MainMenu");
+        if (TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
+            StateManager.Instance.ChangeState("MainMenu"); //Go back to MainMenu
         }
     }
 }
