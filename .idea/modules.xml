@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MGP_Week04_AndroidProjectSetupPractical.iml" filepath="$PROJECT_DIR$/.idea/modules/MGP_Week04_AndroidProjectSetupPractical.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MGP_Week04_AndroidProjectSetupPractical.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MGP_Week04_AndroidProjectSetupPractical.app.iml" />
+    </modules>
+  </component>
+</project>
