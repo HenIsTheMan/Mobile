@@ -5,7 +5,7 @@ import android.view.SurfaceView;
 
 // Created by TanSiewLan2020
 
-public interface EntityBase
+public interface IEntity
 {
  	 //used for entities such as background
     enum ENTITY_TYPE{

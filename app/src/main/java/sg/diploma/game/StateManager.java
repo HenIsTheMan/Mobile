@@ -13,9 +13,9 @@ public class StateManager {
     public static final StateManager Instance = new StateManager();
 
     // Container to store all our states!
-    private HashMap<String, StateBase> stateMap = new HashMap<String, StateBase>();
-    private StateBase currState = null;
-    private StateBase nextState = null;
+    private HashMap<String, IState> stateMap = new HashMap<String, IState>();
+    private IState currState = null;
+    private IState nextState = null;
 
     private SurfaceView view = null;
 
@@ -29,7 +29,7 @@ public class StateManager {
         view = _view;
     }
 
-    void AddState(StateBase _newState)
+    void AddState(IState _newState)
     {
         // Add the state into the state map
         stateMap.put(_newState.GetName(), _newState);

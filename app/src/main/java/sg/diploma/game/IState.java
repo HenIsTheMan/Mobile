@@ -6,7 +6,7 @@ package sg.diploma.game;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 
-public interface StateBase {
+public interface IState{
     String GetName();
 
     void OnEnter(SurfaceView _view);

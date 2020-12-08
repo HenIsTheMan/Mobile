@@ -5,7 +5,7 @@ import android.view.SurfaceView;
 
 // Created by TanSiewLan2020
 
-public class MainGameSceneState implements StateBase {
+public class MainGameSceneState implements IState{
     private float timer = 0.0f;
 
     @Override

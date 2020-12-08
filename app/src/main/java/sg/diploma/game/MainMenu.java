@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.content.Intent;
 
 // Now Mainmenu is also a state
-public class MainMenu extends Activity implements OnClickListener, StateBase {
+public class MainMenu extends Activity implements OnClickListener, IState{
 
     // Define button
     private Button btn_start;

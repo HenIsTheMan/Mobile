@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.content.Intent;
 
 // Now LevelSelection is also a state
-public class LevelSelection extends Activity implements OnClickListener, StateBase {
+public class LevelSelection extends Activity implements OnClickListener, IState{
 
     // Define button
     private Button btn_back;
