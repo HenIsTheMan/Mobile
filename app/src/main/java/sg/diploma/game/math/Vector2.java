@@ -1,9 +1,13 @@
-package sg.diploma.game;
+package sg.diploma.game.math;
 
-final class Vector2{
+public final class Vector2{
 	public Vector2(){
 		x = 0.0f;
 		y = 0.0f;
+	}
+
+	public Vector2(final float val){
+		x = y = val;
 	}
 
 	public Vector2(final float x, final float y){

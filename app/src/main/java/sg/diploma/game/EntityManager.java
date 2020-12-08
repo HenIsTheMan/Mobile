@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
+import sg.diploma.game.math.CheckCollision;
+import sg.diploma.game.math.Vector2;
+
 // Created by TanSiewLan2019
 
 public class EntityManager {

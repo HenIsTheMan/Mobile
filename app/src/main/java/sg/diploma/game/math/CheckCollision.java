@@ -1,6 +1,6 @@
-package sg.diploma.game;
+package sg.diploma.game.math;
 
-final class CheckCollision{
+public final class CheckCollision{
     public static boolean CircleCircle(final Vector2 pos0, final Vector2 pos1, final float radius0, final float radius1){
         final float xVec = pos1.x - pos0.x;
         final float yVec = pos1.y - pos1.y;
