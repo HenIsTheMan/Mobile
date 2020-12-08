@@ -4,7 +4,7 @@ import sg.diploma.product.MainGameSceneState;
 import sg.diploma.product.MainMenu;
 import sg.diploma.product.StateManager;
 
-public class GameManager{ //Singleton
+public final class GameManager{ //Singleton
     private GameManager(){
         isPaused = false;
     }

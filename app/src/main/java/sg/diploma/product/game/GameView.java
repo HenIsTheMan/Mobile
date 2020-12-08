@@ -6,7 +6,7 @@ import android.view.SurfaceView;
 
 import sg.diploma.product.thread.UpdateThread;
 
-public class GameView extends SurfaceView {
+public final class GameView extends SurfaceView {
     public GameView(final Context context){
         super(context);
         updateThread = new UpdateThread(this);
