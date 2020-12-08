@@ -6,7 +6,7 @@ import android.view.SurfaceHolder;
 
 import sg.diploma.product.EntityManager;
 import sg.diploma.product.game.GameManager;
-import sg.diploma.product.GameView;
+import sg.diploma.product.game.GameView;
 import sg.diploma.product.StateManager;
 
 public final class UpdateThread extends Thread{ //Need dedicated thread to run Surfaceview's update method
@@ -30,7 +30,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         long startTime = 0;
 
         long prevTime = System.nanoTime();
-        StateManager.Instance.Start("MainGame");  // To edit to whichever state to start with.
+        StateManager.Instance.Start("MainGame"); //Start state
 
         while(isRunning && StateManager.Instance.GetCurrentState() != "INVALID"){ //Main loop
             startTime = System.currentTimeMillis();
@@ -43,7 +43,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
             ///Render
             Canvas canvas = holder.lockCanvas(null);
             if(canvas != null){
-                synchronized (holder){ //Able to render
+                synchronized (holder){ //Sync to draw
                     canvas.drawColor(Color.BLACK);
                     StateManager.Instance.Render(canvas);
                 }

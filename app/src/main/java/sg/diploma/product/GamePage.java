@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
+import sg.diploma.product.game.GameView;
 import sg.diploma.product.touch.TouchManager;
 
 public class GamePage extends Activity {
