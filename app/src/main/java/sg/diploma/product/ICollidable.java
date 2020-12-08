@@ -1,4 +1,4 @@
-package sg.diploma.game;
+package sg.diploma.product;
 
 // Created by TanSiewLan2020
 

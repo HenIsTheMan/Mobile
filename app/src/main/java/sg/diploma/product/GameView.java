@@ -1,10 +1,10 @@
-package sg.diploma.game;
+package sg.diploma.product;
 
 import android.content.Context;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import sg.diploma.game.thread.UpdateThread;
+import sg.diploma.product.thread.UpdateThread;
 
 // Created by TanSiewLan2020
 // GameView is the SurfaceView

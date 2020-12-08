@@ -1,4 +1,4 @@
-package sg.diploma.game.touch;
+package sg.diploma.product.touch;
 
 import android.view.MotionEvent;
 

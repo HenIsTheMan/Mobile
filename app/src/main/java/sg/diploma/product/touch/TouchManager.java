@@ -1,4 +1,4 @@
-package sg.diploma.game.touch;
+package sg.diploma.product.touch;
 
 public final class TouchManager{ //Singleton
     private TouchManager(){
@@ -29,7 +29,7 @@ public final class TouchManager{ //Singleton
     private float yPos;
     private int motionEventAction;
 
-    public final static TouchManager Instance;
+    public static final TouchManager Instance;
 
     static{
         Instance = new TouchManager();

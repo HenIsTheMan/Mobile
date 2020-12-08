@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="sg.diploma.game"> <!-- Identity of entire project -->
+    package="sg.diploma.product"> <!-- Identity of entire project -->
 
     <!-- For commenting of code in the XML -->
 
@@ -19,7 +19,7 @@
         <!-- In XML, start the word android: ........  "descriptive word" eg: icon, theme-->
         <!-- In androidmanifest file, it contains all the activity classes that the entire project has -->
         <!-- Splash page, Main menu, game page, option page, instruction page. Not activity classes, do not need to list them here! -->
-        <activity android:name="sg.diploma.game.SplashPage"
+        <activity android:name="sg.diploma.product.SplashPage"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,21 +29,21 @@
         <!-- Line 22 is to force landscape-->
         <!-- There is only 1 category "LAUNCHER" for the activity class that is supposed to start upon touch the icon on the phone to start the app-->
         <!-- 2nd x to mention this! Note Line 32! !!!!!! -->
-        <activity android:name="sg.diploma.game.MainMenu"
+        <activity android:name="sg.diploma.product.MainMenu"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name="sg.diploma.game.GamePage"
+        <activity android:name="sg.diploma.product.GamePage"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name="sg.diploma.game.LevelSelection"
+        <activity android:name="sg.diploma.product.LevelSelection"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

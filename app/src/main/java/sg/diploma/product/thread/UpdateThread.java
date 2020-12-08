@@ -1,13 +1,13 @@
-package sg.diploma.game.thread;
+package sg.diploma.product.thread;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.SurfaceHolder;
 
-import sg.diploma.game.EntityManager;
-import sg.diploma.game.GameSystem;
-import sg.diploma.game.GameView;
-import sg.diploma.game.StateManager;
+import sg.diploma.product.EntityManager;
+import sg.diploma.product.game.GameManager;
+import sg.diploma.product.GameView;
+import sg.diploma.product.StateManager;
 
 public final class UpdateThread extends Thread{ //Need dedicated thread to run Surfaceview's update method
     public UpdateThread(){
@@ -21,7 +21,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         ///Init managers (if any)
         StateManager.Instance.Init(view);
         EntityManager.Instance.Init(view);
-        GameSystem.Instance.Init(view);
+        GameManager.Instance.Init();
     }
 
     @Override

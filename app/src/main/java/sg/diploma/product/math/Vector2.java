@@ -1,4 +1,4 @@
-package sg.diploma.game.math;
+package sg.diploma.product.math;
 
 public final class Vector2{
 	public Vector2(){

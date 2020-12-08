@@ -1,4 +1,4 @@
-package sg.diploma.game;
+package sg.diploma.product;
 
 import android.graphics.Canvas;
 import android.view.SurfaceView;

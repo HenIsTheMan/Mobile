@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig{
-        applicationId "sg.diploma.game"
+        applicationId "sg.diploma.product"
         minSdkVersion 25
         targetSdkVersion 30
         versionCode 1

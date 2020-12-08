@@ -1,4 +1,4 @@
-package sg.diploma.game;
+package sg.diploma.product;
 
 // Created by TanSiewLan2020
 // Create an interface "StateBase". That is what a state will need.

@@ -1,4 +1,4 @@
-package sg.diploma.game;
+package sg.diploma.product;
 
 // Created by TanSiewLan2020
 // StateManager to deal with which state is current or next.
@@ -28,7 +28,7 @@ public class StateManager{ //Singleton
         view = _view;
     }
 
-    void AddState(IState _newState)
+    public void AddState(IState _newState)
     {
         // Add the state into the state map
         stateMap.put(_newState.GetName(), _newState);

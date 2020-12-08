@@ -1,10 +1,10 @@
-package sg.diploma.game;
+package sg.diploma.product;
 
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 
-import sg.diploma.game.touch.TouchManager;
-import sg.diploma.game.touch.TouchTypes;
+import sg.diploma.product.touch.TouchManager;
+import sg.diploma.product.touch.TouchTypes;
 
 // Created by TanSiewLan2020
 

@@ -1,4 +1,4 @@
-package sg.diploma.game.math;
+package sg.diploma.product.math;
 
 public final class CheckCollision{
     public static boolean CircleCircle(final Vector2 pos0, final Vector2 pos1, final float radius0, final float radius1){

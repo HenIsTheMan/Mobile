@@ -1,4 +1,4 @@
-package sg.diploma.game;
+package sg.diploma.product;
 
 // Created by TanSiewLan2020
 // Create a LevelSelection is an activity class used to hold the GameView which will have a surfaceview
@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
-import sg.diploma.game.touch.TouchManager;
+import sg.diploma.product.touch.TouchManager;
 
 public class GamePage extends Activity {
 

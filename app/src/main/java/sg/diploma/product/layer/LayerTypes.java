@@ -1,4 +1,4 @@
-package sg.diploma.game.layer;
+package sg.diploma.product.layer;
 
 public final class LayerTypes{
     enum LayerType{

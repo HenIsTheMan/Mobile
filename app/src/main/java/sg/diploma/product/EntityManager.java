@@ -1,4 +1,4 @@
-package sg.diploma.game;
+package sg.diploma.product;
 
 import android.graphics.Canvas;
 import android.view.SurfaceView;
@@ -7,12 +7,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-import sg.diploma.game.math.CheckCollision;
-import sg.diploma.game.math.Vector2;
+import sg.diploma.product.math.CheckCollision;
+import sg.diploma.product.math.Vector2;
 
 public class EntityManager{ //Singleton
 
-    public final static EntityManager Instance = new EntityManager();
+    public static final EntityManager Instance = new EntityManager();
     private LinkedList<IEntity> entityList = new LinkedList<IEntity>();
     private SurfaceView view = null;
 
