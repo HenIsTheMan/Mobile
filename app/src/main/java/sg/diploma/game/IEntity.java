@@ -3,11 +3,8 @@ package sg.diploma.game;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 
-// Created by TanSiewLan2020
-
-public interface EntityBase
-{
- 	 //used for entities such as background
+interface IEntity{
+    //used for entities such as background
     enum ENTITY_TYPE{
         //ENT_PLAYER,
         //ENT_SMURF,
@@ -29,7 +26,7 @@ public interface EntityBase
     int GetRenderLayer();
     void SetRenderLayer(int _newLayer);
 
-	 ENTITY_TYPE GetEntityType();
+    ENTITY_TYPE GetEntityType();
 }
 
 //Example: Background

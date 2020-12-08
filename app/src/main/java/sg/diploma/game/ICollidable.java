@@ -1,14 +1,11 @@
 package sg.diploma.game;
 
-// Created by TanSiewLan2020
-
-public interface Collidable {
+interface ICollidable{
     String GetType();
 
     float GetPosX();
     float GetPosY();
     float GetRadius();
 
-    void OnHit(Collidable _other);
+    void OnHit(ICollidable _other);
 }
-

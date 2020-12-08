@@ -4,10 +4,7 @@ import android.content.Context;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-// Created by TanSiewLan2020
-// GameView is the SurfaceView
-
-public class GameView extends SurfaceView {
+class GameView extends SurfaceView { // GameView is our SurfaceView
     // Surfaceview has a holder to be used to hold the content.
     private SurfaceHolder holder = null;
 
@@ -35,7 +32,6 @@ public class GameView extends SurfaceView {
                 @Override
                 public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
                     // Nothing to type here cos it will be handle by the thread
-                    // Can be used to modify the size of the view.
                 }
 
                 @Override
@@ -47,23 +43,22 @@ public class GameView extends SurfaceView {
         }
 
     }
-
-    //Update thread -- updates all the managers eg: Entitymanager and StateManager
-    //
-    //
-    //Inside run method StateManager.Instance.Start("Default"); ///edit!
-    //
-    //// In this code, my state name is "Default"
-    //// Yours, " Level 1"
-    //
-    //Surfaceview in a state will have a canvas
-    //so that u can render the canvas
-    //// Fill the background color to reset
-    //  canvas.drawColor(Color.BLACK);
-    // locked canvas, sync canvas then u can draw.
-    //
-    // After draw, you have to unlock the canvas
-    //
-    // to draw on canvas, u need the thread to run.
 }
 
+//Update thread -- updates all the managers eg: Entitymanager and StateManager
+//
+//
+//Inside run method StateManager.Instance.Start("Default"); ///edit!
+//
+//// In this code, my state name is "Default"
+//// Yours, " Level 1"
+//
+//Surfaceview in a state will have a canvas
+//so that u can render the canvas
+//// Fill the background color to reset
+//  canvas.drawColor(Color.BLACK);
+// locked canvas, sync canvas then u can draw.
+//
+// After draw, you have to unlock the canvas
+//
+// to draw on canvas, u need the thread to run.
