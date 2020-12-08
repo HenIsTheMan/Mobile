@@ -30,7 +30,27 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="" />
+    <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/Collidable.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/Collidable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/Collision.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/Collision.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/EntityBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/EntityBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/EntityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/EntityManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/GamePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/GamePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/GameSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/GameSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/GameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/LayerConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/LayerConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/LevelSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/LevelSelection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/MainGameSceneState.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/MainGameSceneState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/SplashPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/SplashPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/StateBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/StateBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/StateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/StateManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/TouchManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/TouchManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/UpdateThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/UpdateThread.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -194,25 +214,33 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="352" y="145" width="1185" height="800" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1607411224269" />
-    <state width="1347" height="258" key="GridCell.Tab.0.bottom" timestamp="1607412751045">
+    <state x="595" y="255" key="AndroidCreateResourceDirectoryDialog" timestamp="1607417971769">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1347" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607412751045" />
-    <state width="1347" height="258" key="GridCell.Tab.0.center" timestamp="1607412751045">
+    <state x="595" y="255" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607417971769" />
+    <state width="1347" height="258" key="GridCell.Tab.0.bottom" timestamp="1607419130773">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1347" height="258" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607412751045" />
-    <state width="1347" height="258" key="GridCell.Tab.0.left" timestamp="1607412751045">
+    <state width="1347" height="258" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607419130773" />
+    <state width="1347" height="258" key="GridCell.Tab.0.center" timestamp="1607419130773">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1347" height="258" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607412751045" />
-    <state width="1347" height="258" key="GridCell.Tab.0.right" timestamp="1607412751045">
+    <state width="1347" height="258" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607419130773" />
+    <state width="1347" height="258" key="GridCell.Tab.0.left" timestamp="1607419130773">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1347" height="258" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607412751045" />
+    <state width="1347" height="258" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607419130773" />
+    <state width="1347" height="258" key="GridCell.Tab.0.right" timestamp="1607419130773">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1347" height="258" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607419130773" />
     <state x="461" y="164" key="SettingsEditor" timestamp="1607412149954">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607412149954" />
+    <state x="723" y="234" width="585" height="534" key="find.popup" timestamp="1607418768923">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="723" y="234" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607418768923" />
   </component>
 </project>

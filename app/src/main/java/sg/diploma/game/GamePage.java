@@ -1,4 +1,4 @@
-package com.example.projectsetup;
+package sg.diploma.game;
 
 // Created by TanSiewLan2020
 // Create a LevelSelection is an activity class used to hold the GameView which will have a surfaceview

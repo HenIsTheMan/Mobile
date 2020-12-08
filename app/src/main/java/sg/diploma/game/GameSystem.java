@@ -1,7 +1,5 @@
-package com.example.projectsetup;
+package sg.diploma.game;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.SurfaceView;
 
 // Created by TanSiewLan2020

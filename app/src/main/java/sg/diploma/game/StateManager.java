@@ -1,4 +1,4 @@
-package com.example.projectsetup;
+package sg.diploma.game;
 
 // Created by TanSiewLan2020
 // StateManager to deal with which state is current or next.

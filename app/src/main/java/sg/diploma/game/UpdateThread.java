@@ -1,4 +1,4 @@
-package com.example.projectsetup;
+package sg.diploma.game;
 
 // Created by TanSiewLan2020
 // Need a delicated thread to run Surfaceview's update method

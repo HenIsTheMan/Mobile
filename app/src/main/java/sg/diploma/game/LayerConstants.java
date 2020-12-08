@@ -1,4 +1,4 @@
-package com.example.projectsetup;
+package sg.diploma.game;
 
 // Created by TanSiewLan2020
 // Able to help you do layering of different assets rendered on the screen

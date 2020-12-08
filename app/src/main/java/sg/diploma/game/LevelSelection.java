@@ -1,4 +1,4 @@
-package com.example.projectsetup;
+package sg.diploma.game;
 
 import android.app.Activity;
 import android.graphics.Canvas;
@@ -11,12 +11,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.content.Intent;
 
-// Now Mainmenu is also a state
-public class MainMenu extends Activity implements OnClickListener, StateBase {
+// Now LevelSelection is also a state
+public class LevelSelection extends Activity implements OnClickListener, StateBase {
 
     // Define button
-    private Button btn_start;
-    private Button btn_exit;
+    private Button btn_back;
+    private Button btn_easy;
+    private Button btn_medium;
+    private Button btn_hard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,40 +31,42 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.main_menu);
+        setContentView(R.layout.level_selection);
         // Never import R, not the right way to solve error
         // Errors like: Typo, image not found, place in the wrong place, syntax
 
         // Define button as an object
         // Which name: R = resource registry, look for id - btn_start
-        btn_start = (Button)findViewById(R.id.btn_start);
-        btn_start.setOnClickListener(this);
-        btn_exit = (Button)findViewById(R.id.btn_exit);
-        btn_exit.setOnClickListener(this);
+        btn_back = (Button)findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(this);
+        btn_easy = (Button)findViewById(R.id.btn_easy);
+        btn_easy.setOnClickListener(this);
+        btn_medium = (Button)findViewById(R.id.btn_medium);
+        btn_medium.setOnClickListener(this);
+        btn_hard = (Button)findViewById(R.id.btn_hard);
+        btn_hard.setOnClickListener(this);
 
-        StateManager.Instance.AddState(new MainMenu());
+        StateManager.Instance.AddState(new LevelSelection());
     }
 
     @Override
     public void onClick(View v) {
         Intent intent = new Intent();
 
-        if (v == btn_start) // View v = click on the btn_start
+        if (v == btn_back) // View v = click on the btn_start
         {
             // intent --> to set to another class which another page or screen that we are launching.
-            intent.setClass(this, LevelSelection.class);
+            intent.setClass(this, MainMenu.class);
             //StateManager.Instance.ChangeState(("Default")); // Default is like a loading page
-
-            // Transit from Main Menu to Splash Page
-            startActivity(intent);
+        } else if(v == btn_easy){
+            intent.setClass(this, GamePage.class);
+        } else if(v == btn_medium){
+            intent.setClass(this, GamePage.class);
+        } else if(v == btn_hard){
+            intent.setClass(this, GamePage.class);
         }
-        else if(v == btn_exit)
-        {
-            Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-            homeIntent.addCategory(Intent.CATEGORY_HOME);
-            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(homeIntent);
-        }
+        // Transit from Main Menu to Splash Page
+        startActivity(intent);
     }
 
     // Below are the method in a statebase interface
@@ -84,7 +88,7 @@ public class MainMenu extends Activity implements OnClickListener, StateBase {
 
     @Override
     public String GetName() {
-        return "MainMenu"; // Statename
+        return "LevelSelection"; // Statename
     }
 
     // Part of the activity life cycle

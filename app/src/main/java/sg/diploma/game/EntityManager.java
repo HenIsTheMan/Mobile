@@ -1,4 +1,4 @@
-package com.example.projectsetup;
+package sg.diploma.game;
 
 import android.graphics.Canvas;
 import android.view.SurfaceView;
