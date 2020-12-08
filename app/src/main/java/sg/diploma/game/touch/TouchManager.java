@@ -1,4 +1,4 @@
-package sg.diploma.game;
+package sg.diploma.game.touch;
 
 public final class TouchManager{ //Singleton
     private TouchManager(){

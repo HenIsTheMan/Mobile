@@ -1,9 +1,9 @@
-package sg.diploma.game;
+package sg.diploma.game.touch;
 
 import android.view.MotionEvent;
 
 public final class TouchTypes{
-	enum TouchType{
+	public enum TouchType{
 		Down(MotionEvent.ACTION_DOWN);
 
 		TouchType(final int val){

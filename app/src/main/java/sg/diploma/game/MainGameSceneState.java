@@ -1,8 +1,10 @@
 package sg.diploma.game;
 
 import android.graphics.Canvas;
-import android.view.MotionEvent;
 import android.view.SurfaceView;
+
+import sg.diploma.game.touch.TouchManager;
+import sg.diploma.game.touch.TouchTypes;
 
 // Created by TanSiewLan2020
 

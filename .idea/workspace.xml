@@ -31,15 +31,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/TouchTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/EntityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/EntityManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/GamePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/GamePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/MainGameSceneState.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/MainGameSceneState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/StateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/StateManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/TouchManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/TouchManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/math/Vector2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/math/Vector2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/thread/UpdateThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/thread/UpdateThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/TouchManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/touch/TouchManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/TouchTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/touch/TouchTypes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

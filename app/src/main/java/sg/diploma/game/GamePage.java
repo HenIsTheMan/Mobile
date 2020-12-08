@@ -9,6 +9,8 @@ import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
+import sg.diploma.game.touch.TouchManager;
+
 public class GamePage extends Activity {
 
     public static GamePage Instance = null;
