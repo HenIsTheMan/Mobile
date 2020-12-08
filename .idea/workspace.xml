@@ -31,23 +31,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/Vector2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/Collidable.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/ICollidable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/EntityBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/IEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/Collision.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/CheckCollision.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/EntityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/EntityManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/LevelSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/LevelSelection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/MainGameSceneState.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/MainGameSceneState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/StateBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/IState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/StateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/StateManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[FUHQWOGILFHE6T8D]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -81,6 +75,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -99,11 +100,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="add_unversioned_files" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../One Day/Mobile Wk 3 and before/BattleSim" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Language Defaults" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -221,10 +222,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="595" y="255" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607417971769" />
-    <state x="562" y="306" key="FileChooserDialogImpl" timestamp="1607430458375">
+    <state x="562" y="306" key="FileChooserDialogImpl" timestamp="1607434116773">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="562" y="306" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607430458375" />
+    <state x="562" y="306" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607434116773" />
     <state width="1347" height="258" key="GridCell.Tab.0.bottom" timestamp="1607419130773">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -241,14 +242,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1347" height="258" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607419130773" />
-    <state x="545" y="219" width="998" height="710" key="SettingsEditor" timestamp="1607433923382">
+    <state x="364" y="166" width="998" height="710" key="SettingsEditor" timestamp="1607437582789">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="545" y="219" width="998" height="710" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607433923382" />
-    <state x="723" y="234" width="585" height="534" key="find.popup" timestamp="1607420226721">
+    <state x="364" y="166" width="998" height="710" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607437582789" />
+    <state x="723" y="234" width="585" height="534" key="find.popup" timestamp="1607434189819">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="723" y="234" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607420226721" />
+    <state x="723" y="234" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607434189819" />
     <state x="477" y="410" width="621" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1607422454863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
