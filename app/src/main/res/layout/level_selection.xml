@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/menu_background"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/back_button"
+        android:text="BACK"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_easy"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/back_button"
+        android:text="Easy"
+        android:textColor="#00FF00"
+        android:textSize="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="190dp"
+        android:background="@drawable/back_button"
+        android:text="Medium"
+        android:textColor="#FFFF00"
+        android:textSize="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_hard"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="270dp"
+        android:background="@drawable/back_button"
+        android:text="Hard"
+        android:textColor="#FF0000"
+        android:textSize="20dp"
+        />
+
+    <ImageView
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/level_selection"
+        />
+
+</RelativeLayout>

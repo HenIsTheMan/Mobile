@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.projectsetup"> <!-- Identity of entire project -->
+
+    <!-- For commenting of code in the XML -->
+
+    <!-- Main managing file for the entire android project -->
+    <!-- package name is always there. -->
+    <!-- application, activity, intent filter, action, category -->
+    <!-- Every activity, there is always an intent and an action -->
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MGP_Week04_AndroidProjectSetupPractical">
+        <!-- In XML, start the word android: ........  "descriptive word" eg: icon, theme-->
+        <!-- In androidmanifest file, it contains all the activity classes that the entire project has -->
+        <!-- Splash page, Main menu, game page, option page, instruction page. Not activity classes, do not need to list them here! -->
+        <activity android:name=".SplashPage"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- Line 22 is to force landscape-->
+        <!-- There is only 1 category "LAUNCHER" for the activity class that is supposed to start upon touch the icon on the phone to start the app-->
+        <!-- 2nd x to mention this! Note Line 32! !!!!!! -->
+        <activity android:name=".MainMenu"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".GamePage"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".LevelSelection"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
