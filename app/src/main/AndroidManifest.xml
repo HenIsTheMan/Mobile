@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MGP_Week04_AndroidProjectSetupPractical">
+        android:theme="@style/MyTheme0">
         <!-- In XML, start the word android: ........  "descriptive word" eg: icon, theme-->
         <!-- In androidmanifest file, it contains all the activity classes that the entire project has -->
         <!-- Splash page, Main menu, game page, option page, instruction page. Not activity classes, do not need to list them here! -->

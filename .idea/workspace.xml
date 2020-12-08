@@ -31,25 +31,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/Collidable.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/Collidable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/Collision.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/Collision.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/EntityBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/EntityBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/EntityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/EntityManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/GamePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/GamePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/GameSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/GameSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/GameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/LayerConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/LayerConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/LevelSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/LevelSelection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/MainGameSceneState.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/MainGameSceneState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/SplashPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/SplashPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/StateBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/StateBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/StateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/StateManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/TouchManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/TouchManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projectsetup/UpdateThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/game/UpdateThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +95,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="add_unversioned_files" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -119,7 +109,7 @@
       </method>
     </configuration>
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
-      <module name="MGP_Week04_AndroidProjectSetupPractical.app" />
+      <module name="DipGame.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -202,6 +192,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="555" y="259" key="#PSD" timestamp="1607419966459">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="555" y="259" key="#PSD/0.0.1920.1040@0.0.1920.1040" timestamp="1607419966459" />
     <state x="736" y="403" key="#Scopes" timestamp="1607411975383">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -234,13 +228,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1347" height="258" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607419130773" />
-    <state x="461" y="164" key="SettingsEditor" timestamp="1607412149954">
+    <state x="461" y="164" key="SettingsEditor" timestamp="1607420285043">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607412149954" />
-    <state x="723" y="234" width="585" height="534" key="find.popup" timestamp="1607418768923">
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607420285043" />
+    <state x="723" y="234" width="585" height="534" key="find.popup" timestamp="1607420226721">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="723" y="234" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607418768923" />
+    <state x="723" y="234" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607420226721" />
   </component>
 </project>

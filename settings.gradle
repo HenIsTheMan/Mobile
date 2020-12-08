@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "MGP_Week04_AndroidProjectSetupPractical"
+rootProject.name = "DipGame"
