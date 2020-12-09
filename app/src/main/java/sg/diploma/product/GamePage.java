@@ -26,7 +26,7 @@ public class GamePage extends Activity {
 
         Instance = this;
 
-        setContentView(new GameView(this)); // Surfaceview = GameView
+        setContentView(new GameView(this));
     }
 
     @Override

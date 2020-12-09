@@ -2,6 +2,7 @@ package sg.diploma.product;
 
 import android.app.Activity;
 import android.graphics.Canvas;
+import android.os.Build;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,34 +12,35 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.content.Intent;
 
+import android.graphics.Paint;
+import android.graphics.Typeface;
+
+import androidx.annotation.RequiresApi;
+
 // Now Mainmenu is also a state
 public class MainMenu extends Activity implements OnClickListener, IState{
-
-    // Define button
     private Button btn_start;
     private Button btn_exit;
 
+    private Typeface font;
+
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Hide Title
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        // Hide Top Bar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
 
         setContentView(R.layout.main_menu);
         // Never import R, not the right way to solve error
         // Errors like: Typo, image not found, place in the wrong place, syntax
 
-        // Define button as an object
-        // Which name: R = resource registry, look for id - btn_start
         btn_start = (Button)findViewById(R.id.btn_start);
         btn_start.setOnClickListener(this);
         btn_exit = (Button)findViewById(R.id.btn_exit);
         btn_exit.setOnClickListener(this);
+
+        btn_start.setTypeface(font);
 
         StateManager.Instance.AddState(new MainMenu());
     }
@@ -65,7 +67,7 @@ public class MainMenu extends Activity implements OnClickListener, IState{
         }
     }
 
-    // Below are the method in a statebase interface
+    //* From IState
     @Override
     public void Render(Canvas _canvas) {
     }
@@ -84,7 +86,7 @@ public class MainMenu extends Activity implements OnClickListener, IState{
 
     @Override
     public String GetName() {
-        return "MainMenu"; // Statename
+        return "MainMenu";
     }
 
     // Part of the activity life cycle
@@ -102,4 +104,5 @@ public class MainMenu extends Activity implements OnClickListener, IState{
     protected void onDestroy() {
         super.onDestroy();
     }
+    //*/
 }
