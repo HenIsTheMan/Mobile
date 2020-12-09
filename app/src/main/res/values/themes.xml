@@ -6,8 +6,18 @@
     </style>
 
     <style name="MainTheme" parent="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
-        <item name="colorPrimary">@color/Blue1</item>
-<!--        <item name="android:background">@transition/TODO</item>-->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+
+<!--        <item name="colorPrimary">@color/blue_0</item>
+        <item name="colorPrimaryVariant">@color/blue_1</item>
+        <item name="colorOnPrimary">@color/black</item>
+        &lt;!&ndash; Secondary brand color. &ndash;&gt;
+        <item name="colorSecondary">@color/red_0</item>
+        <item name="colorSecondaryVariant">@color/red_1</item>
+        <item name="colorOnSecondary">@color/black</item>-->
         <item name="android:windowAnimationStyle">@style/WindowTransitionAnim</item>
     </style>
 
