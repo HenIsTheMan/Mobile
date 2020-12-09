@@ -58,16 +58,16 @@ public final class SplashPage extends Activity {
         androidLogo3.getLayoutParams().width = (int)(254.0f * factor0);
         androidLogo3.getLayoutParams().height = (int)(284.0f * factor0);
 
-        final float factor1 = (float)displayMetrics.widthPixels / 2.0f / 513.0f;
+        final float factor1 = (float)displayMetrics.widthPixels / 513.0f;
         androidStudioLogo = findViewById(R.id.androidStudioLogo);
         androidStudioLogo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_down));
         androidStudioLogo.getLayoutParams().width = (int)(513.0f * factor1);
         androidStudioLogo.getLayoutParams().height = (int)(512.0f * factor1);
 
-        final int factor2 = displayMetrics.widthPixels / 500;
+        final float factor2 = (float)displayMetrics.heightPixels / 20.0f / 122.0f;
         androidStudioText = findViewById(R.id.androidStudioText);
         androidStudioText.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_up));
-        androidStudioText.getLayoutParams().height = factor2 * 122;
+        androidStudioText.getLayoutParams().height = (int)(122.0f * factor2);
 
         Thread splashTread = new Thread() {
             @Override
