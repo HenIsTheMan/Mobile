@@ -18,7 +18,9 @@ public final class SplashPage extends Activity {
         _active = true;
         _splashTime = 5000;
 
-        splashLogo = null;
+        androidLogo0 = null;
+        androidLogo1 = null;
+        androidLogo2 = null;
     }
 
     @Override
@@ -29,9 +31,12 @@ public final class SplashPage extends Activity {
         // Never import R, not the right way to solve error
         // Errors like: Typo, image not found, place in the wrong place, syntax
 
-        splashLogo = (ImageView)findViewById(R.id.splashLogo);
-
-        splashLogo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
+        androidLogo0 = (ImageView)findViewById(R.id.androidLogo0);
+        androidLogo0.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
+        androidLogo1 = (ImageView)findViewById(R.id.androidLogo1);
+        androidLogo1.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
+        androidLogo2 = (ImageView)findViewById(R.id.androidLogo2);
+        androidLogo2.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
 
         Thread splashTread = new Thread() {
             @Override
@@ -69,5 +74,7 @@ public final class SplashPage extends Activity {
     private boolean _active;
     private int _splashTime;
 
-    private ImageView splashLogo;
+    private ImageView androidLogo0;
+    private ImageView androidLogo1;
+    private ImageView androidLogo2;
 }
