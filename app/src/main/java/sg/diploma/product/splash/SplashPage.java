@@ -18,7 +18,7 @@ import sg.diploma.product.touch.TouchTypes;
 public final class SplashPage extends Activity {
     public SplashPage(){
         _active = true;
-        _splashTime = 7000;
+        _splashTime = 8000;
 
         androidLogo0 = null;
         androidLogo1 = null;
@@ -49,19 +49,19 @@ public final class SplashPage extends Activity {
         androidLogo0.getLayoutParams().height = (int)(284.0f * factor0);
 
         androidLogo1 = findViewById(R.id.androidLogo1);
-        androidLogoAnim1.setStartOffset(300);
+        androidLogoAnim1.setStartOffset(200);
         androidLogo1.startAnimation(androidLogoAnim1);
         androidLogo1.getLayoutParams().width = (int)(254.0f * factor0);
         androidLogo1.getLayoutParams().height = (int)(284.0f * factor0);
 
         androidLogo2 = findViewById(R.id.androidLogo2);
-        androidLogoAnim2.setStartOffset(600);
+        androidLogoAnim2.setStartOffset(400);
         androidLogo2.startAnimation(androidLogoAnim2);
         androidLogo2.getLayoutParams().width = (int)(254.0f * factor0);
         androidLogo2.getLayoutParams().height = (int)(284.0f * factor0);
 
         androidLogo3 = findViewById(R.id.androidLogo3);
-        androidLogoAnim3.setStartOffset(900);
+        androidLogoAnim3.setStartOffset(600);
         androidLogo3.startAnimation(androidLogoAnim3);
         androidLogo3.getLayoutParams().width = (int)(254.0f * factor0);
         androidLogo3.getLayoutParams().height = (int)(284.0f * factor0);

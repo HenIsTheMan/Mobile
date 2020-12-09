@@ -18,4 +18,16 @@
         android:fromYDelta="10%"
         android:duration="700"
         android:startOffset="1500" />
+
+    <alpha
+        android:fromAlpha="1.0"
+        android:toAlpha="0.0"
+        android:duration="300"
+        android:startOffset="5000" />
+
+    <alpha
+        android:toAlpha="0.0"
+        android:duration="999999"
+        android:startOffset="5300" />
+
 </set>

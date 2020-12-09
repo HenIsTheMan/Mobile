@@ -6,7 +6,7 @@
     <alpha
         android:fromAlpha="0.0"
         android:toAlpha="1.0"
-        android:duration="799"
+        android:duration="399"
         android:startOffset="3000" />
 
     <scale
@@ -14,7 +14,18 @@
         android:fromYScale="0.5"
         android:toXScale="1.0"
         android:toYScale="1.0"
-        android:duration="799"
+        android:duration="399"
         android:startOffset="3000" />
+
+    <alpha
+        android:fromAlpha="1.0"
+        android:toAlpha="0.0"
+        android:duration="100"
+        android:startOffset="5600" />
+
+    <alpha
+        android:toAlpha="0.0"
+        android:duration="999999"
+        android:startOffset="5600" />
 
 </set>
