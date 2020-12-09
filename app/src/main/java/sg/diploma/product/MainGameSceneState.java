@@ -6,8 +6,6 @@ import android.view.SurfaceView;
 import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 
-// Created by TanSiewLan2020
-
 public class MainGameSceneState implements IState{
     private float timer = 0.0f;
 

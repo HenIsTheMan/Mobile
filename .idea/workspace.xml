@@ -33,12 +33,7 @@
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/fonts/Continue.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/GamePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/GamePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/LevelSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/LevelSelection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/splash/SplashPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/splash/SplashPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/MainGameSceneState.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/MainGameSceneState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +95,7 @@
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_API_30_x86" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-12-08T06:59:19.025Z" />
-    <property name="ResourceManagerPrefKey.ResourceType" value="MENU" />
+    <property name="ResourceManagerPrefKey.ResourceType" value="FONT" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -236,22 +231,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="562" y="306" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607479066221" />
-    <state width="1899" height="513" key="GridCell.Tab.0.bottom" timestamp="1607479467552">
+    <state width="1899" height="349" key="GridCell.Tab.0.bottom" timestamp="1607482467033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="513" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607479467552" />
-    <state width="1899" height="513" key="GridCell.Tab.0.center" timestamp="1607479467552">
+    <state width="1899" height="349" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607482467033" />
+    <state width="1899" height="349" key="GridCell.Tab.0.center" timestamp="1607482467033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="513" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607479467552" />
-    <state width="1899" height="513" key="GridCell.Tab.0.left" timestamp="1607479467552">
+    <state width="1899" height="349" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607482467033" />
+    <state width="1899" height="349" key="GridCell.Tab.0.left" timestamp="1607482467033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="513" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607479467552" />
-    <state width="1899" height="513" key="GridCell.Tab.0.right" timestamp="1607479467552">
+    <state width="1899" height="349" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607482467033" />
+    <state width="1899" height="349" key="GridCell.Tab.0.right" timestamp="1607482467033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="513" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607479467552" />
+    <state width="1899" height="349" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607482467033" />
     <state x="922" y="187" width="998" height="708" key="SettingsEditor" timestamp="1607445242774">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

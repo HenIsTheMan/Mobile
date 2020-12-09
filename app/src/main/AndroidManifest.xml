@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="sg.diploma.product"> <!-- Identity of entire project -->
-
-    <!-- For commenting of code in the XML -->
-
+    package="sg.diploma.product">
     <!-- Main managing file for the entire android project -->
     <!-- package name is always there. -->
     <!-- application, activity, intent filter, action, category -->
