@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">"Rise Up! A Gamer Girl Adventure"</string>
+
+    <string name="GameName">"Rise Up! A Gamer Girl Adventure"</string>
+
 </resources>
