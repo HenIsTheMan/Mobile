@@ -31,9 +31,7 @@ public final class SplashPage extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Never import R, not the right way to solve error
-        // Errors like: Typo, image not found, place in the wrong place, syntax
+        
         setContentView(R.layout.splash_screen_layout);
 
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
