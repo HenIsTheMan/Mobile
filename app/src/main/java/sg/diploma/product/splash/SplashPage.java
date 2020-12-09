@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.Window;
-import android.view.WindowManager;
 
 import sg.diploma.product.MainMenu;
 import sg.diploma.product.R;
@@ -21,7 +19,7 @@ public final class SplashPage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.splash_page);
+        setContentView(R.layout.splash_screen);
         // Never import R, not the right way to solve error
         // Errors like: Typo, image not found, place in the wrong place, syntax
 
