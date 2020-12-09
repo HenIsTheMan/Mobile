@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="red_0">#F14E54</color>
-    <color name="red_1">#F15F54</color>
-    <color name="blue_0">#00B1FA</color>
-    <color name="blue_1">#00B1DE</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!-- Not in use -->
+    <color name="Red0">#F14E54</color>
+    <color name="Red1">#F15F54</color>
+    <color name="Blue0">#00B1FA</color>
+    <color name="Blue1">#00B1DE</color>
+    <color name="Black">#FF000000</color>
+    <color name="White">#FFFFFFFF</color>
+
 </resources>
