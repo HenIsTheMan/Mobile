@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 
+import android.widget.ImageView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
 import sg.diploma.product.MainMenu;
 import sg.diploma.product.R;
 import sg.diploma.product.touch.TouchTypes;
@@ -13,6 +17,8 @@ public final class SplashPage extends Activity {
     public SplashPage(){
         _active = true;
         _splashTime = 5000;
+
+        splashLogo = null;
     }
 
     @Override
@@ -22,6 +28,10 @@ public final class SplashPage extends Activity {
         setContentView(R.layout.splash_screen_layout);
         // Never import R, not the right way to solve error
         // Errors like: Typo, image not found, place in the wrong place, syntax
+
+        splashLogo = (ImageView)findViewById(R.id.splashLogo);
+
+        splashLogo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
 
         Thread splashTread = new Thread() {
             @Override
@@ -58,4 +68,6 @@ public final class SplashPage extends Activity {
 
     private boolean _active;
     private int _splashTime;
+
+    private ImageView splashLogo;
 }
