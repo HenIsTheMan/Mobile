@@ -8,11 +8,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
 import android.content.Intent;
 
-import android.graphics.Paint;
 import android.graphics.Typeface;
 
 import androidx.annotation.RequiresApi;

@@ -20,10 +20,6 @@ public class GamePage extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        //To make fullscreen
-        requestWindowFeature(Window.FEATURE_NO_TITLE); // Hide titlebar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);  // Hide topbar
-
         Instance = this;
 
         setContentView(new GameView(this));

@@ -11,10 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.content.Intent;
 
-// Now LevelSelection is also a state
 public class LevelSelection extends Activity implements OnClickListener, IState{
-
-    // Define button
     private Button btn_back;
     private Button btn_easy;
     private Button btn_medium;
@@ -23,13 +20,6 @@ public class LevelSelection extends Activity implements OnClickListener, IState{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Hide Title
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        // Hide Top Bar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.level_selection);
         // Never import R, not the right way to solve error
