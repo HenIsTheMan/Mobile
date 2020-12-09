@@ -46,13 +46,10 @@ public class MainMenu extends Activity implements OnClickListener, IState{
     public void onClick(View v) {
         Intent intent = new Intent();
 
-        if (v == btn_start) // View v = click on the btn_start
-        {
-            // intent --> to set to another class which another page or screen that we are launching.
-            intent.setClass(this, LevelSelection.class);
+        if(v == btn_start){
+            intent.setClass(this, GamePage.class);
             //StateManager.Instance.ChangeState(("Default")); // Default is like a loading page
 
-            // Transit from Main Menu to Splash Page
             startActivity(intent);
         }
         else if(v == btn_exit)
