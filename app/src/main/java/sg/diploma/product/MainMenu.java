@@ -14,7 +14,6 @@ import android.graphics.Typeface;
 
 import androidx.annotation.RequiresApi;
 
-// Now Mainmenu is also a state
 public class MainMenu extends Activity implements OnClickListener, IState{
     private Button btn_start;
     private Button btn_exit;
@@ -38,8 +37,6 @@ public class MainMenu extends Activity implements OnClickListener, IState{
         btn_exit.setOnClickListener(this);
 
         btn_start.setTypeface(font);
-
-        StateManager.Instance.AddState(new MainMenu());
     }
 
     @Override
@@ -48,7 +45,7 @@ public class MainMenu extends Activity implements OnClickListener, IState{
 
         if(v == btn_start){
             intent.setClass(this, GamePage.class);
-            //StateManager.Instance.ChangeState(("Default")); // Default is like a loading page
+            StateManager.Instance.ChangeState(("MainGame"));
 
             startActivity(intent);
         }

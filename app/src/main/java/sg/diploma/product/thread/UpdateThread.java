@@ -30,7 +30,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         long startTime = 0;
 
         long prevTime = System.nanoTime();
-        StateManager.Instance.Start("MainGame"); //Start state
+        StateManager.Instance.Start("MainMenu"); //Start state
 
         while(isRunning && StateManager.Instance.GetCurrentState() != "INVALID"){ //Main loop
             startTime = System.currentTimeMillis();
@@ -85,5 +85,3 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         targetFPS = 60;
     }
 }
-
-
