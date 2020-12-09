@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.MotionEvent;
 
 import android.widget.ImageView;
@@ -24,41 +23,51 @@ public final class SplashPage extends Activity {
         androidLogo1 = null;
         androidLogo2 = null;
         androidLogo3 = null;
+        androidStudioLogo = null;
+        androidStudioText = null;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.splash_screen_layout);
         // Never import R, not the right way to solve error
         // Errors like: Typo, image not found, place in the wrong place, syntax
+        setContentView(R.layout.splash_screen_layout);
 
-        DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
+        final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
+        final float factor0 = (float)displayMetrics.widthPixels / 4.0f / 254.0f;
 
         androidLogo0 = findViewById(R.id.androidLogo0);
         androidLogo0.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
-        androidLogo0.getLayoutParams().width
-                = androidLogo0.getLayoutParams().height
-                = displayMetrics.widthPixels / 4;
+        androidLogo0.getLayoutParams().width = (int)(254.0f * factor0);
+        androidLogo0.getLayoutParams().height = (int)(284.0f * factor0);
 
         androidLogo1 = findViewById(R.id.androidLogo1);
         androidLogo1.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
-        androidLogo1.getLayoutParams().width
-                = androidLogo1.getLayoutParams().height
-                = displayMetrics.widthPixels / 4;
+        androidLogo1.getLayoutParams().width = (int)(254.0f * factor0);
+        androidLogo1.getLayoutParams().height = (int)(284.0f * factor0);
 
         androidLogo2 = findViewById(R.id.androidLogo2);
         androidLogo2.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
-        androidLogo2.getLayoutParams().width
-                = androidLogo2.getLayoutParams().height
-                = displayMetrics.widthPixels / 4;
+        androidLogo2.getLayoutParams().width = (int)(254.0f * factor0);
+        androidLogo2.getLayoutParams().height = (int)(284.0f * factor0);
 
         androidLogo3 = findViewById(R.id.androidLogo3);
         androidLogo3.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
-        androidLogo3.getLayoutParams().width
-                = androidLogo3.getLayoutParams().height
-                = displayMetrics.widthPixels / 4;
+        androidLogo3.getLayoutParams().width = (int)(254.0f * factor0);
+        androidLogo3.getLayoutParams().height = (int)(284.0f * factor0);
+
+        final float factor1 = (float)displayMetrics.widthPixels / 2.0f / 513.0f;
+        androidStudioLogo = findViewById(R.id.androidStudioLogo);
+        androidStudioLogo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_down));
+        androidStudioLogo.getLayoutParams().width = (int)(513.0f * factor1);
+        androidStudioLogo.getLayoutParams().height = (int)(512.0f * factor1);
+
+        final int factor2 = displayMetrics.widthPixels / 500;
+        androidStudioText = findViewById(R.id.androidStudioText);
+        androidStudioText.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_up));
+        androidStudioText.getLayoutParams().height = factor2 * 122;
 
         Thread splashTread = new Thread() {
             @Override
@@ -100,4 +109,6 @@ public final class SplashPage extends Activity {
     private ImageView androidLogo1;
     private ImageView androidLogo2;
     private ImageView androidLogo3;
+    private ImageView androidStudioLogo;
+    private ImageView androidStudioText;
 }

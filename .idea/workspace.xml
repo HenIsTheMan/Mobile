@@ -33,7 +33,10 @@
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/splash/SplashPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/splash/SplashPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/anim/slide_down.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/anim/slide_down.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/anim/slide_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/anim/slide_up.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/android_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/android_logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/made_with_android_studio_text.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/splash_screen_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/splash_screen_layout.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -240,22 +243,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="638" y="190" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607492046370" />
-    <state width="1899" height="349" key="GridCell.Tab.0.bottom" timestamp="1607482467033">
+    <state width="1899" height="349" key="GridCell.Tab.0.bottom" timestamp="1607510534711">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="349" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607482467033" />
-    <state width="1899" height="349" key="GridCell.Tab.0.center" timestamp="1607482467033">
+    <state width="1899" height="349" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607510534711" />
+    <state width="1899" height="349" key="GridCell.Tab.0.center" timestamp="1607510534711">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="349" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607482467033" />
-    <state width="1899" height="349" key="GridCell.Tab.0.left" timestamp="1607482467033">
+    <state width="1899" height="349" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607510534711" />
+    <state width="1899" height="349" key="GridCell.Tab.0.left" timestamp="1607510534710">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="349" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607482467033" />
-    <state width="1899" height="349" key="GridCell.Tab.0.right" timestamp="1607482467033">
+    <state width="1899" height="349" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607510534710" />
+    <state width="1899" height="349" key="GridCell.Tab.0.right" timestamp="1607510534711">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="349" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607482467033" />
+    <state width="1899" height="349" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607510534711" />
     <state x="922" y="187" width="998" height="708" key="SettingsEditor" timestamp="1607504088095">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -268,9 +271,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="477" y="410" width="621" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607422454863" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1607442634384">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1607512250118">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607442634384" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607512250118" />
   </component>
 </project>

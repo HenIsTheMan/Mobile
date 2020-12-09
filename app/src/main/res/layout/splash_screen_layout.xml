@@ -40,4 +40,31 @@
             android:layout_gravity="bottom|right" />
     </FrameLayout>
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:weightSum="1" >
+
+        <ImageView
+            android:id="@+id/androidStudioLogo"
+            android:src="@drawable/android_studio_logo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.6" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:weightSum="1" >
+
+        <ImageView
+            android:id="@+id/androidStudioText"
+            android:src="@drawable/android_studio_text"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.4" />
+    </LinearLayout>
 </RelativeLayout>
