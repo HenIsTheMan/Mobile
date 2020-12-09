@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 
 import android.widget.ImageView;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import sg.diploma.product.MainMenu;
@@ -21,6 +20,7 @@ public final class SplashPage extends Activity {
         androidLogo0 = null;
         androidLogo1 = null;
         androidLogo2 = null;
+        androidLogo3 = null;
     }
 
     @Override
@@ -31,12 +31,14 @@ public final class SplashPage extends Activity {
         // Never import R, not the right way to solve error
         // Errors like: Typo, image not found, place in the wrong place, syntax
 
-        androidLogo0 = (ImageView)findViewById(R.id.androidLogo0);
+        androidLogo0 = findViewById(R.id.androidLogo0);
         androidLogo0.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
-        androidLogo1 = (ImageView)findViewById(R.id.androidLogo1);
+        androidLogo1 = findViewById(R.id.androidLogo1);
         androidLogo1.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
-        androidLogo2 = (ImageView)findViewById(R.id.androidLogo2);
+        androidLogo2 = findViewById(R.id.androidLogo2);
         androidLogo2.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
+        androidLogo3 = findViewById(R.id.androidLogo3);
+        androidLogo3.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
 
         Thread splashTread = new Thread() {
             @Override
@@ -77,4 +79,5 @@ public final class SplashPage extends Activity {
     private ImageView androidLogo0;
     private ImageView androidLogo1;
     private ImageView androidLogo2;
+    private ImageView androidLogo3;
 }

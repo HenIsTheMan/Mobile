@@ -32,9 +32,9 @@ public class MainMenu extends Activity implements OnClickListener, IState{
         // Never import R, not the right way to solve error
         // Errors like: Typo, image not found, place in the wrong place, syntax
 
-        btn_start = (Button)findViewById(R.id.btn_start);
+        btn_start = findViewById(R.id.btn_start);
         btn_start.setOnClickListener(this);
-        btn_exit = (Button)findViewById(R.id.btn_exit);
+        btn_exit = findViewById(R.id.btn_exit);
         btn_exit.setOnClickListener(this);
 
         btn_start.setTypeface(font);
