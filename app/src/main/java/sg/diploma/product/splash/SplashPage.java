@@ -19,7 +19,7 @@ public final class SplashPage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.splash_screen);
+        setContentView(R.layout.splash_screen_layout);
         // Never import R, not the right way to solve error
         // Errors like: Typo, image not found, place in the wrong place, syntax
 

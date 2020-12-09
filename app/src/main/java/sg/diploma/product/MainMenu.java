@@ -28,7 +28,7 @@ public class MainMenu extends Activity implements OnClickListener, IState{
 
         font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
 
-        setContentView(R.layout.main_menu);
+        setContentView(R.layout.menu_screen_layout);
         // Never import R, not the right way to solve error
         // Errors like: Typo, image not found, place in the wrong place, syntax
 
