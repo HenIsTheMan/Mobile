@@ -3,12 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
+    <alpha
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0"
+        android:duration="500"
+        android:startOffset="1000" />
+
     <translate
         android:fromYDelta="-65%"
-        android:duration="700" />
+        android:duration="700"
+        android:startOffset="1000" />
 
     <translate
         android:fromYDelta="10%"
         android:duration="700"
-        android:startOffset="500" />
+        android:startOffset="1500" />
 </set>

@@ -17,7 +17,7 @@ import sg.diploma.product.touch.TouchTypes;
 public final class SplashPage extends Activity {
     public SplashPage(){
         _active = true;
-        _splashTime = 5000;
+        _splashTime = 7000;
 
         androidLogo0 = null;
         androidLogo1 = null;
