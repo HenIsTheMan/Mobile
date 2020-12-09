@@ -2,7 +2,10 @@ package sg.diploma.product.splash;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.MotionEvent;
 
 import android.widget.ImageView;
@@ -31,14 +34,31 @@ public final class SplashPage extends Activity {
         // Never import R, not the right way to solve error
         // Errors like: Typo, image not found, place in the wrong place, syntax
 
+        DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
+
         androidLogo0 = findViewById(R.id.androidLogo0);
         androidLogo0.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
+        androidLogo0.getLayoutParams().width
+                = androidLogo0.getLayoutParams().height
+                = displayMetrics.widthPixels / 4;
+
         androidLogo1 = findViewById(R.id.androidLogo1);
         androidLogo1.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
+        androidLogo1.getLayoutParams().width
+                = androidLogo1.getLayoutParams().height
+                = displayMetrics.widthPixels / 4;
+
         androidLogo2 = findViewById(R.id.androidLogo2);
         androidLogo2.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
+        androidLogo2.getLayoutParams().width
+                = androidLogo2.getLayoutParams().height
+                = displayMetrics.widthPixels / 4;
+
         androidLogo3 = findViewById(R.id.androidLogo3);
         androidLogo3.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
+        androidLogo3.getLayoutParams().width
+                = androidLogo3.getLayoutParams().height
+                = displayMetrics.widthPixels / 4;
 
         Thread splashTread = new Thread() {
             @Override

@@ -13,30 +13,30 @@
 
         <ImageView
             android:id="@+id/androidLogo0"
-            android:src="@mipmap/ic_launcher_foreground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/android_logo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_gravity="top|left" />
 
         <ImageView
             android:id="@+id/androidLogo1"
-            android:src="@mipmap/ic_launcher_foreground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/android_logo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_gravity="top|right" />
 
         <ImageView
             android:id="@+id/androidLogo2"
-            android:src="@mipmap/ic_launcher_foreground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/android_logo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_gravity="bottom|left" />
 
         <ImageView
             android:id="@+id/androidLogo3"
-            android:src="@mipmap/ic_launcher_foreground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/android_logo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_gravity="bottom|right" />
     </FrameLayout>
 
