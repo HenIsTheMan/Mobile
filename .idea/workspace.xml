@@ -31,13 +31,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/my_overshoot_interpolator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/my_shape_anim.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/my_shape.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/GameScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/GameScreenActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/MenuScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/MenuScreenActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/SplashScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/SplashScreenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/game/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/game/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/state/StateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/state/StateManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/thread/UpdateThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/thread/UpdateThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/menu_screen_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/menu_screen_layout.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,8 +81,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -235,30 +235,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="595" y="255" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607495885517" />
-    <state x="272" y="294" key="AndroidCreateResourceFileDialog" timestamp="1607499745650">
+    <state x="755" y="355" key="AndroidCreateResourceFileDialog" timestamp="1607583428572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="272" y="294" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607499745650" />
+    <state x="755" y="355" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607583428572" />
     <state x="638" y="190" key="FileChooserDialogImpl" timestamp="1607533648240">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="638" y="190" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607533648240" />
-    <state width="1347" height="309" key="GridCell.Tab.0.bottom" timestamp="1607575793034">
+    <state width="1347" height="25" key="GridCell.Tab.0.bottom" timestamp="1607583301267">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1347" height="309" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607575793034" />
-    <state width="1347" height="309" key="GridCell.Tab.0.center" timestamp="1607575793034">
+    <state width="1347" height="25" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607583301267" />
+    <state width="1347" height="25" key="GridCell.Tab.0.center" timestamp="1607583301267">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1347" height="309" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607575793034" />
-    <state width="1347" height="309" key="GridCell.Tab.0.left" timestamp="1607575793034">
+    <state width="1347" height="25" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607583301267" />
+    <state width="1347" height="25" key="GridCell.Tab.0.left" timestamp="1607583301266">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1347" height="309" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607575793034" />
-    <state width="1347" height="309" key="GridCell.Tab.0.right" timestamp="1607575793034">
+    <state width="1347" height="25" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607583301266" />
+    <state width="1347" height="25" key="GridCell.Tab.0.right" timestamp="1607583301267">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1347" height="309" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607575793034" />
+    <state width="1347" height="25" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607583301267" />
     <state x="922" y="187" width="998" height="708" key="SettingsEditor" timestamp="1607504088095">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

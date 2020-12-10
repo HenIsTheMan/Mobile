@@ -1,42 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/menu_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black"
     android:orientation="vertical"
     >
 
-    <Button
-        android:id="@+id/btn_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
-        android:background="@drawable/play_button"
-        android:text="PLAY"
-        android:textColor="#000000"
-        android:textSize="22dp"
-        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/btn_exit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
-        android:background="@drawable/exit_button"
-        android:text="EXIT"
-        android:textColor="#000000"
-        android:textSize="22dp"
-        />
+        <ImageView
+            android:id="@+id/myShape"
+            android:src="@drawable/my_shape"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|center_vertical" />
 
-    <ImageView
-        android:layout_width="700dp"
-        android:layout_height="600dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-200dp"
-        android:src="@drawable/game_title"
-        />
+    </FrameLayout>
 
 </RelativeLayout>
