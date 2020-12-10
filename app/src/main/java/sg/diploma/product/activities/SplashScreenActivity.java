@@ -131,7 +131,7 @@ public final class SplashScreenActivity extends Activity{
     }
 
     private boolean _active;
-    private int _splashTime;
+    private final int _splashTime;
 
     private ImageView androidLogo0;
     private ImageView androidLogo1;
