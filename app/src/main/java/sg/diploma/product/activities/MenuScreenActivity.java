@@ -30,8 +30,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         startButton = null;
         settingsButton = null;
         exitButton = null;
-        font = null;
         myShape = null;
+        font = null;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -156,8 +156,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private Button startButton;
     private Button settingsButton;
     private Button exitButton;
-    private Typeface font;
     private ImageView myShape;
+    private Typeface font;
 
     //*/
 }
