@@ -119,6 +119,16 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
             + (settingsButton.getLayoutParams().height
             - gearsIcon.getLayoutParams().height) * 0.5f);
 
+        leaveIcon = findViewById(R.id.leaveIcon);
+        leaveIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
+        leaveIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
+        leaveIcon.setTranslationX(exitButton.getTranslationX()
+            + (exitButton.getLayoutParams().width
+            - leaveIcon.getLayoutParams().width) * 0.5f);
+        leaveIcon.setTranslationY(exitButton.getTranslationY()
+            + (exitButton.getLayoutParams().height
+            - leaveIcon.getLayoutParams().height) * 0.5f);
+
         font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
 
         gameTitleBossText = findViewById(R.id.gameTitleBossText);
