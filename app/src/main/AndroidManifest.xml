@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/MainTheme">
 
-        <activity android:name="sg.diploma.product.activities.SplashPage"
+        <activity android:name="sg.diploma.product.activities.SplashScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="sg.diploma.product.MainMenu"
+        <activity android:name="sg.diploma.product.activities.MenuScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="sg.diploma.product.GamePage"
+        <activity android:name="sg.diploma.product.activities.GameScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

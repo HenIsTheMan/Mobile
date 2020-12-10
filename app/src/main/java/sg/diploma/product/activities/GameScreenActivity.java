@@ -1,4 +1,4 @@
-package sg.diploma.product;
+package sg.diploma.product.activities;
 
 import android.app.Activity;
 import android.graphics.Canvas;
@@ -13,8 +13,8 @@ import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 
-public class GamePage extends Activity implements IState{
-    public static GamePage Instance = null;
+public final class GameScreenActivity extends Activity implements IState{
+    public static GameScreenActivity Instance = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -35,7 +35,7 @@ public class GamePage extends Activity implements IState{
 
     @Override
     public String GetName() {
-        return "MainGame";
+        return "GameScreen";
     }
 
     @Override
@@ -47,7 +47,7 @@ public class GamePage extends Activity implements IState{
     @Override
     public void OnExit() {
         EntityManager.Instance.Clean();
-        GamePage.Instance.finish();
+        GameScreenActivity.Instance.finish();
     }
 
     @Override
@@ -62,8 +62,7 @@ public class GamePage extends Activity implements IState{
         EntityManager.Instance.Update(_dt);
 
         if (TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
-            StateManager.Instance.ChangeState("MainMenu"); //Go back to MainMenu
+            StateManager.Instance.ChangeState("MenuScreen"); //Go back to MenuScreen
         }
     }
 }
-

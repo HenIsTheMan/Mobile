@@ -1,4 +1,4 @@
-package sg.diploma.product;
+package sg.diploma.product.activities;
 
 import android.app.Activity;
 import android.graphics.Canvas;
@@ -13,15 +13,16 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import androidx.annotation.RequiresApi;
 
+import sg.diploma.product.R;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 
-public class MainMenu extends Activity implements OnClickListener, IState{
+public final class MenuScreenActivity extends Activity implements OnClickListener, IState{
     private Button btn_start;
     private Button btn_exit;
     private Typeface font;
 
-    public MainMenu(){
+    public MenuScreenActivity(){
         btn_start = null;
         btn_exit = null;
         font = null;
@@ -48,8 +49,8 @@ public class MainMenu extends Activity implements OnClickListener, IState{
         Intent intent = new Intent();
 
         if(v == btn_start){
-            intent.setClass(this, GamePage.class);
-            StateManager.Instance.ChangeState(("MainGame"));
+            intent.setClass(this, GameScreenActivity.class);
+            StateManager.Instance.ChangeState(("GameScreen"));
             startActivity(intent);
         } else if(v == btn_exit){
             Intent homeIntent = new Intent(Intent.ACTION_MAIN);
@@ -80,10 +81,9 @@ public class MainMenu extends Activity implements OnClickListener, IState{
 
     @Override
     public String GetName(){
-        return "MainMenu";
+        return "MenuScreen";
     }
 
-    // Part of the activity life cycle
     @Override
     protected void onPause(){
         super.onPause();

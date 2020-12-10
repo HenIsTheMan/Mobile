@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import sg.diploma.product.math.CheckCollision;
 import sg.diploma.product.math.Vector2;
 
-public class EntityManager{ //Singleton
+public final class EntityManager{ //Singleton
     public static final EntityManager Instance;
 
     static{

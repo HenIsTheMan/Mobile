@@ -11,12 +11,11 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.view.animation.AnimationUtils;
 
-import sg.diploma.product.MainMenu;
 import sg.diploma.product.R;
 import sg.diploma.product.touch.TouchTypes;
 
-public final class SplashPage extends Activity {
-    public SplashPage(){
+public final class SplashScreenActivity extends Activity {
+    public SplashScreenActivity(){
         _active = true;
         _splashTime = 8000;
 
@@ -76,24 +75,24 @@ public final class SplashPage extends Activity {
         androidStudioText.getLayoutParams().width = (int)(850.0f * factor2);
         androidStudioText.getLayoutParams().height = (int)(90.0f * factor2);
 
-        Thread splashTread = new Thread() {
+        Thread splashTread = new Thread(){
             @Override
-            public void run() {
-                try {
+            public void run(){
+                try{
                     int waited = 0;
-                    while(_active && (waited < _splashTime)) {
+                    while(_active && (waited < _splashTime)){
                         sleep(200);
-                        if(_active) {
+                        if(_active){
                             waited += 200;
                         }
                     }
-                } catch(InterruptedException e) {
+                } catch(InterruptedException e){
                     //Do nth
-                } finally {
+                } finally{
                     finish();
 
                     ///Create new activity based on and intent with CurrentActivity
-                    Intent intent = new Intent(SplashPage.this, MainMenu.class);
+                    Intent intent = new Intent(SplashScreenActivity.this, MenuScreenActivity.class);
                     startActivity(intent);
                 }
             }
