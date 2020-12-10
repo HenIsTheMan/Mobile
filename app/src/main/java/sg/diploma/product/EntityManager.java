@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 
 import sg.diploma.product.entity.IEntity;
+import sg.diploma.product.entity.IEntityCollidable;
 import sg.diploma.product.math.CheckCollision;
 import sg.diploma.product.math.Vector2;
 
@@ -75,17 +76,17 @@ public class EntityManager{ //Singleton
         {
             IEntity currEntity = entityList.get(i);
 
-            if (currEntity instanceof ICollidable)
+            if (currEntity instanceof IEntityCollidable)
             {
-                ICollidable first = (ICollidable) currEntity;
+                IEntityCollidable first = (IEntityCollidable) currEntity;
 
                 for (int j = i+1; j < entityList.size(); ++j)
                 {
                     IEntity otherEntity = entityList.get(j);
 
-                    if (otherEntity instanceof ICollidable)
+                    if (otherEntity instanceof IEntityCollidable)
                     {
-                        ICollidable second = (ICollidable) otherEntity;
+                        IEntityCollidable second = (IEntityCollidable) otherEntity;
 
                         if (CheckCollision.CircleCircle(new Vector2(first.GetPosX(), first.GetPosY()), new Vector2(second.GetPosX(), second.GetPosY()), first.GetRadius(), second.GetRadius()))
                         {
