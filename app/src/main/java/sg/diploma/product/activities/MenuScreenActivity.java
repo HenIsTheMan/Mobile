@@ -45,8 +45,10 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
         myShape = findViewById(R.id.myShape);
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
-        myShape.getLayoutParams().width = (int)((float)displayMetrics.widthPixels * 1.2f);
-        myShape.getLayoutParams().height = (int)((float)displayMetrics.heightPixels * 1.2f);
+        final float newWidth = (float)displayMetrics.widthPixels * 1.2f;
+        final float newHeight = (float)displayMetrics.heightPixels * 1.2f;
+        myShape.getLayoutParams().width = (int)newWidth;
+        myShape.getLayoutParams().height = (int)newHeight;
 
         Animation myShapeAnim = AnimationUtils.loadAnimation(this, R.anim.my_shape_anim);
         myShapeAnim.setStartTime((int)elapsedRealtime() + 1000);
