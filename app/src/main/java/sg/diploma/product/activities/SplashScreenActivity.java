@@ -28,6 +28,19 @@ public final class SplashScreenActivity extends Activity {
     }
 
     @Override
+    public void onBackPressed(){
+        moveTaskToBack(true);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        if(event.getAction() == TouchTypes.TouchType.Down.GetVal()){
+            _active = false;
+        }
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
@@ -98,14 +111,6 @@ public final class SplashScreenActivity extends Activity {
             }
         };
         splashTread.start();
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event){
-        if(event.getAction() == TouchTypes.TouchType.Down.GetVal()){
-            _active = false;
-        }
-        return true;
     }
 
     private boolean _active;

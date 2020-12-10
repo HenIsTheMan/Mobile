@@ -53,11 +53,13 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
             StateManager.Instance.ChangeState(("GameScreen"));
             startActivity(intent);
         } else if(v == btn_exit){
-            Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-            homeIntent.addCategory(Intent.CATEGORY_HOME);
-            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(homeIntent);
+            finishAndRemoveTask();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Do nth
     }
 
     @Override
