@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
+import sg.diploma.product.entity.IEntity;
 import sg.diploma.product.math.CheckCollision;
 import sg.diploma.product.math.Vector2;
 
@@ -125,7 +126,7 @@ public class EntityManager{ //Singleton
         }
     }
 
-    public void AddEntity(IEntity _newEntity, IEntity.ENTITY_TYPE entity_type)
+    public void AddEntity(IEntity _newEntity, IEntity.EntityType EntityType)
     {
         entityList.add(_newEntity);
     }
