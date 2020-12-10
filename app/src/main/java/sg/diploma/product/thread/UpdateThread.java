@@ -7,7 +7,7 @@ import android.view.SurfaceHolder;
 import sg.diploma.product.EntityManager;
 import sg.diploma.product.game.GameManager;
 import sg.diploma.product.game.GameView;
-import sg.diploma.product.StateManager;
+import sg.diploma.product.state.StateManager;
 
 public final class UpdateThread extends Thread{ //Need dedicated thread to run Surfaceview's update method
     public UpdateThread(){
@@ -32,7 +32,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         long prevTime = System.nanoTime();
         StateManager.Instance.Start("MainMenu"); //Start state
 
-        while(isRunning && StateManager.Instance.GetCurrentState() != "INVALID"){ //Main loop
+        while(isRunning && StateManager.Instance.GetCurrentState() != ""){ //Main loop
             startTime = System.currentTimeMillis();
             final long currTime = System.nanoTime();
             final float deltaTime = ((currTime - prevTime) / 1000000000.0f);

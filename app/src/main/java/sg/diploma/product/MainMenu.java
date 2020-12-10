@@ -14,6 +14,8 @@ import android.graphics.Typeface;
 
 import androidx.annotation.RequiresApi;
 
+import sg.diploma.product.state.StateManager;
+
 public class MainMenu extends Activity implements OnClickListener, IState{
     private Button btn_start;
     private Button btn_exit;

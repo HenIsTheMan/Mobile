@@ -3,6 +3,7 @@ package sg.diploma.product;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 
+import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 

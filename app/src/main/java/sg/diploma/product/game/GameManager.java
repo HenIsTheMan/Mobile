@@ -2,7 +2,7 @@ package sg.diploma.product.game;
 
 import sg.diploma.product.MainGameSceneState;
 import sg.diploma.product.MainMenu;
-import sg.diploma.product.StateManager;
+import sg.diploma.product.state.StateManager;
 
 public final class GameManager{ //Singleton
     private GameManager(){
