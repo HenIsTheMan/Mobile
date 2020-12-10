@@ -133,8 +133,9 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     }
 
     @Override
-    public void onBackPressed() {
-        moveTaskToBack(true);
+    public void onBackPressed(){
+        finishAndRemoveTask();
+        System.exit(0);
     }
 
     @Override

@@ -32,8 +32,7 @@ public final class SplashScreenActivity extends Activity{
 
     @Override
     public void onBackPressed(){
-        finishAndRemoveTask();
-        System.exit(0);
+        moveTaskToBack(true);
     }
 
     @Override
