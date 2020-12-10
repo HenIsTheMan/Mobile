@@ -42,6 +42,7 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 
 	@Override
 	public void Render (Canvas _canvas){ //Render with img centered
+		assert bmp != null;
 		_canvas.drawBitmap(bmp, pos.x - bmp.getWidth() * 0.5f, pos.y - bmp.getHeight() * 0.5f, null);
 	}
 
