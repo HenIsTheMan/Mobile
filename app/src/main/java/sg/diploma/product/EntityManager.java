@@ -116,7 +116,7 @@ public class EntityManager{ //Singleton
         Collections.sort(entityList, new Comparator<IEntity>() {
             @Override
             public int compare(IEntity o1, IEntity o2) {
-                return o1.GetRenderLayer() - o2.GetRenderLayer();
+                return o1.GetRenderLayer().GetVal() - o2.GetRenderLayer().GetVal();
             }
         });
 
