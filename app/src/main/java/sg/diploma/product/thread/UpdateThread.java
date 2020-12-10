@@ -21,7 +21,6 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         ///Init managers (if any)
         StateManager.Instance.Init(view);
         EntityManager.Instance.Init(view);
-        GameManager.Instance.Init();
     }
 
     @Override
@@ -30,9 +29,8 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         long startTime = 0;
 
         long prevTime = System.nanoTime();
-        StateManager.Instance.Start("SplashScreen"); //Start state
 
-        while(isRunning && StateManager.Instance.GetCurrentState() != ""){ //Main loop
+        while(isRunning){ //Main loop
             startTime = System.currentTimeMillis();
             final long currTime = System.nanoTime();
             final float deltaTime = ((currTime - prevTime) / 1000000000.0f);
@@ -41,13 +39,15 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
             StateManager.Instance.Update(deltaTime);
 
             ///Render
-            Canvas canvas = holder.lockCanvas(null);
-            if(canvas != null){
-                synchronized (holder){ //Sync to draw
-                    canvas.drawColor(Color.BLACK);
-                    StateManager.Instance.Render(canvas);
+            if(StateManager.Instance.GetCurrentStateName() != ""){
+                Canvas canvas = holder.lockCanvas(null);
+                if(canvas != null){
+                    synchronized(holder){ //Sync to draw
+                        canvas.drawColor(Color.BLACK);
+                        StateManager.Instance.Render(canvas);
+                    }
+                    holder.unlockCanvasAndPost(canvas);
                 }
-                holder.unlockCanvasAndPost(canvas);
             }
 
             //Control frame rate

@@ -33,6 +33,9 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        StateManager.Instance.AddState(new MenuScreenActivity());
+        StateManager.Instance.AddState(new GameScreenActivity());
+
         setContentView(R.layout.menu_screen_layout);
 
         btn_start = findViewById(R.id.btn_start);
@@ -47,7 +50,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     @Override
     public void onClick(View v){
         if(v == btn_start){
-            StateManager.Instance.ChangeState(("GameScreen"));
+            StateManager.Instance.ChangeState("GameScreen");
             startActivity(new Intent(this, GameScreenActivity.class));
         } else if(v == btn_exit){
             finishAndRemoveTask();

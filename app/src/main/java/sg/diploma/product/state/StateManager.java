@@ -11,12 +11,11 @@ public final class StateManager{ //Singleton
         currState = null;
         nextState = null;
         view = null;
-        stateMap = null;
+        stateMap = new HashMap<String, IState>();
     }
 
     public void Init(SurfaceView _view){
         view = _view;
-        stateMap = new HashMap<String, IState>();
     }
 
     public void AddState(IState _newState){
@@ -37,7 +36,9 @@ public final class StateManager{ //Singleton
 
     public void Update(float _dt){
         if(nextState != currState){
-            currState.OnExit();
+            if(currState != null){
+                currState.OnExit();
+            }
             currState = nextState;
             currState.OnEnter(view);
         }
@@ -54,24 +55,8 @@ public final class StateManager{ //Singleton
         currState.Render(_canvas);
     }
 
-    public String GetCurrentState(){
-        if(currState == null){
-            Log.w(tag, "Var 'currState' is null!");
-            return "";
-        }
-        return currState.GetName();
-    }
-
-    public void Start(String _newCurrent){
-        if(currState != null || nextState != null){ //Ensure this func is only called once
-            return;
-        }
-
-        currState = stateMap.get(_newCurrent);
-        if(currState != null){
-            currState.OnEnter(view);
-            nextState = currState;
-        }
+    public String GetCurrentStateName(){
+        return currState == null ? "" : currState.GetName();
     }
 
     public static final StateManager Instance;

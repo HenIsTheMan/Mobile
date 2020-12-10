@@ -9,12 +9,6 @@ public final class GameManager{ //Singleton
         isPaused = false;
     }
 
-    public void Init(){
-        ///Add all states to state manager
-        StateManager.Instance.AddState(new MenuScreenActivity());
-        StateManager.Instance.AddState(new GameScreenActivity());
-    }
-
     public boolean GetIsPaused(){
         return isPaused;
     }

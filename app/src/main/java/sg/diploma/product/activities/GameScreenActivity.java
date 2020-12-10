@@ -55,18 +55,14 @@ public final class GameScreenActivity extends Activity implements IState{
     @Override
     public void Render(Canvas _canvas){
         EntityManager.Instance.Render(_canvas);
-
     }
 
     @Override
     public void Update(float _dt) {
-        Log.v("", "here");
-
         EntityManager.Instance.Update(_dt);
 
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
             StateManager.Instance.ChangeState("MenuScreen");
-            startActivity(new Intent(this, MenuScreenActivity.class));
         }
     }
 }
