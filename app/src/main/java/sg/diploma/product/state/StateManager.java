@@ -6,9 +6,7 @@ import android.view.SurfaceView;
 
 import java.util.HashMap;
 
-import sg.diploma.product.IState;
-
-public class StateManager{ //Singleton
+public final class StateManager{ //Singleton
     private StateManager(){
         currState = null;
         nextState = null;

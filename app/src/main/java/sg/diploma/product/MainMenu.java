@@ -14,6 +14,7 @@ import android.graphics.Typeface;
 
 import androidx.annotation.RequiresApi;
 
+import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 
 public class MainMenu extends Activity implements OnClickListener, IState{
@@ -60,13 +61,14 @@ public class MainMenu extends Activity implements OnClickListener, IState{
         }
     }
 
-    //* From IState
     @Override
     public void Render(Canvas _canvas) {
+        // 3) Render () --> E.g: Entitymanager, Instance, Canvas
     }
 
     @Override
     public void OnEnter(SurfaceView _view) {
+        // 2) OnEnter() --> Using the surfaceview e.g: Renderbackground
     }
 
     @Override
@@ -75,6 +77,7 @@ public class MainMenu extends Activity implements OnClickListener, IState{
 
     @Override
     public void Update(float _dt) {
+        // 4) Update () --> FPS, timer.. dt
     }
 
     @Override
