@@ -10,14 +10,8 @@ public interface IEntity{
         Amt
     }
 
-    boolean IsDone();
-    void SetIsDone(boolean _isDone);
-
-    void Init(SurfaceView _view);
     void Update(float _dt);
     void Render(Canvas _canvas);
-
-    boolean IsInit();
 
     LayerTypes.LayerType GetRenderLayer();
     void SetRenderLayer(LayerTypes.LayerType _newLayer);

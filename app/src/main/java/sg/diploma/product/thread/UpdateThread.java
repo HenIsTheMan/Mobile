@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.SurfaceHolder;
 
-import sg.diploma.product.EntityManager;
+import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.game.GameManager;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.state.StateManager;

@@ -5,9 +5,8 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
-import android.view.Window;
-import android.view.WindowManager;
 
+import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;

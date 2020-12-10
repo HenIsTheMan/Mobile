@@ -56,7 +56,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="0.7" />
+                android:layout_weight="0.6" />
         </LinearLayout>
 
         <LinearLayout
@@ -71,7 +71,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1.6" />
+                android:layout_weight="1.5" />
         </LinearLayout>
 
     </FrameLayout>
