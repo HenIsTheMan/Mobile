@@ -32,9 +32,15 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         startButton = null;
         settingsButton = null;
         exitButton = null;
+
+        playIcon = null;
+        gearsIcon = null;
+        leaveIcon = null;
         myShape = null;
+
         gameTitleBossText = null;
         gameTitleGirlText = null;
+
         font = null;
     }
 
@@ -70,27 +76,48 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         myShape.startAnimation(myShapeAnim);
 
         final float buttonFactor = (float)displayMetrics.widthPixels / 4.0f / 300.0f;
+        final int buttonSize = (int)(300.0f * buttonFactor);
 
         startButton = findViewById(R.id.startButton);
         startButton.setOnClickListener(this);
-        startButton.getLayoutParams().width = (int)(300.0f * buttonFactor);
-        startButton.getLayoutParams().height = (int)(300.0f * buttonFactor);
-        startButton.setTranslationX((float)displayMetrics.widthPixels * 0.2f - (float)startButton.getLayoutParams().width * 0.5f);
+        startButton.getLayoutParams().width = buttonSize;
+        startButton.getLayoutParams().height = buttonSize;
+        startButton.setTranslationX((float)displayMetrics.widthPixels * 0.2f - (float)buttonSize * 0.5f);
         startButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
 
         settingsButton = findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(this);
-        settingsButton.getLayoutParams().width = (int)(300.0f * buttonFactor);
-        settingsButton.getLayoutParams().height = (int)(300.0f * buttonFactor);
-        settingsButton.setTranslationX((float)displayMetrics.widthPixels * 0.5f - (float)settingsButton.getLayoutParams().width * 0.5f);
+        settingsButton.getLayoutParams().width = buttonSize;
+        settingsButton.getLayoutParams().height = buttonSize;
+        settingsButton.setTranslationX((float)displayMetrics.widthPixels * 0.5f - (float)buttonSize * 0.5f);
         settingsButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
 
         exitButton = findViewById(R.id.exitButton);
         exitButton.setOnClickListener(this);
-        exitButton.getLayoutParams().width = (int)(300.0f * buttonFactor);
-        exitButton.getLayoutParams().height = (int)(300.0f * buttonFactor);
-        exitButton.setTranslationX((float)displayMetrics.widthPixels * 0.8f - (float)exitButton.getLayoutParams().width * 0.5f);
+        exitButton.getLayoutParams().width = buttonSize;
+        exitButton.getLayoutParams().height = buttonSize;
+        exitButton.setTranslationX((float)displayMetrics.widthPixels * 0.8f - (float)buttonSize * 0.5f);
         exitButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
+
+        playIcon = findViewById(R.id.playIcon);
+        playIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
+        playIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
+        playIcon.setTranslationX(startButton.getTranslationX()
+            + (startButton.getLayoutParams().width
+            - playIcon.getLayoutParams().width) * 0.5f);
+        playIcon.setTranslationY(startButton.getTranslationY()
+        + (startButton.getLayoutParams().height
+        - playIcon.getLayoutParams().height) * 0.5f);
+
+        gearsIcon = findViewById(R.id.gearsIcon);
+        gearsIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
+        gearsIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
+        gearsIcon.setTranslationX(settingsButton.getTranslationX()
+            + (settingsButton.getLayoutParams().width
+            - gearsIcon.getLayoutParams().width) * 0.5f);
+        gearsIcon.setTranslationY(settingsButton.getTranslationY()
+            + (settingsButton.getLayoutParams().height
+            - gearsIcon.getLayoutParams().height) * 0.5f);
 
         font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
 
@@ -180,9 +207,15 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private Button startButton;
     private Button settingsButton;
     private Button exitButton;
+
+    private ImageView playIcon;
+    private ImageView gearsIcon;
+    private ImageView leaveIcon;
     private ImageView myShape;
+
     private TextView gameTitleBossText;
     private TextView gameTitleGirlText;
+
     private Typeface font;
 
     //*/

@@ -6,4 +6,9 @@
     <string name="GameTitleBossText">"BOSS"</string>
     <string name="GameTitleGirlText">"Girl"</string>
 
+    <string name="playIconInfo">PlayIcon</string>
+    <string name="gearsIconInfo">GearsIcon</string>
+    <string name="leaveIconInfo">LeaveIcon</string>
+    <string name="myShapeInfo">myShapeInfo</string>
+
 </resources>

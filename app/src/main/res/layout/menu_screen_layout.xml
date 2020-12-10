@@ -25,6 +25,27 @@
         android:layout_height="0dp"
         android:background="@drawable/button" />
 
+    <ImageView
+        android:id="@+id/playIcon"
+        android:src="@drawable/play_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/playIconInfo" />
+
+    <ImageView
+        android:id="@+id/gearsIcon"
+        android:src="@drawable/gears_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/gearsIconInfo" />
+
+    <ImageView
+        android:id="@+id/leaveIcon"
+        android:src="@drawable/leave_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/leaveIconInfo" />
+
     <TextView
         android:id="@+id/gameTitleBossText"
         android:layout_width="wrap_content"
@@ -41,39 +62,7 @@
         android:id="@+id/myShape"
         android:src="@drawable/my_shape"
         android:layout_width="0dp"
-        android:layout_height="0dp" />
-
-
-
-        <!--<LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="horizontal"
-            android:weightSum="1" >
-
-            <ImageView
-                android:id="@+id/playIcon"
-                android:src="@drawable/play_icon"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.6" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="horizontal"
-            android:weightSum="1" >
-
-            <ImageView
-                android:id="@+id/gearsIcon"
-                android:src="@drawable/gears_icon"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1.5" />
-        </LinearLayout>-->
-    
+        android:layout_height="0dp"
+        android:contentDescription="@string/myShapeInfo" />
 
 </RelativeLayout>
