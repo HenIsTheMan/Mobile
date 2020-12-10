@@ -8,6 +8,8 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.view.animation.AnimationUtils;
 
@@ -50,31 +52,39 @@ public final class SplashScreenActivity extends Activity{
 
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
         final float factor0 = (float)displayMetrics.widthPixels / 4.0f / 254.0f;
-        Animation androidLogoAnim0 = AnimationUtils.loadAnimation(this, R.anim.android_logo_anim);
-        Animation androidLogoAnim1 = AnimationUtils.loadAnimation(this, R.anim.android_logo_anim);
-        Animation androidLogoAnim2 = AnimationUtils.loadAnimation(this, R.anim.android_logo_anim);
-        Animation androidLogoAnim3 = AnimationUtils.loadAnimation(this, R.anim.android_logo_anim);
+        AnimationSet androidLogoAnimSet0 = new AnimationSet(true);
+        androidLogoAnimSet0.addAnimation(AnimationUtils.loadAnimation(this, R.anim.android_logo_anim));
+        androidLogoAnimSet0.addAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_with_top_left_pivot));
+        AnimationSet androidLogoAnimSet1 = new AnimationSet(true);
+        androidLogoAnimSet1.addAnimation(AnimationUtils.loadAnimation(this, R.anim.android_logo_anim));
+        androidLogoAnimSet1.addAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_with_top_right_pivot));
+        AnimationSet androidLogoAnimSet2 = new AnimationSet(true);
+        androidLogoAnimSet2.addAnimation(AnimationUtils.loadAnimation(this, R.anim.android_logo_anim));
+        androidLogoAnimSet2.addAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_with_bottom_left_pivot));
+        AnimationSet androidLogoAnimSet3 = new AnimationSet(true);
+        androidLogoAnimSet3.addAnimation(AnimationUtils.loadAnimation(this, R.anim.android_logo_anim));
+        androidLogoAnimSet3.addAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_with_bottom_right_pivot));
 
         androidLogo0 = findViewById(R.id.androidLogo0);
-        androidLogo0.startAnimation(androidLogoAnim0);
+        androidLogo0.startAnimation(androidLogoAnimSet0);
         androidLogo0.getLayoutParams().width = (int)(254.0f * factor0);
         androidLogo0.getLayoutParams().height = (int)(284.0f * factor0);
 
         androidLogo1 = findViewById(R.id.androidLogo1);
-        androidLogoAnim1.setStartOffset(200);
-        androidLogo1.startAnimation(androidLogoAnim1);
+        androidLogoAnimSet1.setStartOffset(200);
+        androidLogo1.startAnimation(androidLogoAnimSet1);
         androidLogo1.getLayoutParams().width = (int)(254.0f * factor0);
         androidLogo1.getLayoutParams().height = (int)(284.0f * factor0);
 
         androidLogo2 = findViewById(R.id.androidLogo2);
-        androidLogoAnim2.setStartOffset(400);
-        androidLogo2.startAnimation(androidLogoAnim2);
+        androidLogoAnimSet2.setStartOffset(400);
+        androidLogo2.startAnimation(androidLogoAnimSet2);
         androidLogo2.getLayoutParams().width = (int)(254.0f * factor0);
         androidLogo2.getLayoutParams().height = (int)(284.0f * factor0);
 
         androidLogo3 = findViewById(R.id.androidLogo3);
-        androidLogoAnim3.setStartOffset(600);
-        androidLogo3.startAnimation(androidLogoAnim3);
+        androidLogoAnimSet3.setStartOffset(600);
+        androidLogo3.startAnimation(androidLogoAnimSet3);
         androidLogo3.getLayoutParams().width = (int)(254.0f * factor0);
         androidLogo3.getLayoutParams().height = (int)(284.0f * factor0);
 
