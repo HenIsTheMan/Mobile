@@ -50,7 +50,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
         if(v == btn_start){
             intent.setClass(this, GameScreenActivity.class);
-            StateManager.Instance.ChangeState(("GameScreen"));
+            //StateManager.Instance.ChangeState(("GameScreen"));
             startActivity(intent);
         } else if(v == btn_exit){
             finishAndRemoveTask();

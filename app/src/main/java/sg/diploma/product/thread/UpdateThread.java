@@ -30,7 +30,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         long startTime = 0;
 
         long prevTime = System.nanoTime();
-        StateManager.Instance.Start("MenuScreen"); //Start state
+        StateManager.Instance.Start("SplashScreen"); //Start state
 
         while(isRunning && StateManager.Instance.GetCurrentState() != ""){ //Main loop
             startTime = System.currentTimeMillis();

@@ -3,18 +3,21 @@ package sg.diploma.product.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 
+import android.view.SurfaceView;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.view.animation.AnimationUtils;
 
 import sg.diploma.product.R;
+import sg.diploma.product.state.IState;
 import sg.diploma.product.touch.TouchTypes;
 
-public final class SplashScreenActivity extends Activity {
+public final class SplashScreenActivity extends Activity implements IState{
     public SplashScreenActivity(){
         _active = true;
         _splashTime = 8000;
@@ -103,7 +106,7 @@ public final class SplashScreenActivity extends Activity {
                 } catch(InterruptedException e){
                     //Do nth
                 } finally{
-                    finish();
+                    finishAffinity();
 
                     ///Create new activity based on and intent with CurrentActivity
                     Intent intent = new Intent(SplashScreenActivity.this, MenuScreenActivity.class);
@@ -112,6 +115,46 @@ public final class SplashScreenActivity extends Activity {
             }
         };
         splashTread.start();
+    }
+
+    @Override
+    public void Render(Canvas _canvas){
+        //Do nth
+    }
+
+    @Override
+    public void OnEnter(SurfaceView _view){
+        //Do nth
+    }
+
+    @Override
+    public void OnExit(){
+        //Do nth
+    }
+
+    @Override
+    public void Update(float _dt) {
+        //Do nth
+    }
+
+    @Override
+    public String GetName(){
+        return "SplashScreen";
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
     }
 
     private boolean _active;
