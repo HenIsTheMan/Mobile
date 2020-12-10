@@ -57,10 +57,10 @@ public final class EntityManager{ //Singleton
                     if(otherEntity instanceof IEntityCollidable){
                         IEntityCollidable collidable1 = (IEntityCollidable)otherEntity;
 
-                        if(CheckCollision.CircleCircle(new Vector2(collidable0.GetPosX(), collidable0.GetPosY()), new Vector2(collidable1.GetPosX(), collidable1.GetPosY()), collidable0.GetRadius(), collidable1.GetRadius())){
+                        /*if(CheckCollision.CircleCircle(new Vector2(collidable0.GetPosX(), collidable0.GetPosY()), new Vector2(collidable1.GetPosX(), collidable1.GetPosY()), collidable0.GetRadius(), collidable1.GetRadius())){
                             collidable0.OnHit(collidable1);
                             collidable1.OnHit(collidable0);
-                        }
+                        }*/
                     }
                 }
             }
@@ -73,7 +73,7 @@ public final class EntityManager{ //Singleton
     }
 
     public void Render(Canvas _canvas){
-        Collections.sort(entityList, new Comparator<IEntity>(){ //Determines render order
+        entityList.sort(new Comparator<IEntity>(){ //Determines render order
             @Override
             public int compare(IEntity o1, IEntity o2){
                 return o1.GetRenderLayer().GetVal() - o2.GetRenderLayer().GetVal();

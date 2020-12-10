@@ -7,6 +7,7 @@ import sg.diploma.product.layer.LayerTypes;
 
 public interface IEntity{
     enum EntityType{
+        PlayerChar,
         Amt
     }
 
