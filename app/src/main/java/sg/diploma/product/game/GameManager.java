@@ -1,6 +1,6 @@
 package sg.diploma.product.game;
 
-import sg.diploma.product.MainGameSceneState;
+import sg.diploma.product.GamePage;
 import sg.diploma.product.MainMenu;
 import sg.diploma.product.state.StateManager;
 
@@ -12,7 +12,7 @@ public final class GameManager{ //Singleton
     public void Init(){
         ///Add all states to state manager
         StateManager.Instance.AddState(new MainMenu());
-        StateManager.Instance.AddState(new MainGameSceneState());
+        StateManager.Instance.AddState(new GamePage());
     }
 
     public boolean GetIsPaused(){
