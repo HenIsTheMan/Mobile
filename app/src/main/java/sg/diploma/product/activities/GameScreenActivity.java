@@ -34,7 +34,7 @@ public final class GameScreenActivity extends Activity implements IState{
     private float timer = 0.0f;
 
     @Override
-    public String GetName() {
+    public String GetName(){
         return "GameScreen";
     }
 
@@ -45,14 +45,13 @@ public final class GameScreenActivity extends Activity implements IState{
     }
 
     @Override
-    public void OnExit() {
+    public void OnExit(){
         EntityManager.Instance.Clean();
         GameScreenActivity.Instance.finish();
     }
 
     @Override
-    public void Render(Canvas _canvas)
-    {
+    public void Render(Canvas _canvas){
         EntityManager.Instance.Render(_canvas);
 
     }

@@ -92,19 +92,13 @@ public final class SplashScreenActivity extends Activity implements IState{
         androidStudioText.getLayoutParams().width = (int)(850.0f * factor2);
         androidStudioText.getLayoutParams().height = (int)(90.0f * factor2);
 
-        Thread splashTread = new Thread(){
+        Thread splashThread = new Thread(){
             @Override
             public void run(){
                 try{
-                    int waited = 0;
-                    while(_active && (waited < _splashTime)){
-                        sleep(200);
-                        if(_active){
-                            waited += 200;
-                        }
-                    }
+                    sleep(_splashTime);
                 } catch(InterruptedException e){
-                    //Do nth
+                    e.printStackTrace();
                 } finally{
                     finishAffinity();
 
@@ -114,7 +108,21 @@ public final class SplashScreenActivity extends Activity implements IState{
                 }
             }
         };
-        splashTread.start();
+
+        Thread splashControlThread = new Thread(){
+            @Override
+            public void run(){
+                for(;;){
+                    if(!_active){
+                        splashThread.interrupt();
+                        break;
+                    }
+                }
+            }
+        };
+
+        splashThread.start();
+        splashControlThread.start();
     }
 
     @Override
