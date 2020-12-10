@@ -27,9 +27,9 @@ import static android.os.SystemClock.elapsedRealtime;
 
 public final class MenuScreenActivity extends Activity implements OnClickListener, IState{
     public MenuScreenActivity(){
-        /*btn_start = null;
-        btn_exit = null;
-        font = null;*/
+        startButton = null;
+        settingsButton = null;
+        font = null;
         myShape = null;
     }
 
@@ -66,13 +66,19 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         });
         myShape.startAnimation(myShapeAnim);
 
-        /*btn_start = findViewById(R.id.btn_start);
+/*        btn_start = findViewById(R.id.btn_start);
         btn_start.setOnClickListener(this);
         btn_exit = findViewById(R.id.btn_exit);
         btn_exit.setOnClickListener(this);
 
         font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
-        btn_start.setTypeface(font);*/
+        btn_start.setTypeface(font);
+
+        androidLogo3 = findViewById(R.id.androidLogo3);
+        androidLogoAnim3.setStartOffset(600);
+        androidLogo3.startAnimation(androidLogoAnim3);
+        androidLogo3.getLayoutParams().width = (int)(254.0f * factor0);
+        androidLogo3.getLayoutParams().height = (int)(284.0f * factor0);*/
     }
 
     @Override
@@ -130,9 +136,9 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         super.onDestroy();
     }
 
-    /*private Button btn_start;
-    private Button btn_exit;
-    private Typeface font;*/
+    private Button startButton;
+    private Button settingsButton;
+    private Typeface font;
     private ImageView myShape;
 
     //*/
