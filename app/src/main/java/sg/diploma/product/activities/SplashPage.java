@@ -1,4 +1,4 @@
-package sg.diploma.product.splash;
+package sg.diploma.product.activities;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -39,10 +39,9 @@ public class GamePage extends Activity implements IState{
     }
 
     @Override
-    public void OnEnter(SurfaceView _view)
-    {
+    public void OnEnter(SurfaceView _view){
         //RenderBackground.Create();
-        // Example to include another Renderview for Pause Button
+        //Example to include another Renderview for Pause Button
     }
 
     @Override
