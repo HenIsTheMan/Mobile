@@ -54,12 +54,13 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
             startActivity(intent);
         } else if(v == btn_exit){
             finishAndRemoveTask();
+            System.exit(0);
         }
     }
 
     @Override
     public void onBackPressed() {
-        //Do nth
+        moveTaskToBack(true);
     }
 
     @Override
