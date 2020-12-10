@@ -1,8 +1,10 @@
 package sg.diploma.product.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
@@ -58,10 +60,13 @@ public final class GameScreenActivity extends Activity implements IState{
 
     @Override
     public void Update(float _dt) {
+        Log.v("", "here");
+
         EntityManager.Instance.Update(_dt);
 
-        if (TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
-            StateManager.Instance.ChangeState("MenuScreen"); //Go back to MenuScreen
+        if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
+            StateManager.Instance.ChangeState("MenuScreen");
+            startActivity(new Intent(this, MenuScreenActivity.class));
         }
     }
 }

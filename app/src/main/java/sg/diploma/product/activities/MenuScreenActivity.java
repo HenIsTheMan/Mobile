@@ -46,12 +46,9 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void onClick(View v){
-        Intent intent = new Intent();
-
         if(v == btn_start){
-            intent.setClass(this, GameScreenActivity.class);
-            //StateManager.Instance.ChangeState(("GameScreen"));
-            startActivity(intent);
+            StateManager.Instance.ChangeState(("GameScreen"));
+            startActivity(new Intent(this, GameScreenActivity.class));
         } else if(v == btn_exit){
             finishAndRemoveTask();
             System.exit(0);

@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 
 import sg.diploma.product.R;
 import sg.diploma.product.state.IState;
+import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchTypes;
 
 public final class SplashScreenActivity extends Activity implements IState{
@@ -102,9 +103,8 @@ public final class SplashScreenActivity extends Activity implements IState{
                 } finally{
                     finishAffinity();
 
-                    ///Create new activity based on and intent with CurrentActivity
-                    Intent intent = new Intent(SplashScreenActivity.this, MenuScreenActivity.class);
-                    startActivity(intent);
+                    StateManager.Instance.ChangeState("MenuScreen");
+                    startActivity(new Intent(SplashScreenActivity.this, MenuScreenActivity.class));
                 }
             }
         };
