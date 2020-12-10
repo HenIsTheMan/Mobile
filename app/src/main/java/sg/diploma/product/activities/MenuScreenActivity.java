@@ -29,6 +29,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     public MenuScreenActivity(){
         startButton = null;
         settingsButton = null;
+        exitButton = null;
         font = null;
         myShape = null;
     }
@@ -45,10 +46,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
         myShape = findViewById(R.id.myShape);
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
-        final float newWidth = (float)displayMetrics.widthPixels * 1.2f;
-        final float newHeight = (float)displayMetrics.heightPixels * 1.2f;
-        myShape.getLayoutParams().width = (int)newWidth;
-        myShape.getLayoutParams().height = (int)newHeight;
+        myShape.getLayoutParams().width = (int)((float)displayMetrics.widthPixels * 1.2f);
+        myShape.getLayoutParams().height = (int)((float)displayMetrics.heightPixels * 1.2f);
 
         Animation myShapeAnim = AnimationUtils.loadAnimation(this, R.anim.my_shape_anim);
         myShapeAnim.setStartTime((int)elapsedRealtime() + 1000);
@@ -66,30 +65,48 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         });
         myShape.startAnimation(myShapeAnim);
 
-/*        btn_start = findViewById(R.id.btn_start);
-        btn_start.setOnClickListener(this);
-        btn_exit = findViewById(R.id.btn_exit);
-        btn_exit.setOnClickListener(this);
+        final float buttonFactor = (float)displayMetrics.widthPixels / 4.0f / 300.0f;
+
+        startButton = findViewById(R.id.startButton);
+        startButton.setOnClickListener(this);
+        startButton.getLayoutParams().width = (int)(300.0f * buttonFactor);
+        startButton.getLayoutParams().height = (int)(300.0f * buttonFactor);
+        startButton.setTranslationX((float)displayMetrics.widthPixels * 0.2f - (float)startButton.getLayoutParams().width * 0.5f);
+        startButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
+
+        settingsButton = findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(this);
+        settingsButton.getLayoutParams().width = (int)(300.0f * buttonFactor);
+        settingsButton.getLayoutParams().height = (int)(300.0f * buttonFactor);
+        settingsButton.setTranslationX((float)displayMetrics.widthPixels * 0.5f - (float)settingsButton.getLayoutParams().width * 0.5f);
+        settingsButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
+
+        exitButton = findViewById(R.id.exitButton);
+        exitButton.setOnClickListener(this);
+        exitButton.getLayoutParams().width = (int)(300.0f * buttonFactor);
+        exitButton.getLayoutParams().height = (int)(300.0f * buttonFactor);
+        exitButton.setTranslationX((float)displayMetrics.widthPixels * 0.8f - (float)exitButton.getLayoutParams().width * 0.5f);
+        exitButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
 
         font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
-        btn_start.setTypeface(font);
-
-        androidLogo3 = findViewById(R.id.androidLogo3);
-        androidLogoAnim3.setStartOffset(600);
-        androidLogo3.startAnimation(androidLogoAnim3);
-        androidLogo3.getLayoutParams().width = (int)(254.0f * factor0);
-        androidLogo3.getLayoutParams().height = (int)(284.0f * factor0);*/
+        //btn_start.setTypeface(font);
     }
 
     @Override
     public void onClick(View v){
-        /*if(v == btn_start){
+        if(v == startButton){
             StateManager.Instance.ChangeState("GameScreen");
             startActivity(new Intent(this, GameScreenActivity.class));
-        } else if(v == btn_exit){
+            return;
+        }
+        if(v == settingsButton){
+            //
+            return;
+        }
+        if(v == exitButton){
             finishAndRemoveTask();
             System.exit(0);
-        }*/
+        }
     }
 
     @Override
@@ -138,6 +155,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     private Button startButton;
     private Button settingsButton;
+    private Button exitButton;
     private Typeface font;
     private ImageView myShape;
 
