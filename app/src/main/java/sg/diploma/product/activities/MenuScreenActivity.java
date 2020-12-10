@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.os.Build;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +17,7 @@ import android.content.Intent;
 
 import android.graphics.Typeface;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
@@ -31,6 +33,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         settingsButton = null;
         exitButton = null;
         myShape = null;
+        gameTitleBossText = null;
+        gameTitleGirlText = null;
         font = null;
     }
 
@@ -89,7 +93,26 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         exitButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
 
         font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
-        //btn_start.setTypeface(font);
+
+        gameTitleBossText = findViewById(R.id.gameTitleBossText);
+        gameTitleBossText.setTypeface(font);
+        gameTitleBossText.setTextSize(TypedValue.COMPLEX_UNIT_SP,
+            (float)displayMetrics.widthPixels * 0.2f
+            / displayMetrics.scaledDensity);
+        gameTitleBossText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        gameTitleBossText.setTranslationX((float)displayMetrics.widthPixels * 0.5f
+            - (float)gameTitleBossText.getMeasuredWidth() * 0.5f);
+        gameTitleBossText.setTranslationY((float)displayMetrics.heightPixels * 0.07f);
+
+        gameTitleGirlText = findViewById(R.id.gameTitleGirlText);
+        gameTitleGirlText.setTypeface(font);
+        gameTitleGirlText.setTextSize(TypedValue.COMPLEX_UNIT_SP,
+                (float)displayMetrics.widthPixels * 0.18f
+                / displayMetrics.scaledDensity);
+        gameTitleGirlText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        gameTitleGirlText.setTranslationX((float)displayMetrics.widthPixels * 0.5f
+                - (float)gameTitleGirlText.getMeasuredWidth() * 0.5f);
+        gameTitleGirlText.setTranslationY((float)displayMetrics.heightPixels * 0.2f);
     }
 
     @Override
@@ -157,6 +180,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private Button settingsButton;
     private Button exitButton;
     private ImageView myShape;
+    private TextView gameTitleBossText;
+    private TextView gameTitleGirlText;
     private Typeface font;
 
     //*/

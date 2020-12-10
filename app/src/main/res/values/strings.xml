@@ -3,4 +3,7 @@
 
     <string name="GameName">"Boss Girl"</string>
 
+    <string name="GameTitleBossText">"BOSS"</string>
+    <string name="GameTitleGirlText">"Girl"</string>
+
 </resources>

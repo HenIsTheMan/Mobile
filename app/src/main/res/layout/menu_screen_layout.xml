@@ -29,13 +29,13 @@
         android:id="@+id/gameTitleBossText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BOSS" />
+        android:text="@string/GameTitleBossText" />
 
     <TextView
         android:id="@+id/gameTitleGirlText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Girl" />
+        android:text="@string/GameTitleGirlText" />
 
     <FrameLayout
         android:layout_width="match_parent"

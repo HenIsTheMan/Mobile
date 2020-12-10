@@ -31,13 +31,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/scale_with_bottom_left_pivot.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/scale_with_bottom_right_pivot.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/scale_with_top_left_pivot.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/scale_with_top_right_pivot.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/SplashScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/SplashScreenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/anim/android_logo_anim.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/anim/android_logo_anim.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/MenuScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/MenuScreenActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/menu_screen_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/menu_screen_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -247,30 +244,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="829" y="401" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607591273898" />
-    <state width="1347" height="25" key="GridCell.Tab.0.bottom" timestamp="1607583301267">
+    <state width="1347" height="239" key="GridCell.Tab.0.bottom" timestamp="1607600949437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1347" height="25" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607583301267" />
-    <state width="1347" height="25" key="GridCell.Tab.0.center" timestamp="1607583301267">
+    <state width="1347" height="239" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607600949437" />
+    <state width="1347" height="239" key="GridCell.Tab.0.center" timestamp="1607600949437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1347" height="25" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607583301267" />
-    <state width="1347" height="25" key="GridCell.Tab.0.left" timestamp="1607583301266">
+    <state width="1347" height="239" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607600949437" />
+    <state width="1347" height="239" key="GridCell.Tab.0.left" timestamp="1607600949437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1347" height="25" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607583301266" />
-    <state width="1347" height="25" key="GridCell.Tab.0.right" timestamp="1607583301267">
+    <state width="1347" height="239" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607600949437" />
+    <state width="1347" height="239" key="GridCell.Tab.0.right" timestamp="1607600949437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1347" height="25" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607583301267" />
+    <state width="1347" height="239" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607600949437" />
     <state x="922" y="187" width="998" height="708" key="SettingsEditor" timestamp="1607504088095">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="922" y="187" width="998" height="708" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607504088095" />
-    <state x="501" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607569754848">
+    <state x="501" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607603081570">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="501" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607569754848" />
+    <state x="501" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607603081570" />
     <state x="727" y="235" width="585" height="534" key="find.popup" timestamp="1607575783893">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
