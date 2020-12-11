@@ -60,9 +60,6 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        StateManager.Instance.AddState(new MenuScreenActivity());
-        StateManager.Instance.AddState(new GameScreenActivity());
-
         setContentView(R.layout.menu_screen_layout);
 
         menuSurfaceView = findViewById(R.id.menuSurfaceView);
@@ -217,7 +214,6 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void Render(Canvas _canvas) {
-        android.util.Log.e("HHH", "Here");
         EntityManager.Instance.Render(_canvas);
     }
 

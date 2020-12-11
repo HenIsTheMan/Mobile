@@ -67,7 +67,7 @@ public final class StateManager{ //Singleton
         tag = "StateManager";
     }
 
-    private HashMap<String, IState> stateMap;
+    private final HashMap<String, IState> stateMap;
     private IState currState;
     private IState nextState;
     private SurfaceView view;

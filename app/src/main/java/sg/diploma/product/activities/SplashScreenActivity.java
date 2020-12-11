@@ -49,6 +49,9 @@ public final class SplashScreenActivity extends Activity{
         
         setContentView(R.layout.splash_screen_layout);
 
+        StateManager.Instance.AddState(new MenuScreenActivity());
+        StateManager.Instance.AddState(new GameScreenActivity());
+
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
         final float factor0 = (float)displayMetrics.widthPixels / 4.0f / 254.0f;
         AnimationSet androidLogoAnimSet0 = new AnimationSet(true);
@@ -109,6 +112,7 @@ public final class SplashScreenActivity extends Activity{
             } finally{
                 finishAffinity();
 
+                StateManager.Instance.ChangeState("MenuScreen");
                 startActivity(new Intent(SplashScreenActivity.this, MenuScreenActivity.class));
             }
             }
