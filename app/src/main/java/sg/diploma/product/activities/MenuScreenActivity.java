@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -28,23 +29,24 @@ import sg.diploma.product.entity.entities.EntityPlayerChar;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.thread.UpdateThread;
-
-import static android.os.SystemClock.elapsedRealtime;
+import sg.diploma.product.touch.TouchTypes;
 
 public final class MenuScreenActivity extends Activity implements OnClickListener, IState{
     public MenuScreenActivity(){
+        isTouchDown = false;
+
         startButton = null;
         settingsButton = null;
         exitButton = null;
 
-        playerChar = null;
+        menuPlayerChar = null;
 
         playIcon = null;
         gearsIcon = null;
         leaveIcon = null;
         myShape = null;
 
-        menuSurfaceView = null;
+        SurfaceView menuSurfaceView = null;
 
         gameTitleBossText = null;
         gameTitleGirlText = null;
@@ -61,7 +63,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
         setContentView(R.layout.menu_screen_layout);
 
-        menuSurfaceView = findViewById(R.id.menuSurfaceView);
+        SurfaceView menuSurfaceView = findViewById(R.id.menuSurfaceView);
         updateThread = new UpdateThread(menuSurfaceView);
         SurfaceHolder surfaceHolder = menuSurfaceView.getHolder();
 
@@ -90,6 +92,19 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         }
 
         InitOthers();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        if(event.getAction() == TouchTypes.TouchType.Down.GetVal()){
+            isTouchDown = true;
+            return true;
+        }
+        /*if(event.getAction() == TouchTypes.TouchType.Up.GetVal()){
+            isTouchDown = false;
+            return true;
+        }*/
+        return true;
     }
 
     @Override
@@ -123,22 +138,29 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void OnEnter(SurfaceView _view) {
-        playerChar = EntityPlayerChar.Create();
+        menuPlayerChar = EntityPlayerChar.Create();
 
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
-        playerChar.attribs.pos.x = (int)(displayMetrics.widthPixels * 0.5f);
-        playerChar.attribs.pos.y = (int)(displayMetrics.heightPixels * 3.0f / 4.0f);
+        menuPlayerChar.attribs.pos.x = (int)(displayMetrics.widthPixels * 0.5f);
+        menuPlayerChar.attribs.pos.y = (int)(displayMetrics.heightPixels * 3.0f / 4.0f);
 
-        playerChar.attribs.scale.x = playerChar.attribs.scale.y = 2.0f;
-        playerChar.GenScaledBitmap();
+        menuPlayerChar.attribs.scale.x = menuPlayerChar.attribs.scale.y = 1.5f;
+        menuPlayerChar.GenScaledBitmap();
     }
 
     @Override
-    public void OnExit() {
+    public void OnExit(){
     }
 
     @Override
-    public void Update(float _dt) {
+    public void Update(float _dt){
+        if(isTouchDown){
+            android.util.Log.e("Hey", "Here");
+            menuPlayerChar.StartMoving();
+        } else{
+            menuPlayerChar.StopMoving();
+        }
+
         EntityManager.Instance.Update(_dt);
     }
 
@@ -261,18 +283,18 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         gameTitleGirlText.setTranslationY((float)displayMetrics.heightPixels * 0.2f);
     }
 
+    private boolean isTouchDown;
+
     private Button startButton;
     private Button settingsButton;
     private Button exitButton;
 
-    private EntityPlayerChar playerChar;
+    private EntityPlayerChar menuPlayerChar;
 
     private ImageView playIcon;
     private ImageView gearsIcon;
     private ImageView leaveIcon;
     private ImageView myShape;
-
-    private SurfaceView menuSurfaceView;
 
     private TextView gameTitleBossText;
     private TextView gameTitleGirlText;

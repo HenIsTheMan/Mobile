@@ -43,7 +43,7 @@ public final class EntityBG implements IEntity{
 
 	public static EntityBG Create(){
 		EntityBG result = new EntityBG();
-		EntityManager.Instance.AddEntity(result, attribs.type);
+		EntityManager.Instance.AddEntity(result);
 		return result;
 	}
 

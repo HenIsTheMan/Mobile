@@ -5,7 +5,8 @@ import android.view.MotionEvent;
 public final class TouchTypes{
 	public enum TouchType{
 		Down(MotionEvent.ACTION_DOWN),
-		Amt(1);
+		Up(MotionEvent.ACTION_UP),
+		Amt(2);
 
 		TouchType(final int val){
 			this.val = val;

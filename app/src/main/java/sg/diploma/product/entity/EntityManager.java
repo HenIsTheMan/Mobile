@@ -69,8 +69,7 @@ public final class EntityManager{ //Singleton
         }
     }
 
-    public void AddEntity(IEntity _newEntity, EntityTypes.EntityType EntityType){
-        assert entityList != null;
+    public void AddEntity(IEntity _newEntity){
         entityList.add(_newEntity);
     }
 
@@ -78,8 +77,8 @@ public final class EntityManager{ //Singleton
         entityRemovalList.add(entity);
     }
 
-    private LinkedList<IEntity> entityList;
-    private ArrayList<IEntity> entityRemovalList;
+    private final LinkedList<IEntity> entityList;
+    private final ArrayList<IEntity> entityRemovalList;
     public SurfaceView view;
 
     public static final EntityManager Instance;

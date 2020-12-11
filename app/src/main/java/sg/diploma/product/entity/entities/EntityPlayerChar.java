@@ -1,7 +1,5 @@
 package sg.diploma.product.entity.entities;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
 import sg.diploma.product.R;
@@ -11,6 +9,7 @@ import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.entity.IEntity;
 import sg.diploma.product.entity.IEntityCollidable;
+import sg.diploma.product.math.Vector2;
 import sg.diploma.product.resource.ResourceManager;
 import sg.diploma.product.resource.SpriteAnim;
 
@@ -26,14 +25,16 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 			13,
 			7
 		);
-		spriteAnim.SetFrames(11 * 13 + 1, 11 * 13 + 1 + 8);
+		spriteAnim.SetFrames(11 * 13, 11 * 13 + 9);
 
-		attribs.pos.x = 50.0f;
-		attribs.pos.y = 50.0f;
+		attribs.dir = new Vector2((int)Math.random() % 2 == 1 ? 1.0f : -1.0f, 0.0f);
 	}
 
 	@Override
 	public void Update(float dt){
+		attribs.pos.x += attribs.dir.x * attribs.spd * dt;
+		attribs.pos.y += attribs.dir.y * attribs.spd * dt;
+
 		spriteAnim.Update(dt);
 
 		/*if(TouchManager.Instance.HasTouch()){
@@ -52,7 +53,7 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 
 	public static EntityPlayerChar Create(){
 		EntityPlayerChar result = new EntityPlayerChar();
-		EntityManager.Instance.AddEntity(result, attribs.type);
+		EntityManager.Instance.AddEntity(result);
 		return result;
 	}
 
@@ -61,6 +62,16 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 		/*if(other.collidableType == EntityCollidableTypes.EntityCollidableType.Box){
 			EntityManager.Instance.SendEntityForRemoval(this);
 		}*/
+	}
+
+	public void StartMoving(){
+		attribs.spd = 100.0f;
+		spriteAnim.SetFrames(11 * 13, 11 * 13 + 1 + 8);
+	}
+
+	public void StopMoving(){
+		attribs.spd = 0.0f;
+		spriteAnim.SetFrames(11 * 13, 11 * 13);
 	}
 
 	public void GenScaledBitmap(){
