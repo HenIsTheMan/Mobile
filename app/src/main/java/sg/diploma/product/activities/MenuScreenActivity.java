@@ -169,7 +169,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         myShape.getLayoutParams().height = (int)((float)displayMetrics.heightPixels * 1.2f);
 
         Animation myShapeAnim = AnimationUtils.loadAnimation(this, R.anim.my_shape_anim);
-        myShapeAnim.setStartTime((int)elapsedRealtime() + 1000);
+        myShapeAnim.setStartOffset(1399);
         myShapeAnim.setAnimationListener(new Animation.AnimationListener(){
             @Override
             public void onAnimationStart(Animation anim){

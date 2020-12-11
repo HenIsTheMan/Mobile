@@ -20,7 +20,7 @@ import sg.diploma.product.touch.TouchTypes;
 public final class SplashScreenActivity extends Activity{
     public SplashScreenActivity(){
         _active = true;
-        _splashTime = 8000;
+        _splashTime = 7000;
 
         androidLogo0 = null;
         androidLogo1 = null;

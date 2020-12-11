@@ -11,6 +11,7 @@ import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.entity.IEntity;
 import sg.diploma.product.entity.IEntityCollidable;
+import sg.diploma.product.resource.ResourceManager;
 import sg.diploma.product.resource.SpriteAnim;
 
 public final class EntityPlayerChar implements IEntity, IEntityCollidable{
@@ -20,7 +21,7 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
 
 		spriteAnim = new SpriteAnim(
-			BitmapFactory.decodeResource(EntityManager.Instance.view.getResources(), R.drawable.player_char),
+			ResourceManager.Instance.GetBitmap(R.drawable.player_char),
 			21,
 			13,
 			7
