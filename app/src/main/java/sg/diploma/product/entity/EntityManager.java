@@ -9,14 +9,11 @@ import java.util.LinkedList;
 
 public final class EntityManager{ //Singleton
     private EntityManager(){
-        entityList = null;
-        entityRemovalList = null;
-        view = null;
+        entityList = new LinkedList<>();
+        entityRemovalList = new ArrayList<>();
     }
 
     public void Init(SurfaceView _view){
-        entityList = new LinkedList<>();
-        entityRemovalList = new ArrayList<>();
         view = _view;
     }
 
@@ -73,6 +70,7 @@ public final class EntityManager{ //Singleton
     }
 
     public void AddEntity(IEntity _newEntity, EntityTypes.EntityType EntityType){
+        assert entityList != null;
         entityList.add(_newEntity);
     }
 
