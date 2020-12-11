@@ -22,6 +22,8 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 import sg.diploma.product.R;
+import sg.diploma.product.entity.EntityManager;
+import sg.diploma.product.entity.entities.EntityPlayerChar;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 
@@ -32,6 +34,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         startButton = null;
         settingsButton = null;
         exitButton = null;
+
+        playerChar = null;
 
         playIcon = null;
         gearsIcon = null;
@@ -177,12 +181,12 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void Render(Canvas _canvas) {
-        // 3) Render () --> E.g: Entitymanager, Instance, Canvas
+        EntityManager.Instance.Render(_canvas);
     }
 
     @Override
     public void OnEnter(SurfaceView _view) {
-        // 2) OnEnter() --> Using the surfaceview e.g: Renderbackground
+        playerChar = EntityPlayerChar.Create();
     }
 
     @Override
@@ -191,7 +195,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void Update(float _dt) {
-        // 4) Update () --> FPS, timer.. dt
+        EntityManager.Instance.Update(_dt);
     }
 
     @Override
@@ -218,6 +222,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private Button settingsButton;
     private Button exitButton;
 
+    private EntityPlayerChar playerChar;
+
     private ImageView playIcon;
     private ImageView gearsIcon;
     private ImageView leaveIcon;
@@ -227,6 +233,4 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private TextView gameTitleGirlText;
 
     private Typeface font;
-
-    //*/
 }

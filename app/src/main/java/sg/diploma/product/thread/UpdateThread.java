@@ -6,6 +6,7 @@ import android.view.SurfaceHolder;
 
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.game.GameView;
+import sg.diploma.product.resource.ResourceManager;
 import sg.diploma.product.state.StateManager;
 
 public final class UpdateThread extends Thread{ //Need dedicated thread to run Surfaceview's update method
@@ -20,6 +21,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         ///Init managers (if any)
         StateManager.Instance.Init(view);
         EntityManager.Instance.Init(view);
+        ResourceManager.Instance.Init(view);
     }
 
     @Override

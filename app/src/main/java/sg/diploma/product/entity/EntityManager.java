@@ -80,10 +80,6 @@ public final class EntityManager{ //Singleton
         entityRemovalList.add(entity);
     }
 
-    public void Clean(){
-        entityList.clear();
-    }
-
     private LinkedList<IEntity> entityList;
     private ArrayList<IEntity> entityRemovalList;
     public SurfaceView view;

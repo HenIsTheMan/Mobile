@@ -8,7 +8,6 @@ import android.view.SurfaceView;
 
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityBG;
-import sg.diploma.product.entity.entities.EntityPlayerChar;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
@@ -17,9 +16,7 @@ import sg.diploma.product.touch.TouchTypes;
 
 public final class GameScreenActivity extends Activity implements IState{
     public GameScreenActivity(){
-        elapsedTime = 0.0f;
         entityBG = null;
-        playerChar = null;
     }
 
     @Override
@@ -43,12 +40,10 @@ public final class GameScreenActivity extends Activity implements IState{
     @Override
     public void OnEnter(SurfaceView _view){
         entityBG = EntityBG.Create();
-        playerChar = EntityPlayerChar.Create();
     }
 
     @Override
     public void OnExit(){
-        EntityManager.Instance.Clean();
         GameScreenActivity.Instance.finish();
     }
 
@@ -59,21 +54,14 @@ public final class GameScreenActivity extends Activity implements IState{
 
     @Override
     public void Update(float _dt) {
-        elapsedTime += _dt;
         EntityManager.Instance.Update(_dt);
 
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
             StateManager.Instance.ChangeState("MenuScreen");
         }
-
-        EntityManager.Instance.Update(_dt);
-
     }
 
-    private float elapsedTime;
-
     private EntityBG entityBG;
-    private EntityPlayerChar playerChar;
 
     public static GameScreenActivity Instance;
 

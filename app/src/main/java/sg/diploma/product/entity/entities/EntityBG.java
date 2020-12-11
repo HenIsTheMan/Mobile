@@ -10,13 +10,14 @@ import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.entity.IEntity;
+import sg.diploma.product.resource.ResourceManager;
 
 public final class EntityBG implements IEntity{
 	public EntityBG(){
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.BG;
 		attribs.type = EntityTypes.EntityType.BG;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
-		bmp = BitmapFactory.decodeResource(EntityManager.Instance.view.getResources(), R.mipmap.ic_launcher_foreground);
+		bmp = ResourceManager.Instance.GetBitmap(R.mipmap.ic_launcher_foreground);
 	}
 
 	@Override

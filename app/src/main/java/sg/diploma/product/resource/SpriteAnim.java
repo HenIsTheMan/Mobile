@@ -70,5 +70,4 @@ public final class SpriteAnim{
 
 	private final float timePerFrame;
 	private float timeAcc;
-
 }
