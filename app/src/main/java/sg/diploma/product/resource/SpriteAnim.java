@@ -1,15 +1,15 @@
-package sg.diploma.product.sprite;
+package sg.diploma.product.resource;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-public final class Sprite{
-	public Sprite(){
+public final class SpriteAnim{
+	public SpriteAnim(){
 		this(null, 0, 0, 0);
 	}
 
-	public Sprite(Bitmap _bmp, int _rows, int _cols, int _fps){
+	public SpriteAnim(Bitmap _bmp, int _rows, int _cols, int _fps){
 		bmp = _bmp;
 
 		rows = _rows;
@@ -24,7 +24,6 @@ public final class Sprite{
 		timePerFrame = 1.0f / (float)_fps;
 		timeAcc = 0.0f;
 	}
-
 
 	public void Update(float _dt){
 		timeAcc += _dt;
