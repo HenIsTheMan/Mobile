@@ -1,7 +1,6 @@
 package sg.diploma.product.entity.entities;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
 import sg.diploma.product.R;

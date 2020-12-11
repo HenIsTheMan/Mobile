@@ -10,12 +10,12 @@ public final class GameView extends SurfaceView {
     public GameView(final Context context){
         super(context);
         updateThread = new UpdateThread(this);
-        holder = getHolder();
+        SurfaceHolder holder = getHolder(); //Holds content
 
         if(holder != null){
             holder.addCallback(new SurfaceHolder.Callback(){
                 @Override
-                public void surfaceCreated(SurfaceHolder holder) {
+                public void surfaceCreated(SurfaceHolder holder){
                     if(!updateThread.GetIsRunning()){
                         updateThread.Init();
                     }
@@ -26,19 +26,18 @@ public final class GameView extends SurfaceView {
                 }
 
                 @Override
-                public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+                public void surfaceChanged(SurfaceHolder holder, int format, int width, int height){
                     //Nothing to type here becos it will be handled by the thread
                     //Can be used to modify the size of the view
                 }
 
                 @Override
-                public void surfaceDestroyed(SurfaceHolder holder) {
+                public void surfaceDestroyed(SurfaceHolder holder){
                     updateThread.Terminate();
                 }
             });
         }
     }
 
-    private UpdateThread updateThread;
-    private SurfaceHolder holder; //Holds content
+    private final UpdateThread updateThread;
 }
