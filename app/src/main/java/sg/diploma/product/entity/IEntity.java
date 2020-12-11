@@ -1,22 +1,10 @@
 package sg.diploma.product.entity;
 
 import android.graphics.Canvas;
-import android.view.SurfaceView;
-
-import sg.diploma.product.layer.LayerTypes;
 
 public interface IEntity{
-    enum EntityType{
-        PlayerChar,
-        Amt
-    }
+    void Update(float dt);
+    void Render(Canvas canvas);
 
-    void Update(float _dt);
-    void Render(Canvas _canvas);
-
-    LayerTypes.LayerType GetRenderLayer();
-    void SetRenderLayer(LayerTypes.LayerType _newLayer);
-
-    EntityType GetEntityType();
-    void SetEntityType(EntityType type);
+    EntityAttribs attribs = new EntityAttribs();
 }

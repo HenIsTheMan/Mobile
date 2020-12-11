@@ -1,31 +1,21 @@
 package sg.diploma.product.entity.entities;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.view.SurfaceView;
 
-import sg.diploma.product.R;
 import sg.diploma.product.entity.EntityManager;
+import sg.diploma.product.entity.EntityRenderLayers;
+import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.entity.IEntity;
 import sg.diploma.product.entity.IEntityCollidable;
-import sg.diploma.product.layer.LayerTypes;
-import sg.diploma.product.math.CheckCollision;
-import sg.diploma.product.math.Vector2;
-import sg.diploma.product.touch.TouchManager;
 
 public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 	private final Bitmap bmp;
-	private LayerTypes.LayerType renderLayer;
-
-	private EntityType type;
-	private Vector2 pos;
-	private Vector2 dir;
-	private float life;
 
 	public EntityPlayerChar(){
 		bmp = null;
-		type = EntityType.PlayerChar;
+		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normmal;
+		attribs.type = EntityTypes.EntityType.PlayerChar;
 		//bmp = BitmapFactory.decodeResource(EntityManager.Instance.view.getResources(), R.mipmap.ic_launcher_foreground);
 	}
 

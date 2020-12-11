@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.view.SurfaceHolder;
 
 import sg.diploma.product.entity.EntityManager;
-import sg.diploma.product.game.GameManager;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.state.StateManager;
 
@@ -77,7 +76,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
     }
 
     private boolean isRunning;
-    private SurfaceHolder holder;
+    private final SurfaceHolder holder;
 
     static final long targetFPS;
 
