@@ -1,7 +1,6 @@
 package sg.diploma.product.activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.os.Build;
@@ -118,6 +117,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void Render(Canvas _canvas) {
+        _canvas.drawColor(0xFF404040);
         EntityManager.Instance.Render(_canvas);
     }
 

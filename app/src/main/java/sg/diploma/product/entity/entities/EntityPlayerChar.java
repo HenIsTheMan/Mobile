@@ -18,15 +18,17 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.PlayerChar;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
+
 		spriteAnim = new SpriteAnim(
 			BitmapFactory.decodeResource(EntityManager.Instance.view.getResources(), R.drawable.player_char),
 			21,
 			13,
-			5
+			7
 		);
+		spriteAnim.SetFrames(11 * 13 + 1, 11 * 13 + 1 + 8);
 
-/*		attribs.pos.x = 50.0f;
-		attribs.pos.y = 50.0f;*/
+		attribs.pos.x = 50.0f;
+		attribs.pos.y = 50.0f;
 	}
 
 	@Override

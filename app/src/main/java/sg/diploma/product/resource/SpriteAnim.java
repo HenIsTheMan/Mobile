@@ -12,7 +12,6 @@ public final class SpriteAnim{
 	public SpriteAnim(Bitmap _bmp, int _rows, int _cols, int _fps){
 		bmp = _bmp;
 
-		rows = _rows;
 		cols = _cols;
 		width = bmp.getWidth() / _cols;
 		height = bmp.getHeight() / _rows;
@@ -36,9 +35,9 @@ public final class SpriteAnim{
 		}
 	}
 
-	public void Render(Canvas _canvas, int _x, int _y){
-		int frameX = currFrame % cols; //??
-		int frameY = currFrame / rows; //??
+	public void Render(final Canvas _canvas, int _x, int _y){
+		int frameX = currFrame % cols;
+		int frameY = currFrame / cols;
 		int srcX = frameX * width;
 		int srcY = frameY * height;
 
@@ -47,10 +46,11 @@ public final class SpriteAnim{
 
 		Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);
 		Rect dst = new Rect(_x, _y, _x + width, _y + height);
+
 		_canvas.drawBitmap(bmp, src, dst, null);
 	}
 
-	public void SetAnimationFrames(int _start, int _end){
+	public void SetFrames(int _start, int _end){
 		timeAcc = 0.0f;
 		currFrame = _start;
 		startFrame = _start;
@@ -59,7 +59,6 @@ public final class SpriteAnim{
 
 	private Bitmap bmp = null;
 
-	private final int rows;
 	private final int cols;
 	private final int width;
 	private final int height;
