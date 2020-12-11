@@ -3,6 +3,7 @@ package sg.diploma.product.entity.entities;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
+import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
@@ -10,12 +11,11 @@ import sg.diploma.product.entity.IEntity;
 import sg.diploma.product.entity.IEntityCollidable;
 
 public final class EntityPlayerChar implements IEntity, IEntityCollidable{
-	private final Bitmap bmp;
-
 	public EntityPlayerChar(){
 		bmp = null;
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.PlayerChar;
+		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
 		//bmp = BitmapFactory.decodeResource(EntityManager.Instance.view.getResources(), R.mipmap.ic_launcher_foreground);
 	}
 
@@ -38,20 +38,16 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 
 	public static EntityPlayerChar Create(){
 		EntityPlayerChar result = new EntityPlayerChar();
-		EntityManager.Instance.AddEntity(result, EntityTypes.EntityType.PlayerChar);
-		return result;
-	}
-
-	public static EntityPlayerChar Create(EntityRenderLayers.EntityRenderLayer renderLayer){
-		EntityPlayerChar result = Create();
-		result.attribs.renderLayer = renderLayer;
+		EntityManager.Instance.AddEntity(result, attribs.type);
 		return result;
 	}
 
 	@Override
-	public void OnHit(IEntityCollidable _other){
-		/*if(_other.collidableType == EntityCollidableTypes.EntityCollidableType.Box){
+	public void OnHit(IEntityCollidable other){
+		/*if(other.collidableType == EntityCollidableTypes.EntityCollidableType.Box){
 			EntityManager.Instance.SendEntityForRemoval(this);
 		}*/
 	}
+
+	private final Bitmap bmp;
 }

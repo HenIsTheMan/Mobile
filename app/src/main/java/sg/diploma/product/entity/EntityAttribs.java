@@ -3,6 +3,7 @@ package sg.diploma.product.entity;
 import sg.diploma.product.math.Vector2;
 
 public final class EntityAttribs{
+	public EntityCollidableTypes.EntityCollidableType collidableType = EntityCollidableTypes.EntityCollidableType.Amt;
 	public EntityRenderLayers.EntityRenderLayer renderLayer = EntityRenderLayers.EntityRenderLayer.Amt;
 	public EntityTypes.EntityType type = EntityTypes.EntityType.Amt;
 
