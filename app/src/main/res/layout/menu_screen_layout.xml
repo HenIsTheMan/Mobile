@@ -6,7 +6,7 @@
     android:background="@color/Black"
     android:orientation="vertical"
     >
-    
+
     <SurfaceView
         android:id="@+id/menuSurfaceView"
         android:layout_width="match_parent"

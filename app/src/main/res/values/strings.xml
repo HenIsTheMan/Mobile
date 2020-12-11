@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="GameName">"Boss Girl"</string>
+    <string name="GameName">Boss Girl</string>
 
     <string name="GameTitleBossText">"BOSS"</string>
     <string name="GameTitleGirlText">"Girl"</string>
@@ -10,5 +10,12 @@
     <string name="gearsIconInfo">GearsIcon</string>
     <string name="leaveIconInfo">LeaveIcon</string>
     <string name="myShapeInfo">myShapeInfo</string>
+
+    <string name="androidLogo0">AndroidLogo0</string>
+    <string name="androidLogo1">AndroidLogo1</string>
+    <string name="androidLogo2">AndroidLogo2</string>
+    <string name="androidLogo3">AndroidLogo3</string>
+    <string name="androidStudioText">AndroidStudioText</string>
+    <string name="androidStudioLogo">AndroidStudioLogo</string>
 
 </resources>
