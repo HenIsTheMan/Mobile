@@ -62,5 +62,9 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 		}*/
 	}
 
+	public void GenScaledBitmap(){
+		spriteAnim.GenScaledBitmap(attribs.scale);
+	}
+
 	private final SpriteAnim spriteAnim;
 }

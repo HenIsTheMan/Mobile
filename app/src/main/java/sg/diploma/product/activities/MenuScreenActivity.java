@@ -124,6 +124,13 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     @Override
     public void OnEnter(SurfaceView _view) {
         playerChar = EntityPlayerChar.Create();
+
+        final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
+        playerChar.attribs.pos.x = (int)(displayMetrics.widthPixels * 0.5f);
+        playerChar.attribs.pos.y = (int)(displayMetrics.heightPixels * 3.0f / 4.0f);
+
+        playerChar.attribs.scale.x = playerChar.attribs.scale.y = 2.0f;
+        playerChar.GenScaledBitmap();
     }
 
     @Override

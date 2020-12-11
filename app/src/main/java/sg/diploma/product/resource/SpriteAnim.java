@@ -2,7 +2,10 @@ package sg.diploma.product.resource;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
+
+import sg.diploma.product.math.Vector2;
 
 public final class SpriteAnim{
 	public SpriteAnim(){
@@ -12,6 +15,7 @@ public final class SpriteAnim{
 	public SpriteAnim(Bitmap _bmp, int _rows, int _cols, int _fps){
 		bmp = _bmp;
 
+		rows = _rows;
 		cols = _cols;
 		width = bmp.getWidth() / _cols;
 		height = bmp.getHeight() / _rows;
@@ -22,6 +26,11 @@ public final class SpriteAnim{
 
 		timePerFrame = 1.0f / (float)_fps;
 		timeAcc = 0.0f;
+
+		paint = new Paint();
+		paint.setAntiAlias(true);
+		paint.setFilterBitmap(true);
+		paint.setDither(true);
 	}
 
 	public void Update(float _dt){
@@ -47,7 +56,7 @@ public final class SpriteAnim{
 		Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);
 		Rect dst = new Rect(_x, _y, _x + width, _y + height);
 
-		_canvas.drawBitmap(bmp, src, dst, null);
+		_canvas.drawBitmap(bmp, src, dst, paint);
 	}
 
 	public void SetFrames(int _start, int _end){
@@ -57,11 +66,18 @@ public final class SpriteAnim{
 		endFrame = _end;
 	}
 
+	public void GenScaledBitmap(Vector2 scale){
+		bmp = Bitmap.createScaledBitmap(bmp, bmp.getWidth() * (int)scale.x, bmp.getHeight() * (int)scale.y, true);
+		width = bmp.getWidth() / cols;
+		height = bmp.getHeight() / rows;
+	}
+
 	private Bitmap bmp = null;
 
+	private final int rows;
 	private final int cols;
-	private final int width;
-	private final int height;
+	private int width;
+	private int height;
 
 	private int currFrame;
 	private int startFrame;
@@ -69,4 +85,6 @@ public final class SpriteAnim{
 
 	private final float timePerFrame;
 	private float timeAcc;
+
+	private final Paint paint;
 }
