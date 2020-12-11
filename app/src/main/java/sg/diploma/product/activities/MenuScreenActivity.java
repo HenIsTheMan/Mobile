@@ -64,12 +64,12 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
         menuSurfaceView = findViewById(R.id.menuSurfaceView);
         updateThread = new UpdateThread(menuSurfaceView);
-        SurfaceHolder holder = menuSurfaceView.getHolder();
+        SurfaceHolder surfaceHolder = menuSurfaceView.getHolder();
 
-        if(holder != null){
-            holder.addCallback(new SurfaceHolder.Callback(){
+        if(surfaceHolder != null){
+            surfaceHolder.addCallback(new SurfaceHolder.Callback(){
                 @Override
-                public void surfaceCreated(SurfaceHolder holder){
+                public void surfaceCreated(SurfaceHolder surfaceHolder){
                     if(!updateThread.GetIsRunning()){
                         updateThread.Init();
                     }
@@ -80,11 +80,11 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
                 }
 
                 @Override
-                public void surfaceChanged(SurfaceHolder holder, int format, int width, int height){
+                public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height){
                 }
 
                 @Override
-                public void surfaceDestroyed(SurfaceHolder holder){
+                public void surfaceDestroyed(SurfaceHolder surfaceHolder){
                     updateThread.Terminate();
                 }
             });
