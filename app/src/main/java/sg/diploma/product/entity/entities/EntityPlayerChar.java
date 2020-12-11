@@ -11,17 +11,28 @@ import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.entity.IEntity;
 import sg.diploma.product.entity.IEntityCollidable;
+import sg.diploma.product.resource.SpriteAnim;
 
 public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 	public EntityPlayerChar(){
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.PlayerChar;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
-		bmp = BitmapFactory.decodeResource(EntityManager.Instance.view.getResources(), R.mipmap.ic_launcher_foreground);
+		spriteAnim = new SpriteAnim(
+			BitmapFactory.decodeResource(EntityManager.Instance.view.getResources(), R.drawable.player_char),
+			21,
+			13,
+			5
+		);
+
+/*		attribs.pos.x = 50.0f;
+		attribs.pos.y = 50.0f;*/
 	}
 
 	@Override
 	public void Update(float dt){
+		spriteAnim.Update(dt);
+
 		/*if(TouchManager.Instance.HasTouch()){
 			if(CheckCollision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched){
 				hasTouched = true;
@@ -32,9 +43,8 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 	}
 
 	@Override
-	public void Render (Canvas canvas){ //Render with img centered
-		assert bmp != null;
-		canvas.drawBitmap(bmp, attribs.pos.x - bmp.getWidth() * 0.5f, attribs.pos.y - bmp.getHeight() * 0.5f, null);
+	public void Render(Canvas canvas){ //Render with img centered
+		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
 	}
 
 	public static EntityPlayerChar Create(){
@@ -50,5 +60,5 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 		}*/
 	}
 
-	private final Bitmap bmp;
+	private final SpriteAnim spriteAnim;
 }

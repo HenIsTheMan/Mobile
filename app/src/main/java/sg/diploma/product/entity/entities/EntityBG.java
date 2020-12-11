@@ -21,10 +21,22 @@ public final class EntityBG implements IEntity{
 
 	@Override
 	public void Update(float dt){
+		/*Random ranGen = new Random();
+		//_view.getWidth(); -- will give the length of view
+		xPos = ranGen.nextFloat() * _view.getWidth();
+		yPos = ranGen.nextFloat() * _view.getHeight();
+
+		// Not used but u can use them if u want
+		xDir = ranGen.nextFloat() * 100.0f - 50.0f;
+		yDir = ranGen.nextFloat() * 100.0f - 50.0f;*/
+
+		/*lifeTime -= _dt;
+		if (lifeTime < 0.0f)
+			SetIsDone(true);*/
 	}
 
 	@Override
-	public void Render (Canvas canvas){ //Render with img centered
+	public void Render(Canvas canvas){ //Render with img centered
 		assert bmp != null;
 		canvas.drawBitmap(bmp, attribs.pos.x - bmp.getWidth() * 0.5f, attribs.pos.y - bmp.getHeight() * 0.5f, null);
 	}

@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.util.Objects;
+
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.resource.ResourceManager;
 import sg.diploma.product.state.StateManager;
@@ -14,7 +16,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         this(null);
     }
 
-    public UpdateThread(SurfaceView view){ //check if game sprite still renders??
+    public UpdateThread(SurfaceView view){
         isRunning = false;
         surfaceHolder = view.getHolder();
 
@@ -40,7 +42,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
             StateManager.Instance.Update(deltaTime);
 
             ///Render
-            if(StateManager.Instance.GetCurrentStateName() != ""){
+            if(!Objects.equals(StateManager.Instance.GetCurrentStateName(), "")){
                 Canvas canvas = surfaceHolder.lockCanvas(null);
                 if(canvas != null){
                     synchronized(surfaceHolder){ //Sync to draw
