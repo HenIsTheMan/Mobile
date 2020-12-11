@@ -1,11 +1,13 @@
 package sg.diploma.product.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,6 +28,7 @@ import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityPlayerChar;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
+import sg.diploma.product.thread.UpdateThread;
 
 import static android.os.SystemClock.elapsedRealtime;
 
@@ -42,11 +45,15 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         leaveIcon = null;
         myShape = null;
 
+        menuSurfaceView = null;
+
         gameTitleBossText = null;
         gameTitleGirlText = null;
 
         font = null;
     }
+
+    private UpdateThread updateThread;
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -57,6 +64,35 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         StateManager.Instance.AddState(new GameScreenActivity());
 
         setContentView(R.layout.menu_screen_layout);
+
+        menuSurfaceView = findViewById(R.id.menuSurfaceView);
+        //menuSurfaceView = new SurfaceView(this); //??
+        updateThread = new UpdateThread(menuSurfaceView);
+        SurfaceHolder holder = menuSurfaceView.getHolder();
+
+        if(holder != null){
+            holder.addCallback(new SurfaceHolder.Callback(){
+                @Override
+                public void surfaceCreated(SurfaceHolder holder){
+                    if(!updateThread.GetIsRunning()){
+                        updateThread.Init();
+                    }
+
+                    if(!updateThread.isAlive()){
+                        updateThread.start();
+                    }
+                }
+
+                @Override
+                public void surfaceChanged(SurfaceHolder holder, int format, int width, int height){
+                }
+
+                @Override
+                public void surfaceDestroyed(SurfaceHolder holder){
+                    updateThread.Terminate();
+                }
+            });
+        }
 
         myShape = findViewById(R.id.myShape);
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
@@ -181,6 +217,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void Render(Canvas _canvas) {
+        android.util.Log.e("HHH", "Here");
         EntityManager.Instance.Render(_canvas);
     }
 
@@ -228,6 +265,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private ImageView gearsIcon;
     private ImageView leaveIcon;
     private ImageView myShape;
+
+    private SurfaceView menuSurfaceView;
 
     private TextView gameTitleBossText;
     private TextView gameTitleGirlText;
