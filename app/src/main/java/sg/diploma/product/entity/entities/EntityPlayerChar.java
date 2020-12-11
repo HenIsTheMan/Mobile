@@ -1,8 +1,10 @@
 package sg.diploma.product.entity.entities;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
+import sg.diploma.product.R;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
@@ -12,11 +14,10 @@ import sg.diploma.product.entity.IEntityCollidable;
 
 public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 	public EntityPlayerChar(){
-		bmp = null;
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.PlayerChar;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
-		//bmp = BitmapFactory.decodeResource(EntityManager.Instance.view.getResources(), R.mipmap.ic_launcher_foreground);
+		bmp = BitmapFactory.decodeResource(EntityManager.Instance.view.getResources(), R.mipmap.ic_launcher_foreground);
 	}
 
 	@Override

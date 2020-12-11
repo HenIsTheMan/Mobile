@@ -41,5 +41,4 @@ public final class EntityBG implements IEntity{
 	}
 
 	private final Bitmap bmp;
-
 }

@@ -86,7 +86,7 @@ public final class EntityManager{ //Singleton
 
     private LinkedList<IEntity> entityList;
     private ArrayList<IEntity> entityRemovalList;
-    private SurfaceView view;
+    public SurfaceView view;
 
     public static final EntityManager Instance;
 
