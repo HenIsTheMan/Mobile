@@ -42,7 +42,7 @@ public final class GameScreenActivity extends Activity implements IState{
 
     @Override
     public void OnEnter(SurfaceView _view){
-        //entityBG = EntityBG.Create();
+        entityBG = EntityBG.Create();
         playerChar = EntityPlayerChar.Create();
     }
 

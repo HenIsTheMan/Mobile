@@ -1,8 +1,10 @@
 package sg.diploma.product.entity.entities;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
+import sg.diploma.product.R;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
@@ -11,21 +13,14 @@ import sg.diploma.product.entity.IEntity;
 
 public final class EntityBG implements IEntity{
 	public EntityBG(){
-		bmp = null;
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.BG;
 		attribs.type = EntityTypes.EntityType.BG;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
+		bmp = BitmapFactory.decodeResource(EntityManager.Instance.view.getResources(), R.mipmap.ic_launcher_foreground);
 	}
 
 	@Override
 	public void Update(float dt){
-		/*if(TouchManager.Instance.HasTouch()){
-			if(CheckCollision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched){
-				hasTouched = true;
-				pos.x = TouchManager.Instance.GetPosX();
-				pos.y = TouchManager.Instance.GetPosY();
-			}
-		}*/
 	}
 
 	@Override
