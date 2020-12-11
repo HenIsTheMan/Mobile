@@ -14,13 +14,13 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 
 	public EntityPlayerChar(){
 		bmp = null;
-		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normmal;
+		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.PlayerChar;
 		//bmp = BitmapFactory.decodeResource(EntityManager.Instance.view.getResources(), R.mipmap.ic_launcher_foreground);
 	}
 
 	@Override
-	public void Update(float _dt){
+	public void Update(float dt){
 		/*if(TouchManager.Instance.HasTouch()){
 			if(CheckCollision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched){
 				hasTouched = true;
@@ -31,52 +31,27 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 	}
 
 	@Override
-	public void Render (Canvas _canvas){ //Render with img centered
+	public void Render (Canvas canvas){ //Render with img centered
 		assert bmp != null;
-		_canvas.drawBitmap(bmp, pos.x - bmp.getWidth() * 0.5f, pos.y - bmp.getHeight() * 0.5f, null);
-	}
-
-	@Override
-    public LayerTypes.LayerType GetRenderLayer(){
-		return renderLayer;
-	}
-
-	@Override
-	public void SetRenderLayer(LayerTypes.LayerType _newLayer){
-		renderLayer = _newLayer;
+		canvas.drawBitmap(bmp, attribs.pos.x - bmp.getWidth() * 0.5f, attribs.pos.y - bmp.getHeight() * 0.5f, null);
 	}
 
 	public static EntityPlayerChar Create(){
 		EntityPlayerChar result = new EntityPlayerChar();
-		EntityManager.Instance.AddEntity(result, EntityType.PlayerChar);
+		EntityManager.Instance.AddEntity(result, EntityTypes.EntityType.PlayerChar);
 		return result;
 	}
 
-	public static EntityPlayerChar Create(LayerTypes.LayerType _layer){
+	public static EntityPlayerChar Create(EntityRenderLayers.EntityRenderLayer renderLayer){
 		EntityPlayerChar result = Create();
-		result.SetRenderLayer(_layer);
+		result.attribs.renderLayer = renderLayer;
 		return result;
-	}
-
-	@Override
-	public EntityType GetEntityType(){
-		return type;
-	}
-
-	@Override
-	public void SetEntityType(EntityType type){
-		this.type = type;
-	}
-
-	@Override
-	public String GetType () {
-		return "EntityPlayerChar";
 	}
 
 	@Override
 	public void OnHit(IEntityCollidable _other){
-		if(_other.GetType().equals("NextEntity")){
+		/*if(_other.collidableType == EntityCollidableTypes.EntityCollidableType.Box){
 			EntityManager.Instance.SendEntityForRemoval(this);
-		}
+		}*/
 	}
 }

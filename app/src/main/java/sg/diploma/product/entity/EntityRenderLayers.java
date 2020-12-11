@@ -5,7 +5,7 @@ public final class EntityRenderLayers{
 		BG(0),
 		Normal(500),
 		UI(9999),
-		Amt(4);
+		Amt(3);
 
 		EntityRenderLayer(final int val){
 			this.val = val;

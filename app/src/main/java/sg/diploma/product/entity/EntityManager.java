@@ -4,24 +4,10 @@ import android.graphics.Canvas;
 import android.view.SurfaceView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-import sg.diploma.product.math.CheckCollision;
-import sg.diploma.product.math.Vector2;
-
 public final class EntityManager{ //Singleton
-    public static final EntityManager Instance;
-
-    static{
-        Instance = new EntityManager();
-    }
-
-    private LinkedList<IEntity> entityList;
-    private ArrayList<IEntity> entityRemovalList;
-    private SurfaceView view;
-
     private EntityManager(){
         entityList = null;
         entityRemovalList = null;
@@ -76,7 +62,7 @@ public final class EntityManager{ //Singleton
         entityList.sort(new Comparator<IEntity>(){ //Determines render order
             @Override
             public int compare(IEntity o1, IEntity o2){
-                return o1.GetRenderLayer().GetVal() - o2.GetRenderLayer().GetVal();
+                return o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal();
             }
         });
 
@@ -86,7 +72,7 @@ public final class EntityManager{ //Singleton
         }
     }
 
-    public void AddEntity(IEntity _newEntity, IEntity.EntityType EntityType){
+    public void AddEntity(IEntity _newEntity, EntityTypes.EntityType EntityType){
         entityList.add(_newEntity);
     }
 
@@ -96,5 +82,15 @@ public final class EntityManager{ //Singleton
 
     public void Clean(){
         entityList.clear();
+    }
+
+    private LinkedList<IEntity> entityList;
+    private ArrayList<IEntity> entityRemovalList;
+    private SurfaceView view;
+
+    public static final EntityManager Instance;
+
+    static{
+        Instance = new EntityManager();
     }
 }

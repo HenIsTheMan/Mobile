@@ -31,23 +31,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/EntityAttribs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/EntityRenderLayers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/EntityTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityBG.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/EntityCollidableTypes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/IEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/IEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/EntityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/EntityManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/EntityRenderLayers.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/EntityRenderLayers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/IEntityCollidable.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/IEntityCollidable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityPlayerChar.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityPlayerChar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/layer/LayerTypes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/thread/UpdateThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/thread/UpdateThread.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[FUHQWOGILFHE6T8D]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -250,10 +246,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="758" y="266" key="AndroidProcessChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607607669430" />
-    <state x="638" y="190" key="FileChooserDialogImpl" timestamp="1607616360064">
+    <state x="638" y="190" key="FileChooserDialogImpl" timestamp="1607674453917">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="638" y="190" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607616360064" />
+    <state x="638" y="190" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607674453917" />
     <state x="829" y="401" key="Github.CreateGistDialog" timestamp="1607591273898">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
