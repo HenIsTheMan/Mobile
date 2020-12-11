@@ -63,7 +63,6 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         setContentView(R.layout.menu_screen_layout);
 
         menuSurfaceView = findViewById(R.id.menuSurfaceView);
-        //menuSurfaceView = new SurfaceView(this); //??
         updateThread = new UpdateThread(menuSurfaceView);
         SurfaceHolder holder = menuSurfaceView.getHolder();
 
@@ -91,102 +90,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
             });
         }
 
-        myShape = findViewById(R.id.myShape);
-        final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
-        myShape.getLayoutParams().width = (int)((float)displayMetrics.widthPixels * 1.2f);
-        myShape.getLayoutParams().height = (int)((float)displayMetrics.heightPixels * 1.2f);
-
-        Animation myShapeAnim = AnimationUtils.loadAnimation(this, R.anim.my_shape_anim);
-        myShapeAnim.setStartTime((int)elapsedRealtime() + 1000);
-        myShapeAnim.setAnimationListener(new Animation.AnimationListener(){
-            @Override
-            public void onAnimationStart(Animation anim){
-            }
-            @Override
-            public void onAnimationRepeat(Animation anim){
-            }
-            @Override
-            public void onAnimationEnd(Animation anim) {
-                myShape.setVisibility(View.GONE);
-            }
-        });
-        myShape.startAnimation(myShapeAnim);
-
-        final float buttonFactor = (float)displayMetrics.widthPixels / 4.0f / 300.0f;
-        final int buttonSize = (int)(300.0f * buttonFactor);
-
-        startButton = findViewById(R.id.startButton);
-        startButton.setOnClickListener(this);
-        startButton.getLayoutParams().width = buttonSize;
-        startButton.getLayoutParams().height = buttonSize;
-        startButton.setTranslationX((float)displayMetrics.widthPixels * 0.2f - (float)buttonSize * 0.5f);
-        startButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
-
-        settingsButton = findViewById(R.id.settingsButton);
-        settingsButton.setOnClickListener(this);
-        settingsButton.getLayoutParams().width = buttonSize;
-        settingsButton.getLayoutParams().height = buttonSize;
-        settingsButton.setTranslationX((float)displayMetrics.widthPixels * 0.5f - (float)buttonSize * 0.5f);
-        settingsButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
-
-        exitButton = findViewById(R.id.exitButton);
-        exitButton.setOnClickListener(this);
-        exitButton.getLayoutParams().width = buttonSize;
-        exitButton.getLayoutParams().height = buttonSize;
-        exitButton.setTranslationX((float)displayMetrics.widthPixels * 0.8f - (float)buttonSize * 0.5f);
-        exitButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
-
-        playIcon = findViewById(R.id.playIcon);
-        playIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
-        playIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
-        playIcon.setTranslationX(startButton.getTranslationX()
-            + (startButton.getLayoutParams().width
-            - playIcon.getLayoutParams().width) * 0.5f);
-        playIcon.setTranslationY(startButton.getTranslationY()
-        + (startButton.getLayoutParams().height
-        - playIcon.getLayoutParams().height) * 0.5f);
-
-        gearsIcon = findViewById(R.id.gearsIcon);
-        gearsIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
-        gearsIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
-        gearsIcon.setTranslationX(settingsButton.getTranslationX()
-            + (settingsButton.getLayoutParams().width
-            - gearsIcon.getLayoutParams().width) * 0.5f);
-        gearsIcon.setTranslationY(settingsButton.getTranslationY()
-            + (settingsButton.getLayoutParams().height
-            - gearsIcon.getLayoutParams().height) * 0.5f);
-
-        leaveIcon = findViewById(R.id.leaveIcon);
-        leaveIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
-        leaveIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
-        leaveIcon.setTranslationX(exitButton.getTranslationX()
-            + (exitButton.getLayoutParams().width
-            - leaveIcon.getLayoutParams().width) * 0.5f);
-        leaveIcon.setTranslationY(exitButton.getTranslationY()
-            + (exitButton.getLayoutParams().height
-            - leaveIcon.getLayoutParams().height) * 0.5f);
-
-        font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
-
-        gameTitleBossText = findViewById(R.id.gameTitleBossText);
-        gameTitleBossText.setTypeface(font);
-        gameTitleBossText.setTextSize(TypedValue.COMPLEX_UNIT_SP,
-            (float)displayMetrics.widthPixels * 0.2f
-            / displayMetrics.scaledDensity);
-        gameTitleBossText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        gameTitleBossText.setTranslationX((float)displayMetrics.widthPixels * 0.5f
-            - (float)gameTitleBossText.getMeasuredWidth() * 0.5f);
-        gameTitleBossText.setTranslationY((float)displayMetrics.heightPixels * 0.07f);
-
-        gameTitleGirlText = findViewById(R.id.gameTitleGirlText);
-        gameTitleGirlText.setTypeface(font);
-        gameTitleGirlText.setTextSize(TypedValue.COMPLEX_UNIT_SP,
-                (float)displayMetrics.widthPixels * 0.18f
-                / displayMetrics.scaledDensity);
-        gameTitleGirlText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        gameTitleGirlText.setTranslationX((float)displayMetrics.widthPixels * 0.5f
-                - (float)gameTitleGirlText.getMeasuredWidth() * 0.5f);
-        gameTitleGirlText.setTranslationY((float)displayMetrics.heightPixels * 0.2f);
+        InitOthers();
     }
 
     @Override
@@ -249,6 +153,105 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     @Override
     protected void onDestroy(){
         super.onDestroy();
+    }
+
+    private void InitOthers(){
+        myShape = findViewById(R.id.myShape);
+        final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
+        myShape.getLayoutParams().width = (int)((float)displayMetrics.widthPixels * 1.2f);
+        myShape.getLayoutParams().height = (int)((float)displayMetrics.heightPixels * 1.2f);
+
+        Animation myShapeAnim = AnimationUtils.loadAnimation(this, R.anim.my_shape_anim);
+        myShapeAnim.setStartTime((int)elapsedRealtime() + 1000);
+        myShapeAnim.setAnimationListener(new Animation.AnimationListener(){
+            @Override
+            public void onAnimationStart(Animation anim){
+            }
+            @Override
+            public void onAnimationRepeat(Animation anim){
+            }
+            @Override
+            public void onAnimationEnd(Animation anim) {
+                myShape.setVisibility(View.GONE);
+            }
+        });
+        myShape.startAnimation(myShapeAnim);
+
+        final float buttonFactor = (float)displayMetrics.widthPixels / 4.0f / 300.0f;
+        final int buttonSize = (int)(300.0f * buttonFactor);
+
+        startButton = findViewById(R.id.startButton);
+        startButton.setOnClickListener(this);
+        startButton.getLayoutParams().width = buttonSize;
+        startButton.getLayoutParams().height = buttonSize;
+        startButton.setTranslationX((float)displayMetrics.widthPixels * 0.2f - (float)buttonSize * 0.5f);
+        startButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
+
+        settingsButton = findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(this);
+        settingsButton.getLayoutParams().width = buttonSize;
+        settingsButton.getLayoutParams().height = buttonSize;
+        settingsButton.setTranslationX((float)displayMetrics.widthPixels * 0.5f - (float)buttonSize * 0.5f);
+        settingsButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
+
+        exitButton = findViewById(R.id.exitButton);
+        exitButton.setOnClickListener(this);
+        exitButton.getLayoutParams().width = buttonSize;
+        exitButton.getLayoutParams().height = buttonSize;
+        exitButton.setTranslationX((float)displayMetrics.widthPixels * 0.8f - (float)buttonSize * 0.5f);
+        exitButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
+
+        playIcon = findViewById(R.id.playIcon);
+        playIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
+        playIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
+        playIcon.setTranslationX(startButton.getTranslationX()
+                + (startButton.getLayoutParams().width
+                - playIcon.getLayoutParams().width) * 0.5f);
+        playIcon.setTranslationY(startButton.getTranslationY()
+                + (startButton.getLayoutParams().height
+                - playIcon.getLayoutParams().height) * 0.5f);
+
+        gearsIcon = findViewById(R.id.gearsIcon);
+        gearsIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
+        gearsIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
+        gearsIcon.setTranslationX(settingsButton.getTranslationX()
+                + (settingsButton.getLayoutParams().width
+                - gearsIcon.getLayoutParams().width) * 0.5f);
+        gearsIcon.setTranslationY(settingsButton.getTranslationY()
+                + (settingsButton.getLayoutParams().height
+                - gearsIcon.getLayoutParams().height) * 0.5f);
+
+        leaveIcon = findViewById(R.id.leaveIcon);
+        leaveIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
+        leaveIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
+        leaveIcon.setTranslationX(exitButton.getTranslationX()
+                + (exitButton.getLayoutParams().width
+                - leaveIcon.getLayoutParams().width) * 0.5f);
+        leaveIcon.setTranslationY(exitButton.getTranslationY()
+                + (exitButton.getLayoutParams().height
+                - leaveIcon.getLayoutParams().height) * 0.5f);
+
+        font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
+
+        gameTitleBossText = findViewById(R.id.gameTitleBossText);
+        gameTitleBossText.setTypeface(font);
+        gameTitleBossText.setTextSize(TypedValue.COMPLEX_UNIT_SP,
+                (float)displayMetrics.widthPixels * 0.2f
+                        / displayMetrics.scaledDensity);
+        gameTitleBossText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        gameTitleBossText.setTranslationX((float)displayMetrics.widthPixels * 0.5f
+                - (float)gameTitleBossText.getMeasuredWidth() * 0.5f);
+        gameTitleBossText.setTranslationY((float)displayMetrics.heightPixels * 0.07f);
+
+        gameTitleGirlText = findViewById(R.id.gameTitleGirlText);
+        gameTitleGirlText.setTypeface(font);
+        gameTitleGirlText.setTextSize(TypedValue.COMPLEX_UNIT_SP,
+                (float)displayMetrics.widthPixels * 0.18f
+                        / displayMetrics.scaledDensity);
+        gameTitleGirlText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        gameTitleGirlText.setTranslationX((float)displayMetrics.widthPixels * 0.5f
+                - (float)gameTitleGirlText.getMeasuredWidth() * 0.5f);
+        gameTitleGirlText.setTranslationY((float)displayMetrics.heightPixels * 0.2f);
     }
 
     private Button startButton;
