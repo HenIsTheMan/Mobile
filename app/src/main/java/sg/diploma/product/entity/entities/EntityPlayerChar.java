@@ -66,7 +66,7 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 
 	public void StartMoving(){
 		attribs.spd = 100.0f;
-		spriteAnim.SetFrames(11 * 13, 11 * 13 + 1 + 8);
+		spriteAnim.SetFrames(11 * 13, 11 * 13 + 9);
 	}
 
 	public void StopMoving(){

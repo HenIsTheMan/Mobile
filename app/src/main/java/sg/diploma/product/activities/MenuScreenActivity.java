@@ -29,12 +29,11 @@ import sg.diploma.product.entity.entities.EntityPlayerChar;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.thread.UpdateThread;
+import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 
 public final class MenuScreenActivity extends Activity implements OnClickListener, IState{
     public MenuScreenActivity(){
-        isTouchDown = false;
-
         startButton = null;
         settingsButton = null;
         exitButton = null;
@@ -96,15 +95,12 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
-        if(event.getAction() == TouchTypes.TouchType.Down.GetVal()){
-            isTouchDown = true;
-            return true;
-        }
+        TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
+        return true;
         /*if(event.getAction() == TouchTypes.TouchType.Up.GetVal()){
             isTouchDown = false;
             return true;
         }*/
-        return true;
     }
 
     @Override
@@ -154,10 +150,10 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void Update(float _dt){
-        if(isTouchDown){
+        if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
             android.util.Log.e("Hey", "Here");
             menuPlayerChar.StartMoving();
-        } else{
+        } else if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Up.GetVal()) {
             menuPlayerChar.StopMoving();
         }
 
@@ -282,8 +278,6 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
                 - (float)gameTitleGirlText.getMeasuredWidth() * 0.5f);
         gameTitleGirlText.setTranslationY((float)displayMetrics.heightPixels * 0.2f);
     }
-
-    private boolean isTouchDown;
 
     private Button startButton;
     private Button settingsButton;
