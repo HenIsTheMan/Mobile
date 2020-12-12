@@ -50,7 +50,7 @@ public final class GameScreenActivity extends Activity implements IState{
 
         entityBG.attribs.pos.x = (int)((float)displayMetrics.widthPixels * 0.5f);
         entityBG.attribs.pos.y = (int)((float)displayMetrics.heightPixels * 0.5f);
-        final float scaleFactor = 1.0f;
+        final float scaleFactor = (float)displayMetrics.heightPixels / 1134.0f * 0.75f;
         entityBG.attribs.scale.x = scaleFactor;
         entityBG.attribs.scale.y = scaleFactor;
         entityBG.SetSpriteAnimXScale(scaleFactor);
