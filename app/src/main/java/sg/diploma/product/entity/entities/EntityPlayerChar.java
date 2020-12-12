@@ -62,7 +62,20 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 		}
 
 		attribs.pos.x += attribs.dir.x * attribs.spd * dt;
+		if(attribs.xMin != null){
+			attribs.pos.x = Math.max(attribs.xMin.val, attribs.pos.x);
+		}
+		if(attribs.xMax != null){
+			attribs.pos.x = Math.min(attribs.xMax.val, attribs.pos.x);
+		}
+
 		attribs.pos.y += attribs.dir.y * attribs.spd * dt;
+		if(attribs.yMin != null){
+			attribs.pos.y = Math.max(attribs.yMin.val, attribs.pos.y);
+		}
+		if(attribs.yMax != null){
+			attribs.pos.y = Math.min(attribs.yMax.val, attribs.pos.y);
+		}
 
 		spriteAnim.Update(dt);
 

@@ -24,6 +24,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 import sg.diploma.product.R;
+import sg.diploma.product.entity.EntityConstraint;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityPlayerChar;
 import sg.diploma.product.state.IState;
@@ -143,6 +144,9 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
         menuPlayerChar.attribs.scale.x = menuPlayerChar.attribs.scale.y = 1.5f;
         menuPlayerChar.GenScaledBitmap();
+
+        menuPlayerChar.attribs.yMin = new EntityConstraint();
+        menuPlayerChar.attribs.yMin.val = 1000.0f;
     }
 
     @Override
