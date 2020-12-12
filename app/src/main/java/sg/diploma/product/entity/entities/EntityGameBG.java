@@ -10,8 +10,8 @@ import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.resource.ResourceManager;
 import sg.diploma.product.resource.SpriteAnim;
 
-public final class EntityBG extends EntityAbstract{
-	public EntityBG(final int bitmapID){
+public final class EntityGameBG extends EntityAbstract{
+	public EntityGameBG(final int bitmapID){
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.BG;
 		attribs.type = EntityTypes.EntityType.BG;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
@@ -35,8 +35,8 @@ public final class EntityBG extends EntityAbstract{
 		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
 	}
 
-	public static EntityBG Create(String key, final int bitmapID){
-		EntityBG result = new EntityBG(bitmapID);
+	public static EntityGameBG Create(String key, final int bitmapID){
+		EntityGameBG result = new EntityGameBG(bitmapID);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}

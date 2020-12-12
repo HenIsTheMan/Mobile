@@ -10,7 +10,7 @@ import android.view.SurfaceView;
 
 import sg.diploma.product.R;
 import sg.diploma.product.entity.EntityManager;
-import sg.diploma.product.entity.entities.EntityBG;
+import sg.diploma.product.entity.entities.EntityGameBG;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
@@ -19,7 +19,7 @@ import sg.diploma.product.touch.TouchTypes;
 
 public final class GameScreenActivity extends Activity implements IState{
     public GameScreenActivity(){
-        entityBG = null;
+        gameBG = null;
     }
 
     @Override
@@ -43,18 +43,18 @@ public final class GameScreenActivity extends Activity implements IState{
     @Override
     public void OnEnter(SurfaceView _view){
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
-        entityBG = EntityBG.Create(
-            "entityBG",
+        gameBG = EntityGameBG.Create(
+            "gameBG",
             R.drawable.game_background
         );
 
-        entityBG.attribs.pos.x = (int)((float)displayMetrics.widthPixels * 0.5f);
-        entityBG.attribs.pos.y = (int)((float)displayMetrics.heightPixels * 0.5f);
+        gameBG.attribs.pos.x = (int)((float)displayMetrics.widthPixels * 0.5f);
+        gameBG.attribs.pos.y = (int)((float)displayMetrics.heightPixels * 0.5f);
         final float scaleFactor = (float)displayMetrics.heightPixels / 1134.0f * 0.75f;
-        entityBG.attribs.scale.x = scaleFactor;
-        entityBG.attribs.scale.y = scaleFactor;
-        entityBG.SetSpriteAnimXScale(scaleFactor);
-        entityBG.SetSpriteAnimYScale(scaleFactor);
+        gameBG.attribs.scale.x = scaleFactor;
+        gameBG.attribs.scale.y = scaleFactor;
+        gameBG.SetSpriteAnimXScale(scaleFactor);
+        gameBG.SetSpriteAnimYScale(scaleFactor);
     }
 
     @Override
@@ -72,12 +72,12 @@ public final class GameScreenActivity extends Activity implements IState{
         EntityManager.Instance.Update(_dt);
 
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
-            EntityManager.Instance.SendEntityForRemoval("entityBG");
+            EntityManager.Instance.SendEntityForRemoval("gameBG");
             StateManager.Instance.ChangeState("MenuScreen");
         }
     }
 
-    private EntityBG entityBG;
+    private EntityGameBG gameBG;
 
     public static GameScreenActivity Instance;
 
