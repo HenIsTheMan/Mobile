@@ -8,7 +8,7 @@ import android.view.SurfaceView;
 import java.util.Objects;
 
 import sg.diploma.product.entity.EntityManager;
-import sg.diploma.product.resource.ResourceManager;
+import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.state.StateManager;
 
 public final class UpdateThread extends Thread{ //Need dedicated thread to run Surfaceview's update method

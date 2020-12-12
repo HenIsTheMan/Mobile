@@ -1,4 +1,4 @@
-package sg.diploma.product.resource;
+package sg.diploma.product.graphics;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

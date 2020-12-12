@@ -11,6 +11,7 @@ import android.view.SurfaceView;
 import sg.diploma.product.R;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityGameBG;
+import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
@@ -20,6 +21,7 @@ import sg.diploma.product.touch.TouchTypes;
 public final class GameScreenActivity extends Activity implements IState{
     public GameScreenActivity(){
         gameBG = null;
+        textOnScreen = null;
     }
 
     @Override
@@ -36,6 +38,11 @@ public final class GameScreenActivity extends Activity implements IState{
     }
 
     @Override
+    public void onBackPressed(){
+        //Do nth
+    }
+
+    @Override
     public String GetName(){
         return "GameScreen";
     }
@@ -43,6 +50,8 @@ public final class GameScreenActivity extends Activity implements IState{
     @Override
     public void OnEnter(SurfaceView _view){
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
+
+        //* Create game BG
         gameBG = EntityGameBG.Create(
             "gameBG",
             R.drawable.game_background
@@ -55,6 +64,11 @@ public final class GameScreenActivity extends Activity implements IState{
         gameBG.attribs.scale.y = scaleFactor;
         gameBG.SetSpriteAnimXScale(scaleFactor);
         gameBG.SetSpriteAnimYScale(scaleFactor);
+        //*/
+
+        textOnScreen = EntityTextOnScreen.Create("textOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
+        textOnScreen.attribs.scale.x = 50.0f;
+        textOnScreen.attribs.scale.y = 50.0f;
     }
 
     @Override
@@ -78,6 +92,7 @@ public final class GameScreenActivity extends Activity implements IState{
     }
 
     private EntityGameBG gameBG;
+    private EntityTextOnScreen textOnScreen;
 
     public static GameScreenActivity Instance;
 

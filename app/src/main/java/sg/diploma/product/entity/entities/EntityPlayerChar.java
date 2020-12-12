@@ -9,8 +9,8 @@ import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.entity.IEntityCollidable;
 import sg.diploma.product.math.Vector2;
-import sg.diploma.product.resource.ResourceManager;
-import sg.diploma.product.resource.SpriteAnim;
+import sg.diploma.product.graphics.ResourceManager;
+import sg.diploma.product.graphics.SpriteAnim;
 
 public final class EntityPlayerChar extends EntityAbstract implements IEntityCollidable{
 	public EntityPlayerChar(final int bitmapID){

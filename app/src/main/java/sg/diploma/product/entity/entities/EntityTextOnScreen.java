@@ -9,7 +9,7 @@ import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityManager;
 
 public final class EntityTextOnScreen extends EntityAbstract{
-	public EntityTextOnScreen(final AssetManager assets){
+	public EntityTextOnScreen(final AssetManager assets, final String fPath){
 		super();
 
 		FPS = 0.0f;
@@ -18,7 +18,7 @@ public final class EntityTextOnScreen extends EntityAbstract{
 		lastFrameTime = 0;
 
 		paint = new Paint();
-		myfont = Typeface.createFromAsset(assets, "fonts/grobold.ttf");
+		myfont = Typeface.createFromAsset(assets, fPath);
 	}
 
 	@Override
@@ -55,8 +55,8 @@ public final class EntityTextOnScreen extends EntityAbstract{
         _canvas.drawRect(ScreenWidth/20 + 8, ScreenHeight/25, ScreenWidth/20 + value, 2 * ScreenHeight/25 - 5, paint);*/
 	}
 
-	public static EntityTextOnScreen Create(final String key, final AssetManager assets){
-		EntityTextOnScreen result = new EntityTextOnScreen(assets);
+	public static EntityTextOnScreen Create(final String key, final AssetManager assets, final String fPath){
+		EntityTextOnScreen result = new EntityTextOnScreen(assets, fPath);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}
