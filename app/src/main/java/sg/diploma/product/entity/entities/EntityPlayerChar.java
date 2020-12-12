@@ -25,9 +25,14 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 			13,
 			7
 		);
-		spriteAnim.SetFrames(11 * 13, 11 * 13 + 9);
 
-		attribs.dir = new Vector2((int)Math.random() % 2 == 1 ? 1.0f : -1.0f, 0.0f);
+		if((int)Math.random() % 2 == 1){
+			spriteAnim.SetFrames(11 * 13, 11 * 13 + 9);
+			attribs.dir = new Vector2(1.0f, 0.0f);
+		} else{
+			spriteAnim.SetFrames(9 * 13, 9 * 13 + 9);
+			attribs.dir = new Vector2(-1.0f, 0.0f);
+		}
 	}
 
 	@Override
