@@ -6,12 +6,9 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
-
-import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.animation.ScaleAnimation;
-import android.widget.ImageView;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import sg.diploma.product.R;
 import sg.diploma.product.state.StateManager;
@@ -51,6 +48,7 @@ public final class SplashScreenActivity extends Activity{
 
         StateManager.Instance.AddState(new MenuScreenActivity());
         StateManager.Instance.AddState(new GameScreenActivity());
+        StateManager.Instance.AddState(new OptionsScreenActivity());
 
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
         final float factor0 = (float)displayMetrics.widthPixels / 4.0f / 254.0f;

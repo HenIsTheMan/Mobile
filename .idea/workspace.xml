@@ -32,11 +32,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/math/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/OptionsScreenActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/options_screen_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/MenuScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/MenuScreenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityPlayerChar.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityPlayerChar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/math/Vector2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/math/Vector2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/SplashScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/SplashScreenActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +86,7 @@
       <list>
         <option value="resourceFile" />
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -221,10 +223,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="398" y="199" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607411668141" />
-    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1607781869658">
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1607792013559">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607781869658" />
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607792013559" />
     <state x="621" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607783919201">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -245,10 +247,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="595" y="255" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607495885517" />
-    <state x="755" y="355" key="AndroidCreateResourceFileDialog" timestamp="1607593975386">
+    <state x="755" y="355" key="AndroidCreateResourceFileDialog" timestamp="1607792194693">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="755" y="355" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607593975386" />
+    <state x="755" y="355" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607792194693" />
     <state x="850" y="289" key="AndroidCreateXmlResourceDialog" timestamp="1607692304788">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -265,22 +267,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="829" y="401" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607591273898" />
-    <state width="1899" height="221" key="GridCell.Tab.0.bottom" timestamp="1607783213823">
+    <state width="1347" height="388" key="GridCell.Tab.0.bottom" timestamp="1607792740817">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="221" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607783213823" />
-    <state width="1899" height="221" key="GridCell.Tab.0.center" timestamp="1607783213823">
+    <state width="1347" height="388" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607792740817" />
+    <state width="1347" height="388" key="GridCell.Tab.0.center" timestamp="1607792740817">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="221" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607783213823" />
-    <state width="1899" height="221" key="GridCell.Tab.0.left" timestamp="1607783213823">
+    <state width="1347" height="388" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607792740817" />
+    <state width="1347" height="388" key="GridCell.Tab.0.left" timestamp="1607792740816">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="221" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607783213823" />
-    <state width="1899" height="221" key="GridCell.Tab.0.right" timestamp="1607783213823">
+    <state width="1347" height="388" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607792740816" />
+    <state width="1347" height="388" key="GridCell.Tab.0.right" timestamp="1607792740817">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="221" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607783213823" />
+    <state width="1347" height="388" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607792740817" />
     <state width="1899" height="274" key="GridCell.Tab.1.bottom" timestamp="1607691029882">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -305,10 +307,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="501" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607603081570" />
-    <state x="727" y="235" width="849" height="534" key="find.popup" timestamp="1607788844236">
+    <state x="727" y="235" width="849" height="534" key="find.popup" timestamp="1607791138126">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="727" y="235" width="849" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607788844236" />
+    <state x="727" y="235" width="849" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607791138126" />
     <state x="477" y="410" width="621" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1607422454863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
