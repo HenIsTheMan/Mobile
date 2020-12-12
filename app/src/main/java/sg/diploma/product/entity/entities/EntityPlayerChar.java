@@ -14,13 +14,13 @@ import sg.diploma.product.resource.ResourceManager;
 import sg.diploma.product.resource.SpriteAnim;
 
 public final class EntityPlayerChar extends EntityAbstract implements IEntityCollidable{
-	public EntityPlayerChar(){
+	public EntityPlayerChar(final int bitmapID){
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.PlayerChar;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
 
 		spriteAnim = new SpriteAnim(
-			ResourceManager.Instance.GetBitmap(R.drawable.player_char),
+			ResourceManager.Instance.GetBitmap(bitmapID),
 			21,
 			13,
 			10
@@ -93,8 +93,8 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
 	}
 
-	public static EntityPlayerChar Create(){
-		EntityPlayerChar result = new EntityPlayerChar();
+	public static EntityPlayerChar Create(final int bitmapID){
+		EntityPlayerChar result = new EntityPlayerChar(bitmapID);
 		EntityManager.Instance.AddEntity(result);
 		return result;
 	}
@@ -117,7 +117,7 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 		}
 	}
 
-	public void GenScaledBitmap(){
+	public void GenScaledBitmap(){ //Slow
 		spriteAnim.GenScaledBitmap(attribs.scale);
 	}
 
