@@ -45,13 +45,16 @@ public final class GameScreenActivity extends Activity implements IState{
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
         entityBG = EntityBG.Create(
             "entityBG",
-            R.drawable.game_background,
-            1.0f,
-            1.2f
+            R.drawable.game_background
         );
 
         entityBG.attribs.pos.x = (int)((float)displayMetrics.widthPixels * 0.5f);
         entityBG.attribs.pos.y = (int)((float)displayMetrics.heightPixels * 0.5f);
+        final float scaleFactor = 1.0f;
+        entityBG.attribs.scale.x = scaleFactor;
+        entityBG.attribs.scale.y = scaleFactor;
+        entityBG.SetSpriteAnimXScale(scaleFactor);
+        entityBG.SetSpriteAnimYScale(scaleFactor);
     }
 
     @Override

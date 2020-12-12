@@ -1,8 +1,6 @@
 package sg.diploma.product.entity.entities;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
@@ -13,28 +11,18 @@ import sg.diploma.product.resource.ResourceManager;
 import sg.diploma.product.resource.SpriteAnim;
 
 public final class EntityBG extends EntityAbstract{
-	public EntityBG(final int bitmapID, final float xScale, final float yScale){
+	public EntityBG(final int bitmapID){
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.BG;
 		attribs.type = EntityTypes.EntityType.BG;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
 
-		Bitmap bmp = ResourceManager.Instance.GetBitmap(bitmapID);
-		final int iWidth = bmp.getWidth();
-		final int iHeight = bmp.getHeight();
-		Matrix matrix = new Matrix();
-		matrix.postScale(xScale, yScale);
-		Bitmap newImage = Bitmap.createBitmap(bmp, 0, 0, iWidth, iHeight, matrix, true);
-
 		spriteAnim = new SpriteAnim(
-			newImage,
+			ResourceManager.Instance.GetBitmap(bitmapID),
 			2,
 			5,
 			4
 		);
 		spriteAnim.SetFrames(0, 8);
-
-		attribs.scale.x = xScale;
-		attribs.scale.y = yScale;
 	}
 
 	@Override
@@ -47,10 +35,18 @@ public final class EntityBG extends EntityAbstract{
 		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
 	}
 
-	public static EntityBG Create(String key, final int bitmapID, final float xScale, final float yScale){
-		EntityBG result = new EntityBG(bitmapID, xScale, yScale);
+	public static EntityBG Create(String key, final int bitmapID){
+		EntityBG result = new EntityBG(bitmapID);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
+	}
+
+	public void SetSpriteAnimXScale(final float xScale){
+		spriteAnim.SetXScale(xScale);
+	}
+
+	public void SetSpriteAnimYScale(final float yScale){
+		spriteAnim.SetYScale(yScale);
 	}
 
 	private final SpriteAnim spriteAnim;
