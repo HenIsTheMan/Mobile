@@ -20,16 +20,16 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 
 		spriteAnim = new SpriteAnim(
 			ResourceManager.Instance.GetBitmap(bitmapID),
-			21,
-			13,
+			4,
+			9,
 			10
 		);
 
 		if((int)Math.random() % 2 == 1){
-			spriteAnim.SetFrames(11 * 13, 11 * 13);
+			spriteAnim.SetFrames(3 * 13, 3 * 9);
 			attribs.dir = new Vector2(1.0f, 0.0f);
 		} else{
-			spriteAnim.SetFrames(9 * 13, 9 * 13);
+			spriteAnim.SetFrames(9, 9);
 			attribs.dir = new Vector2(-1.0f, 0.0f);
 		}
 		storedVal = attribs.dir.x;
@@ -41,9 +41,9 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 			Vector2 vec = new Vector2(attribs.targetPos.x - attribs.pos.x, attribs.targetPos.y - attribs.pos.y);
 			if(vec.Len() < attribs.spd * dt){
 				if(storedVal > 0.0f){
-					spriteAnim.SetFrames(11 * 13, 11 * 13);
+					spriteAnim.SetFrames(3 * 9, 3 * 9);
 				} else{
-					spriteAnim.SetFrames(9 * 13, 9 * 13);
+					spriteAnim.SetFrames(9, 9);
 				}
 
 				attribs.spd = 0.0f;
@@ -54,9 +54,9 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 			}
 		} else{
 			if(storedVal > 0.0f){
-				spriteAnim.SetFrames(11 * 13, 11 * 13);
+				spriteAnim.SetFrames(3 * 9, 3 * 9);
 			} else{
-				spriteAnim.SetFrames(9 * 13, 9 * 13);
+				spriteAnim.SetFrames(9, 9);
 			}
 		}
 
@@ -110,9 +110,9 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 		storedVal = xPos - attribs.pos.x;
 
 		if(storedVal > 0.0f){
-			spriteAnim.SetFrames(11 * 13 + 1, 11 * 13 + 9);
+			spriteAnim.SetFrames(3 * 9 + 1, 3 * 9 + 9);
 		} else{
-			spriteAnim.SetFrames(9 * 13 + 1, 9 * 13 + 9);
+			spriteAnim.SetFrames(9 + 1, 9 + 9);
 		}
 	}
 

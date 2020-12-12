@@ -134,15 +134,15 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void OnEnter(SurfaceView _view){
-        menuPlayerChar = EntityPlayerChar.Create("menuPlayerChar", R.drawable.player_char_scaled2);
+        menuPlayerChar = EntityPlayerChar.Create("menuPlayerChar", R.drawable.player_char);
 
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
         menuPlayerChar.attribs.pos.x = (int)((float)displayMetrics.widthPixels * 0.5f);
         menuPlayerChar.attribs.pos.y = (int)((float)displayMetrics.heightPixels * 3.0f / 4.0f);
 
-        menuPlayerChar.attribs.scale.x = menuPlayerChar.attribs.scale.y = 1.2f;
-        menuPlayerChar.SetSpriteAnimXScale(1.2f);
-        menuPlayerChar.SetSpriteAnimYScale(1.2f);
+        menuPlayerChar.attribs.scale.x = menuPlayerChar.attribs.scale.y = 1.8f;
+        menuPlayerChar.SetSpriteAnimXScale(1.8f);
+        menuPlayerChar.SetSpriteAnimYScale(1.8f);
 
         menuPlayerChar.attribs.yMin = new EntityConstraint();
         menuPlayerChar.attribs.yMin.val = ((float)displayMetrics.heightPixels * 0.35f + (float)displayMetrics.widthPixels / 4.0f) * 1.15f;
