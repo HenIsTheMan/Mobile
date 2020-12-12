@@ -137,8 +137,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         menuPlayerChar = EntityPlayerChar.Create(R.drawable.player_char_scaled2);
 
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
-        menuPlayerChar.attribs.pos.x = (int)(displayMetrics.widthPixels * 0.5f);
-        menuPlayerChar.attribs.pos.y = (int)(displayMetrics.heightPixels * 3.0f / 4.0f);
+        menuPlayerChar.attribs.pos.x = (int)((float)displayMetrics.widthPixels * 0.5f);
+        menuPlayerChar.attribs.pos.y = (int)((float)displayMetrics.heightPixels * 3.0f / 4.0f);
 
         menuPlayerChar.attribs.scale.x = menuPlayerChar.attribs.scale.y = 2.0f;
 
