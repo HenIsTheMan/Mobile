@@ -140,7 +140,9 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         menuPlayerChar.attribs.pos.x = (int)((float)displayMetrics.widthPixels * 0.5f);
         menuPlayerChar.attribs.pos.y = (int)((float)displayMetrics.heightPixels * 3.0f / 4.0f);
 
-        menuPlayerChar.attribs.scale.x = menuPlayerChar.attribs.scale.y = 2.0f;
+        menuPlayerChar.attribs.scale.x = menuPlayerChar.attribs.scale.y = 1.2f;
+        menuPlayerChar.SetSpriteAnimXScale(1.2f);
+        menuPlayerChar.SetSpriteAnimYScale(1.2f);
 
         menuPlayerChar.attribs.yMin = new EntityConstraint();
         menuPlayerChar.attribs.yMin.val = ((float)displayMetrics.heightPixels * 0.35f + (float)displayMetrics.widthPixels / 4.0f) * 1.15f;

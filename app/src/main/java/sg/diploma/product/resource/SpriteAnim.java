@@ -15,6 +15,9 @@ public final class SpriteAnim{
 	public SpriteAnim(Bitmap _bmp, int _rows, int _cols, int _fps){
 		bmp = _bmp;
 
+		xScale = 1.0f;
+		yScale = 1.0f;
+
 		rows = _rows;
 		cols = _cols;
 		width = bmp.getWidth() / _cols;
@@ -50,11 +53,11 @@ public final class SpriteAnim{
 		int srcX = frameX * width;
 		int srcY = frameY * height;
 
-		_x -= 0.5f * width;
-		_y -= 0.5f * height;
+		_x -= 0.5f * width * xScale;
+		_y -= 0.5f * height * yScale;
 
 		Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);
-		Rect dst = new Rect(_x, _y, _x + width, _y + height);
+		Rect dst = new Rect(_x, _y, _x + (int)((float)width * xScale), _y + (int)((float)height * yScale));
 
 		_canvas.drawBitmap(bmp, src, dst, paint);
 	}
@@ -72,7 +75,18 @@ public final class SpriteAnim{
 		height = bmp.getHeight() / rows;
 	}
 
-	private Bitmap bmp = null;
+	public void SetXScale(final float xScale){
+		this.xScale = xScale;
+	}
+
+	public void SetYScale(final float yScale){
+		this.yScale = yScale;
+	}
+
+	private Bitmap bmp;
+
+	private float xScale;
+	private float yScale;
 
 	private final int rows;
 	private final int cols;

@@ -120,6 +120,14 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 		spriteAnim.GenScaledBitmap(attribs.scale);
 	}
 
+	public void SetSpriteAnimXScale(final float xScale){
+		spriteAnim.SetXScale(xScale);
+	}
+
+	public void SetSpriteAnimYScale(final float yScale){
+		spriteAnim.SetYScale(yScale);
+	}
+
 	private final SpriteAnim spriteAnim;
 	private float storedVal;
 }
