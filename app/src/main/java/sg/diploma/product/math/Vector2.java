@@ -17,13 +17,13 @@ public final class Vector2{
 		this.y = y;
 	}
 
-	static final float epsilon = Math.ulp(1.0f);
+	public static final float epsilon = Math.ulp(1.0f);
 
-	float Len(){
+	public float Len(){
 		return (float)sqrt(x * x + y * y);
 	}
 
-	float LenSquared(){
+	public float LenSquared(){
 		return x * x + y * y;
 	}
 

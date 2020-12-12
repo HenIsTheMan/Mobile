@@ -35,7 +35,7 @@ import sg.diploma.product.touch.TouchTypes;
 public final class MenuScreenActivity extends Activity implements OnClickListener, IState{
     public MenuScreenActivity(){
         isFingerPressedBefore = false;
-        isFingerReleasedBefore = false;
+        isFingerReleasedBefore = true;
         shldStartMoving = false;
         shldStopMoving = false;
 
@@ -159,20 +159,20 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
             }
         } else if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Up.GetVal()) {
             isFingerReleasedBefore = true;
-            if(isFingerPressedBefore){
+            /*if(isFingerPressedBefore){
                 shldStopMoving = true;
                 isFingerPressedBefore = false;
-            }
+            }*/
         }
 
         if(shldStartMoving){
             menuPlayerChar.StartMoving(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
             shldStartMoving = false;
         }
-        if(shldStopMoving){
+        /*if(shldStopMoving){
             menuPlayerChar.StopMoving();
             shldStopMoving = false;
-        }
+        }*/
 
         EntityManager.Instance.Update(_dt);
     }

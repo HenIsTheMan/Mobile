@@ -23,7 +23,7 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 			ResourceManager.Instance.GetBitmap(R.drawable.player_char),
 			21,
 			13,
-			7
+			10
 		);
 
 		if((int)Math.random() % 2 == 1){
@@ -33,10 +33,34 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 			spriteAnim.SetFrames(9 * 13, 9 * 13);
 			attribs.dir = new Vector2(-1.0f, 0.0f);
 		}
+		storedVal = attribs.dir.x;
 	}
 
 	@Override
 	public void Update(float dt){
+		if(attribs.targetPos != null){
+			Vector2 vec = new Vector2(attribs.targetPos.x - attribs.pos.x, attribs.targetPos.y - attribs.pos.y);
+			if(vec.Len() < attribs.spd * dt){
+				if(storedVal > 0.0f){
+					spriteAnim.SetFrames(11 * 13, 11 * 13);
+				} else{
+					spriteAnim.SetFrames(9 * 13, 9 * 13);
+				}
+
+				attribs.spd = 0.0f;
+				attribs.pos = attribs.targetPos; //Snap if super close
+			} else{
+				attribs.spd = 400.0f;
+				attribs.dir = new Vector2(attribs.targetPos.x - attribs.pos.x, attribs.targetPos.y - attribs.pos.y).Normalized();
+			}
+		} else{
+			if(storedVal > 0.0f){
+				spriteAnim.SetFrames(11 * 13, 11 * 13);
+			} else{
+				spriteAnim.SetFrames(9 * 13, 9 * 13);
+			}
+		}
+
 		attribs.pos.x += attribs.dir.x * attribs.spd * dt;
 		attribs.pos.y += attribs.dir.y * attribs.spd * dt;
 
@@ -70,23 +94,13 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 	}
 
 	public void StartMoving(final float xPos, final float yPos){
-		attribs.spd = 300.0f;
+		attribs.targetPos = new Vector2(xPos, yPos);
+		storedVal = xPos - attribs.pos.x;
 
-		attribs.dir = new Vector2(xPos - attribs.pos.x, yPos - attribs.pos.y).Normalized();
-
-		if(attribs.dir.x > 0.0f){
-			spriteAnim.SetFrames(11 * 13, 11 * 13 + 9);
+		if(storedVal > 0.0f){
+			spriteAnim.SetFrames(11 * 13 + 1, 11 * 13 + 9);
 		} else{
-			spriteAnim.SetFrames(9 * 13, 9 * 13 + 9);
-		}
-	}
-
-	public void StopMoving(){
-		attribs.spd = 0.0f;
-		if(attribs.dir.x > 0.0f){
-			spriteAnim.SetFrames(11 * 13, 11 * 13);
-		} else{
-			spriteAnim.SetFrames(9 * 13, 9 * 13);
+			spriteAnim.SetFrames(9 * 13 + 1, 9 * 13 + 9);
 		}
 	}
 
@@ -95,4 +109,5 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 	}
 
 	private final SpriteAnim spriteAnim;
+	private float storedVal;
 }
