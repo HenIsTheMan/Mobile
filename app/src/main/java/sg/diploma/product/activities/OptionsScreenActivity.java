@@ -39,7 +39,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 	@Override
 	public void onBackPressed(){
-
+		//??
 	}
 
 	@Override
@@ -54,7 +54,6 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 	@Override
 	public void OnEnter(SurfaceView _view){
-
 	}
 
 	@Override
@@ -64,7 +63,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 	@Override
 	public void Render(Canvas _canvas){
-
+		EntityManager.Instance.Render(_canvas);
 	}
 
 	@Override
