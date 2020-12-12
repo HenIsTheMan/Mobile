@@ -3,6 +3,7 @@ package sg.diploma.product.entity.entities;
 import android.graphics.Canvas;
 
 import sg.diploma.product.R;
+import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;

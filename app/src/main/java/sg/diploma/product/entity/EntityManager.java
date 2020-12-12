@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-import sg.diploma.product.entity.entities.EntityAbstract;
-
 public final class EntityManager{ //Singleton
     private EntityManager(){
         entityList = new LinkedList<>();

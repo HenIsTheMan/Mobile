@@ -1,8 +1,6 @@
-package sg.diploma.product.entity.entities;
+package sg.diploma.product.entity;
 
 import android.graphics.Canvas;
-
-import sg.diploma.product.entity.EntityAttribs;
 
 public abstract class EntityAbstract{
 	protected EntityAbstract(){
