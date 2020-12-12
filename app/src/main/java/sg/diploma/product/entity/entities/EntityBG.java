@@ -20,11 +20,11 @@ public final class EntityBG extends EntityAbstract{
 
 		spriteAnim = new SpriteAnim(
 			ResourceManager.Instance.GetBitmap(bitmapID),
-			21,
-			13,
-			10
+			2,
+			5,
+			4
 		);
-		spriteAnim.SetFrames(11 * 13, 11 * 13);
+		spriteAnim.SetFrames(0, 8);
 	}
 
 	@Override

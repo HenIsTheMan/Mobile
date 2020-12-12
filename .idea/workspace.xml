@@ -32,13 +32,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/Example.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/GameScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/GameScreenActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityBG.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityBG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/player_char.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/player_char.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/player_char_scaled1half.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/player_char_scaled1half.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/player_char_scaled2.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/player_char_scaled2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/game_background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/glow_ring.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,22 +253,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="829" y="401" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607591273898" />
-    <state width="1899" height="241" key="GridCell.Tab.0.bottom" timestamp="1607753366817">
+    <state width="1899" height="337" key="GridCell.Tab.0.bottom" timestamp="1607756623524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="241" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607753366817" />
-    <state width="1899" height="241" key="GridCell.Tab.0.center" timestamp="1607753366817">
+    <state width="1899" height="337" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607756623524" />
+    <state width="1899" height="337" key="GridCell.Tab.0.center" timestamp="1607756623524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="241" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607753366817" />
-    <state width="1899" height="241" key="GridCell.Tab.0.left" timestamp="1607753366817">
+    <state width="1899" height="337" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607756623524" />
+    <state width="1899" height="337" key="GridCell.Tab.0.left" timestamp="1607756623524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="241" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607753366817" />
-    <state width="1899" height="241" key="GridCell.Tab.0.right" timestamp="1607753366817">
+    <state width="1899" height="337" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607756623524" />
+    <state width="1899" height="337" key="GridCell.Tab.0.right" timestamp="1607756623524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="241" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607753366817" />
+    <state width="1899" height="337" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607756623524" />
     <state width="1899" height="274" key="GridCell.Tab.1.bottom" timestamp="1607691029882">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
