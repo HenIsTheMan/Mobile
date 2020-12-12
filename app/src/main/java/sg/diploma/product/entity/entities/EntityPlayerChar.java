@@ -7,13 +7,12 @@ import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
-import sg.diploma.product.entity.IEntity;
 import sg.diploma.product.entity.IEntityCollidable;
 import sg.diploma.product.math.Vector2;
 import sg.diploma.product.resource.ResourceManager;
 import sg.diploma.product.resource.SpriteAnim;
 
-public final class EntityPlayerChar implements IEntity, IEntityCollidable{
+public final class EntityPlayerChar extends EntityAbstract implements IEntityCollidable{
 	public EntityPlayerChar(){
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.PlayerChar;

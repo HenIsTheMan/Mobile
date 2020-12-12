@@ -8,10 +8,9 @@ import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
-import sg.diploma.product.entity.IEntity;
 import sg.diploma.product.resource.ResourceManager;
 
-public final class EntityBG implements IEntity{
+public final class EntityBG extends EntityAbstract{
 	public EntityBG(){
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.BG;
 		attribs.type = EntityTypes.EntityType.BG;

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 
+import sg.diploma.product.entity.entities.EntityAbstract;
+
 public final class EntityManager{ //Singleton
     private EntityManager(){
         entityList = new LinkedList<>();
@@ -18,7 +20,7 @@ public final class EntityManager{ //Singleton
     }
 
     public void Update(float _dt){
-        for(IEntity currEntity: entityRemovalList){
+        for(EntityAbstract currEntity: entityRemovalList){
             entityList.remove(currEntity);
         }
         entityRemovalList.clear();
@@ -29,13 +31,13 @@ public final class EntityManager{ //Singleton
         }
 
         for(int i = 0; i < entityListSize; ++i){
-            IEntity currEntity = entityList.get(i);
+            EntityAbstract currEntity = entityList.get(i);
 
             if(currEntity instanceof IEntityCollidable){
                 IEntityCollidable collidable0 = (IEntityCollidable)currEntity;
 
                 for(int j = i + 1; j < entityListSize; ++j){
-                    IEntity otherEntity = entityList.get(j);
+                    EntityAbstract otherEntity = entityList.get(j);
 
                     if(otherEntity instanceof IEntityCollidable){
                         IEntityCollidable collidable1 = (IEntityCollidable)otherEntity;
@@ -49,16 +51,16 @@ public final class EntityManager{ //Singleton
             }
         }
 
-        for(IEntity currEntity: entityRemovalList){
+        for(EntityAbstract currEntity: entityRemovalList){
             entityList.remove(currEntity);
         }
         entityRemovalList.clear();
     }
 
     public void Render(Canvas _canvas){
-        entityList.sort(new Comparator<IEntity>(){ //Determines render order
+        entityList.sort(new Comparator<EntityAbstract>(){ //Determines render order
             @Override
-            public int compare(IEntity o1, IEntity o2){
+            public int compare(EntityAbstract o1, EntityAbstract o2){
                 return o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal();
             }
         });
@@ -69,16 +71,16 @@ public final class EntityManager{ //Singleton
         }
     }
 
-    public void AddEntity(IEntity _newEntity){
+    public void AddEntity(EntityAbstract _newEntity){
         entityList.add(_newEntity);
     }
 
-    public void SendEntityForRemoval(IEntity entity){
+    public void SendEntityForRemoval(EntityAbstract entity){
         entityRemovalList.add(entity);
     }
 
-    private final LinkedList<IEntity> entityList;
-    private final ArrayList<IEntity> entityRemovalList;
+    private final LinkedList<EntityAbstract> entityList;
+    private final ArrayList<EntityAbstract> entityRemovalList;
     public SurfaceView view;
 
     public static final EntityManager Instance;
