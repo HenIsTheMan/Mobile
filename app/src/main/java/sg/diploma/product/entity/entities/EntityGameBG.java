@@ -12,6 +12,7 @@ import sg.diploma.product.resource.SpriteAnim;
 
 public final class EntityGameBG extends EntityAbstract{
 	public EntityGameBG(final int bitmapID){
+		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.BG;
 		attribs.type = EntityTypes.EntityType.BG;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
@@ -26,16 +27,16 @@ public final class EntityGameBG extends EntityAbstract{
 	}
 
 	@Override
-	public void Update(float dt){
+	public void Update(final float dt){
 		spriteAnim.Update(dt);
 	}
 
 	@Override
-	public void Render(Canvas canvas){ //Render with img centered
+	public void Render(final Canvas canvas){ //Render with img centered
 		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
 	}
 
-	public static EntityGameBG Create(String key, final int bitmapID){
+	public static EntityGameBG Create(final String key, final int bitmapID){
 		EntityGameBG result = new EntityGameBG(bitmapID);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;

@@ -14,6 +14,7 @@ import sg.diploma.product.resource.SpriteAnim;
 
 public final class EntityPlayerChar extends EntityAbstract implements IEntityCollidable{
 	public EntityPlayerChar(final int bitmapID){
+		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.PlayerChar;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
@@ -36,7 +37,7 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 	}
 
 	@Override
-	public void Update(float dt){
+	public void Update(final float dt){
 		if(attribs.targetPos != null){
 			Vector2 vec = new Vector2(attribs.targetPos.x - attribs.pos.x, attribs.targetPos.y - attribs.pos.y);
 			if(vec.Len() < attribs.spd * dt){
@@ -88,18 +89,18 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 	}
 
 	@Override
-	public void Render(Canvas canvas){ //Render with img centered
+	public void Render(final Canvas canvas){ //Render with img centered
 		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
 	}
 
-	public static EntityPlayerChar Create(String key, final int bitmapID){
+	public static EntityPlayerChar Create(final String key, final int bitmapID){
 		EntityPlayerChar result = new EntityPlayerChar(bitmapID);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}
 
 	@Override
-	public void OnHit(IEntityCollidable other){
+	public void OnHit(final IEntityCollidable other){
 		/*if(other.collidableType == EntityCollidableTypes.EntityCollidableType.Box){
 			EntityManager.Instance.SendEntityForRemoval(this);
 		}*/
