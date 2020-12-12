@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
+import sg.diploma.product.R;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityBG;
 import sg.diploma.product.game.GameView;
@@ -39,7 +40,7 @@ public final class GameScreenActivity extends Activity implements IState{
 
     @Override
     public void OnEnter(SurfaceView _view){
-        entityBG = EntityBG.Create();
+        entityBG = EntityBG.Create(R.drawable.game_background);
     }
 
     @Override
