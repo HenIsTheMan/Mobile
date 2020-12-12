@@ -49,13 +49,13 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         leaveIcon = null;
         myShape = null;
 
+        updateThread = null;
+
         gameTitleBossText = null;
         gameTitleGirlText = null;
 
         font = null;
     }
-
-    private UpdateThread updateThread;
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -196,7 +196,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         myShape.getLayoutParams().height = (int)((float)displayMetrics.heightPixels * 1.2f);
 
         Animation myShapeAnim = AnimationUtils.loadAnimation(this, R.anim.my_shape_anim);
-        myShapeAnim.setStartOffset(1399);
+        myShapeAnim.setStartOffset(799);
         myShapeAnim.setAnimationListener(new Animation.AnimationListener(){
             @Override
             public void onAnimationStart(Animation anim){
@@ -301,6 +301,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private ImageView gearsIcon;
     private ImageView leaveIcon;
     private ImageView myShape;
+
+    private UpdateThread updateThread;
 
     private TextView gameTitleBossText;
     private TextView gameTitleGirlText;
