@@ -39,7 +39,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         shldStartMoving = false;
 
         startButton = null;
-        settingsButton = null;
+        optionsButton = null;
         exitButton = null;
 
         menuPlayerChar = null;
@@ -110,8 +110,11 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
             startActivity(new Intent(this, GameScreenActivity.class));
             return;
         }
-        if(v == settingsButton){
-            //
+        if(v == optionsButton){
+            EntityManager.Instance.SendEntityForRemoval("menuPlayerChar");
+            StateManager.Instance.ChangeState("OptionsScreen");
+
+            startActivity(new Intent(this, OptionsScreenActivity.class));
             return;
         }
         if(v == exitButton){
@@ -223,12 +226,12 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         startButton.setTranslationX((float)displayMetrics.widthPixels * 0.2f - (float)buttonSize * 0.5f);
         startButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
 
-        settingsButton = findViewById(R.id.settingsButton);
-        settingsButton.setOnClickListener(this);
-        settingsButton.getLayoutParams().width = buttonSize;
-        settingsButton.getLayoutParams().height = buttonSize;
-        settingsButton.setTranslationX((float)displayMetrics.widthPixels * 0.5f - (float)buttonSize * 0.5f);
-        settingsButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
+        optionsButton = findViewById(R.id.optionsButton);
+        optionsButton.setOnClickListener(this);
+        optionsButton.getLayoutParams().width = buttonSize;
+        optionsButton.getLayoutParams().height = buttonSize;
+        optionsButton.setTranslationX((float)displayMetrics.widthPixels * 0.5f - (float)buttonSize * 0.5f);
+        optionsButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
 
         exitButton = findViewById(R.id.exitButton);
         exitButton.setOnClickListener(this);
@@ -250,11 +253,11 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         gearsIcon = findViewById(R.id.gearsIcon);
         gearsIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
         gearsIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
-        gearsIcon.setTranslationX(settingsButton.getTranslationX()
-                + (settingsButton.getLayoutParams().width
+        gearsIcon.setTranslationX(optionsButton.getTranslationX()
+                + (optionsButton.getLayoutParams().width
                 - gearsIcon.getLayoutParams().width) * 0.5f);
-        gearsIcon.setTranslationY(settingsButton.getTranslationY()
-                + (settingsButton.getLayoutParams().height
+        gearsIcon.setTranslationY(optionsButton.getTranslationY()
+                + (optionsButton.getLayoutParams().height
                 - gearsIcon.getLayoutParams().height) * 0.5f);
 
         leaveIcon = findViewById(R.id.leaveIcon);
@@ -294,7 +297,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private boolean shldStartMoving;
 
     private Button startButton;
-    private Button settingsButton;
+    private Button optionsButton;
     private Button exitButton;
 
     private EntityPlayerChar menuPlayerChar;

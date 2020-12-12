@@ -23,7 +23,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		Instance = this;
 		setContentView(R.layout.options_screen_layout);
 	}
 
@@ -59,7 +59,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 	@Override
 	public void OnExit(){
-
+		Instance.finish();
 	}
 
 	@Override
@@ -80,5 +80,11 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	@Override
 	protected void onDestroy(){
 		super.onDestroy();
+	}
+
+	public static OptionsScreenActivity Instance;
+
+	static{
+		Instance = null;
 	}
 }
