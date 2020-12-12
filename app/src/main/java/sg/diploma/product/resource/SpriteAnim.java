@@ -72,14 +72,6 @@ public final class SpriteAnim{
 		height = bmp.getHeight() / rows;
 	}
 
-	public void ScaleWidth(final float scaleFactor){
-		width = (int)((float)width * scaleFactor);
-	}
-
-	public void ScaleHeight(final float scaleFactor){
-		height = (int)((float)height * scaleFactor);
-	}
-
 	private Bitmap bmp = null;
 
 	private final int rows;

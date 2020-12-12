@@ -92,9 +92,9 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
 	}
 
-	public static EntityPlayerChar Create(final int bitmapID){
+	public static EntityPlayerChar Create(String key, final int bitmapID){
 		EntityPlayerChar result = new EntityPlayerChar(bitmapID);
-		EntityManager.Instance.AddEntity(result);
+		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}
 
@@ -118,14 +118,6 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 
 	public void GenScaledBitmap(){ //Slow
 		spriteAnim.GenScaledBitmap(attribs.scale);
-	}
-
-	public void ScaleSpriteAnimWidth(final float scaleFactor){
-		spriteAnim.ScaleWidth(scaleFactor);
-	}
-
-	public void ScaleSpriteAnimHeight(final float scaleFactor){
-		spriteAnim.ScaleHeight(scaleFactor);
 	}
 
 	private final SpriteAnim spriteAnim;

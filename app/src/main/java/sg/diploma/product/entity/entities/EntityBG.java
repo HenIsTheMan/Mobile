@@ -47,9 +47,9 @@ public final class EntityBG extends EntityAbstract{
 		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
 	}
 
-	public static EntityBG Create(final int bitmapID, final float xScale, final float yScale){
+	public static EntityBG Create(String key, final int bitmapID, final float xScale, final float yScale){
 		EntityBG result = new EntityBG(bitmapID, xScale, yScale);
-		EntityManager.Instance.AddEntity(result);
+		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}
 

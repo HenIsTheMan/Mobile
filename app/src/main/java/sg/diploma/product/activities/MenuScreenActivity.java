@@ -104,7 +104,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     @Override
     public void onClick(View v){
         if(v == startButton){
-            EntityManager.Instance.ClearAllEntities();
+            EntityManager.Instance.SendEntityForRemoval("menuPlayerChar");
             StateManager.Instance.ChangeState("GameScreen");
 
             startActivity(new Intent(this, GameScreenActivity.class));
@@ -134,7 +134,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void OnEnter(SurfaceView _view){
-        menuPlayerChar = EntityPlayerChar.Create(R.drawable.player_char_scaled2);
+        menuPlayerChar = EntityPlayerChar.Create("menuPlayerChar", R.drawable.player_char_scaled2);
 
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
         menuPlayerChar.attribs.pos.x = (int)((float)displayMetrics.widthPixels * 0.5f);

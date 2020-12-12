@@ -43,7 +43,7 @@ public final class Example extends EntityAbstract{
 
 	public static Example Create(){
 		Example result = new Example();
-		EntityManager.Instance.AddEntity(result);
+		EntityManager.Instance.AddEntity("", result);
 		return result;
 	}
 

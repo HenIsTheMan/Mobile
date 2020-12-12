@@ -44,6 +44,7 @@ public final class GameScreenActivity extends Activity implements IState{
     public void OnEnter(SurfaceView _view){
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
         entityBG = EntityBG.Create(
+            "entityBG",
             R.drawable.game_background,
             1.0f,
             1.2f
@@ -68,7 +69,7 @@ public final class GameScreenActivity extends Activity implements IState{
         EntityManager.Instance.Update(_dt);
 
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
-            EntityManager.Instance.ClearAllEntities();
+            EntityManager.Instance.SendEntityForRemoval("entityBG");
             StateManager.Instance.ChangeState("MenuScreen");
         }
     }

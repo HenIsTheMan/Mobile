@@ -4,12 +4,12 @@ import android.graphics.Canvas;
 import android.view.SurfaceView;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.List;
 
 public final class EntityManager{ //Singleton
     private EntityManager(){
-        entityList = new LinkedList<>();
+        entityList = new HashMap<>();
         entityRemovalList = new ArrayList<>();
     }
 
@@ -18,24 +18,25 @@ public final class EntityManager{ //Singleton
     }
 
     public void Update(float _dt){
-        for(EntityAbstract currEntity: entityRemovalList){
-            entityList.remove(currEntity);
+        for(String element: entityRemovalList){
+            entityList.remove(element);
         }
         entityRemovalList.clear();
 
-        final int entityListSize = entityList.size();
-        for(int i = 0; i < entityListSize; ++i){
-            entityList.get(i).Update(_dt);
+        for(EntityAbstract entity: entityList.values()){
+            entity.Update(_dt);
         }
 
-        for(int i = 0; i < entityListSize; ++i){
-            EntityAbstract currEntity = entityList.get(i);
+        List keys = new ArrayList(entityList.keySet());
+        final int keysSize = keys.size();
+        for(int i = 0; i < keysSize; ++i){
+            EntityAbstract currEntity = entityList.get(keys.get(i));
 
             if(currEntity instanceof IEntityCollidable){
                 IEntityCollidable collidable0 = (IEntityCollidable)currEntity;
 
-                for(int j = i + 1; j < entityListSize; ++j){
-                    EntityAbstract otherEntity = entityList.get(j);
+                for(int j = i + 1; j < keysSize; ++j){
+                    EntityAbstract otherEntity = entityList.get(keys.get(j));
 
                     if(otherEntity instanceof IEntityCollidable){
                         IEntityCollidable collidable1 = (IEntityCollidable)otherEntity;
@@ -49,41 +50,35 @@ public final class EntityManager{ //Singleton
             }
         }
 
-        for(EntityAbstract currEntity: entityRemovalList){
-            entityList.remove(currEntity);
+        for(String element: entityRemovalList){
+            entityList.remove(element);
         }
         entityRemovalList.clear();
     }
 
     public void Render(Canvas _canvas){
-        entityList.sort(new Comparator<EntityAbstract>(){ //Determines render order
+        /*entityList.values().sort(new Comparator<EntityAbstract>(){ //Determines render order
             @Override
             public int compare(EntityAbstract o1, EntityAbstract o2){
                 return o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal();
             }
-        });
+        });*/
 
-        final int entityListSize = entityList.size();
-        for(int i = 0; i < entityListSize; ++i){
-            entityList.get(i).Render(_canvas);
+        for(EntityAbstract entity: entityList.values()){
+            entity.Render(_canvas);
         }
     }
 
-    public void AddEntity(EntityAbstract _newEntity){
-        entityList.add(_newEntity);
+    public void AddEntity(String key, EntityAbstract _newEntity){
+        entityList.put(key, _newEntity);
     }
 
-    public void SendEntityForRemoval(EntityAbstract entity){
-        entityRemovalList.add(entity);
+    public void SendEntityForRemoval(String key){
+        entityRemovalList.add(key);
     }
 
-    public void ClearAllEntities(){
-        entityList.clear();
-        entityRemovalList.clear();
-    }
-
-    private final LinkedList<EntityAbstract> entityList;
-    private final ArrayList<EntityAbstract> entityRemovalList;
+    private final HashMap<String, EntityAbstract> entityList;
+    private final ArrayList<String> entityRemovalList;
     public SurfaceView view;
 
     public static final EntityManager Instance;
