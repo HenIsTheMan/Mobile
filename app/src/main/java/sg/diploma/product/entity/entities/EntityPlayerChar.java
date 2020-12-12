@@ -27,10 +27,10 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 		);
 
 		if((int)Math.random() % 2 == 1){
-			spriteAnim.SetFrames(11 * 13, 11 * 13 + 9);
+			spriteAnim.SetFrames(11 * 13, 11 * 13);
 			attribs.dir = new Vector2(1.0f, 0.0f);
 		} else{
-			spriteAnim.SetFrames(9 * 13, 9 * 13 + 9);
+			spriteAnim.SetFrames(9 * 13, 9 * 13);
 			attribs.dir = new Vector2(-1.0f, 0.0f);
 		}
 	}
@@ -69,14 +69,25 @@ public final class EntityPlayerChar implements IEntity, IEntityCollidable{
 		}*/
 	}
 
-	public void StartMoving(){
-		attribs.spd = 100.0f;
-		spriteAnim.SetFrames(11 * 13, 11 * 13 + 9);
+	public void StartMoving(final float xPos, final float yPos){
+		attribs.spd = 300.0f;
+
+		attribs.dir = new Vector2(xPos - attribs.pos.x, yPos - attribs.pos.y).Normalized();
+
+		if(attribs.dir.x > 0.0f){
+			spriteAnim.SetFrames(11 * 13, 11 * 13 + 9);
+		} else{
+			spriteAnim.SetFrames(9 * 13, 9 * 13 + 9);
+		}
 	}
 
 	public void StopMoving(){
 		attribs.spd = 0.0f;
-		spriteAnim.SetFrames(11 * 13, 11 * 13);
+		if(attribs.dir.x > 0.0f){
+			spriteAnim.SetFrames(11 * 13, 11 * 13);
+		} else{
+			spriteAnim.SetFrames(9 * 13, 9 * 13);
+		}
 	}
 
 	public void GenScaledBitmap(){

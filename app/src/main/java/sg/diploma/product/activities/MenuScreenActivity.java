@@ -34,6 +34,11 @@ import sg.diploma.product.touch.TouchTypes;
 
 public final class MenuScreenActivity extends Activity implements OnClickListener, IState{
     public MenuScreenActivity(){
+        isFingerPressedBefore = false;
+        isFingerReleasedBefore = false;
+        shldStartMoving = false;
+        shldStopMoving = false;
+
         startButton = null;
         settingsButton = null;
         exitButton = null;
@@ -97,10 +102,6 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     public boolean onTouchEvent(MotionEvent event){
         TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
         return true;
-        /*if(event.getAction() == TouchTypes.TouchType.Up.GetVal()){
-            isTouchDown = false;
-            return true;
-        }*/
     }
 
     @Override
@@ -151,10 +152,26 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     @Override
     public void Update(float _dt){
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
-            android.util.Log.e("Hey", "Here");
-            menuPlayerChar.StartMoving();
+            isFingerPressedBefore = true;
+            if(isFingerReleasedBefore){
+                shldStartMoving = true;
+                isFingerReleasedBefore = false;
+            }
         } else if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Up.GetVal()) {
+            isFingerReleasedBefore = true;
+            if(isFingerPressedBefore){
+                shldStopMoving = true;
+                isFingerPressedBefore = false;
+            }
+        }
+
+        if(shldStartMoving){
+            menuPlayerChar.StartMoving(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
+            shldStartMoving = false;
+        }
+        if(shldStopMoving){
             menuPlayerChar.StopMoving();
+            shldStopMoving = false;
         }
 
         EntityManager.Instance.Update(_dt);
@@ -278,6 +295,11 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
                 - (float)gameTitleGirlText.getMeasuredWidth() * 0.5f);
         gameTitleGirlText.setTranslationY((float)displayMetrics.heightPixels * 0.2f);
     }
+
+    private boolean isFingerPressedBefore;
+    private boolean isFingerReleasedBefore;
+    private boolean shldStartMoving;
+    private boolean shldStopMoving;
 
     private Button startButton;
     private Button settingsButton;

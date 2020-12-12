@@ -30,7 +30,7 @@ public final class ResourceManager{
 	private Resources res;
 	private final HashMap<Integer, Bitmap> resMap;
 
-	public final static ResourceManager Instance;
+	public static final ResourceManager Instance;
 
 	static{
 		Instance = new ResourceManager();
