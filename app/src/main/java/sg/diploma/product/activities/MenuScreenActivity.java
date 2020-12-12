@@ -51,8 +51,6 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         leaveIcon = null;
         myShape = null;
 
-        SurfaceView menuSurfaceView = null;
-
         gameTitleBossText = null;
         gameTitleGirlText = null;
 
@@ -142,11 +140,11 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         menuPlayerChar.attribs.pos.x = (int)(displayMetrics.widthPixels * 0.5f);
         menuPlayerChar.attribs.pos.y = (int)(displayMetrics.heightPixels * 3.0f / 4.0f);
 
-        menuPlayerChar.attribs.scale.x = menuPlayerChar.attribs.scale.y = 1.5f;
+        menuPlayerChar.attribs.scale.x = menuPlayerChar.attribs.scale.y = 1.7f;
         menuPlayerChar.GenScaledBitmap();
 
         menuPlayerChar.attribs.yMin = new EntityConstraint();
-        menuPlayerChar.attribs.yMin.val = 1000.0f;
+        menuPlayerChar.attribs.yMin.val = ((float)displayMetrics.heightPixels * 0.35f + (float)displayMetrics.widthPixels / 4.0f) * 1.15f;
     }
 
     @Override
