@@ -39,9 +39,7 @@ public final class GameScreenActivity extends Activity implements IState{
 
     @Override
     public void OnEnter(SurfaceView _view){
-        if(entityBG == null){
-            entityBG = EntityBG.Create();
-        }
+        entityBG = EntityBG.Create();
     }
 
     @Override
@@ -59,6 +57,7 @@ public final class GameScreenActivity extends Activity implements IState{
         EntityManager.Instance.Update(_dt);
 
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
+            EntityManager.Instance.ClearAllEntities();
             StateManager.Instance.ChangeState("MenuScreen");
         }
     }

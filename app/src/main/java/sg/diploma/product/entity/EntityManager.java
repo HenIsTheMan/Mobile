@@ -77,6 +77,11 @@ public final class EntityManager{ //Singleton
         entityRemovalList.add(entity);
     }
 
+    public void ClearAllEntities(){
+        entityList.clear();
+        entityRemovalList.clear();
+    }
+
     private final LinkedList<EntityAbstract> entityList;
     private final ArrayList<EntityAbstract> entityRemovalList;
     public SurfaceView view;
