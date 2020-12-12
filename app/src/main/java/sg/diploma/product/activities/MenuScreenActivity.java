@@ -35,10 +35,8 @@ import sg.diploma.product.touch.TouchTypes;
 
 public final class MenuScreenActivity extends Activity implements OnClickListener, IState{
     public MenuScreenActivity(){
-        isFingerPressedBefore = false;
-        isFingerReleasedBefore = true;
+        isFingerOffScreenBefore = true;
         shldStartMoving = false;
-        shldStopMoving = false;
 
         startButton = null;
         settingsButton = null;
@@ -127,13 +125,13 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     }
 
     @Override
-    public void Render(Canvas _canvas) {
+    public void Render(Canvas _canvas){
         _canvas.drawColor(0xFF404040);
         EntityManager.Instance.Render(_canvas);
     }
 
     @Override
-    public void OnEnter(SurfaceView _view) {
+    public void OnEnter(SurfaceView _view){
         menuPlayerChar = EntityPlayerChar.Create();
 
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
@@ -154,27 +152,18 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     @Override
     public void Update(float _dt){
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
-            isFingerPressedBefore = true;
-            if(isFingerReleasedBefore){
+            if(isFingerOffScreenBefore){
                 shldStartMoving = true;
-                isFingerReleasedBefore = false;
+                isFingerOffScreenBefore = false;
             }
         } else if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Up.GetVal()) {
-            isFingerReleasedBefore = true;
-            /*if(isFingerPressedBefore){
-                shldStopMoving = true;
-                isFingerPressedBefore = false;
-            }*/
+            isFingerOffScreenBefore = true;
         }
 
         if(shldStartMoving){
             menuPlayerChar.StartMoving(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
             shldStartMoving = false;
         }
-        /*if(shldStopMoving){
-            menuPlayerChar.StopMoving();
-            shldStopMoving = false;
-        }*/
 
         EntityManager.Instance.Update(_dt);
     }
@@ -298,10 +287,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         gameTitleGirlText.setTranslationY((float)displayMetrics.heightPixels * 0.2f);
     }
 
-    private boolean isFingerPressedBefore;
-    private boolean isFingerReleasedBefore;
+    private boolean isFingerOffScreenBefore;
     private boolean shldStartMoving;
-    private boolean shldStopMoving;
 
     private Button startButton;
     private Button settingsButton;
