@@ -4,8 +4,9 @@ import android.graphics.Canvas;
 import android.view.SurfaceView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 
 public final class EntityManager{ //Singleton
     private EntityManager(){
@@ -27,7 +28,7 @@ public final class EntityManager{ //Singleton
             entity.Update(_dt);
         }
 
-        List keys = new ArrayList(entityList.keySet());
+        ArrayList<String> keys = new ArrayList(entityList.keySet());
         final int keysSize = keys.size();
         for(int i = 0; i < keysSize; ++i){
             EntityAbstract currEntity = entityList.get(keys.get(i));
@@ -56,15 +57,24 @@ public final class EntityManager{ //Singleton
         entityRemovalList.clear();
     }
 
-    public void Render(Canvas _canvas){
-        /*entityList.values().sort(new Comparator<EntityAbstract>(){ //Determines render order
-            @Override
-            public int compare(EntityAbstract o1, EntityAbstract o2){
-                return o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal();
-            }
-        });*/
+    private static final class SortByRenderLayer implements Comparator<EntityAbstract>{
+        @Override
+        public int compare(EntityAbstract o1, EntityAbstract o2){
+            return o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal();
+        }
+    }
 
-        for(EntityAbstract entity: entityList.values()){
+    public void Render(Canvas _canvas){
+        //Determines render order
+        final Object[] myArr = entityList.values().toArray();
+        final int myArrLen = myArr.length;
+        final EntityAbstract[] entityAbstractArr = new EntityAbstract[myArrLen];
+        for(int i = 0; i < myArrLen; ++i){
+            entityAbstractArr[i] = (EntityAbstract)myArr[i];
+        }
+        Arrays.sort(entityAbstractArr, (o1, o2)->o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal());
+
+        for(EntityAbstract entity: entityAbstractArr){
             entity.Render(_canvas);
         }
     }
