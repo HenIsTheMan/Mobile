@@ -2,7 +2,6 @@ package sg.diploma.product.entity.entities;
 
 import android.graphics.Canvas;
 
-import sg.diploma.product.R;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
@@ -119,6 +118,14 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 
 	public void GenScaledBitmap(){ //Slow
 		spriteAnim.GenScaledBitmap(attribs.scale);
+	}
+
+	public void ScaleSpriteAnimWidth(final float scaleFactor){
+		spriteAnim.ScaleWidth(scaleFactor);
+	}
+
+	public void ScaleSpriteAnimHeight(final float scaleFactor){
+		spriteAnim.ScaleHeight(scaleFactor);
 	}
 
 	private final SpriteAnim spriteAnim;
