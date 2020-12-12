@@ -1,6 +1,7 @@
 package sg.diploma.product.math;
 
 import static java.lang.Math.sqrt;
+import static sg.diploma.product.math.Constants.epsilon;
 
 public final class Vector2{
 	public Vector2(){
@@ -16,8 +17,6 @@ public final class Vector2{
 		this.x = x;
 		this.y = y;
 	}
-
-	public static final float epsilon = Math.ulp(1.0f);
 
 	public float Len(){
 		return (float)sqrt(x * x + y * y);
