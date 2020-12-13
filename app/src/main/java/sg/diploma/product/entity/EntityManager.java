@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.math.CollisionDataBoxBoxAABB;
 import sg.diploma.product.math.DetectCollision;
@@ -84,21 +85,18 @@ public final class EntityManager{ //Singleton
 
         final EntityGamePlayerChar playerChar = (EntityGamePlayerChar)entityList.get(playerCharKey);
         assert playerChar != null;
-        _canvas.translate(0.0f, -playerChar.attribs.pos.y);
+
+        _canvas.translate(0.0f, DeviceManager.screenHeightF * 0.5f - playerChar.attribs.pos.y);
 
         for(int i = 0; i < myArrLen; ++i){
-            if(((String)keys[i]).startsWith("Plat") || ((String)keys[i]).equals(playerCharKey)){
+            if(entityAbstractArr[i] != playerChar){
                 entityAbstractArr[i].Render(_canvas);
             }
         }
 
-        _canvas.translate(0.0f, playerChar.attribs.pos.y);
+        _canvas.translate(0.0f, -DeviceManager.screenHeightF * 0.5f + playerChar.attribs.pos.y);
 
-        for(int i = 0; i < myArrLen; ++i){
-            if(!((String)keys[i]).startsWith("Plat") && !((String)keys[i]).equals(playerCharKey)){
-                entityAbstractArr[i].Render(_canvas);
-            }
-        }
+        playerChar.SpecialRender(_canvas);
     }
 
     public void AddEntity(String key, EntityAbstract _newEntity){
