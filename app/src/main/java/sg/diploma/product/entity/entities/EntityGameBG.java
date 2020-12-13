@@ -33,7 +33,7 @@ public final class EntityGameBG extends EntityAbstract{
 
 	@Override
 	public void Render(final Canvas canvas){ //Render with img centered
-		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
+		spriteAnim.Render(canvas, attribs.pos.x, attribs.pos.y);
 	}
 
 	@Override

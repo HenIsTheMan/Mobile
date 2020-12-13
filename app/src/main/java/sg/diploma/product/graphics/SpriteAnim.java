@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 
 import sg.diploma.product.math.Vector2;
 
@@ -47,7 +48,7 @@ public final class SpriteAnim{
 		}
 	}
 
-	public void Render(final Canvas _canvas, int _x, int _y){
+	public void Render(final Canvas _canvas, float x, float y){
 		final int frameX = currFrame % cols;
 		final int frameY = currFrame / cols;
 		final int srcX = frameX * width;
@@ -56,11 +57,11 @@ public final class SpriteAnim{
 		final float scaledWidth = (float)width * xScale;
 		final float scaledHeight = (float)height * yScale;
 
-		_x -= (int)(0.5f * scaledWidth);
-		_y -= (int)(0.5f * scaledHeight);
+		x -= 0.5f * scaledWidth;
+		y -= 0.5f * scaledHeight;
 
 		Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);
-		Rect dst = new Rect(_x, _y, _x + (int)scaledWidth, _y + (int)scaledHeight);
+		RectF dst = new RectF(x, y, x + scaledWidth, y + scaledHeight);
 
 		_canvas.drawBitmap(bmp, src, dst, paint);
 	}
@@ -72,7 +73,7 @@ public final class SpriteAnim{
 		endFrame = _end;
 	}
 
-	public void GenScaledBitmap(Vector2 scale){
+	public void GenScaledBitmap(final Vector2 scale){
 		bmp = Bitmap.createScaledBitmap(bmp, bmp.getWidth() * (int)scale.x, bmp.getHeight() * (int)scale.y, true);
 		width = bmp.getWidth() / cols;
 		height = bmp.getHeight() / rows;
