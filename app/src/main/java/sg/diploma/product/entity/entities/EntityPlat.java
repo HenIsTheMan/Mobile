@@ -11,7 +11,7 @@ import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.graphics.Color;
 
 public final class EntityPlat extends EntityAbstract{
-	public EntityPlat(final int bitmapID){
+	private EntityPlat(){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.Plat;
@@ -42,8 +42,8 @@ public final class EntityPlat extends EntityAbstract{
 		);
 	}
 
-	public static EntityPlat Create(final String key, final int bitmapID){
-		EntityPlat result = new EntityPlat(bitmapID);
+	public static EntityPlat Create(final String key){
+		EntityPlat result = new EntityPlat();
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}

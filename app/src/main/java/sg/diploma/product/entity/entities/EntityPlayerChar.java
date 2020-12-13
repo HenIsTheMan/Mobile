@@ -13,7 +13,7 @@ import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
 
 public final class EntityPlayerChar extends EntityAbstract implements IEntityCollidable{
-	public EntityPlayerChar(final int bitmapID){
+	private EntityPlayerChar(final int bitmapID){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.PlayerChar;

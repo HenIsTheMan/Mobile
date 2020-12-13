@@ -13,7 +13,7 @@ import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.graphics.Color;
 
 public final class EntityTextOnScreen extends EntityAbstract{
-	public EntityTextOnScreen(final AssetManager assets, final String fPath){
+	private EntityTextOnScreen(final AssetManager assets, final String fPath){
 		super();
 
 		color = Color.white;

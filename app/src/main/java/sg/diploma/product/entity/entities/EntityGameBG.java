@@ -11,7 +11,7 @@ import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
 
 public final class EntityGameBG extends EntityAbstract{
-	public EntityGameBG(final int bitmapID){
+	private EntityGameBG(final int bitmapID){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.BG;
 		attribs.type = EntityTypes.EntityType.BG;

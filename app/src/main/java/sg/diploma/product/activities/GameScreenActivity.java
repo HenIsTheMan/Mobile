@@ -11,6 +11,7 @@ import android.view.SurfaceView;
 import sg.diploma.product.R;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityGameBG;
+import sg.diploma.product.entity.entities.EntityPlat;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.state.IState;
@@ -71,6 +72,12 @@ public final class GameScreenActivity extends Activity implements IState{
         textOnScreen.attribs.pos.y = 80.0f;
         textOnScreen.SetStrokeWidth(300.0f);
         textOnScreen.SetTextSize(55.0f);
+
+        EntityPlat testPlat = EntityPlat.Create("testPlat");
+        testPlat.attribs.pos.x = 200.0f;
+        testPlat.attribs.pos.y = 200.0f;
+        testPlat.attribs.scale.x = 200.0f;
+        testPlat.attribs.scale.y = 50.0f;
     }
 
     @Override
