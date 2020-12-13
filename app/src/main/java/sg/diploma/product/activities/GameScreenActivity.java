@@ -16,6 +16,7 @@ import sg.diploma.product.entity.entities.EntityPlat;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.graphics.ResourceManager;
+import sg.diploma.product.math.Pseudorand;
 import sg.diploma.product.math.Vector2;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.touch.TouchManager;
@@ -26,10 +27,8 @@ public final class GameScreenActivity extends Activity implements IState{
         gameBG = null;
         gamePlayerChar = null;
         startPlat = null;
-        noobPlat = null;
         textOnScreen = null;
 
-        elapsedTime = 0.0f;
         spawnThreshold = 0.0f;
         score = -1;
 
@@ -95,16 +94,6 @@ public final class GameScreenActivity extends Activity implements IState{
         startPlat.attribs.boxColliderScale.x = startPlat.attribs.scale.x;
         startPlat.attribs.boxColliderScale.y = startPlat.attribs.scale.y;
 
-        noobPlat = EntityPlat.Create("noobPlat");
-        noobPlat.attribs.scale.x = DeviceManager.screenWidthF * 0.25f;
-        noobPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
-        noobPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        noobPlat.attribs.pos.y = DeviceManager.screenHeightF - noobPlat.attribs.scale.y * 0.5f - 500.0f;
-        noobPlat.attribs.boxColliderPos.x = noobPlat.attribs.pos.x;
-        noobPlat.attribs.boxColliderPos.y = noobPlat.attribs.pos.y;
-        noobPlat.attribs.boxColliderScale.x = noobPlat.attribs.scale.x;
-        noobPlat.attribs.boxColliderScale.y = noobPlat.attribs.scale.y;
-
         gamePlayerChar = EntityGamePlayerChar.Create(
             "Special_gamePlayerChar",
             R.drawable.player_char
@@ -120,6 +109,8 @@ public final class GameScreenActivity extends Activity implements IState{
         gamePlayerChar.attribs.boxColliderScale.y = playerCharHeight * 1.2f;
         gamePlayerChar.SetSpriteAnimXScale(1.2f);
         gamePlayerChar.SetSpriteAnimYScale(1.2f);
+
+        spawnThreshold = gamePlayerChar.attribs.boxColliderPos.y + gamePlayerChar.attribs.boxColliderScale.y;
     }
 
     @Override
@@ -134,8 +125,6 @@ public final class GameScreenActivity extends Activity implements IState{
 
     @Override
     public void Update(float _dt) {
-        elapsedTime += _dt;
-
         if(textOnScreen != null){
             textOnScreen.SetText("FPS: " + 1.0f / _dt);
         }
@@ -173,18 +162,25 @@ public final class GameScreenActivity extends Activity implements IState{
     }
 
     private void GenAndDestroyPlats(){
-        /*if(gamePlayerChar.attribs.pos.y +  >= spawnThreshold){
-            spawnThreshold += 50.0f;
-        }*/
+        if(gamePlayerChar.attribs.boxColliderPos.y + gamePlayerChar.attribs.boxColliderScale.y <= spawnThreshold){
+            spawnThreshold -= 700.0f;
+            EntityPlat plat = EntityPlat.Create("plat_" + spawnThreshold);
+            plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.15f, 0.25f);
+            plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.03f, 0.07f);
+            plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
+            plat.attribs.pos.y = DeviceManager.screenHeightF - plat.attribs.scale.y * 0.5f + spawnThreshold;
+            plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
+            plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
+            plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
+            plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
+        }
     }
 
     private EntityGameBG gameBG;
     private EntityGamePlayerChar gamePlayerChar;
     private EntityPlat startPlat;
-    private EntityPlat noobPlat;
     private EntityTextOnScreen textOnScreen;
 
-    private float elapsedTime;
     private float spawnThreshold;
     private int score;
 

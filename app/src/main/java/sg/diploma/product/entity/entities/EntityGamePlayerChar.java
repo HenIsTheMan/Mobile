@@ -4,8 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import sg.diploma.product.R;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
@@ -15,6 +13,7 @@ import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
+import sg.diploma.product.math.Pseudorand;
 import sg.diploma.product.math.Vector2;
 
 public final class EntityGamePlayerChar extends EntityAbstract{
@@ -35,7 +34,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			14
 		);
 
-		if(ThreadLocalRandom.current().nextInt() % 2 == 1){
+		if(Pseudorand.PseudorandInt() % 2 == 1){
 			spriteAnim.SetFrames(3 * 9 + 1, 3 * 9 + 9);
 			attribs.facing = 1;
 		} else{
