@@ -26,6 +26,8 @@ public final class GameScreenActivity extends Activity implements IState{
         gameBG = null;
         gamePlayerChar = null;
         textOnScreen = null;
+
+        score = -1;
     }
 
     @Override
@@ -117,6 +119,8 @@ public final class GameScreenActivity extends Activity implements IState{
             textOnScreen.SetText("FPS: " + 1.0f / _dt);
         }
 
+        GenPlats();
+
         EntityManager.Instance.Update(_dt);
 
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
@@ -125,9 +129,15 @@ public final class GameScreenActivity extends Activity implements IState{
         }
     }
 
+    private void GenPlats(){
+
+    }
+
     private EntityGameBG gameBG;
     private EntityGamePlayerChar gamePlayerChar;
     private EntityTextOnScreen textOnScreen;
+
+    private int score;
 
     public static GameScreenActivity Instance;
 
