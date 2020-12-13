@@ -38,10 +38,12 @@ public final class EntityManager{ //Singleton
         for(int i = 0; i < keysSize; ++i){
             EntityAbstract currEntity = entityList.get(keys.get(i));
 
+            assert currEntity != null;
             if(currEntity.attribs.collidableType != EntityCollidableTypes.EntityCollidableType.None){
                 for(int j = i + 1; j < keysSize; ++j){
                     EntityAbstract otherEntity = entityList.get(keys.get(j));
 
+                    assert otherEntity != null;
                     if(otherEntity.attribs.collidableType != EntityCollidableTypes.EntityCollidableType.None){
                         CheckCollision(currEntity, otherEntity);
                     }
@@ -80,19 +82,20 @@ public final class EntityManager{ //Singleton
         }
         Arrays.sort(entityAbstractArr, (o1, o2)->o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal());
 
-        EntityGamePlayerChar playerChar = (EntityGamePlayerChar)entityList.get(playerCharKey);
-        _canvas.translate(-playerChar.attribs.pos.x, -playerChar.attribs.pos.y);
+        final EntityGamePlayerChar playerChar = (EntityGamePlayerChar)entityList.get(playerCharKey);
+        assert playerChar != null;
+        _canvas.translate(0.0f, -playerChar.attribs.pos.y);
 
         for(int i = 0; i < myArrLen; ++i){
-            if(((String)keys[i]).startsWith("Plat")){
+            if(((String)keys[i]).startsWith("Plat") || ((String)keys[i]).equals(playerCharKey)){
                 entityAbstractArr[i].Render(_canvas);
             }
         }
 
-        _canvas.translate(playerChar.attribs.pos.x, playerChar.attribs.pos.y);
+        _canvas.translate(0.0f, playerChar.attribs.pos.y);
 
         for(int i = 0; i < myArrLen; ++i){
-            if(!((String)keys[i]).startsWith("Plat")){
+            if(!((String)keys[i]).startsWith("Plat") && !((String)keys[i]).equals(playerCharKey)){
                 entityAbstractArr[i].Render(_canvas);
             }
         }

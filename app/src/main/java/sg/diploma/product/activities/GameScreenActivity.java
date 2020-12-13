@@ -116,7 +116,12 @@ public final class GameScreenActivity extends Activity implements IState{
             textOnScreen.SetText("FPS: " + 1.0f / _dt);
         }
 
-        if(gamePlayerChar.attribs.pos.x > DeviceManager.screenWidthF || gamePlayerChar.attribs.pos.x < 0.0f){
+        if(gamePlayerChar.attribs.pos.x < 0.0f){
+            gamePlayerChar.attribs.pos.x = 0.0f;
+            gamePlayerChar.SwitchFacing();
+        }
+        if(gamePlayerChar.attribs.pos.x > DeviceManager.screenWidthF){
+            gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF;
             gamePlayerChar.SwitchFacing();
         }
 
