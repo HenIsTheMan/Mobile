@@ -5,8 +5,8 @@ import sg.diploma.product.entity.EntityAbstract;
 import static sg.diploma.product.math.Constants.epsilon;
 
 public final class ResolveCollision{
-	public static void BoxBoxAABB(EntityAbstract entity, CollisionDataBoxBoxAABB myData, CollisionDataBoxBoxAABB otherData){
-		entity.Collided();
+	public static void BoxBoxAABB(EntityAbstract entity, EntityAbstract other, CollisionDataBoxBoxAABB myData, CollisionDataBoxBoxAABB otherData){
+		entity.Collided(other);
 
 		if(entity.attribs.vel.x <= epsilon
 			&& -entity.attribs.vel.x <= epsilon

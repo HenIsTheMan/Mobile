@@ -98,7 +98,7 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 	}
 
 	@Override
-	public void Collided(){
+	public void Collided(EntityAbstract other){
 	}
 
 	public static EntityMenuPlayerChar Create(final String key, final int bitmapID){

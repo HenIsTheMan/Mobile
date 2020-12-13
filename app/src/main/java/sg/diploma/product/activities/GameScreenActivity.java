@@ -140,7 +140,7 @@ public final class GameScreenActivity extends Activity implements IState{
             textOnScreen.SetText("FPS: " + 1.0f / _dt);
         }
 
-        if(gamePlayerChar != null){
+        if(gamePlayerChar != null){ //So player does not exit play area
             final float playerCharHalfWidth = ((float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() / 9.f * 0.5f) * 0.5f;
             if(gamePlayerChar.attribs.pos.x < playerCharHalfWidth){
                 gamePlayerChar.attribs.pos.x = playerCharHalfWidth;

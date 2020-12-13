@@ -47,7 +47,7 @@ public final class EntityGameBG extends EntityAbstract{
 	}
 
 	@Override
-	public void Collided(){
+	public void Collided(EntityAbstract other){
 	}
 
 	public static EntityGameBG Create(final String key, final int bitmapID){

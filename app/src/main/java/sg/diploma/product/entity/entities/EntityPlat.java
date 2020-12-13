@@ -55,7 +55,7 @@ public final class EntityPlat extends EntityAbstract{
 	}
 
 	@Override
-	public void Collided(){
+	public void Collided(EntityAbstract other){
 		SetColor(new Color(1.0f, 1.0f, 0.0f, 0.8f));
 	}
 

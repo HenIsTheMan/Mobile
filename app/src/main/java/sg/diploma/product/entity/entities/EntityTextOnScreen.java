@@ -53,7 +53,7 @@ public final class EntityTextOnScreen extends EntityAbstract{
 	}
 
 	@Override
-	public void Collided(){
+	public void Collided(EntityAbstract other){
 	}
 
 	public static EntityTextOnScreen Create(final String key, final AssetManager assets, final String fPath){
