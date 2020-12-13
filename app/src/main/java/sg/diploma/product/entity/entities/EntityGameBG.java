@@ -36,6 +36,10 @@ public final class EntityGameBG extends EntityAbstract{
 		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
 	}
 
+	@Override
+	public void Collided(){
+	}
+
 	public static EntityGameBG Create(final String key, final int bitmapID){
 		EntityGameBG result = new EntityGameBG(bitmapID);
 		EntityManager.Instance.AddEntity(key, result);

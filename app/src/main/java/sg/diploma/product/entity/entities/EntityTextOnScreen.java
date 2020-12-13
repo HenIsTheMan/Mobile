@@ -43,6 +43,10 @@ public final class EntityTextOnScreen extends EntityAbstract{
 		canvas.drawText(text, attribs.pos.x, attribs.pos.y, paint);
 	}
 
+	@Override
+	public void Collided(){
+	}
+
 	public static EntityTextOnScreen Create(final String key, final AssetManager assets, final String fPath){
 		EntityTextOnScreen result = new EntityTextOnScreen(assets, fPath);
 		EntityManager.Instance.AddEntity(key, result);

@@ -84,6 +84,10 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
 	}
 
+	@Override
+	public void Collided(){
+	}
+
 	public static EntityMenuPlayerChar Create(final String key, final int bitmapID){
 		EntityMenuPlayerChar result = new EntityMenuPlayerChar(bitmapID);
 		EntityManager.Instance.AddEntity(key, result);

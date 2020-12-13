@@ -66,6 +66,10 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
 	}
 
+	@Override
+	public void Collided(){
+	}
+
 	public static EntityGamePlayerChar Create(final String key, final int bitmapID){
 		EntityGamePlayerChar result = new EntityGamePlayerChar(bitmapID);
 		EntityManager.Instance.AddEntity(key, result);

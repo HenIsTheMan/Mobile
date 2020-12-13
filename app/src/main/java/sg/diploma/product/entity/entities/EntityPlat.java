@@ -42,6 +42,11 @@ public final class EntityPlat extends EntityAbstract{
 		);
 	}
 
+	@Override
+	public void Collided(){
+		SetColor(new Color(1.0f, 1.0f, 0.0f, 0.8f));
+	}
+
 	public static EntityPlat Create(final String key){
 		EntityPlat result = new EntityPlat();
 		EntityManager.Instance.AddEntity(key, result);
@@ -67,10 +72,4 @@ public final class EntityPlat extends EntityAbstract{
 	private float strokeWidth;
 	private Paint.Style paintStyle;
 	private final Paint paint;
-
-	public static Color steppedOnColor;
-
-	static{
-		Color steppedOnColor = new Color(1.0f, 1.0f, 0.0f, 0.8f);
-	}
 }

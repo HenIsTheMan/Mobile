@@ -10,5 +10,7 @@ public abstract class EntityAbstract{
 	public abstract void Update(final float dt);
 	public abstract void Render(final Canvas canvas);
 
+	public abstract void Collided();
+
 	public EntityAttribs attribs;
 }
