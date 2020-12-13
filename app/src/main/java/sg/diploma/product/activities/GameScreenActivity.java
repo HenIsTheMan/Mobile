@@ -95,14 +95,14 @@ public final class GameScreenActivity extends Activity implements IState{
         noobPlat.attribs.scale.x = DeviceManager.screenWidthF * 0.25f;
         noobPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
         noobPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        noobPlat.attribs.pos.y = DeviceManager.screenHeightF - noobPlat.attribs.scale.y * 0.5f + 50.0f;
+        noobPlat.attribs.pos.y = DeviceManager.screenHeightF - noobPlat.attribs.scale.y * 0.5f - 200.0f;
 
         gamePlayerChar = EntityGamePlayerChar.Create(
             "Special_gamePlayerChar",
             R.drawable.player_char
         );
 
-        final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() * 0.25f;
+        final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() / 9.0f;
         final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getHeight() * 0.25f;
 
         gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
@@ -121,7 +121,7 @@ public final class GameScreenActivity extends Activity implements IState{
 
     @Override
     public void Render(Canvas _canvas){
-        EntityManager.Instance.SpecialRender(_canvas, "Special_gamePlayerChar");
+        EntityManager.Instance.Render(_canvas);
     }
 
     @Override

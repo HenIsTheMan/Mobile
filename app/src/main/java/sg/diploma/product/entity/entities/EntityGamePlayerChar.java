@@ -2,6 +2,7 @@ package sg.diploma.product.entity.entities;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
@@ -38,6 +39,12 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		}
 
 		attribs.accel.y = 4000.0f; //Gravitational accel
+
+		paint = new Paint();
+
+		paint.setARGB(153, 51, 51, 51);
+		paint.setStrokeWidth(50.0f);
+		paint.setStyle(Paint.Style.FILL);
 	}
 
 	@Override
@@ -77,6 +84,14 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	@Override
 	public void Render(final Canvas canvas){ //Render with img centered
 		spriteAnim.Render(canvas, attribs.pos.x, attribs.pos.y);
+
+		canvas.drawRect(
+			attribs.pos.x - attribs.scale.x * 0.5f,
+			attribs.pos.y - attribs.scale.y * 0.5f,
+			attribs.pos.x + attribs.scale.x * 0.5f,
+			attribs.pos.y + attribs.scale.y * 0.5f,
+			paint
+		);
 	}
 
 	@Override
@@ -134,4 +149,5 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 	private boolean collidingWithPlat;
 	private final SpriteAnim spriteAnim;
+	private final Paint paint;
 }
