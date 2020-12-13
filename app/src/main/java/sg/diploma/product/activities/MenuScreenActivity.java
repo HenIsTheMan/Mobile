@@ -27,6 +27,7 @@ import sg.diploma.product.R;
 import sg.diploma.product.entity.EntityConstraint;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityPlayerChar;
+import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.thread.UpdateThread;
@@ -43,6 +44,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         exitButton = null;
 
         menuPlayerChar = null;
+        textOnScreen = null;
 
         playIcon = null;
         gearsIcon = null;
@@ -105,6 +107,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     public void onClick(View v){
         if(v == startButton){
             EntityManager.Instance.SendEntityForRemoval("menuPlayerChar");
+            EntityManager.Instance.SendEntityForRemoval("textOnScreen");
             StateManager.Instance.ChangeState("GameScreen");
 
             startActivity(new Intent(this, GameScreenActivity.class));
@@ -112,6 +115,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         }
         if(v == optionsButton){
             EntityManager.Instance.SendEntityForRemoval("menuPlayerChar");
+            EntityManager.Instance.SendEntityForRemoval("textOnScreen");
             StateManager.Instance.ChangeState("OptionsScreen");
 
             startActivity(new Intent(this, OptionsScreenActivity.class));
@@ -149,6 +153,10 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
         menuPlayerChar.attribs.yMin = new EntityConstraint();
         menuPlayerChar.attribs.yMin.val = ((float)displayMetrics.heightPixels * 0.35f + (float)displayMetrics.widthPixels / 4.0f) * 1.15f;
+
+        textOnScreen = EntityTextOnScreen.Create("textOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
+        textOnScreen.attribs.pos.x = (float)displayMetrics.widthPixels / 10.0f;
+        textOnScreen.attribs.pos.y = (float)displayMetrics.heightPixels / 10.0f;
     }
 
     @Override
@@ -301,6 +309,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private Button exitButton;
 
     private EntityPlayerChar menuPlayerChar;
+    private EntityTextOnScreen textOnScreen;
 
     private ImageView playIcon;
     private ImageView gearsIcon;

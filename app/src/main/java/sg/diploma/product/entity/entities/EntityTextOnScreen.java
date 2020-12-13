@@ -6,7 +6,10 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 
 import sg.diploma.product.entity.EntityAbstract;
+import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
+import sg.diploma.product.entity.EntityRenderLayers;
+import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.graphics.Color;
 
 public final class EntityTextOnScreen extends EntityAbstract{
@@ -18,6 +21,10 @@ public final class EntityTextOnScreen extends EntityAbstract{
 		color = Color.white;
 		paint = new Paint();
 		myfont = Typeface.createFromAsset(assets, fPath);
+
+		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.UI;
+		attribs.type = EntityTypes.EntityType.TextOnScreen;
+		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
 	}
 
 	@Override
@@ -32,7 +39,7 @@ public final class EntityTextOnScreen extends EntityAbstract{
 		paint.setStyle(Paint.Style.FILL);
 		paint.setTypeface(myfont);
 		paint.setTextSize(55);
-		canvas.drawText("FPS: " + FPS, 30.0f, 80.0f, paint);
+		canvas.drawText("FPS: " + FPS, attribs.pos.x, attribs.pos.y, paint);
 	}
 
 	public static EntityTextOnScreen Create(final String key, final AssetManager assets, final String fPath){

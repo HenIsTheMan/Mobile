@@ -67,8 +67,8 @@ public final class GameScreenActivity extends Activity implements IState{
         //*/
 
         textOnScreen = EntityTextOnScreen.Create("textOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
-        textOnScreen.attribs.scale.x = 50.0f;
-        textOnScreen.attribs.scale.y = 50.0f;
+        textOnScreen.attribs.pos.x = 30.0f;
+        textOnScreen.attribs.pos.y = 80.0f;
     }
 
     @Override

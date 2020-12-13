@@ -4,6 +4,7 @@ public final class EntityTypes{
 	public enum EntityType{
 		BG,
 		PlayerChar,
+		TextOnScreen,
 		Amt;
 	};
 }
