@@ -5,6 +5,7 @@ public final class EntityTypes{
 		BG,
 		PlayerChar,
 		TextOnScreen,
+		Plat,
 		Amt;
 	};
 }

@@ -1,9 +1,7 @@
 package sg.diploma.product.entity.entities;
 
-import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
@@ -12,26 +10,21 @@ import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.graphics.Color;
 
-public final class EntityTextOnScreen extends EntityAbstract{
-	public EntityTextOnScreen(final AssetManager assets, final String fPath){
+public final class EntityPlat extends EntityAbstract{
+	public EntityPlat(final int bitmapID){
 		super();
+		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
+		attribs.type = EntityTypes.EntityType.Plat;
+		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
 
 		color = Color.white;
-		strokeWidth = 100.0f;
+		strokeWidth = 50.0f;
+		paintStyle = Paint.Style.FILL;
 		paint = new Paint();
-
-		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.UI;
-		attribs.type = EntityTypes.EntityType.TextOnScreen;
-		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
-
-		textSize = 55.0f;
-		text = "";
 
 		paint.setARGB(255, 255, 255, 255);
 		paint.setStrokeWidth(strokeWidth);
-		paint.setStyle(Paint.Style.FILL);
-		paint.setTextSize(textSize);
-		paint.setTypeface(Typeface.createFromAsset(assets, fPath));
+		paint.setStyle(paintStyle);
 	}
 
 	@Override
@@ -40,11 +33,17 @@ public final class EntityTextOnScreen extends EntityAbstract{
 
 	@Override
 	public void Render(final Canvas canvas){
-		canvas.drawText(text, attribs.pos.x, attribs.pos.y, paint);
+		canvas.drawRect(
+			attribs.pos.x - attribs.scale.x * 0.5f,
+			attribs.pos.y - attribs.scale.y * 0.5f,
+			attribs.pos.x + attribs.scale.x * 0.5f,
+			attribs.pos.y + attribs.scale.y * 0.5f,
+			paint
+		);
 	}
 
-	public static EntityTextOnScreen Create(final String key, final AssetManager assets, final String fPath){
-		EntityTextOnScreen result = new EntityTextOnScreen(assets, fPath);
+	public static EntityPlat Create(final String key, final int bitmapID){
+		EntityPlat result = new EntityPlat(bitmapID);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}
@@ -59,19 +58,13 @@ public final class EntityTextOnScreen extends EntityAbstract{
 		paint.setStrokeWidth(strokeWidth);
 	}
 
-	public void SetTextSize(final float textSize){
-		this.textSize = textSize;
-		paint.setTextSize(textSize);
-	}
-
-	public void SetText(final String text){
-		this.text = text;
+	public void SetPaintStyle(final Paint.Style paintStyle){
+		this.paintStyle = paintStyle;
+		paint.setStyle(paintStyle);
 	}
 
 	private Color color;
 	private float strokeWidth;
+	private Paint.Style paintStyle;
 	private final Paint paint;
-
-	private float textSize;
-	private String text;
 }

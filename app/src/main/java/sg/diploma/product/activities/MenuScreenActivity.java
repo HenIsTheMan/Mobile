@@ -1,9 +1,12 @@
 package sg.diploma.product.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -14,10 +17,6 @@ import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.os.Bundle;
-import android.content.Intent;
-
-import android.graphics.Typeface;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +27,7 @@ import sg.diploma.product.entity.EntityConstraint;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityPlayerChar;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
+import sg.diploma.product.graphics.Color;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.thread.UpdateThread;
@@ -157,6 +157,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         textOnScreen = EntityTextOnScreen.Create("menuTextOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
         textOnScreen.attribs.pos.x = 30.0f * 0.5f;
         textOnScreen.attribs.pos.y = (float)displayMetrics.heightPixels - 30.0f;
+        textOnScreen.SetColor(new Color(1.0f, 1.0f, 0.0f, 0.5f));
         textOnScreen.SetStrokeWidth(100.0f);
         textOnScreen.SetTextSize(30.0f);
     }
