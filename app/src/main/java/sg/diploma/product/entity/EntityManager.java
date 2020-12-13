@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.math.CollisionDataBoxBoxAABB;
 import sg.diploma.product.math.DetectCollision;
 import sg.diploma.product.math.ResolveCollision;
@@ -66,6 +67,34 @@ public final class EntityManager{ //Singleton
 
         for(EntityAbstract entity: entityAbstractArr){
             entity.Render(_canvas);
+        }
+    }
+
+    public void SpecialRender(Canvas _canvas, String playerCharKey){
+        final Object[] keys = entityList.keySet().toArray();
+        final Object[] myArr = entityList.values().toArray();
+        final int myArrLen = myArr.length;
+        final EntityAbstract[] entityAbstractArr = new EntityAbstract[myArrLen];
+        for(int i = 0; i < myArrLen; ++i){
+            entityAbstractArr[i] = (EntityAbstract)myArr[i];
+        }
+        Arrays.sort(entityAbstractArr, (o1, o2)->o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal());
+
+        EntityGamePlayerChar playerChar = (EntityGamePlayerChar)entityList.get(playerCharKey);
+        _canvas.translate(-playerChar.attribs.pos.x, -playerChar.attribs.pos.y);
+
+        for(int i = 0; i < myArrLen; ++i){
+            if(((String)keys[i]).startsWith("Plat")){
+                entityAbstractArr[i].Render(_canvas);
+            }
+        }
+
+        _canvas.translate(playerChar.attribs.pos.x, playerChar.attribs.pos.y);
+
+        for(int i = 0; i < myArrLen; ++i){
+            if(!((String)keys[i]).startsWith("Plat")){
+                entityAbstractArr[i].Render(_canvas);
+            }
         }
     }
 

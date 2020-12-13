@@ -77,7 +77,7 @@ public final class GameScreenActivity extends Activity implements IState{
         textOnScreen.SetTextSize(55.0f);
         //*/
 
-        EntityPlat testPlat = EntityPlat.Create("testPlat");
+        EntityPlat testPlat = EntityPlat.Create("PlatTest");
         testPlat.attribs.scale.x = DeviceManager.screenWidthF;
         testPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
         testPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
@@ -92,7 +92,7 @@ public final class GameScreenActivity extends Activity implements IState{
         final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char).getHeight() * 0.25f;
 
         gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - testPlat.attribs.scale.y - playerCharHeight * 0.5f;
+        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - testPlat.attribs.scale.y - playerCharHeight * 0.5f - 200.0f;
 
         gamePlayerChar.attribs.scale.x = playerCharWidth * 1.2f;
         gamePlayerChar.attribs.scale.y = playerCharHeight * 1.2f;
@@ -107,7 +107,7 @@ public final class GameScreenActivity extends Activity implements IState{
 
     @Override
     public void Render(Canvas _canvas){
-        EntityManager.Instance.Render(_canvas);
+        EntityManager.Instance.SpecialRender(_canvas, "gamePlayerChar");
     }
 
     @Override
