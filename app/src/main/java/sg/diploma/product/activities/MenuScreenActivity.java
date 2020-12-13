@@ -145,14 +145,14 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
         //* Create menu player char
         menuPlayerChar.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        menuPlayerChar.attribs.pos.y = DeviceManager.screenHeightF * 3.0f * 0.25f;
+        menuPlayerChar.attribs.pos.y = DeviceManager.screenHeightF * 3.0f * 0.225f;
 
         menuPlayerChar.attribs.scale.x = menuPlayerChar.attribs.scale.y = 1.8f;
         menuPlayerChar.SetSpriteAnimXScale(1.8f);
         menuPlayerChar.SetSpriteAnimYScale(1.8f);
 
         menuPlayerChar.attribs.yMin = new EntityConstraint();
-        menuPlayerChar.attribs.yMin.val = (DeviceManager.screenHeightF * 0.35f + DeviceManager.screenWidthF * 0.25f) * 1.15f;
+        menuPlayerChar.attribs.yMin.val = (DeviceManager.screenHeightF * 0.35f + DeviceManager.screenWidthF * 0.25f) * 1.3f;
         //*/
 
         //* Create text on screen
@@ -241,21 +241,21 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         startButton.getLayoutParams().width = buttonSize;
         startButton.getLayoutParams().height = buttonSize;
         startButton.setTranslationX(DeviceManager.screenWidthF * 0.2f - (float)buttonSize * 0.5f);
-        startButton.setTranslationY(DeviceManager.screenHeightF * 0.35f);
+        startButton.setTranslationY(DeviceManager.screenHeightF * 0.4f);
 
         optionsButton = findViewById(R.id.optionsButton);
         optionsButton.setOnClickListener(this);
         optionsButton.getLayoutParams().width = buttonSize;
         optionsButton.getLayoutParams().height = buttonSize;
         optionsButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)buttonSize * 0.5f);
-        optionsButton.setTranslationY(DeviceManager.screenHeightF * 0.35f);
+        optionsButton.setTranslationY(DeviceManager.screenHeightF * 0.4f);
 
         exitButton = findViewById(R.id.exitButton);
         exitButton.setOnClickListener(this);
         exitButton.getLayoutParams().width = buttonSize;
         exitButton.getLayoutParams().height = buttonSize;
         exitButton.setTranslationX(DeviceManager.screenWidthF * 0.8f - (float)buttonSize * 0.5f);
-        exitButton.setTranslationY(DeviceManager.screenHeightF * 0.35f);
+        exitButton.setTranslationY(DeviceManager.screenHeightF * 0.4f);
 
         playIcon = findViewById(R.id.playIcon);
         playIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
@@ -297,7 +297,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         gameTitleBossText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         gameTitleBossText.setTranslationX(DeviceManager.screenWidthF * 0.5f
                 - (float)gameTitleBossText.getMeasuredWidth() * 0.5f);
-        gameTitleBossText.setTranslationY(DeviceManager.screenHeightF * 0.07f);
+        gameTitleBossText.setTranslationY(DeviceManager.screenHeightF * 0.05f);
 
         gameTitleGirlText = findViewById(R.id.gameTitleGirlText);
         gameTitleGirlText.setTypeface(font);
@@ -307,7 +307,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         gameTitleGirlText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         gameTitleGirlText.setTranslationX(DeviceManager.screenWidthF * 0.5f
                 - (float)gameTitleGirlText.getMeasuredWidth() * 0.5f);
-        gameTitleGirlText.setTranslationY(DeviceManager.screenHeightF * 0.2f);
+        gameTitleGirlText.setTranslationY(DeviceManager.screenHeightF * 0.17f);
     }
 
     private boolean isFingerOffScreenBefore;
