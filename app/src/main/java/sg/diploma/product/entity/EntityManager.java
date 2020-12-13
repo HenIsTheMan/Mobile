@@ -73,6 +73,12 @@ public final class EntityManager{ //Singleton
         }
     }
 
+    public void LateUpdate(final float dt){
+        for(EntityAbstract entity: entityList.values()){
+            entity.LateUpdate(dt);
+        }
+    }
+
     public void SpecialRender(Canvas _canvas, String playerCharKey){
         if(!entityList.containsKey(playerCharKey)){
             return;

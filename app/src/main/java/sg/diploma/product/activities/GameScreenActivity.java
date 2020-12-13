@@ -151,6 +151,8 @@ public final class GameScreenActivity extends Activity implements IState{
             fingerDownPos = null;
             fingerUpPos = null;
         }
+
+        EntityManager.Instance.LateUpdate(_dt);
     }
 
     private void GenAndDestroyPlats(){

@@ -38,6 +38,10 @@ public final class EntityGameBG extends EntityAbstract{
 	}
 
 	@Override
+	public void LateUpdate(final float dt){
+	}
+
+	@Override
 	public void SpecialRender(final Canvas canvas){
 		spriteAnim.Render(canvas, attribs.pos.x, attribs.pos.y);
 	}
