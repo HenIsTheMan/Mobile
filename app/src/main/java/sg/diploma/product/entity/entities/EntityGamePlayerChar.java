@@ -59,8 +59,6 @@ public final class EntityGamePlayerChar extends EntityAbstract implements IEntit
 		}
 
 		spriteAnim.Update(dt);
-
-		//Check collision??
 	}
 
 	@Override

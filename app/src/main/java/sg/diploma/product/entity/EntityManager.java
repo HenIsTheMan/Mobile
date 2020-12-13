@@ -41,10 +41,7 @@ public final class EntityManager{ //Singleton
                     if(otherEntity instanceof IEntityCollidable){
                         IEntityCollidable collidable1 = (IEntityCollidable)otherEntity;
 
-                        /*if(CheckCollision.CircleCircle(new Vector2(collidable0.GetPosX(), collidable0.GetPosY()), new Vector2(collidable1.GetPosX(), collidable1.GetPosY()), collidable0.GetRadius(), collidable1.GetRadius())){
-                            collidable0.OnHit(collidable1);
-                            collidable1.OnHit(collidable0);
-                        }*/
+                        CheckCollision(collidable0, collidable1);
                     }
                 }
             }
@@ -81,6 +78,11 @@ public final class EntityManager{ //Singleton
 
     public void SendAllEntitiesForRemoval(){
         entityRemovalList.addAll(entityList.keySet());
+    }
+
+    private void CheckCollision(IEntityCollidable collidable0, IEntityCollidable collidable1){
+        //collidable0.OnHit(collidable1);
+        //collidable1.OnHit(collidable0);
     }
 
     private final HashMap<String, EntityAbstract> entityList;
