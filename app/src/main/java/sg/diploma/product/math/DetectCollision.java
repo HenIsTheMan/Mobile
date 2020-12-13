@@ -14,6 +14,9 @@ public final class DetectCollision{
     }
 
     public static boolean BoxBoxAABB(final EntityAbstract entity0, final EntityAbstract entity1, CollisionDataBoxBoxAABB collisionData0, CollisionDataBoxBoxAABB collisionData1){
+        collisionData0.vel = entity0.attribs.vel;
+        collisionData1.vel = entity1.attribs.vel;
+
         Vector2 pos0 = entity0.attribs.pos;
         Vector2 pos1 = entity1.attribs.pos;
 

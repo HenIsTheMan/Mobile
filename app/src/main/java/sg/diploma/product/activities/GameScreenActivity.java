@@ -93,15 +93,12 @@ public final class GameScreenActivity extends Activity implements IState{
         final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char).getHeight() * 0.25f;
 
         gamePlayerChar.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
-        gamePlayerChar.attribs.pos.y = (float)displayMetrics.heightPixels - testPlat.attribs.scale.y - playerCharHeight * 0.5f;
+        gamePlayerChar.attribs.pos.y = (float)displayMetrics.heightPixels - testPlat.attribs.scale.y - playerCharHeight * 0.5f - 500.f; //??
 
         gamePlayerChar.attribs.scale.x = playerCharWidth * 1.2f;
         gamePlayerChar.attribs.scale.y = playerCharHeight * 1.2f;
         gamePlayerChar.SetSpriteAnimXScale(1.2f);
         gamePlayerChar.SetSpriteAnimYScale(1.2f);
-
-        //menuPlayerChar.attribs.yMin = new EntityConstraint();
-        //menuPlayerChar.attribs.yMin.val = ((float)displayMetrics.heightPixels * 0.35f + (float)displayMetrics.widthPixels * 0.25f) * 1.15f;
     }
 
     @Override
