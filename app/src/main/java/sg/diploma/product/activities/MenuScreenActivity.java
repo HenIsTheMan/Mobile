@@ -106,16 +106,14 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     @Override
     public void onClick(View v){
         if(v == startButton){
-            EntityManager.Instance.SendEntityForRemoval("menuPlayerChar");
-            EntityManager.Instance.SendEntityForRemoval("menuTextOnScreen");
+            EntityManager.Instance.SendAllEntitiesForRemoval();
             StateManager.Instance.ChangeState("GameScreen");
 
             startActivity(new Intent(this, GameScreenActivity.class));
             return;
         }
         if(v == optionsButton){
-            EntityManager.Instance.SendEntityForRemoval("menuPlayerChar");
-            EntityManager.Instance.SendEntityForRemoval("menuTextOnScreen");
+            EntityManager.Instance.SendAllEntitiesForRemoval();
             StateManager.Instance.ChangeState("OptionsScreen");
 
             startActivity(new Intent(this, OptionsScreenActivity.class));

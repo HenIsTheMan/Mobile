@@ -79,6 +79,10 @@ public final class EntityManager{ //Singleton
         entityRemovalList.add(key);
     }
 
+    public void SendAllEntitiesForRemoval(){
+        entityRemovalList.addAll(entityList.keySet());
+    }
+
     private final HashMap<String, EntityAbstract> entityList;
     private final ArrayList<String> entityRemovalList;
     public SurfaceView view;

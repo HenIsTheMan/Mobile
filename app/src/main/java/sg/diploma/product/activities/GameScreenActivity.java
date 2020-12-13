@@ -99,8 +99,7 @@ public final class GameScreenActivity extends Activity implements IState{
         EntityManager.Instance.Update(_dt);
 
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
-            EntityManager.Instance.SendEntityForRemoval("gameBG");
-            EntityManager.Instance.SendEntityForRemoval("gameTextOnScreen");
+            EntityManager.Instance.SendAllEntitiesForRemoval();
             StateManager.Instance.ChangeState("MenuScreen");
         }
     }
