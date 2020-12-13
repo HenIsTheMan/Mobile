@@ -32,18 +32,10 @@ public final class EntityManager{ //Singleton
         for(int i = 0; i < keysSize; ++i){
             EntityAbstract currEntity = entityList.get(keys.get(i));
 
-            if(currEntity instanceof IEntityCollidable){
-                IEntityCollidable collidable0 = (IEntityCollidable)currEntity;
+            for(int j = i + 1; j < keysSize; ++j){
+                EntityAbstract otherEntity = entityList.get(keys.get(j));
 
-                for(int j = i + 1; j < keysSize; ++j){
-                    EntityAbstract otherEntity = entityList.get(keys.get(j));
-
-                    if(otherEntity instanceof IEntityCollidable){
-                        IEntityCollidable collidable1 = (IEntityCollidable)otherEntity;
-
-                        CheckCollision(collidable0, collidable1);
-                    }
-                }
+                //CheckCollision(collidable0, collidable1);
             }
         }
 
@@ -78,11 +70,6 @@ public final class EntityManager{ //Singleton
 
     public void SendAllEntitiesForRemoval(){
         entityRemovalList.addAll(entityList.keySet());
-    }
-
-    private void CheckCollision(IEntityCollidable collidable0, IEntityCollidable collidable1){
-        //collidable0.OnHit(collidable1);
-        //collidable1.OnHit(collidable0);
     }
 
     private final HashMap<String, EntityAbstract> entityList;

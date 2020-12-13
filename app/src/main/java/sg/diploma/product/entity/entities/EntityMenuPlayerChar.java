@@ -7,12 +7,11 @@ import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
-import sg.diploma.product.entity.IEntityCollidable;
 import sg.diploma.product.math.Vector2;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
 
-public final class EntityMenuPlayerChar extends EntityAbstract implements IEntityCollidable{
+public final class EntityMenuPlayerChar extends EntityAbstract{
 	private EntityMenuPlayerChar(final int bitmapID){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
@@ -89,10 +88,6 @@ public final class EntityMenuPlayerChar extends EntityAbstract implements IEntit
 		EntityMenuPlayerChar result = new EntityMenuPlayerChar(bitmapID);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
-	}
-
-	@Override
-	public void OnHit(final IEntityCollidable other){
 	}
 
 	public void StartMoving(final float xPos, final float yPos){

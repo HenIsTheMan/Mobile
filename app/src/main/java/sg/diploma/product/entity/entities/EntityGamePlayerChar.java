@@ -7,11 +7,10 @@ import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
-import sg.diploma.product.entity.IEntityCollidable;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
 
-public final class EntityGamePlayerChar extends EntityAbstract implements IEntityCollidable{
+public final class EntityGamePlayerChar extends EntityAbstract{
 	private EntityGamePlayerChar(final int bitmapID){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
@@ -70,13 +69,6 @@ public final class EntityGamePlayerChar extends EntityAbstract implements IEntit
 		EntityGamePlayerChar result = new EntityGamePlayerChar(bitmapID);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
-	}
-
-	@Override
-	public void OnHit(final IEntityCollidable other){
-		/*if(other.collidableType == EntityCollidableTypes.EntityCollidableType.Box){
-			EntityManager.Instance.SendEntityForRemoval(this);
-		}*/
 	}
 
 	public void SetSpriteAnimXScale(final float xScale){
