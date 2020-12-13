@@ -1,6 +1,7 @@
 package sg.diploma.product.activities;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -56,13 +57,13 @@ public final class GameScreenActivity extends Activity implements IState{
     public void OnEnter(SurfaceView _view){
         //* Create game BG
         /*gameBG = EntityGameBG.Create(
-            "gameBG",
+            "Special_gameBG",
             R.drawable.game_background
         );
 
         gameBG.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
         gameBG.attribs.pos.y = DeviceManager.screenHeightF * 0.5f;
-        final float scaleFactor = DeviceManager.screenHeightF / (ResourceManager.Instance.GetBitmap(R.drawable.game_background).getHeight() * 0.5f);
+        final float scaleFactor = DeviceManager.screenHeightF / (ResourceManager.Instance.GetBitmap(R.drawable.game_background, Bitmap.Config.RGB_565).getHeight() * 0.5f);
         gameBG.attribs.scale.x = scaleFactor;
         gameBG.attribs.scale.y = scaleFactor;
         gameBG.SetSpriteAnimXScale(scaleFactor);
@@ -88,11 +89,11 @@ public final class GameScreenActivity extends Activity implements IState{
             R.drawable.player_char
         );
 
-        final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char).getWidth() * 0.25f;
-        final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char).getHeight() * 0.25f;
+        final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() * 0.25f;
+        final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getHeight() * 0.25f;
 
         gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - startPlat.attribs.scale.y - playerCharHeight * 0.5f - 200.0f;
+        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - DeviceManager.screenHeightF * 0.03f - playerCharHeight * 0.5f - 200.0f;
 
         gamePlayerChar.attribs.scale.x = playerCharWidth * 1.2f;
         gamePlayerChar.attribs.scale.y = playerCharHeight * 1.2f;
@@ -116,13 +117,15 @@ public final class GameScreenActivity extends Activity implements IState{
             textOnScreen.SetText("FPS: " + 1.0f / _dt);
         }
 
-        if(gamePlayerChar.attribs.pos.x < 0.0f){
-            gamePlayerChar.attribs.pos.x = 0.0f;
-            gamePlayerChar.SwitchFacing();
-        }
-        if(gamePlayerChar.attribs.pos.x > DeviceManager.screenWidthF){
-            gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF;
-            gamePlayerChar.SwitchFacing();
+        if(gamePlayerChar != null){
+            if(gamePlayerChar.attribs.pos.x < 0.0f){
+                gamePlayerChar.attribs.pos.x = 0.0f;
+                gamePlayerChar.SwitchFacing();
+            }
+            if(gamePlayerChar.attribs.pos.x > DeviceManager.screenWidthF){
+                gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF;
+                gamePlayerChar.SwitchFacing();
+            }
         }
 
         GenPlats();

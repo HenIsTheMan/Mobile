@@ -1,5 +1,6 @@
 package sg.diploma.product.entity.entities;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 import sg.diploma.product.device.DeviceManager;
@@ -19,7 +20,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
 
 		spriteAnim = new SpriteAnim(
-			ResourceManager.Instance.GetBitmap(bitmapID),
+			ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565),
 			4,
 			9,
 			14

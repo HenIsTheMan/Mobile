@@ -74,6 +74,10 @@ public final class EntityManager{ //Singleton
     }
 
     public void SpecialRender(Canvas _canvas, String playerCharKey){
+        if(!entityList.containsKey(playerCharKey)){
+            return;
+        }
+
         final Object[] keys = entityList.keySet().toArray();
         final Object[] myArr = entityList.values().toArray();
         final int myArrLen = myArr.length;

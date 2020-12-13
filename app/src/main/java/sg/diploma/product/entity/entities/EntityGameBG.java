@@ -1,8 +1,8 @@
 package sg.diploma.product.entity.entities;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
@@ -19,7 +19,7 @@ public final class EntityGameBG extends EntityAbstract{
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
 
 		spriteAnim = new SpriteAnim(
-			ResourceManager.Instance.GetBitmap(bitmapID),
+			ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565),
 			2,
 			5,
 			4
@@ -39,7 +39,7 @@ public final class EntityGameBG extends EntityAbstract{
 
 	@Override
 	public void SpecialRender(final Canvas canvas){
-		spriteAnim.Render(canvas, attribs.pos.x, DeviceManager.screenHeightF * 0.75f);
+		spriteAnim.Render(canvas, attribs.pos.x, attribs.pos.y);
 	}
 
 	@Override

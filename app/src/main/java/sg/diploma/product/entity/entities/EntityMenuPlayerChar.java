@@ -1,5 +1,6 @@
 package sg.diploma.product.entity.entities;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 import sg.diploma.product.BuildConfig;
@@ -8,9 +9,9 @@ import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
-import sg.diploma.product.math.Vector2;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
+import sg.diploma.product.math.Vector2;
 
 public final class EntityMenuPlayerChar extends EntityAbstract{
 	private EntityMenuPlayerChar(final int bitmapID){
@@ -20,7 +21,7 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
 
 		spriteAnim = new SpriteAnim(
-			ResourceManager.Instance.GetBitmap(bitmapID),
+			ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565),
 			4,
 			9,
 			10
