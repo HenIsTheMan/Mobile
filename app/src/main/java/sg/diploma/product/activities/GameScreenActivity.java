@@ -90,12 +90,16 @@ public final class GameScreenActivity extends Activity implements IState{
         startPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
         startPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
         startPlat.attribs.pos.y = DeviceManager.screenHeightF - startPlat.attribs.scale.y * 0.5f;
+        startPlat.attribs.boxColliderPos.x = startPlat.attribs.pos.x;
+        startPlat.attribs.boxColliderPos.y = startPlat.attribs.pos.y;
 
         noobPlat = EntityPlat.Create("noobPlat");
         noobPlat.attribs.scale.x = DeviceManager.screenWidthF * 0.25f;
         noobPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
         noobPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
         noobPlat.attribs.pos.y = DeviceManager.screenHeightF - noobPlat.attribs.scale.y * 0.5f - 200.0f;
+        noobPlat.attribs.boxColliderPos.x = noobPlat.attribs.pos.x;
+        noobPlat.attribs.boxColliderPos.y = noobPlat.attribs.pos.y;
 
         gamePlayerChar = EntityGamePlayerChar.Create(
             "Special_gamePlayerChar",
@@ -103,13 +107,13 @@ public final class GameScreenActivity extends Activity implements IState{
         );
 
         final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() / 9.f * 0.5f;
-        final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getHeight() * 0.25f;
+        final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getHeight() * 0.2f;
 
         gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - startPlat.attribs.scale.y - playerCharHeight * 0.5f - 200.0f;
+        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - startPlat.attribs.scale.y - playerCharHeight * 1.2f * 0.5f - 500.0f;
 
-        gamePlayerChar.attribs.scale.x = playerCharWidth * 1.2f;
-        gamePlayerChar.attribs.scale.y = playerCharHeight * 1.2f;
+        gamePlayerChar.attribs.boxColliderScale.x = playerCharWidth * 1.2f;
+        gamePlayerChar.attribs.boxColliderScale.y = playerCharHeight * 1.2f;
         gamePlayerChar.SetSpriteAnimXScale(1.2f);
         gamePlayerChar.SetSpriteAnimYScale(1.2f);
     }

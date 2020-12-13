@@ -76,6 +76,9 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			attribs.pos.y = Math.min(attribs.yMax.val, attribs.pos.y);
 		}
 
+		attribs.boxColliderPos.x = attribs.pos.x;
+		attribs.boxColliderPos.y = attribs.pos.y + attribs.boxColliderScale.y * 0.075f;
+
 		collidingWithPlat = false;
 
 		spriteAnim.Update(dt);
@@ -86,10 +89,10 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		spriteAnim.Render(canvas, attribs.pos.x, attribs.pos.y);
 
 		canvas.drawRect(
-			attribs.pos.x - attribs.scale.x * 0.5f,
-			attribs.pos.y - attribs.scale.y * 0.5f,
-			attribs.pos.x + attribs.scale.x * 0.5f,
-			attribs.pos.y + attribs.scale.y * 0.5f,
+			attribs.boxColliderPos.x - attribs.boxColliderScale.x * 0.5f,
+			attribs.boxColliderPos.y - attribs.boxColliderScale.y * 0.5f,
+			attribs.boxColliderPos.x + attribs.boxColliderScale.x * 0.5f,
+			attribs.boxColliderPos.y + attribs.boxColliderScale.y * 0.5f,
 			paint
 		);
 	}

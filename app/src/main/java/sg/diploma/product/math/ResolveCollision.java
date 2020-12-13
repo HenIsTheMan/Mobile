@@ -15,7 +15,7 @@ public final class ResolveCollision{
 			return; //Return if vel is a zero/null/isotropic vec
 		}
 
-		if(entity.attribs.prevPos.x - myData.halfWidth >= otherData.xMax){
+		/*if(entity.attribs.prevPos.x - myData.halfWidth >= otherData.xMax){
 			entity.attribs.pos.x = otherData.xMax + myData.halfWidth;
 		}
 		if(entity.attribs.prevPos.x + myData.halfWidth <= otherData.xMin){
@@ -26,6 +26,9 @@ public final class ResolveCollision{
 		}
 		if(entity.attribs.prevPos.y + myData.halfHeight >= otherData.yMax){
 			entity.attribs.pos.y = otherData.yMax + myData.halfHeight;
-		}
+		}*/
+
+		entity.attribs.vel.y = 0.0f;
+		entity.attribs.accel.y = 0.0f;
 	}
 }
