@@ -12,8 +12,8 @@ import sg.diploma.product.math.Vector2;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
 
-public final class EntityPlayerChar extends EntityAbstract implements IEntityCollidable{
-	private EntityPlayerChar(final int bitmapID){
+public final class EntityMenuPlayerChar extends EntityAbstract implements IEntityCollidable{
+	private EntityMenuPlayerChar(final int bitmapID){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.PlayerChar;
@@ -93,8 +93,8 @@ public final class EntityPlayerChar extends EntityAbstract implements IEntityCol
 		spriteAnim.Render(canvas, (int)attribs.pos.x, (int)attribs.pos.y);
 	}
 
-	public static EntityPlayerChar Create(final String key, final int bitmapID){
-		EntityPlayerChar result = new EntityPlayerChar(bitmapID);
+	public static EntityMenuPlayerChar Create(final String key, final int bitmapID){
+		EntityMenuPlayerChar result = new EntityMenuPlayerChar(bitmapID);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}

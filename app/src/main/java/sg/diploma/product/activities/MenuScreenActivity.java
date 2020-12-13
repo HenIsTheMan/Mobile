@@ -25,7 +25,7 @@ import androidx.annotation.RequiresApi;
 import sg.diploma.product.R;
 import sg.diploma.product.entity.EntityConstraint;
 import sg.diploma.product.entity.EntityManager;
-import sg.diploma.product.entity.entities.EntityPlayerChar;
+import sg.diploma.product.entity.entities.EntityMenuPlayerChar;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.graphics.Color;
 import sg.diploma.product.state.IState;
@@ -139,7 +139,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void OnEnter(SurfaceView _view){
-        menuPlayerChar = EntityPlayerChar.Create("menuPlayerChar", R.drawable.player_char);
+        menuPlayerChar = EntityMenuPlayerChar.Create("menuPlayerChar", R.drawable.player_char);
 
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
         menuPlayerChar.attribs.pos.x = (int)((float)displayMetrics.widthPixels * 0.5f);
@@ -313,7 +313,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private Button optionsButton;
     private Button exitButton;
 
-    private EntityPlayerChar menuPlayerChar;
+    private EntityMenuPlayerChar menuPlayerChar;
     private EntityTextOnScreen textOnScreen;
 
     private ImageView playIcon;
