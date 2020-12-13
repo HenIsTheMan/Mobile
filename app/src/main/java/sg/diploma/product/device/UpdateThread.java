@@ -1,4 +1,4 @@
-package sg.diploma.product.thread;
+package sg.diploma.product.device;
 
 import android.graphics.Canvas;
 import android.graphics.Color;

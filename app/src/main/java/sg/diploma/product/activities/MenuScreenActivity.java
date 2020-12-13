@@ -30,7 +30,7 @@ import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.graphics.Color;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
-import sg.diploma.product.thread.UpdateThread;
+import sg.diploma.product.device.UpdateThread;
 import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 

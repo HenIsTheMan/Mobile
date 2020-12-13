@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import sg.diploma.product.thread.UpdateThread;
+import sg.diploma.product.device.UpdateThread;
 
 public final class GameView extends SurfaceView {
     public GameView(final Context context){
