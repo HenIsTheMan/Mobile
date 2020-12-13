@@ -21,7 +21,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			ResourceManager.Instance.GetBitmap(bitmapID),
 			4,
 			9,
-			10
+			14
 		);
 
 		if((int)Math.random() % 2 == 1){
@@ -39,7 +39,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	public void Update(final float dt){
 		attribs.vel.x += attribs.accel.x * dt;
 		attribs.vel.y += attribs.accel.y * dt;
-		attribs.vel.y = Math.min(attribs.vel.y, 4000.0f);
+		attribs.vel.y = Math.min(attribs.vel.y, 500.0f);
 
 		attribs.pos.x += attribs.vel.x * dt;
 		attribs.pos.y += attribs.vel.y * dt;
