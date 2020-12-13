@@ -55,7 +55,7 @@ public final class GameScreenActivity extends Activity implements IState{
     @Override
     public void OnEnter(SurfaceView _view){
         //* Create game BG
-        gameBG = EntityGameBG.Create(
+        /*gameBG = EntityGameBG.Create(
             "gameBG",
             R.drawable.game_background
         );
@@ -66,7 +66,7 @@ public final class GameScreenActivity extends Activity implements IState{
         gameBG.attribs.scale.x = scaleFactor;
         gameBG.attribs.scale.y = scaleFactor;
         gameBG.SetSpriteAnimXScale(scaleFactor);
-        gameBG.SetSpriteAnimYScale(scaleFactor);
+        gameBG.SetSpriteAnimYScale(scaleFactor);*/
         //*/
 
         //* Create text on screen
@@ -116,7 +116,9 @@ public final class GameScreenActivity extends Activity implements IState{
             textOnScreen.SetText("FPS: " + 1.0f / _dt);
         }
 
-        //if(gamePlayerChar.attribs.pos.x
+        if(gamePlayerChar.attribs.pos.x > DeviceManager.screenWidthF || gamePlayerChar.attribs.pos.x < 0.0f){
+            gamePlayerChar.SwitchFacing();
+        }
 
         GenPlats();
 

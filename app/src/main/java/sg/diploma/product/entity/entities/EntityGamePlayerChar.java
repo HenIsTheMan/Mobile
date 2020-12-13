@@ -80,6 +80,11 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 	public void SwitchFacing(){
 		attribs.facing *= -1;
+		if(attribs.facing == 1){
+			spriteAnim.SetFrames(3 * 9 + 1, 3 * 9 + 9);
+		} else{
+			spriteAnim.SetFrames(9 + 1, 9 + 9);
+		}
 	}
 
 	public void SetSpriteAnimXScale(final float xScale){
