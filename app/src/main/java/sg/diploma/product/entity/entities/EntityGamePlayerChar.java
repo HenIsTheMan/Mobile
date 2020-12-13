@@ -11,6 +11,7 @@ import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
+import sg.diploma.product.math.Vector2;
 
 public final class EntityGamePlayerChar extends EntityAbstract{
 	private EntityGamePlayerChar(final int bitmapID){
@@ -91,6 +92,12 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			spriteAnim.SetFrames(3 * 9 + 1, 3 * 9 + 9);
 		} else{
 			spriteAnim.SetFrames(9 + 1, 9 + 9);
+		}
+	}
+
+	public void Jump(final Vector2 fingerDownPos, final Vector2 fingerUpPos){
+		if(fingerDownPos != null && fingerUpPos != null){
+			attribs.vel.y = -500.0f;
 		}
 	}
 

@@ -16,8 +16,8 @@ import sg.diploma.product.entity.entities.EntityPlat;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.graphics.ResourceManager;
+import sg.diploma.product.math.Vector2;
 import sg.diploma.product.state.IState;
-import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 
@@ -30,6 +30,9 @@ public final class GameScreenActivity extends Activity implements IState{
         elapsedTime = 0.0f;
         spawnThreshold = 0.0f;
         score = -1;
+
+        fingerDownPos = null;
+        fingerUpPos = null;
     }
 
     @Override
@@ -134,12 +137,20 @@ public final class GameScreenActivity extends Activity implements IState{
 
         GenAndDestroyPlats();
 
-        EntityManager.Instance.Update(_dt);
-
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
-            EntityManager.Instance.SendAllEntitiesForRemoval();
-            StateManager.Instance.ChangeState("MenuScreen");
+            fingerDownPos = new Vector2(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
         }
+        if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Up.GetVal()) {
+            fingerUpPos = new Vector2(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
+        }
+
+        gamePlayerChar.Jump(fingerDownPos, fingerUpPos);
+        if(fingerDownPos != null && fingerUpPos != null){
+            fingerDownPos = null;
+            fingerUpPos = null;
+        }
+
+        EntityManager.Instance.Update(_dt);
     }
 
     private void GenAndDestroyPlats(){
@@ -155,6 +166,9 @@ public final class GameScreenActivity extends Activity implements IState{
     private float elapsedTime;
     private float spawnThreshold;
     private int score;
+
+    private Vector2 fingerDownPos;
+    private Vector2 fingerUpPos;
 
     public static GameScreenActivity Instance;
 
