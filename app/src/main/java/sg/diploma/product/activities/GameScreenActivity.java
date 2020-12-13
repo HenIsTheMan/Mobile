@@ -25,6 +25,8 @@ public final class GameScreenActivity extends Activity implements IState{
     public GameScreenActivity(){
         gameBG = null;
         gamePlayerChar = null;
+        startPlat = null;
+        noobPlat = null;
         textOnScreen = null;
 
         elapsedTime = 0.0f;
@@ -83,11 +85,17 @@ public final class GameScreenActivity extends Activity implements IState{
         textOnScreen.SetTextSize(55.0f);
         //*/
 
-        EntityPlat startPlat = EntityPlat.Create("startPlat");
+        startPlat = EntityPlat.Create("startPlat");
         startPlat.attribs.scale.x = DeviceManager.screenWidthF;
         startPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
         startPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
         startPlat.attribs.pos.y = DeviceManager.screenHeightF - startPlat.attribs.scale.y * 0.5f;
+
+        noobPlat = EntityPlat.Create("noobPlat");
+        noobPlat.attribs.scale.x = DeviceManager.screenWidthF * 0.25f;
+        noobPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
+        noobPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
+        noobPlat.attribs.pos.y = DeviceManager.screenHeightF - noobPlat.attribs.scale.y * 0.5f + 50.0f;
 
         gamePlayerChar = EntityGamePlayerChar.Create(
             "Special_gamePlayerChar",
@@ -163,6 +171,8 @@ public final class GameScreenActivity extends Activity implements IState{
 
     private EntityGameBG gameBG;
     private EntityGamePlayerChar gamePlayerChar;
+    private EntityPlat startPlat;
+    private EntityPlat noobPlat;
     private EntityTextOnScreen textOnScreen;
 
     private float elapsedTime;

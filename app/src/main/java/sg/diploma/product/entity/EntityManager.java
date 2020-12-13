@@ -6,6 +6,7 @@ import android.view.SurfaceView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Objects;
 
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
@@ -86,10 +87,14 @@ public final class EntityManager{ //Singleton
 
         final Object[] keys = entityList.keySet().toArray();
         final Object[] myArr = entityList.values().toArray();
+
         final int myArrLen = myArr.length;
         final EntityAbstract[] entityAbstractArr = new EntityAbstract[myArrLen];
+        final HashMap<EntityAbstract, String> entityToKey = new HashMap<>();
         for(int i = 0; i < myArrLen; ++i){
-            entityAbstractArr[i] = (EntityAbstract)myArr[i];
+            EntityAbstract entity = (EntityAbstract)myArr[i];
+            entityToKey.put(entity, (String)keys[i]);
+            entityAbstractArr[i] = entity;
         }
         Arrays.sort(entityAbstractArr, (o1, o2)->o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal());
 
@@ -99,16 +104,18 @@ public final class EntityManager{ //Singleton
         _canvas.translate(0.0f, DeviceManager.screenHeightF * 0.75f - playerChar.attribs.pos.y);
 
         for(int i = 0; i < myArrLen; ++i){
-            if(!((String)keys[i]).startsWith("Special_")){ //Not special XD
-                entityAbstractArr[i].Render(_canvas);
+            EntityAbstract entity = entityAbstractArr[i];
+            if(!Objects.requireNonNull(entityToKey.get(entity)).startsWith("Special_")){ //Not special XD
+                entity.Render(_canvas);
             }
         }
 
         _canvas.translate(0.0f, -DeviceManager.screenHeightF * 0.75f + playerChar.attribs.pos.y);
 
         for(int i = 0; i < myArrLen; ++i){
-            if(((String)keys[i]).startsWith("Special_")){ //✨ Special ✨
-                entityAbstractArr[i].SpecialRender(_canvas);
+            EntityAbstract entity = entityAbstractArr[i];
+            if(Objects.requireNonNull(entityToKey.get(entity)).startsWith("Special_")){ //✨ Special ✨
+                entity.SpecialRender(_canvas);
             }
         }
     }
