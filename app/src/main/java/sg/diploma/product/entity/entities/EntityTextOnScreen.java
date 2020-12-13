@@ -44,6 +44,11 @@ public final class EntityTextOnScreen extends EntityAbstract{
 	}
 
 	@Override
+	public void SpecialRender(final Canvas canvas){
+		canvas.drawText(text, attribs.pos.x, attribs.pos.y, paint);
+	}
+
+	@Override
 	public void Collided(){
 	}
 

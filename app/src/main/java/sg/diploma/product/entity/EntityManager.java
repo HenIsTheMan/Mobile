@@ -86,17 +86,21 @@ public final class EntityManager{ //Singleton
         final EntityGamePlayerChar playerChar = (EntityGamePlayerChar)entityList.get(playerCharKey);
         assert playerChar != null;
 
-        _canvas.translate(0.0f, DeviceManager.screenHeightF * 0.5f - playerChar.attribs.pos.y);
+        _canvas.translate(0.0f, DeviceManager.screenHeightF * 0.75f - playerChar.attribs.pos.y);
 
         for(int i = 0; i < myArrLen; ++i){
-            if(entityAbstractArr[i] != playerChar){
+            if(!((String)keys[i]).startsWith("Special_")){ //Not special XD
                 entityAbstractArr[i].Render(_canvas);
             }
         }
 
-        _canvas.translate(0.0f, -DeviceManager.screenHeightF * 0.5f + playerChar.attribs.pos.y);
+        _canvas.translate(0.0f, -DeviceManager.screenHeightF * 0.75f + playerChar.attribs.pos.y);
 
-        playerChar.SpecialRender(_canvas);
+        for(int i = 0; i < myArrLen; ++i){
+            if(((String)keys[i]).startsWith("Special_")){ //✨ Special ✨
+                entityAbstractArr[i].SpecialRender(_canvas);
+            }
+        }
     }
 
     public void AddEntity(String key, EntityAbstract _newEntity){

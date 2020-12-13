@@ -3,6 +3,7 @@ package sg.diploma.product.entity.entities;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import sg.diploma.product.BuildConfig;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
@@ -40,6 +41,13 @@ public final class EntityPlat extends EntityAbstract{
 			attribs.pos.y + attribs.scale.y * 0.5f,
 			paint
 		);
+	}
+
+	@Override
+	public void SpecialRender(final Canvas canvas){
+		if(BuildConfig.DEBUG){
+			throw new AssertionError("Assertion failed");
+		}
 	}
 
 	@Override

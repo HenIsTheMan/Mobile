@@ -70,21 +70,21 @@ public final class GameScreenActivity extends Activity implements IState{
         //*/
 
         //* Create text on screen
-        textOnScreen = EntityTextOnScreen.Create("gameTextOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
+        textOnScreen = EntityTextOnScreen.Create("Special_gameTextOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
         textOnScreen.attribs.pos.x = 30.0f;
         textOnScreen.attribs.pos.y = 80.0f;
         textOnScreen.SetStrokeWidth(300.0f);
         textOnScreen.SetTextSize(55.0f);
         //*/
 
-        EntityPlat testPlat = EntityPlat.Create("PlatTest");
-        testPlat.attribs.scale.x = DeviceManager.screenWidthF;
-        testPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
-        testPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        testPlat.attribs.pos.y = DeviceManager.screenHeightF - testPlat.attribs.scale.y * 0.5f;
+        EntityPlat startPlat = EntityPlat.Create("startPlat");
+        startPlat.attribs.scale.x = DeviceManager.screenWidthF;
+        startPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
+        startPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
+        startPlat.attribs.pos.y = DeviceManager.screenHeightF - startPlat.attribs.scale.y * 0.5f;
 
         gamePlayerChar = EntityGamePlayerChar.Create(
-            "gamePlayerChar",
+            "Special_gamePlayerChar",
             R.drawable.player_char
         );
 
@@ -92,7 +92,7 @@ public final class GameScreenActivity extends Activity implements IState{
         final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char).getHeight() * 0.25f;
 
         gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - testPlat.attribs.scale.y - playerCharHeight * 0.5f - 200.0f;
+        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - startPlat.attribs.scale.y - playerCharHeight * 0.5f - 200.0f;
 
         gamePlayerChar.attribs.scale.x = playerCharWidth * 1.2f;
         gamePlayerChar.attribs.scale.y = playerCharHeight * 1.2f;
@@ -107,7 +107,7 @@ public final class GameScreenActivity extends Activity implements IState{
 
     @Override
     public void Render(Canvas _canvas){
-        EntityManager.Instance.SpecialRender(_canvas, "gamePlayerChar");
+        EntityManager.Instance.SpecialRender(_canvas, "Special_gamePlayerChar");
     }
 
     @Override

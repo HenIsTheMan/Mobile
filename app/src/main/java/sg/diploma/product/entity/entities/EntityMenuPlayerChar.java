@@ -2,6 +2,7 @@ package sg.diploma.product.entity.entities;
 
 import android.graphics.Canvas;
 
+import sg.diploma.product.BuildConfig;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
@@ -82,6 +83,13 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 	@Override
 	public void Render(final Canvas canvas){ //Render with img centered
 		spriteAnim.Render(canvas, attribs.pos.x, attribs.pos.y);
+	}
+
+	@Override
+	public void SpecialRender(final Canvas canvas){
+		if(BuildConfig.DEBUG){
+			throw new AssertionError("Assertion failed");
+		}
 	}
 
 	@Override

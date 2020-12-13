@@ -69,8 +69,9 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		spriteAnim.Render(canvas, attribs.pos.x, attribs.pos.y);
 	}
 
+	@Override
 	public void SpecialRender(final Canvas canvas){
-		spriteAnim.Render(canvas, attribs.pos.x, DeviceManager.screenHeightF * 0.5f);
+		spriteAnim.Render(canvas, attribs.pos.x, DeviceManager.screenHeightF * 0.75f);
 	}
 
 	@Override

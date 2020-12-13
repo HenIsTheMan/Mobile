@@ -2,6 +2,7 @@ package sg.diploma.product.entity.entities;
 
 import android.graphics.Canvas;
 
+import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
@@ -34,6 +35,11 @@ public final class EntityGameBG extends EntityAbstract{
 	@Override
 	public void Render(final Canvas canvas){ //Render with img centered
 		spriteAnim.Render(canvas, attribs.pos.x, attribs.pos.y);
+	}
+
+	@Override
+	public void SpecialRender(final Canvas canvas){
+		spriteAnim.Render(canvas, attribs.pos.x, DeviceManager.screenHeightF * 0.75f);
 	}
 
 	@Override
