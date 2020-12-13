@@ -137,6 +137,8 @@ public final class GameScreenActivity extends Activity implements IState{
 
         GenAndDestroyPlats();
 
+        EntityManager.Instance.Update(_dt);
+
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
             fingerDownPos = new Vector2(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
         }
@@ -149,8 +151,6 @@ public final class GameScreenActivity extends Activity implements IState{
             fingerDownPos = null;
             fingerUpPos = null;
         }
-
-        EntityManager.Instance.Update(_dt);
     }
 
     private void GenAndDestroyPlats(){

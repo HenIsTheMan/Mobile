@@ -20,6 +20,8 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		attribs.type = EntityTypes.EntityType.GamePlayerChar;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
 
+		collidingWithPlat = false;
+
 		spriteAnim = new SpriteAnim(
 			ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565),
 			4,
@@ -35,16 +37,20 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			attribs.facing = -1;
 		}
 
-		attribs.accel.y = 2000.0f; //Gravitational accel
+		attribs.accel.y = 4000.0f; //Gravitational accel
 	}
 
 	@Override
 	public void Update(final float dt){
-		attribs.vel.x = attribs.facing * 500.f;
+		if(collidingWithPlat){
+			attribs.vel.x = attribs.facing * 500.f;
+		}
 
 		attribs.vel.x += attribs.accel.x * dt;
-		attribs.vel.y += attribs.accel.y * dt;
-		attribs.vel.y = Math.min(attribs.vel.y, 500.0f);
+		if(!collidingWithPlat){
+			attribs.vel.y += attribs.accel.y * dt;
+		}
+		attribs.vel.y = Math.min(attribs.vel.y, 3000.0f);
 
 		attribs.pos.x += attribs.vel.x * dt;
 		attribs.pos.y += attribs.vel.y * dt;
@@ -63,6 +69,8 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			attribs.pos.y = Math.min(attribs.yMax.val, attribs.pos.y);
 		}
 
+		collidingWithPlat = false;
+
 		spriteAnim.Update(dt);
 	}
 
@@ -78,6 +86,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 	@Override
 	public void Collided(){
+		collidingWithPlat = true;
 	}
 
 	public static EntityGamePlayerChar Create(final String key, final int bitmapID){
@@ -96,8 +105,18 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	}
 
 	public void Jump(final Vector2 fingerDownPos, final Vector2 fingerUpPos){
-		if(fingerDownPos != null && fingerUpPos != null){
-			attribs.vel.y = -500.0f;
+		if(collidingWithPlat && fingerDownPos != null && fingerUpPos != null){
+			Vector2 vec = new Vector2(fingerUpPos.x - fingerDownPos.x, fingerUpPos.y - fingerDownPos.y);
+			attribs.vel.x = Math.min(vec.x * 0.25f, 800.0f);
+			attribs.vel.y = Math.max(vec.y * 3.5f, -3000.0f);
+
+			if(attribs.vel.x > 0.0f){
+				spriteAnim.SetFrames(3 * 9 + 1, 3 * 9 + 9);
+				attribs.facing = 1;
+			} else{
+				spriteAnim.SetFrames(9 + 1, 9 + 9);
+				attribs.facing = -1;
+			}
 		}
 	}
 
@@ -109,5 +128,6 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		spriteAnim.SetYScale(yScale);
 	}
 
+	private boolean collidingWithPlat;
 	private final SpriteAnim spriteAnim;
 }
