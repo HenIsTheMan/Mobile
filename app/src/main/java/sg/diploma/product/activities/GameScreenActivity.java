@@ -66,9 +66,11 @@ public final class GameScreenActivity extends Activity implements IState{
         gameBG.SetSpriteAnimYScale(scaleFactor);
         //*/
 
-        textOnScreen = EntityTextOnScreen.Create("textOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
+        textOnScreen = EntityTextOnScreen.Create("gameTextOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
         textOnScreen.attribs.pos.x = 30.0f;
         textOnScreen.attribs.pos.y = 80.0f;
+        textOnScreen.SetStrokeWidth(300.0f);
+        textOnScreen.SetTextSize(55.0f);
     }
 
     @Override
@@ -87,7 +89,7 @@ public final class GameScreenActivity extends Activity implements IState{
 
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
             EntityManager.Instance.SendEntityForRemoval("gameBG");
-            EntityManager.Instance.SendEntityForRemoval("textOnScreen");
+            EntityManager.Instance.SendEntityForRemoval("gameTextOnScreen");
             StateManager.Instance.ChangeState("MenuScreen");
         }
     }

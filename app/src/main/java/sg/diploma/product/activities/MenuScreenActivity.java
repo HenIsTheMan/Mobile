@@ -107,7 +107,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     public void onClick(View v){
         if(v == startButton){
             EntityManager.Instance.SendEntityForRemoval("menuPlayerChar");
-            EntityManager.Instance.SendEntityForRemoval("textOnScreen");
+            EntityManager.Instance.SendEntityForRemoval("menuTextOnScreen");
             StateManager.Instance.ChangeState("GameScreen");
 
             startActivity(new Intent(this, GameScreenActivity.class));
@@ -115,7 +115,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         }
         if(v == optionsButton){
             EntityManager.Instance.SendEntityForRemoval("menuPlayerChar");
-            EntityManager.Instance.SendEntityForRemoval("textOnScreen");
+            EntityManager.Instance.SendEntityForRemoval("menuTextOnScreen");
             StateManager.Instance.ChangeState("OptionsScreen");
 
             startActivity(new Intent(this, OptionsScreenActivity.class));
@@ -154,9 +154,11 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         menuPlayerChar.attribs.yMin = new EntityConstraint();
         menuPlayerChar.attribs.yMin.val = ((float)displayMetrics.heightPixels * 0.35f + (float)displayMetrics.widthPixels / 4.0f) * 1.15f;
 
-        textOnScreen = EntityTextOnScreen.Create("textOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
-        textOnScreen.attribs.pos.x = (float)displayMetrics.widthPixels / 10.0f;
-        textOnScreen.attribs.pos.y = (float)displayMetrics.heightPixels / 10.0f;
+        textOnScreen = EntityTextOnScreen.Create("menuTextOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
+        textOnScreen.attribs.pos.x = 30.0f * 0.5f;
+        textOnScreen.attribs.pos.y = (float)displayMetrics.heightPixels - 30.0f;
+        textOnScreen.SetStrokeWidth(100.0f);
+        textOnScreen.SetTextSize(30.0f);
     }
 
     @Override

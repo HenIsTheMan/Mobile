@@ -25,6 +25,9 @@ public final class EntityTextOnScreen extends EntityAbstract{
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.UI;
 		attribs.type = EntityTypes.EntityType.TextOnScreen;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
+
+		strokeWidth = 100.0f;
+		textSize = 55.0f;
 	}
 
 	@Override
@@ -35,10 +38,10 @@ public final class EntityTextOnScreen extends EntityAbstract{
 	@Override
 	public void Render(final Canvas canvas){
 		paint.setARGB((int)(color.a * 255.0f), (int)(color.r * 255.0f), (int)(color.g * 255.0f), (int)(color.b * 255.0f));
-		paint.setStrokeWidth(300);
+		paint.setStrokeWidth(strokeWidth);
 		paint.setStyle(Paint.Style.FILL);
 		paint.setTypeface(myfont);
-		paint.setTextSize(55);
+		paint.setTextSize(textSize);
 		canvas.drawText("FPS: " + FPS, attribs.pos.x, attribs.pos.y, paint);
 	}
 
@@ -52,9 +55,21 @@ public final class EntityTextOnScreen extends EntityAbstract{
 		this.color = color;
 	}
 
+	public void SetStrokeWidth(final float strokeWidth){
+		this.strokeWidth = strokeWidth;
+
+	}
+
+	public void SetTextSize(final float textSize){
+		this.textSize = textSize;
+	}
+
 	private float FPS;
 
 	private Color color;
 	private final Paint paint;
 	private final Typeface myfont;
+
+	private float strokeWidth;
+	private float textSize;
 }
