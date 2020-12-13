@@ -27,6 +27,8 @@ public final class GameScreenActivity extends Activity implements IState{
         gamePlayerChar = null;
         textOnScreen = null;
 
+        elapsedTime = 0.0f;
+        spawnThreshold = 0.0f;
         score = -1;
     }
 
@@ -93,7 +95,7 @@ public final class GameScreenActivity extends Activity implements IState{
         final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getHeight() * 0.25f;
 
         gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - DeviceManager.screenHeightF * 0.03f - playerCharHeight * 0.5f - 200.0f;
+        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - startPlat.attribs.scale.y - playerCharHeight * 0.5f - 200.0f;
 
         gamePlayerChar.attribs.scale.x = playerCharWidth * 1.2f;
         gamePlayerChar.attribs.scale.y = playerCharHeight * 1.2f;
@@ -113,6 +115,8 @@ public final class GameScreenActivity extends Activity implements IState{
 
     @Override
     public void Update(float _dt) {
+        elapsedTime += _dt;
+
         if(textOnScreen != null){
             textOnScreen.SetText("FPS: " + 1.0f / _dt);
         }
@@ -128,7 +132,7 @@ public final class GameScreenActivity extends Activity implements IState{
             }
         }
 
-        GenPlats();
+        GenAndDestroyPlats();
 
         EntityManager.Instance.Update(_dt);
 
@@ -138,14 +142,18 @@ public final class GameScreenActivity extends Activity implements IState{
         }
     }
 
-    private void GenPlats(){
-
+    private void GenAndDestroyPlats(){
+        /*if(gamePlayerChar.attribs.pos.y +  >= spawnThreshold){
+            spawnThreshold += 50.0f;
+        }*/
     }
 
     private EntityGameBG gameBG;
     private EntityGamePlayerChar gamePlayerChar;
     private EntityTextOnScreen textOnScreen;
 
+    private float elapsedTime;
+    private float spawnThreshold;
     private int score;
 
     public static GameScreenActivity Instance;
