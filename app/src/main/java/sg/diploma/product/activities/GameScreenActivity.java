@@ -15,6 +15,7 @@ import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.entity.entities.EntityPlat;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.game.GameView;
+import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
@@ -62,7 +63,7 @@ public final class GameScreenActivity extends Activity implements IState{
 
         gameBG.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
         gameBG.attribs.pos.y = (float)displayMetrics.heightPixels * 0.5f;
-        final float scaleFactor = (float)displayMetrics.heightPixels / 1134.0f * 0.75f;
+        final float scaleFactor = (float)displayMetrics.heightPixels / (ResourceManager.Instance.GetBitmap(R.drawable.game_background).getHeight() * 0.5f);
         gameBG.attribs.scale.x = scaleFactor;
         gameBG.attribs.scale.y = scaleFactor;
         gameBG.SetSpriteAnimXScale(scaleFactor);
@@ -89,15 +90,14 @@ public final class GameScreenActivity extends Activity implements IState{
         );
 
         gamePlayerChar.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
-        gamePlayerChar.attribs.pos.y = (float)displayMetrics.heightPixels - testPlat.attribs.scale.y;
-        // - 31.75f * 1.2f
+        gamePlayerChar.attribs.pos.y = (float)displayMetrics.heightPixels - testPlat.attribs.scale.y - ResourceManager.Instance.GetBitmap(R.drawable.player_char).getHeight() * 0.25f * 0.5f;
 
         gamePlayerChar.attribs.scale.x = gamePlayerChar.attribs.scale.y = 1.2f;
         gamePlayerChar.SetSpriteAnimXScale(1.2f);
         gamePlayerChar.SetSpriteAnimYScale(1.2f);
 
         //menuPlayerChar.attribs.yMin = new EntityConstraint();
-        //menuPlayerChar.attribs.yMin.val = ((float)displayMetrics.heightPixels * 0.35f + (float)displayMetrics.widthPixels / 4.0f) * 1.15f;
+        //menuPlayerChar.attribs.yMin.val = ((float)displayMetrics.heightPixels * 0.35f + (float)displayMetrics.widthPixels * 0.25f) * 1.15f;
     }
 
     @Override

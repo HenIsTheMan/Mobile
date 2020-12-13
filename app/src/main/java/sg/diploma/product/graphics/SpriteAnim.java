@@ -48,16 +48,19 @@ public final class SpriteAnim{
 	}
 
 	public void Render(final Canvas _canvas, int _x, int _y){
-		int frameX = currFrame % cols;
-		int frameY = currFrame / cols;
-		int srcX = frameX * width;
-		int srcY = frameY * height;
+		final int frameX = currFrame % cols;
+		final int frameY = currFrame / cols;
+		final int srcX = frameX * width;
+		final int srcY = frameY * height;
 
-		_x -= 0.5f * width * xScale;
-		_y -= 0.5f * height * yScale;
+		final float scaledWidth = (float)width * xScale;
+		final float scaledHeight = (float)height * yScale;
+
+		_x -= (int)(0.5f * scaledWidth);
+		_y -= (int)(0.5f * scaledHeight);
 
 		Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);
-		Rect dst = new Rect(_x, _y, _x + (int)((float)width * xScale), _y + (int)((float)height * yScale));
+		Rect dst = new Rect(_x, _y, _x + (int)scaledWidth, _y + (int)scaledHeight);
 
 		_canvas.drawBitmap(bmp, src, dst, paint);
 	}

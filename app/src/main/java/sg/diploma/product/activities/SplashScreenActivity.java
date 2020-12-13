@@ -51,7 +51,7 @@ public final class SplashScreenActivity extends Activity{
         StateManager.Instance.AddState(new OptionsScreenActivity());
 
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
-        final float factor0 = (float)displayMetrics.widthPixels / 4.0f / 254.0f;
+        final float factor0 = (float)displayMetrics.widthPixels * 0.25f / 254.0f;
         AnimationSet androidLogoAnimSet0 = new AnimationSet(true);
         androidLogoAnimSet0.addAnimation(AnimationUtils.loadAnimation(this, R.anim.android_logo_anim));
         androidLogoAnimSet0.addAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_with_top_left_pivot));
