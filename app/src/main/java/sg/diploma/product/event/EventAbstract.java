@@ -9,8 +9,6 @@ public abstract class EventAbstract{
 		this.ID = ID;
 	}
 
-	public abstract EventAbstract Clone();
-
 	public EventIDs.EventID GetID(){
 		return ID;
 	}
