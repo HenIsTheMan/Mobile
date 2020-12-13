@@ -2,15 +2,14 @@ package sg.diploma.product.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import sg.diploma.product.R;
+import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchTypes;
 
@@ -50,8 +49,7 @@ public final class SplashScreenActivity extends Activity{
         StateManager.Instance.AddState(new GameScreenActivity());
         StateManager.Instance.AddState(new OptionsScreenActivity());
 
-        final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
-        final float factor0 = (float)displayMetrics.widthPixels * 0.25f / 254.0f;
+        final float factor0 = DeviceManager.screenWidthF * 0.25f / 254.0f;
         AnimationSet androidLogoAnimSet0 = new AnimationSet(true);
         androidLogoAnimSet0.addAnimation(AnimationUtils.loadAnimation(this, R.anim.android_logo_anim));
         androidLogoAnimSet0.addAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_with_top_left_pivot));
@@ -88,13 +86,13 @@ public final class SplashScreenActivity extends Activity{
         androidLogo3.getLayoutParams().width = (int)(254.0f * factor0);
         androidLogo3.getLayoutParams().height = (int)(284.0f * factor0);
 
-        final float factor1 = (float)displayMetrics.widthPixels / 513.0f;
+        final float factor1 = DeviceManager.screenWidthF / 513.0f;
         androidStudioLogo = findViewById(R.id.androidStudioLogo);
         androidStudioLogo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.android_studio_logo_anim));
         androidStudioLogo.getLayoutParams().width = (int)(513.0f * factor1);
         androidStudioLogo.getLayoutParams().height = (int)(512.0f * factor1);
 
-        final float factor2 = (float)displayMetrics.widthPixels / 850.0f;
+        final float factor2 = DeviceManager.screenWidthF / 850.0f;
         androidStudioText = findViewById(R.id.androidStudioText);
         androidStudioText.startAnimation(AnimationUtils.loadAnimation(this, R.anim.android_studio_text_anim));
         androidStudioText.getLayoutParams().width = (int)(850.0f * factor2);

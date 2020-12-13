@@ -7,6 +7,7 @@ public final class DeviceManager{
 	private DeviceManager(){
 		final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
 
+		scaledDensity = displayMetrics.scaledDensity;
 		screenWidth = displayMetrics.widthPixels;
 		screenHeight = displayMetrics.heightPixels;
 		screenWidthF = (float)screenWidth;
@@ -19,8 +20,9 @@ public final class DeviceManager{
 		Instance = new DeviceManager();
 	}
 
-	public float screenWidthF;
-	public float screenHeightF;
-	public int screenWidth;
-	public int screenHeight;
+	public static float scaledDensity;
+	public static float screenWidthF;
+	public static float screenHeightF;
+	public static int screenWidth;
+	public static int screenHeight;
 }

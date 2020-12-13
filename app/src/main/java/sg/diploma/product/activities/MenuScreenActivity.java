@@ -2,12 +2,10 @@ package sg.diploma.product.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -23,6 +21,8 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 import sg.diploma.product.R;
+import sg.diploma.product.device.DeviceManager;
+import sg.diploma.product.device.UpdateThread;
 import sg.diploma.product.entity.EntityConstraint;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityMenuPlayerChar;
@@ -30,7 +30,6 @@ import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.graphics.Color;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
-import sg.diploma.product.device.UpdateThread;
 import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 
@@ -145,22 +144,21 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         );
 
         //* Create menu player char
-        final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
-        menuPlayerChar.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
-        menuPlayerChar.attribs.pos.y = (float)displayMetrics.heightPixels * 3.0f * 0.25f;
+        menuPlayerChar.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
+        menuPlayerChar.attribs.pos.y = DeviceManager.screenHeightF * 3.0f * 0.25f;
 
         menuPlayerChar.attribs.scale.x = menuPlayerChar.attribs.scale.y = 1.8f;
         menuPlayerChar.SetSpriteAnimXScale(1.8f);
         menuPlayerChar.SetSpriteAnimYScale(1.8f);
 
         menuPlayerChar.attribs.yMin = new EntityConstraint();
-        menuPlayerChar.attribs.yMin.val = ((float)displayMetrics.heightPixels * 0.35f + (float)displayMetrics.widthPixels * 0.25f) * 1.15f;
+        menuPlayerChar.attribs.yMin.val = (DeviceManager.screenHeightF * 0.35f + DeviceManager.screenWidthF * 0.25f) * 1.15f;
         //*/
 
         //* Create text on screen
         textOnScreen = EntityTextOnScreen.Create("menuTextOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
         textOnScreen.attribs.pos.x = 30.0f * 0.5f;
-        textOnScreen.attribs.pos.y = (float)displayMetrics.heightPixels - 30.0f;
+        textOnScreen.attribs.pos.y = DeviceManager.screenHeightF - 30.0f;
         textOnScreen.SetColor(Color.green);
         textOnScreen.SetStrokeWidth(100.0f);
         textOnScreen.SetTextSize(30.0f);
@@ -216,9 +214,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     private void InitOthers(){
         myShape = findViewById(R.id.myShape);
-        final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
-        myShape.getLayoutParams().width = (int)((float)displayMetrics.widthPixels * 1.2f);
-        myShape.getLayoutParams().height = (int)((float)displayMetrics.heightPixels * 1.2f);
+        myShape.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 1.2f);
+        myShape.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 1.2f);
 
         Animation myShapeAnim = AnimationUtils.loadAnimation(this, R.anim.my_shape_anim);
         myShapeAnim.setStartOffset(799);
@@ -236,29 +233,29 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         });
         myShape.startAnimation(myShapeAnim);
 
-        final float buttonFactor = (float)displayMetrics.widthPixels * 0.25f / 300.0f;
+        final float buttonFactor = DeviceManager.screenWidthF * 0.25f / 300.0f;
         final int buttonSize = (int)(300.0f * buttonFactor);
 
         startButton = findViewById(R.id.startButton);
         startButton.setOnClickListener(this);
         startButton.getLayoutParams().width = buttonSize;
         startButton.getLayoutParams().height = buttonSize;
-        startButton.setTranslationX((float)displayMetrics.widthPixels * 0.2f - (float)buttonSize * 0.5f);
-        startButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
+        startButton.setTranslationX(DeviceManager.screenWidthF * 0.2f - (float)buttonSize * 0.5f);
+        startButton.setTranslationY(DeviceManager.screenHeightF * 0.35f);
 
         optionsButton = findViewById(R.id.optionsButton);
         optionsButton.setOnClickListener(this);
         optionsButton.getLayoutParams().width = buttonSize;
         optionsButton.getLayoutParams().height = buttonSize;
-        optionsButton.setTranslationX((float)displayMetrics.widthPixels * 0.5f - (float)buttonSize * 0.5f);
-        optionsButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
+        optionsButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)buttonSize * 0.5f);
+        optionsButton.setTranslationY(DeviceManager.screenHeightF * 0.35f);
 
         exitButton = findViewById(R.id.exitButton);
         exitButton.setOnClickListener(this);
         exitButton.getLayoutParams().width = buttonSize;
         exitButton.getLayoutParams().height = buttonSize;
-        exitButton.setTranslationX((float)displayMetrics.widthPixels * 0.8f - (float)buttonSize * 0.5f);
-        exitButton.setTranslationY((float)displayMetrics.heightPixels * 0.35f);
+        exitButton.setTranslationX(DeviceManager.screenWidthF * 0.8f - (float)buttonSize * 0.5f);
+        exitButton.setTranslationY(DeviceManager.screenHeightF * 0.35f);
 
         playIcon = findViewById(R.id.playIcon);
         playIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
@@ -295,22 +292,22 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         gameTitleBossText = findViewById(R.id.gameTitleBossText);
         gameTitleBossText.setTypeface(font);
         gameTitleBossText.setTextSize(TypedValue.COMPLEX_UNIT_SP,
-                (float)displayMetrics.widthPixels * 0.2f
-                        / displayMetrics.scaledDensity);
+                DeviceManager.screenWidthF * 0.2f
+                        / DeviceManager.scaledDensity);
         gameTitleBossText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        gameTitleBossText.setTranslationX((float)displayMetrics.widthPixels * 0.5f
+        gameTitleBossText.setTranslationX(DeviceManager.screenWidthF * 0.5f
                 - (float)gameTitleBossText.getMeasuredWidth() * 0.5f);
-        gameTitleBossText.setTranslationY((float)displayMetrics.heightPixels * 0.07f);
+        gameTitleBossText.setTranslationY(DeviceManager.screenHeightF * 0.07f);
 
         gameTitleGirlText = findViewById(R.id.gameTitleGirlText);
         gameTitleGirlText.setTypeface(font);
         gameTitleGirlText.setTextSize(TypedValue.COMPLEX_UNIT_SP,
-                (float)displayMetrics.widthPixels * 0.18f
-                        / displayMetrics.scaledDensity);
+                DeviceManager.screenWidthF * 0.18f
+                        / DeviceManager.scaledDensity);
         gameTitleGirlText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        gameTitleGirlText.setTranslationX((float)displayMetrics.widthPixels * 0.5f
+        gameTitleGirlText.setTranslationX(DeviceManager.screenWidthF * 0.5f
                 - (float)gameTitleGirlText.getMeasuredWidth() * 0.5f);
-        gameTitleGirlText.setTranslationY((float)displayMetrics.heightPixels * 0.2f);
+        gameTitleGirlText.setTranslationY(DeviceManager.screenHeightF * 0.2f);
     }
 
     private boolean isFingerOffScreenBefore;

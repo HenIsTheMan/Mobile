@@ -1,14 +1,13 @@
 package sg.diploma.product.activities;
 
 import android.app.Activity;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
 import sg.diploma.product.R;
+import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityGameBG;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
@@ -55,21 +54,19 @@ public final class GameScreenActivity extends Activity implements IState{
 
     @Override
     public void OnEnter(SurfaceView _view){
-        final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
-
         //* Create game BG
-/*        gameBG = EntityGameBG.Create(
+        gameBG = EntityGameBG.Create(
             "gameBG",
             R.drawable.game_background
         );
 
-        gameBG.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
-        gameBG.attribs.pos.y = (float)displayMetrics.heightPixels * 0.5f;
-        final float scaleFactor = (float)displayMetrics.heightPixels / (ResourceManager.Instance.GetBitmap(R.drawable.game_background).getHeight() * 0.5f);
+        gameBG.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
+        gameBG.attribs.pos.y = DeviceManager.screenHeightF * 0.5f;
+        final float scaleFactor = DeviceManager.screenHeightF / (ResourceManager.Instance.GetBitmap(R.drawable.game_background).getHeight() * 0.5f);
         gameBG.attribs.scale.x = scaleFactor;
         gameBG.attribs.scale.y = scaleFactor;
         gameBG.SetSpriteAnimXScale(scaleFactor);
-        gameBG.SetSpriteAnimYScale(scaleFactor);*/
+        gameBG.SetSpriteAnimYScale(scaleFactor);
         //*/
 
         //* Create text on screen
@@ -81,10 +78,10 @@ public final class GameScreenActivity extends Activity implements IState{
         //*/
 
         EntityPlat testPlat = EntityPlat.Create("testPlat");
-        testPlat.attribs.scale.x = (float)displayMetrics.widthPixels;
-        testPlat.attribs.scale.y = (float)displayMetrics.heightPixels * 0.03f;
-        testPlat.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
-        testPlat.attribs.pos.y = (float)displayMetrics.heightPixels - testPlat.attribs.scale.y * 0.5f;
+        testPlat.attribs.scale.x = DeviceManager.screenWidthF;
+        testPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
+        testPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
+        testPlat.attribs.pos.y = DeviceManager.screenHeightF - testPlat.attribs.scale.y * 0.5f;
 
         gamePlayerChar = EntityGamePlayerChar.Create(
             "gamePlayerChar",
@@ -94,8 +91,8 @@ public final class GameScreenActivity extends Activity implements IState{
         final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char).getWidth() * 0.25f;
         final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char).getHeight() * 0.25f;
 
-        gamePlayerChar.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
-        gamePlayerChar.attribs.pos.y = (float)displayMetrics.heightPixels - testPlat.attribs.scale.y - playerCharHeight * 0.5f;
+        gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
+        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - testPlat.attribs.scale.y - playerCharHeight * 0.5f;
 
         gamePlayerChar.attribs.scale.x = playerCharWidth * 1.2f;
         gamePlayerChar.attribs.scale.y = playerCharHeight * 1.2f;
