@@ -139,8 +139,8 @@ public final class EntityManager{ //Singleton
                     CollisionDataBoxBoxAABB collisionData0 = new CollisionDataBoxBoxAABB();
                     CollisionDataBoxBoxAABB collisionData1 = new CollisionDataBoxBoxAABB();
                     if(DetectCollision.BoxBoxAABB(entity0, entity1, collisionData0, collisionData1)){
-                        ResolveCollision.BoxBoxAABB(entity0, entity1, collisionData0, collisionData1);
-                        ResolveCollision.BoxBoxAABB(entity1, entity0, collisionData1, collisionData0);
+                        ResolveCollision.BoxBoxAABB(entity0, collisionData0, collisionData1);
+                        ResolveCollision.BoxBoxAABB(entity1, collisionData1, collisionData0);
                     }
                     break;
                 case Circle:

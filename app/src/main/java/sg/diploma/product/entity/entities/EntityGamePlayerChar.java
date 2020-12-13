@@ -49,9 +49,9 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
-		/*if(collidingWithPlat){
+		if(collidingWithPlat){
 			attribs.vel.x = attribs.facing * 500.f;
-		}*/
+		}
 
 		attribs.vel.x += attribs.accel.x * dt;
 		if(!collidingWithPlat){
