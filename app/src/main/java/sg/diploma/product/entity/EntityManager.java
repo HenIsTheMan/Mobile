@@ -28,6 +28,7 @@ public final class EntityManager{ //Singleton
         entityRemovalList.clear();
 
         for(EntityAbstract entity: entityList.values()){
+            entity.attribs.prevPos = entity.attribs.pos;
             entity.Update(_dt);
         }
 

@@ -10,7 +10,7 @@ public final class CollisionDataBoxBoxAABB{
 		yMin = 0.0f;
 		yMax = 0.0f;
 
-		vel = Vector2.zero;
+		prevPos = new Vector2();
 	}
 
 	public float halfWidth;
@@ -21,5 +21,5 @@ public final class CollisionDataBoxBoxAABB{
 	public float yMin;
 	public float yMax;
 
-	public Vector2 vel;
+	public Vector2 prevPos;
 }
