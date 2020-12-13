@@ -37,6 +37,8 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
+		attribs.vel.x = attribs.facing * 500.f;
+
 		attribs.vel.x += attribs.accel.x * dt;
 		attribs.vel.y += attribs.accel.y * dt;
 		attribs.vel.y = Math.min(attribs.vel.y, 500.0f);
@@ -74,6 +76,10 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		EntityGamePlayerChar result = new EntityGamePlayerChar(bitmapID);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
+	}
+
+	public void SwitchFacing(){
+		attribs.facing *= -1;
 	}
 
 	public void SetSpriteAnimXScale(final float xScale){

@@ -58,7 +58,7 @@ public final class GameScreenActivity extends Activity implements IState{
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
 
         //* Create game BG
-        gameBG = EntityGameBG.Create(
+/*        gameBG = EntityGameBG.Create(
             "gameBG",
             R.drawable.game_background
         );
@@ -69,7 +69,7 @@ public final class GameScreenActivity extends Activity implements IState{
         gameBG.attribs.scale.x = scaleFactor;
         gameBG.attribs.scale.y = scaleFactor;
         gameBG.SetSpriteAnimXScale(scaleFactor);
-        gameBG.SetSpriteAnimYScale(scaleFactor);
+        gameBG.SetSpriteAnimYScale(scaleFactor);*/
         //*/
 
         //* Create text on screen
@@ -118,6 +118,8 @@ public final class GameScreenActivity extends Activity implements IState{
         if(textOnScreen != null){
             textOnScreen.SetText("FPS: " + 1.0f / _dt);
         }
+
+        //if(gamePlayerChar.attribs.pos.x
 
         GenPlats();
 
