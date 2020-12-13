@@ -8,7 +8,6 @@ import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.entity.IEntityCollidable;
-import sg.diploma.product.math.Vector2;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
 
@@ -16,36 +15,52 @@ public final class EntityGamePlayerChar extends EntityAbstract implements IEntit
 	private EntityGamePlayerChar(final int bitmapID){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
-		attribs.type = EntityTypes.EntityType.PlayerChar;
+		attribs.type = EntityTypes.EntityType.GamePlayerChar;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
 
 		spriteAnim = new SpriteAnim(
-				ResourceManager.Instance.GetBitmap(bitmapID),
-				4,
-				9,
-				10
+			ResourceManager.Instance.GetBitmap(bitmapID),
+			4,
+			9,
+			10
 		);
 
 		if((int)Math.random() % 2 == 1){
-			spriteAnim.SetFrames(3 * 13, 3 * 9);
-			attribs.dir = new Vector2(1.0f, 0.0f);
+			spriteAnim.SetFrames(3 * 9 + 1, 3 * 9 + 9);
+			attribs.facing = 1;
 		} else{
-			spriteAnim.SetFrames(9, 9);
-			attribs.dir = new Vector2(-1.0f, 0.0f);
+			spriteAnim.SetFrames(9 + 1, 9 + 9);
+			attribs.facing = -1;
 		}
+
+		attribs.accel.y += 300.0f; //Gravitational accel
 	}
 
 	@Override
 	public void Update(final float dt){
+		attribs.vel.x += attribs.accel.x * dt;
+		attribs.vel.y += attribs.accel.y * dt;
+		attribs.pos.x += attribs.vel.x * dt;
+		attribs.pos.y += attribs.vel.y * dt;
+
+		if(attribs.xMin != null){
+			attribs.pos.x = Math.max(attribs.xMin.val, attribs.pos.x);
+		}
+		if(attribs.xMax != null){
+			attribs.pos.x = Math.min(attribs.xMax.val, attribs.pos.x);
+		}
+
+		attribs.pos.y += attribs.dir.y * attribs.spd * dt;
+		if(attribs.yMin != null){
+			attribs.pos.y = Math.max(attribs.yMin.val, attribs.pos.y);
+		}
+		if(attribs.yMax != null){
+			attribs.pos.y = Math.min(attribs.yMax.val, attribs.pos.y);
+		}
+
 		spriteAnim.Update(dt);
 
-		/*if(TouchManager.Instance.HasTouch()){
-			if(CheckCollision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched){
-				hasTouched = true;
-				pos.x = TouchManager.Instance.GetPosX();
-				pos.y = TouchManager.Instance.GetPosY();
-			}
-		}*/
+		//Check collision??
 	}
 
 	@Override

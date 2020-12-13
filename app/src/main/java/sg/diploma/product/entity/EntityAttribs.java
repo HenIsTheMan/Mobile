@@ -8,7 +8,6 @@ public final class EntityAttribs{
 	public EntityTypes.EntityType type = EntityTypes.EntityType.Amt;
 
 	public Vector2 pos = new Vector2();
-	public Vector2 dir = new Vector2(1.0f, 0.0f);
 	public Vector2 scale = new Vector2(1.0f, 1.0f);
 	public Vector2 targetPos = null;
 
@@ -17,6 +16,10 @@ public final class EntityAttribs{
 	public EntityConstraint yMin = null;
 	public EntityConstraint yMax = null;
 
+	public Vector2 dir = new Vector2(1.0f, 0.0f);
 	public float spd = 0.0f;
-	public float life = 0.0f;
+
+	public Vector2 accel = new Vector2();
+	public Vector2 vel = new Vector2();
+	public int facing = 1;
 }

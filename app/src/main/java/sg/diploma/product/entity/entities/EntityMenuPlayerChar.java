@@ -16,8 +16,8 @@ public final class EntityMenuPlayerChar extends EntityAbstract implements IEntit
 	private EntityMenuPlayerChar(final int bitmapID){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
-		attribs.type = EntityTypes.EntityType.PlayerChar;
-		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
+		attribs.type = EntityTypes.EntityType.MenuPlayerChar;
+		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
 
 		spriteAnim = new SpriteAnim(
 			ResourceManager.Instance.GetBitmap(bitmapID),
