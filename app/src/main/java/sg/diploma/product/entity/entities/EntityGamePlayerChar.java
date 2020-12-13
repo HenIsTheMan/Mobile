@@ -32,13 +32,15 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			attribs.facing = -1;
 		}
 
-		attribs.accel.y += 300.0f; //Gravitational accel
+		attribs.accel.y = 2000.0f; //Gravitational accel
 	}
 
 	@Override
 	public void Update(final float dt){
 		attribs.vel.x += attribs.accel.x * dt;
 		attribs.vel.y += attribs.accel.y * dt;
+		attribs.vel.y = Math.min(attribs.vel.y, 4000.0f);
+
 		attribs.pos.x += attribs.vel.x * dt;
 		attribs.pos.y += attribs.vel.y * dt;
 
@@ -49,7 +51,6 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			attribs.pos.x = Math.min(attribs.xMax.val, attribs.pos.x);
 		}
 
-		attribs.pos.y += attribs.dir.y * attribs.spd * dt;
 		if(attribs.yMin != null){
 			attribs.pos.y = Math.max(attribs.yMin.val, attribs.pos.y);
 		}

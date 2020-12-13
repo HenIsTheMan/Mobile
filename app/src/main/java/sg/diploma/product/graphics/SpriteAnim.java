@@ -7,6 +7,8 @@ import android.graphics.Rect;
 
 import sg.diploma.product.math.Vector2;
 
+import static java.lang.Math.round;
+
 public final class SpriteAnim{
 	public SpriteAnim(){
 		this(null, 0, 0, 0);
@@ -56,11 +58,11 @@ public final class SpriteAnim{
 		final float scaledWidth = (float)width * xScale;
 		final float scaledHeight = (float)height * yScale;
 
-		_x -= (int)(0.5f * scaledWidth);
-		_y -= (int)(0.5f * scaledHeight);
+		_x -= round(0.5f * scaledWidth);
+		_y -= round(0.5f * scaledHeight);
 
 		Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);
-		Rect dst = new Rect(_x, _y, _x + (int)scaledWidth, _y + (int)scaledHeight);
+		Rect dst = new Rect(_x, _y, _x + round(scaledWidth), _y + round(scaledHeight));
 
 		_canvas.drawBitmap(bmp, src, dst, paint);
 	}

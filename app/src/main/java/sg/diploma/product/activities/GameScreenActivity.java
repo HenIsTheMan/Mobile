@@ -56,7 +56,7 @@ public final class GameScreenActivity extends Activity implements IState{
         final DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
 
         //* Create game BG
-        gameBG = EntityGameBG.Create(
+        /*gameBG = EntityGameBG.Create(
             "gameBG",
             R.drawable.game_background
         );
@@ -67,7 +67,7 @@ public final class GameScreenActivity extends Activity implements IState{
         gameBG.attribs.scale.x = scaleFactor;
         gameBG.attribs.scale.y = scaleFactor;
         gameBG.SetSpriteAnimXScale(scaleFactor);
-        gameBG.SetSpriteAnimYScale(scaleFactor);
+        gameBG.SetSpriteAnimYScale(scaleFactor);*/
         //*/
 
         //* Create text on screen
@@ -89,10 +89,14 @@ public final class GameScreenActivity extends Activity implements IState{
             R.drawable.player_char
         );
 
-        gamePlayerChar.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
-        gamePlayerChar.attribs.pos.y = (float)displayMetrics.heightPixels - testPlat.attribs.scale.y - ResourceManager.Instance.GetBitmap(R.drawable.player_char).getHeight() * 0.25f * 0.5f;
+        final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char).getWidth() * 0.25f;
+        final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char).getHeight() * 0.25f;
 
-        gamePlayerChar.attribs.scale.x = gamePlayerChar.attribs.scale.y = 1.2f;
+        gamePlayerChar.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
+        gamePlayerChar.attribs.pos.y = (float)displayMetrics.heightPixels - testPlat.attribs.scale.y - playerCharHeight * 0.5f;
+
+        gamePlayerChar.attribs.scale.x = playerCharWidth * 1.2f;
+        gamePlayerChar.attribs.scale.y = playerCharHeight * 1.2f;
         gamePlayerChar.SetSpriteAnimXScale(1.2f);
         gamePlayerChar.SetSpriteAnimYScale(1.2f);
 

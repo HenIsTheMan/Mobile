@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import sg.diploma.product.math.CollisionDataBoxBoxAABB;
+import sg.diploma.product.math.DetectCollision;
+import sg.diploma.product.math.ResolveCollision;
+
 public final class EntityManager{ //Singleton
     private EntityManager(){
         entityList = new HashMap<>();
@@ -32,10 +36,14 @@ public final class EntityManager{ //Singleton
         for(int i = 0; i < keysSize; ++i){
             EntityAbstract currEntity = entityList.get(keys.get(i));
 
-            for(int j = i + 1; j < keysSize; ++j){
-                EntityAbstract otherEntity = entityList.get(keys.get(j));
+            if(currEntity.attribs.collidableType != EntityCollidableTypes.EntityCollidableType.None){
+                for(int j = i + 1; j < keysSize; ++j){
+                    EntityAbstract otherEntity = entityList.get(keys.get(j));
 
-                //CheckCollision(collidable0, collidable1);
+                    if(otherEntity.attribs.collidableType != EntityCollidableTypes.EntityCollidableType.None){
+                        CheckCollision(currEntity, otherEntity);
+                    }
+                }
             }
         }
 
@@ -70,6 +78,23 @@ public final class EntityManager{ //Singleton
 
     public void SendAllEntitiesForRemoval(){
         entityRemovalList.addAll(entityList.keySet());
+    }
+
+    private void CheckCollision(EntityAbstract entity0, EntityAbstract entity1){
+        if(entity0.attribs.collidableType == entity1.attribs.collidableType){
+            switch(entity0.attribs.collidableType){
+                case Box:
+                    CollisionDataBoxBoxAABB collisionData0 = new CollisionDataBoxBoxAABB();
+                    CollisionDataBoxBoxAABB collisionData1 = new CollisionDataBoxBoxAABB();
+                    if(DetectCollision.BoxBoxAABB(entity0, entity1, collisionData0, collisionData1)){
+                        ResolveCollision.BoxBoxAABB(entity0, collisionData0, collisionData1);
+                        ResolveCollision.BoxBoxAABB(entity1, collisionData1, collisionData0);
+                    }
+                    break;
+                case Circle:
+                    break;
+            }
+        }
     }
 
     private final HashMap<String, EntityAbstract> entityList;
