@@ -31,7 +31,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			9,
 			14
 		);
-		
+
 		if(ThreadLocalRandom.current().nextInt() % 2 == 1){
 			spriteAnim.SetFrames(3 * 9 + 1, 3 * 9 + 9);
 			attribs.facing = 1;
@@ -126,6 +126,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		} else{
 			spriteAnim.SetFrames(9 + 1, 9 + 9);
 		}
+		attribs.vel.x = attribs.facing * 500.f;
 	}
 
 	public void Jump(final Vector2 fingerDownPos, final Vector2 fingerUpPos){
