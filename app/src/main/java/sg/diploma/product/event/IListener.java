@@ -15,5 +15,5 @@ public interface IListener{
 		private final int val;
 	}
 
-	int OnEvent(EventAbstract event);
+	void OnEvent(EventAbstract event);
 }
