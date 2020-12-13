@@ -17,12 +17,12 @@ public final class EntityPlat extends EntityAbstract{
 		attribs.type = EntityTypes.EntityType.Plat;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
 
-		color = Color.white;
+		color = new Color(0.2f, 0.2f, 0.2f, 0.6f);
 		strokeWidth = 50.0f;
 		paintStyle = Paint.Style.FILL;
 		paint = new Paint();
 
-		paint.setARGB(255, 255, 255, 255);
+		paint.setARGB(153, 51, 51, 51);
 		paint.setStrokeWidth(strokeWidth);
 		paint.setStyle(paintStyle);
 	}
@@ -67,4 +67,10 @@ public final class EntityPlat extends EntityAbstract{
 	private float strokeWidth;
 	private Paint.Style paintStyle;
 	private final Paint paint;
+
+	public static Color steppedOnColor;
+
+	static{
+		Color steppedOnColor = new Color(1.0f, 1.0f, 0.0f, 0.8f);
+	}
 }

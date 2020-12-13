@@ -133,7 +133,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void Render(Canvas _canvas){
-        _canvas.drawColor(0xFF404040);
+        _canvas.drawColor(0xFF333333);
         EntityManager.Instance.Render(_canvas);
     }
 
@@ -155,7 +155,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         textOnScreen = EntityTextOnScreen.Create("menuTextOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
         textOnScreen.attribs.pos.x = 30.0f * 0.5f;
         textOnScreen.attribs.pos.y = (float)displayMetrics.heightPixels - 30.0f;
-        textOnScreen.SetColor(new Color(1.0f, 1.0f, 0.0f, 0.5f));
+        textOnScreen.SetColor(Color.green);
         textOnScreen.SetStrokeWidth(100.0f);
         textOnScreen.SetTextSize(30.0f);
     }

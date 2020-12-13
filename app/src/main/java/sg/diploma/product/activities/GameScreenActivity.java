@@ -74,10 +74,10 @@ public final class GameScreenActivity extends Activity implements IState{
         textOnScreen.SetTextSize(55.0f);
 
         EntityPlat testPlat = EntityPlat.Create("testPlat");
-        testPlat.attribs.pos.x = 200.0f;
-        testPlat.attribs.pos.y = 200.0f;
-        testPlat.attribs.scale.x = 200.0f;
-        testPlat.attribs.scale.y = 50.0f;
+        testPlat.attribs.scale.x = (float)displayMetrics.widthPixels;
+        testPlat.attribs.scale.y = (float)displayMetrics.heightPixels * 0.03f;
+        testPlat.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
+        testPlat.attribs.pos.y = (float)displayMetrics.heightPixels - testPlat.attribs.scale.y * 0.5f;
     }
 
     @Override
