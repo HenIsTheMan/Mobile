@@ -85,6 +85,10 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	}
 
 	@Override
+	public void LateUpdate(final float dt){
+	}
+
+	@Override
 	public void Collided(){
 		collidingWithPlat = true;
 	}
