@@ -16,8 +16,6 @@ public final class EntityTextOnScreen extends EntityAbstract{
 	public EntityTextOnScreen(final AssetManager assets, final String fPath){
 		super();
 
-		FPS = 0.0f;
-
 		color = Color.white;
 		paint = new Paint();
 		myfont = Typeface.createFromAsset(assets, fPath);
@@ -28,11 +26,11 @@ public final class EntityTextOnScreen extends EntityAbstract{
 
 		strokeWidth = 100.0f;
 		textSize = 55.0f;
+		text = "";
 	}
 
 	@Override
 	public void Update(final float dt){
-		FPS = 1.0f / dt;
 	}
 
 	@Override
@@ -42,7 +40,7 @@ public final class EntityTextOnScreen extends EntityAbstract{
 		paint.setStyle(Paint.Style.FILL);
 		paint.setTypeface(myfont);
 		paint.setTextSize(textSize);
-		canvas.drawText("FPS: " + FPS, attribs.pos.x, attribs.pos.y, paint);
+		canvas.drawText(text, attribs.pos.x, attribs.pos.y, paint);
 	}
 
 	public static EntityTextOnScreen Create(final String key, final AssetManager assets, final String fPath){
@@ -64,7 +62,9 @@ public final class EntityTextOnScreen extends EntityAbstract{
 		this.textSize = textSize;
 	}
 
-	private float FPS;
+	public void SetText(final String text){
+		this.text = text;
+	}
 
 	private Color color;
 	private final Paint paint;
@@ -72,4 +72,5 @@ public final class EntityTextOnScreen extends EntityAbstract{
 
 	private float strokeWidth;
 	private float textSize;
+	private String text;
 }

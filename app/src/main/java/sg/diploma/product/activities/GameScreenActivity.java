@@ -85,6 +85,10 @@ public final class GameScreenActivity extends Activity implements IState{
 
     @Override
     public void Update(float _dt) {
+        if(textOnScreen != null){
+            textOnScreen.SetText("FPS: " + 1.0f / _dt);
+        }
+
         EntityManager.Instance.Update(_dt);
 
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {

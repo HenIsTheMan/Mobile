@@ -167,6 +167,10 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void Update(float _dt){
+        if(textOnScreen != null){
+            textOnScreen.SetText("FPS: " + 1.0f / _dt);
+        }
+
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
             if(isFingerOffScreenBefore){
                 shldStartMoving = true;

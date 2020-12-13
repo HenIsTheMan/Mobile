@@ -5,7 +5,6 @@ import android.view.SurfaceView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 
 public final class EntityManager{ //Singleton
@@ -55,13 +54,6 @@ public final class EntityManager{ //Singleton
             entityList.remove(element);
         }
         entityRemovalList.clear();
-    }
-
-    private static final class SortByRenderLayer implements Comparator<EntityAbstract>{
-        @Override
-        public int compare(EntityAbstract o1, EntityAbstract o2){
-            return o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal();
-        }
     }
 
     public void Render(Canvas _canvas){
