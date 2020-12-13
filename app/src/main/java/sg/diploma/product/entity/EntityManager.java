@@ -31,7 +31,7 @@ public final class EntityManager{ //Singleton
         entityRemovalList.clear();
 
         for(EntityAbstract entity: entityList.values()){
-            entity.attribs.prevPos = entity.attribs.pos;
+            entity.attribs.prevPos = entity.attribs.boxColliderPos;
             entity.Update(_dt);
         }
 
@@ -139,8 +139,8 @@ public final class EntityManager{ //Singleton
                     CollisionDataBoxBoxAABB collisionData0 = new CollisionDataBoxBoxAABB();
                     CollisionDataBoxBoxAABB collisionData1 = new CollisionDataBoxBoxAABB();
                     if(DetectCollision.BoxBoxAABB(entity0, entity1, collisionData0, collisionData1)){
-                        ResolveCollision.BoxBoxAABB(entity0, collisionData0, collisionData1);
-                        ResolveCollision.BoxBoxAABB(entity1, collisionData1, collisionData0);
+                        ResolveCollision.BoxBoxAABB(entity0, entity1, collisionData0, collisionData1);
+                        ResolveCollision.BoxBoxAABB(entity1, entity0, collisionData1, collisionData0);
                     }
                     break;
                 case Circle:

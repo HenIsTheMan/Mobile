@@ -92,6 +92,8 @@ public final class GameScreenActivity extends Activity implements IState{
         startPlat.attribs.pos.y = DeviceManager.screenHeightF - startPlat.attribs.scale.y * 0.5f;
         startPlat.attribs.boxColliderPos.x = startPlat.attribs.pos.x;
         startPlat.attribs.boxColliderPos.y = startPlat.attribs.pos.y;
+        startPlat.attribs.boxColliderScale.x = startPlat.attribs.scale.x;
+        startPlat.attribs.boxColliderScale.y = startPlat.attribs.scale.y;
 
         noobPlat = EntityPlat.Create("noobPlat");
         noobPlat.attribs.scale.x = DeviceManager.screenWidthF * 0.25f;
@@ -100,6 +102,8 @@ public final class GameScreenActivity extends Activity implements IState{
         noobPlat.attribs.pos.y = DeviceManager.screenHeightF - noobPlat.attribs.scale.y * 0.5f - 200.0f;
         noobPlat.attribs.boxColliderPos.x = noobPlat.attribs.pos.x;
         noobPlat.attribs.boxColliderPos.y = noobPlat.attribs.pos.y;
+        noobPlat.attribs.boxColliderScale.x = noobPlat.attribs.scale.x;
+        noobPlat.attribs.boxColliderScale.y = noobPlat.attribs.scale.y;
 
         gamePlayerChar = EntityGamePlayerChar.Create(
             "Special_gamePlayerChar",
