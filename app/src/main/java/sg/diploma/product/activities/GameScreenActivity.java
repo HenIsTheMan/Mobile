@@ -99,7 +99,7 @@ public final class GameScreenActivity extends Activity implements IState{
         noobPlat.attribs.scale.x = DeviceManager.screenWidthF * 0.25f;
         noobPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
         noobPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        noobPlat.attribs.pos.y = DeviceManager.screenHeightF - noobPlat.attribs.scale.y * 0.5f - 200.0f;
+        noobPlat.attribs.pos.y = DeviceManager.screenHeightF - noobPlat.attribs.scale.y * 0.5f - 500.0f;
         noobPlat.attribs.boxColliderPos.x = noobPlat.attribs.pos.x;
         noobPlat.attribs.boxColliderPos.y = noobPlat.attribs.pos.y;
         noobPlat.attribs.boxColliderScale.x = noobPlat.attribs.scale.x;
@@ -114,7 +114,7 @@ public final class GameScreenActivity extends Activity implements IState{
         final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getHeight() * 0.2f;
 
         gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - startPlat.attribs.scale.y - playerCharHeight * 1.2f * 0.5f - 500.0f;
+        gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - startPlat.attribs.scale.y - playerCharHeight * 1.2f * 0.5f;
 
         gamePlayerChar.attribs.boxColliderScale.x = playerCharWidth * 1.2f;
         gamePlayerChar.attribs.boxColliderScale.y = playerCharHeight * 1.2f;
@@ -141,12 +141,13 @@ public final class GameScreenActivity extends Activity implements IState{
         }
 
         if(gamePlayerChar != null){
-            if(gamePlayerChar.attribs.pos.x < 0.0f){
-                gamePlayerChar.attribs.pos.x = 0.0f;
+            final float playerCharHalfWidth = ((float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() / 9.f * 0.5f) * 0.5f;
+            if(gamePlayerChar.attribs.pos.x < playerCharHalfWidth){
+                gamePlayerChar.attribs.pos.x = playerCharHalfWidth;
                 gamePlayerChar.SwitchFacing();
             }
-            if(gamePlayerChar.attribs.pos.x > DeviceManager.screenWidthF){
-                gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF;
+            if(gamePlayerChar.attribs.pos.x > DeviceManager.screenWidthF - playerCharHalfWidth){
+                gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF - playerCharHalfWidth;
                 gamePlayerChar.SwitchFacing();
             }
         }
