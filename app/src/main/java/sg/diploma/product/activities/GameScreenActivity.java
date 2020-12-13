@@ -11,6 +11,7 @@ import android.view.SurfaceView;
 import sg.diploma.product.R;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityGameBG;
+import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.entity.entities.EntityPlat;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.game.GameView;
@@ -22,6 +23,7 @@ import sg.diploma.product.touch.TouchTypes;
 public final class GameScreenActivity extends Activity implements IState{
     public GameScreenActivity(){
         gameBG = null;
+        gamePlayerChar = null;
         textOnScreen = null;
     }
 
@@ -58,8 +60,8 @@ public final class GameScreenActivity extends Activity implements IState{
             R.drawable.game_background
         );
 
-        gameBG.attribs.pos.x = (int)((float)displayMetrics.widthPixels * 0.5f);
-        gameBG.attribs.pos.y = (int)((float)displayMetrics.heightPixels * 0.5f);
+        gameBG.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
+        gameBG.attribs.pos.y = (float)displayMetrics.heightPixels * 0.5f;
         final float scaleFactor = (float)displayMetrics.heightPixels / 1134.0f * 0.75f;
         gameBG.attribs.scale.x = scaleFactor;
         gameBG.attribs.scale.y = scaleFactor;
@@ -67,17 +69,35 @@ public final class GameScreenActivity extends Activity implements IState{
         gameBG.SetSpriteAnimYScale(scaleFactor);
         //*/
 
+        //* Create text on screen
         textOnScreen = EntityTextOnScreen.Create("gameTextOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
         textOnScreen.attribs.pos.x = 30.0f;
         textOnScreen.attribs.pos.y = 80.0f;
         textOnScreen.SetStrokeWidth(300.0f);
         textOnScreen.SetTextSize(55.0f);
+        //*/
 
         EntityPlat testPlat = EntityPlat.Create("testPlat");
         testPlat.attribs.scale.x = (float)displayMetrics.widthPixels;
         testPlat.attribs.scale.y = (float)displayMetrics.heightPixels * 0.03f;
         testPlat.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
         testPlat.attribs.pos.y = (float)displayMetrics.heightPixels - testPlat.attribs.scale.y * 0.5f;
+
+        gamePlayerChar = EntityGamePlayerChar.Create(
+            "gamePlayerChar",
+            R.drawable.player_char
+        );
+
+        gamePlayerChar.attribs.pos.x = (float)displayMetrics.widthPixels * 0.5f;
+        gamePlayerChar.attribs.pos.y = (float)displayMetrics.heightPixels - testPlat.attribs.scale.y;
+        // - 31.75f * 1.2f
+
+        gamePlayerChar.attribs.scale.x = gamePlayerChar.attribs.scale.y = 1.2f;
+        gamePlayerChar.SetSpriteAnimXScale(1.2f);
+        gamePlayerChar.SetSpriteAnimYScale(1.2f);
+
+        //menuPlayerChar.attribs.yMin = new EntityConstraint();
+        //menuPlayerChar.attribs.yMin.val = ((float)displayMetrics.heightPixels * 0.35f + (float)displayMetrics.widthPixels / 4.0f) * 1.15f;
     }
 
     @Override
@@ -105,6 +125,7 @@ public final class GameScreenActivity extends Activity implements IState{
     }
 
     private EntityGameBG gameBG;
+    private EntityGamePlayerChar gamePlayerChar;
     private EntityTextOnScreen textOnScreen;
 
     public static GameScreenActivity Instance;

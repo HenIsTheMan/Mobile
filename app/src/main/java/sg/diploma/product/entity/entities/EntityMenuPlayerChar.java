@@ -78,14 +78,6 @@ public final class EntityMenuPlayerChar extends EntityAbstract implements IEntit
 		}
 
 		spriteAnim.Update(dt);
-
-		/*if(TouchManager.Instance.HasTouch()){
-			if(CheckCollision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched){
-				hasTouched = true;
-				pos.x = TouchManager.Instance.GetPosX();
-				pos.y = TouchManager.Instance.GetPosY();
-			}
-		}*/
 	}
 
 	@Override
@@ -101,9 +93,6 @@ public final class EntityMenuPlayerChar extends EntityAbstract implements IEntit
 
 	@Override
 	public void OnHit(final IEntityCollidable other){
-		/*if(other.collidableType == EntityCollidableTypes.EntityCollidableType.Box){
-			EntityManager.Instance.SendEntityForRemoval(this);
-		}*/
 	}
 
 	public void StartMoving(final float xPos, final float yPos){
