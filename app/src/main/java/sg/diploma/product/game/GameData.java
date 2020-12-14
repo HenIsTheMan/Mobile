@@ -1,0 +1,63 @@
+package sg.diploma.product.game;
+
+import sg.diploma.product.device.DeviceManager;
+import sg.diploma.product.entity.entities.EntityGamePlayerChar;
+import sg.diploma.product.entity.entities.EntityPlat;
+import sg.diploma.product.entity.entities.EntityTextOnScreen;
+import sg.diploma.product.event.EventAbstract;
+import sg.diploma.product.event.IListener;
+import sg.diploma.product.math.Pseudorand;
+import sg.diploma.product.math.Vector2;
+
+public final class GameData implements IListener{ //Save storage managed by us
+	private GameData(){
+	}
+
+	private void SpawnPlat(){
+		EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex, gamePlayerChar);
+		plat.SetMyIndex(platIndex);
+		plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.6f);
+		plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.03f, 0.07f);
+		plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
+		plat.attribs.pos.y = gamePlayerChar.attribs.boxColliderPos.y - DeviceManager.screenHeight + plat.attribs.scale.y * 0.5f;
+		plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
+		plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
+		plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
+		plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
+	}
+
+	@Override
+	public void OnEvent(EventAbstract event){
+		switch(event.GetID()){
+			case SpawnPlat:
+				SpawnPlat();
+				break;
+		}
+	}
+
+	//private EntityGameBG gameBG;
+	public static EntityGamePlayerChar gamePlayerChar;
+	public static EntityPlat startPlat;
+	public static EntityTextOnScreen textOnScreenFPS;
+	public static EntityTextOnScreen textOnScreenScore;
+
+	public static int score;
+	public static int platIndex;
+
+	public static Vector2 fingerDownPos;
+	public static Vector2 fingerUpPos;
+
+	static{
+		//gameBG = null;
+		gamePlayerChar = null;
+		startPlat = null;
+		textOnScreenFPS = null;
+		textOnScreenScore = null;
+
+		platIndex = 0;
+		score = -1;
+
+		fingerDownPos = null;
+		fingerUpPos = null;
+	}
+}
