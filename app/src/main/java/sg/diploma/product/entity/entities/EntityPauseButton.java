@@ -2,6 +2,8 @@ package sg.diploma.product.entity.entities;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
 
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
@@ -62,7 +64,10 @@ public final class EntityPauseButton extends EntityAbstract{
 	@Override
 	public void SpecialRender(final Canvas canvas){
 		assert bitmap != null;
-		canvas.drawBitmap(bitmap, attribs.pos.x - bitmap.getWidth() * 0.5f * attribs.scale.x, attribs.pos.y - bitmap.getHeight() * 0.5f * attribs.scale.y, null);
+
+		Rect src = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+		RectF dst = new RectF(attribs.pos.x, attribs.pos.y, attribs.pos.x + attribs.scale.x, attribs.pos.y + attribs.scale.y);
+		canvas.drawBitmap(bitmap, src, dst, null);
 	}
 
 	public static EntityPauseButton Create(final String key, final int bitmapID){

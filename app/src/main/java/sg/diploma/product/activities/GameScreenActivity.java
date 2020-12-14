@@ -75,17 +75,18 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         //*/
 
         //* Create text on screen
+        final float textSize = DeviceManager.screenWidthF * 0.05f;
         GameData.textOnScreenFPS = EntityTextOnScreen.Create("Special_gameTextOnScreenFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
-        GameData.textOnScreenFPS.attribs.pos.x = 55.0f * 0.5f;
-        GameData.textOnScreenFPS.attribs.pos.y = 55.0f;
-        GameData.textOnScreenFPS.SetStrokeWidth(300.0f);
-        GameData.textOnScreenFPS.SetTextSize(55.0f);
+        GameData.textOnScreenFPS.attribs.pos.x = textSize * 0.5f;
+        GameData.textOnScreenFPS.attribs.pos.y = textSize;
+        GameData.textOnScreenFPS.SetStrokeWidth(400.0f);
+        GameData.textOnScreenFPS.SetTextSize(textSize);
 
         GameData.textOnScreenScore = EntityTextOnScreen.Create("Special_gameTextOnScreenScore", _view.getContext().getAssets(), "fonts/grobold.ttf");
-        GameData.textOnScreenScore.attribs.pos.x = 55.0f * 0.5f;
-        GameData.textOnScreenScore.attribs.pos.y = 55.0f * 2.0f;
-        GameData.textOnScreenScore.SetStrokeWidth(300.0f);
-        GameData.textOnScreenScore.SetTextSize(55.0f);
+        GameData.textOnScreenScore.attribs.pos.x = textSize * 0.5f;
+        GameData.textOnScreenScore.attribs.pos.y = textSize * 2.0f;
+        GameData.textOnScreenScore.SetStrokeWidth(400.0f);
+        GameData.textOnScreenScore.SetTextSize(textSize);
         //*/
 
         //* Create game player char and start plat
@@ -132,11 +133,11 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
         //* Create pause button
         GameData.pauseButton = EntityPauseButton.Create("Special_pause", R.drawable.pause_icon);
-        final Bitmap pauseBitMap = ResourceManager.Instance.GetBitmap(R.drawable.pause_icon, Bitmap.Config.RGB_565);
-        GameData.pauseButton.attribs.pos.x = DeviceManager.screenWidthF - (float)pauseBitMap.getWidth();
-        GameData.pauseButton.attribs.pos.y = pauseBitMap.getHeight();
-        GameData.pauseButton.attribs.scale.x = 0.05f;
-        GameData.pauseButton.attribs.scale.y = 0.05f;
+        final float buttonSize = DeviceManager.screenWidthF * 0.1f;
+        GameData.pauseButton.attribs.scale.x = buttonSize;
+        GameData.pauseButton.attribs.scale.y = buttonSize;
+        GameData.pauseButton.attribs.pos.x = DeviceManager.screenWidthF - buttonSize;
+        GameData.pauseButton.attribs.pos.y = 0.0f;
         //*/
     }
 
