@@ -31,7 +31,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
     @Override
     public void run(){
         long framePerSecond = 1000 / targetFPS;
-        long startTime = 0;
+        long startTime;
 
         long prevTime = System.nanoTime();
 

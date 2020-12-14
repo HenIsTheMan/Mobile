@@ -217,25 +217,31 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     }
 
     private void InitOthers(){
-        myShape = findViewById(R.id.myShape);
-        myShape.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 1.2f);
-        myShape.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 1.2f);
+        if(showMyShape){
+            myShape = findViewById(R.id.myShape);
+            myShape.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 1.2f);
+            myShape.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 1.2f);
 
-        Animation myShapeAnim = AnimationUtils.loadAnimation(this, R.anim.my_shape_anim);
-        myShapeAnim.setStartOffset(799);
-        myShapeAnim.setAnimationListener(new Animation.AnimationListener(){
-            @Override
-            public void onAnimationStart(Animation anim){
-            }
-            @Override
-            public void onAnimationRepeat(Animation anim){
-            }
-            @Override
-            public void onAnimationEnd(Animation anim) {
-                myShape.setVisibility(View.GONE);
-            }
-        });
-        myShape.startAnimation(myShapeAnim);
+            Animation myShapeAnim = AnimationUtils.loadAnimation(this, R.anim.my_shape_anim);
+            myShapeAnim.setStartOffset(799);
+            myShapeAnim.setAnimationListener(new Animation.AnimationListener(){
+                @Override
+                public void onAnimationStart(Animation anim){
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation anim){
+                }
+
+                @Override
+                public void onAnimationEnd(Animation anim){
+                    myShape.setVisibility(View.GONE);
+                }
+            });
+            myShape.startAnimation(myShapeAnim);
+
+            showMyShape = false;
+        }
 
         final float buttonFactor = DeviceManager.screenWidthF * 0.25f / 300.0f;
         final int buttonSize = (int)(300.0f * buttonFactor);
@@ -335,4 +341,10 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private TextView gameTitleGirlText;
 
     private Typeface font;
+
+    private static boolean showMyShape;
+
+    static{
+        showMyShape = true;
+    }
 }
