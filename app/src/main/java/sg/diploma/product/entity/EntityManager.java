@@ -32,7 +32,10 @@ public final class EntityManager{ //Singleton
         entityRemovalList.clear();
 
         if(GameManager.Instance.GetIsPaused()){
-            Objects.requireNonNull(entityList.get("Special_pauseButton")).Update(_dt);
+            EntityAbstract pauseButton = entityList.get("Special_pauseButton");
+            if(pauseButton != null){
+                pauseButton.Update(_dt);
+            }
             return;
         }
 
@@ -82,7 +85,10 @@ public final class EntityManager{ //Singleton
 
     public void LateUpdate(final float dt){
         if(GameManager.Instance.GetIsPaused()){
-            Objects.requireNonNull(entityList.get("Special_pauseButton")).LateUpdate(dt);
+            EntityAbstract pauseButton = entityList.get("Special_pauseButton");
+            if(pauseButton != null){
+                pauseButton.LateUpdate(dt);
+            }
             return;
         }
 

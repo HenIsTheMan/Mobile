@@ -14,6 +14,8 @@ import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.entity.entities.EntityPauseButton;
 import sg.diploma.product.entity.entities.EntityPlat;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
+import sg.diploma.product.event.EventAbstract;
+import sg.diploma.product.event.IListener;
 import sg.diploma.product.event.ListenerFlagsWrapper;
 import sg.diploma.product.event.Publisher;
 import sg.diploma.product.game.GameData;
@@ -22,10 +24,11 @@ import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.math.Pseudorand;
 import sg.diploma.product.math.Vector2;
 import sg.diploma.product.state.IState;
+import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 
-public final class GameScreenActivity extends Activity implements IState{
+public final class GameScreenActivity extends Activity implements IState, IListener{
     public GameScreenActivity(){
     }
 
@@ -34,6 +37,13 @@ public final class GameScreenActivity extends Activity implements IState{
         super.onCreate(savedInstanceState);
         Instance = this;
         setContentView(new GameView(this));
+        Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameScreenActivity.GetVal(), this);
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.GameScreenActivity.GetVal());
     }
 
     @Override
@@ -189,6 +199,17 @@ public final class GameScreenActivity extends Activity implements IState{
         EntityManager.Instance.Update(_dt);
 
         EntityManager.Instance.LateUpdate(_dt);
+    }
+
+    @Override
+    public void OnEvent(EventAbstract event){
+        switch(event.GetID()){
+            case EndGame:
+                GameData.globalInstance.ResetVars();
+                EntityManager.Instance.SendAllEntitiesForRemoval();
+                StateManager.Instance.ChangeState("MenuScreen");
+                break;
+        }
     }
 
     public static GameScreenActivity Instance;

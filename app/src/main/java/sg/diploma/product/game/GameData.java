@@ -1,7 +1,6 @@
 package sg.diploma.product.game;
 
 import sg.diploma.product.device.DeviceManager;
-import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.entity.entities.EntityPauseButton;
 import sg.diploma.product.entity.entities.EntityPlat;
@@ -11,7 +10,6 @@ import sg.diploma.product.event.IListener;
 import sg.diploma.product.event.events.EventAddScore;
 import sg.diploma.product.math.Pseudorand;
 import sg.diploma.product.math.Vector2;
-import sg.diploma.product.state.StateManager;
 
 public final class GameData implements IListener{ //Singleton
 	private GameData(){
@@ -19,6 +17,11 @@ public final class GameData implements IListener{ //Singleton
 
 	public void ResetVars(){
 		//gameBG = null;
+
+		pauseButton = null;
+		startPlat = null;
+		textOnScreenFPS = null;
+		textOnScreenScore = null;
 
 		platIndex = 0;
 		score = -1;
@@ -48,11 +51,6 @@ public final class GameData implements IListener{ //Singleton
 				break;
 			case AddScore:
 				score += ((EventAddScore)event).GetScoreAdd();
-				break;
-			case EndGame:
-				GameData.globalInstance.ResetVars();
-				EntityManager.Instance.SendAllEntitiesForRemoval();
-				StateManager.Instance.ChangeState("MenuScreen");
 				break;
 		}
 	}
