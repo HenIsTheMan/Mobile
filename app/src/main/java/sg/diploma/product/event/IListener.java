@@ -2,7 +2,7 @@ package sg.diploma.product.event;
 
 public interface IListener{
 	enum ListenerFlags{ //Flags enum
-		AddScore(0);
+		EndGame(0);
 
 		ListenerFlags(final int val){
 			this.val = 1 << val;

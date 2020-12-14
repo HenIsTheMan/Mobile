@@ -14,6 +14,10 @@ import sg.diploma.product.entity.entities.EntityGameBG;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.entity.entities.EntityPlat;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
+import sg.diploma.product.event.EventAbstract;
+import sg.diploma.product.event.EventIDs;
+import sg.diploma.product.event.IListener;
+import sg.diploma.product.event.Publisher;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.math.Pseudorand;
@@ -22,7 +26,7 @@ import sg.diploma.product.state.IState;
 import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 
-public final class GameScreenActivity extends Activity implements IState{
+public final class GameScreenActivity extends Activity implements IState, IListener{
     public GameScreenActivity(){
         gameBG = null;
         gamePlayerChar = null;
@@ -41,6 +45,7 @@ public final class GameScreenActivity extends Activity implements IState{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         Instance = this;
+        Publisher.AddListener(IListener.ListenerFlags.EndGame.GetVal(), this);
         setContentView(new GameView(this));
     }
 
@@ -176,6 +181,12 @@ public final class GameScreenActivity extends Activity implements IState{
             plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
             plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
             plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
+        }
+    }
+
+    public void OnEvent(EventAbstract event){
+        if(event.GetID() == EventIDs.EventID.EndGame){
+            android.util.Log.e("Hey", "Here");
         }
     }
 
