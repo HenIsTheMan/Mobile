@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 
 import androidx.annotation.RequiresApi;
 
@@ -23,6 +24,8 @@ import sg.diploma.product.touch.TouchManager;
 public final class OptionsScreenActivity extends Activity implements View.OnClickListener, IState{
 	public OptionsScreenActivity(){
 		backButton = null;
+		seekBarMusic = null;
+		seekBarSounds = null;
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.P)
@@ -39,8 +42,16 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		backButton.setOnClickListener(this);
 		backButton.getLayoutParams().width = buttonSize;
 		backButton.getLayoutParams().height = buttonSize;
-		backButton.setTranslationX(buttonSize * 0.5f);
-		backButton.setTranslationY(buttonSize * 0.5f);
+		backButton.setTranslationX((float)buttonSize * 0.5f);
+		backButton.setTranslationY((float)buttonSize * 0.5f);
+
+		seekBarMusic = findViewById(R.id.seekBarMusic);
+		seekBarMusic.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.4f);
+		seekBarMusic.setTranslationX(DeviceManager.screenWidthF * 0.5f - seekBarMusic.getLayoutParams().width * 0.5f);
+
+		seekBarSounds = findViewById(R.id.seekBarSounds);
+		seekBarSounds.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.4f);
+		seekBarSounds.setTranslationX(DeviceManager.screenWidthF * 0.5f - seekBarSounds.getLayoutParams().width * 0.5f);
 	}
 
 	@Override
@@ -105,6 +116,8 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	}
 
 	private Button backButton;
+	private SeekBar seekBarMusic;
+	private SeekBar seekBarSounds;
 
 	public static OptionsScreenActivity Instance;
 
