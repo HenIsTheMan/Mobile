@@ -7,7 +7,6 @@ import android.graphics.RectF;
 
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
-import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
@@ -49,7 +48,7 @@ public final class EntityPauseButton extends EntityAbstract{
 			)
 		){
 			paused = !paused;
-			AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+			AudioManager.Instance.PlayAudio(R.raw.button_press, 5.0f);
 			GameManager.Instance.SetIsPaused(paused);
 			BT = elapsedTime + 0.2f;
 		}

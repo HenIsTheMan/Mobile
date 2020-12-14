@@ -15,7 +15,6 @@ import androidx.annotation.RequiresApi;
 
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
-import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.state.IState;
@@ -53,6 +52,12 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		seekBarSounds = findViewById(R.id.seekBarSounds);
 		seekBarSounds.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.4f);
 		seekBarSounds.setTranslationX(DeviceManager.screenWidthF * 0.5f - seekBarSounds.getLayoutParams().width * 0.5f);
+
+		/*final int musicProgress = seekBarMusic.getProgress();
+		final int musicMax = seekBarMusic.getMax();
+
+		final int soundProgress = seekBarMusic.getProgress();
+		final int soundMax = seekBarMusic.getMax();*/
 	}
 
 	@Override
@@ -63,7 +68,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 	@Override
 	public void onClick(View v){
-		AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+		AudioManager.Instance.PlayAudio(R.raw.button_press, 5.0f);
 		if(v == backButton){
 			EntityManager.Instance.SendAllEntitiesForRemoval();
 			StateManager.Instance.ChangeState("MenuScreen");
@@ -79,12 +84,6 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 	@Override
 	public void Update(float _dt){
-		final int musicProgress = seekBarMusic.getProgress();
-		final int musicMax = seekBarMusic.getMax();
-
-		final int soundProgress = seekBarMusic.getProgress();
-		final int soundMax = seekBarMusic.getMax();
-
 		EntityManager.Instance.Update(_dt);
 	}
 

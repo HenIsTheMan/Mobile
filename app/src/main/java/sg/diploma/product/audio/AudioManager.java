@@ -8,13 +8,10 @@ import java.util.HashMap;
 
 public final class AudioManager{
 	private AudioManager(){
-		musicVol = 0.0f;
-		soundVol = 0.0f;
-
 		view = null;
 		res = null;
 
-		audioMap = new HashMap<Integer, MediaPlayer>();
+		audioMap = new HashMap<>();
 	}
 
 	public void Init(SurfaceView _view){
@@ -22,7 +19,7 @@ public final class AudioManager{
 		res = _view.getResources();
 	}
 
-	public void PlayAudio(int _id, AudioTypes.AudioType type){
+	public void PlayAudio(int _id, float _vol){
 		if(audioMap.containsKey(_id)){
 			audioMap.get(_id).reset();
 			audioMap.get(_id).start();
@@ -31,13 +28,7 @@ public final class AudioManager{
 		///Load audio
 		MediaPlayer newAudio = MediaPlayer.create(view.getContext(), _id);
 		audioMap.put(_id, newAudio);
-
-		if(type == AudioTypes.AudioType.Music){
-			newAudio.setVolume(musicVol, musicVol);
-		} else{
-			newAudio.setVolume(soundVol, soundVol);
-		}
-
+		newAudio.setVolume(_vol, _vol);
 		newAudio.start();
 	}
 
@@ -53,10 +44,6 @@ public final class AudioManager{
 		MediaPlayer newAudio = audioMap.get(_id);
 		newAudio.stop();
 	}
-
-
-	public float musicVol;
-	public float soundVol;
 
 	private SurfaceView view;
 	private Resources res;
