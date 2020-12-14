@@ -23,6 +23,7 @@ import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.math.Pseudorand;
 import sg.diploma.product.math.Vector2;
 import sg.diploma.product.state.IState;
+import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 
@@ -186,7 +187,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     public void OnEvent(EventAbstract event){
         if(event.GetID() == EventIDs.EventID.EndGame){
-            android.util.Log.e("Hey", "Here");
+            EntityManager.Instance.SendAllEntitiesForRemoval();
+            StateManager.Instance.ChangeState("MenuScreen");
         }
     }
 

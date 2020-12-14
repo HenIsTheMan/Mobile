@@ -18,7 +18,6 @@ public final class ResolveCollision{
 		if(entity.attribs.prevPos.y - myData.halfHeight <= otherData.yMin && entity.attribs.vel.y > 0.0f){
 			entity.attribs.boxColliderPos.y = otherData.yMin - myData.halfHeight;
 			entity.attribs.pos.y = entity.attribs.boxColliderPos.y - entity.attribs.boxColliderScale.y * 0.075f;
-			entity.attribs.vel.y = 0.0f;
 		}
 	}
 }

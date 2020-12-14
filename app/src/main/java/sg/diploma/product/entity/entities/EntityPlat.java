@@ -10,8 +10,6 @@ import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
-import sg.diploma.product.event.Publisher;
-import sg.diploma.product.event.events.EventEndGame;
 import sg.diploma.product.graphics.Color;
 
 public final class EntityPlat extends EntityAbstract{
@@ -37,10 +35,10 @@ public final class EntityPlat extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
-		if(color.r == 1.0f && color.g == 1.0f && color.b == 0.0f && gamePlayerChar.attribs.pos.y > attribs.pos.y){
+		/*if(color.r == 1.0f && color.g == 1.0f && color.b == 0.0f && attribs.pos.y - gamePlayerChar.attribs.pos.y < 50.0f){
 			Publisher.Broadcast(new EventEndGame());
 			return;
-		}
+		}*/
 
 		if(attribs.pos.y - gamePlayerChar.attribs.pos.y > DeviceManager.screenHeightF * 0.25f){
 			EntityManager.Instance.SendEntityForRemoval("plat_" + myIndex);
