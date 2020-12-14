@@ -17,7 +17,7 @@ public final class GameData implements IListener{ //Singleton
 
 	public void ResetVars(){
 		//gameBG = null;
-
+		gamePlayerChar = null;
 		pauseButton = null;
 		startPlat = null;
 		textOnScreenFPS = null;
