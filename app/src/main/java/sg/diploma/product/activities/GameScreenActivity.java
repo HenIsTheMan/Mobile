@@ -158,8 +158,6 @@ public final class GameScreenActivity extends Activity implements IState, IListe
             }
         }
 
-        EntityManager.Instance.Update(_dt);
-
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
             fingerDownPos = new Vector2(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
         }
@@ -172,6 +170,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
             fingerDownPos = null;
             fingerUpPos = null;
         }
+
+        EntityManager.Instance.Update(_dt);
 
         EntityManager.Instance.LateUpdate(_dt);
     }
