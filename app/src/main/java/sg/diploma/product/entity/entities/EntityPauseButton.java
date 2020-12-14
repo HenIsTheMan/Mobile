@@ -20,19 +20,25 @@ import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 
 public final class EntityPauseButton extends EntityAbstract{
-	public EntityPauseButton(final int bitmapID){
+	public EntityPauseButton(final int notPausedBitmapID, final int pausedBitmapID){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.UI;
 		attribs.type = EntityTypes.EntityType.PauseButton;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
 
 		paused = false;
-		bitmap = ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565);
+		BT = 0.0f;
+		elapsedTime = 0.0f;
+
+		notPausedBitmap = ResourceManager.Instance.GetBitmap(notPausedBitmapID, Bitmap.Config.RGB_565);
+		pausedBitmap = ResourceManager.Instance.GetBitmap(pausedBitmapID, Bitmap.Config.RGB_565);
 	}
 
 	@Override
 	public void Update(float _dt){
-		if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()
+		elapsedTime += _dt;
+
+		if(BT <= elapsedTime && TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()
 			&& DetectCollision.CircleCircle(new Vector2(
 				TouchManager.Instance.GetXPos(),
 				TouchManager.Instance.GetYPos()),
@@ -44,21 +50,12 @@ public final class EntityPauseButton extends EntityAbstract{
 			paused = !paused;
 			AudioManager.Instance.PlayAudio(R.raw.button_press, 5);
 			GameManager.Instance.SetIsPaused(paused);
+			BT = elapsedTime + 0.2f;
 		}
 	}
 
 	@Override
 	public void Render(Canvas _canvas){
-		assert bitmap != null;
-
-		Rect src = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-		RectF dst = new RectF(
-			attribs.pos.x - attribs.scale.x * 0.5f,
-			attribs.pos.y - attribs.scale.y * 0.5f,
-			attribs.pos.x + attribs.scale.x * 0.5f,
-			attribs.pos.y + attribs.scale.y * 0.5f
-		);
-		_canvas.drawBitmap(bitmap, src, dst, null);
 	}
 
 	@Override
@@ -71,24 +68,37 @@ public final class EntityPauseButton extends EntityAbstract{
 
 	@Override
 	public void SpecialRender(final Canvas canvas){
-		assert bitmap != null;
-
-		Rect src = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-		RectF dst = new RectF(
-			attribs.pos.x - attribs.scale.x * 0.5f,
-			attribs.pos.y - attribs.scale.y * 0.5f,
-			attribs.pos.x + attribs.scale.x * 0.5f,
-			attribs.pos.y + attribs.scale.y * 0.5f
-		);
-		canvas.drawBitmap(bitmap, src, dst, null);
+		if(paused){
+			Rect src = new Rect(0, 0, pausedBitmap.getWidth(), pausedBitmap.getHeight());
+			RectF dst = new RectF(
+				attribs.pos.x - attribs.scale.x * 0.5f,
+				attribs.pos.y - attribs.scale.y * 0.5f,
+				attribs.pos.x + attribs.scale.x * 0.5f,
+				attribs.pos.y + attribs.scale.y * 0.5f
+			);
+			canvas.drawBitmap(pausedBitmap, src, dst, null);
+		} else{
+			Rect src = new Rect(0, 0, notPausedBitmap.getWidth(), notPausedBitmap.getHeight());
+			RectF dst = new RectF(
+				attribs.pos.x - attribs.scale.x * 0.5f,
+				attribs.pos.y - attribs.scale.y * 0.5f,
+				attribs.pos.x + attribs.scale.x * 0.5f,
+				attribs.pos.y + attribs.scale.y * 0.5f
+			);
+			canvas.drawBitmap(notPausedBitmap, src, dst, null);
+		}
 	}
 
-	public static EntityPauseButton Create(final String key, final int bitmapID){
-		EntityPauseButton result = new EntityPauseButton(bitmapID);
+	public static EntityPauseButton Create(final String key, final int notPausedBitmapID, final int pausedBitmapID){
+		EntityPauseButton result = new EntityPauseButton(notPausedBitmapID, pausedBitmapID);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}
 
-	private final Bitmap bitmap;
 	private boolean paused;
+	private float BT;
+	private float elapsedTime;
+
+	private final Bitmap notPausedBitmap;
+	private final Bitmap pausedBitmap;
 }

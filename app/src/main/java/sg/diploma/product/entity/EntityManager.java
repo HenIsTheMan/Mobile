@@ -81,6 +81,11 @@ public final class EntityManager{ //Singleton
     }
 
     public void LateUpdate(final float dt){
+        if(GameManager.Instance.GetIsPaused()){
+            Objects.requireNonNull(entityList.get("Special_pauseButton")).LateUpdate(dt);
+            return;
+        }
+
         for(EntityAbstract entity: entityList.values()){
             entity.LateUpdate(dt);
         }

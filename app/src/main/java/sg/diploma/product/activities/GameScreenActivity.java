@@ -132,7 +132,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         //*/
 
         //* Create pause button
-        GameData.pauseButton = EntityPauseButton.Create("Special_pauseButton", R.drawable.pause_icon);
+        GameData.pauseButton = EntityPauseButton.Create("Special_pauseButton", R.drawable.pause_icon_white, R.drawable.pause_icon_yellow);
         final float buttonSize = DeviceManager.screenWidthF * 0.1f;
         GameData.pauseButton.attribs.scale.x = buttonSize;
         GameData.pauseButton.attribs.scale.y = buttonSize;
