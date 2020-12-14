@@ -15,6 +15,8 @@ import sg.diploma.product.entity.entities.EntityPlat;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.event.EventAbstract;
 import sg.diploma.product.event.IListener;
+import sg.diploma.product.event.ListenerFlagsWrapper;
+import sg.diploma.product.event.Publisher;
 import sg.diploma.product.game.GameData;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.graphics.ResourceManager;
@@ -54,6 +56,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     @Override
     public void OnEnter(SurfaceView _view){
+        Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal(), GameData.globalInstance);
+
         //* Create game BG (Removed as super laggy)
         /*GameData.gameBG = EntityGameBG.Create(
             "Special_gameBG",
@@ -84,8 +88,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         //*/
 
         GameData.gamePlayerChar = EntityGamePlayerChar.Create(
-                "Special_gamePlayerChar",
-                R.drawable.player_char
+            "Special_gamePlayerChar",
+            R.drawable.player_char
         );
 
         GameData. startPlat = EntityPlat.Create("plat_0", GameData.gamePlayerChar);
@@ -126,6 +130,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     @Override
     public void OnExit(){
+        Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal());
+
         Instance.finish();
     }
 
@@ -143,7 +149,21 @@ public final class GameScreenActivity extends Activity implements IState, IListe
             GameData.textOnScreenScore.SetText("Score: " + GameData.score);
         }
 
-        if(GameData.gamePlayerChar != null){ //So player does not exit play area
+        if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
+            GameData.fingerDownPos = new Vector2(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
+        }
+        if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Up.GetVal()) {
+            GameData.fingerUpPos = new Vector2(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
+        }
+
+        if(GameData.gamePlayerChar != null){
+            GameData.gamePlayerChar.Jump(GameData.fingerDownPos, GameData.fingerUpPos);
+            if(GameData.fingerDownPos != null && GameData.fingerUpPos != null){
+                GameData.fingerDownPos = null;
+                GameData.fingerUpPos = null;
+            }
+
+            //* So player does not exit play area
             final float playerCharHalfWidth = ((float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() / 9.f * 0.5f) * 0.5f;
             if(GameData.gamePlayerChar.attribs.pos.x < playerCharHalfWidth){
                 GameData.gamePlayerChar.attribs.pos.x = playerCharHalfWidth;
@@ -153,19 +173,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 GameData.gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF - playerCharHalfWidth;
                 GameData.gamePlayerChar.SwitchFacing();
             }
-        }
-
-        if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
-            GameData.fingerDownPos = new Vector2(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
-        }
-        if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Up.GetVal()) {
-            GameData.fingerUpPos = new Vector2(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
-        }
-
-        GameData.gamePlayerChar.Jump(GameData.fingerDownPos, GameData.fingerUpPos);
-        if(GameData.fingerDownPos != null && GameData.fingerUpPos != null){
-            GameData.fingerDownPos = null;
-            GameData.fingerUpPos = null;
+            //*/
         }
 
         EntityManager.Instance.Update(_dt);
@@ -177,6 +185,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     public void OnEvent(EventAbstract event){
         switch(event.GetID()){
             case EndGame:
+                GameData.globalInstance.ResetVars();
                 EntityManager.Instance.SendAllEntitiesForRemoval();
                 StateManager.Instance.ChangeState("MenuScreen");
                 break;

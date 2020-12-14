@@ -9,8 +9,22 @@ import sg.diploma.product.event.IListener;
 import sg.diploma.product.math.Pseudorand;
 import sg.diploma.product.math.Vector2;
 
-public final class GameData implements IListener{ //Save storage managed by us
+public final class GameData implements IListener{ //Singleton
 	private GameData(){
+	}
+
+	public void ResetVars(){
+		//gameBG = null;
+		gamePlayerChar = null;
+		startPlat = null;
+		textOnScreenFPS = null;
+		textOnScreenScore = null;
+
+		platIndex = 0;
+		score = -1;
+
+		fingerDownPos = null;
+		fingerUpPos = null;
 	}
 
 	private void SpawnPlat(){
@@ -47,6 +61,8 @@ public final class GameData implements IListener{ //Save storage managed by us
 	public static Vector2 fingerDownPos;
 	public static Vector2 fingerUpPos;
 
+	public static GameData globalInstance;
+
 	static{
 		//gameBG = null;
 		gamePlayerChar = null;
@@ -59,5 +75,7 @@ public final class GameData implements IListener{ //Save storage managed by us
 
 		fingerDownPos = null;
 		fingerUpPos = null;
+
+		globalInstance = new GameData();
 	}
 }
