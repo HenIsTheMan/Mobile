@@ -50,7 +50,15 @@ public final class EntityPauseButton extends EntityAbstract{
 	@Override
 	public void Render(Canvas _canvas){
 		assert bitmap != null;
-		_canvas.drawBitmap(bitmap, attribs.pos.x - attribs.scale.x * 0.5f, attribs.pos.y - attribs.scale.y * 0.5f, null);
+
+		Rect src = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+		RectF dst = new RectF(
+			attribs.pos.x - attribs.scale.x * 0.5f,
+			attribs.pos.y - attribs.scale.y * 0.5f,
+			attribs.pos.x + attribs.scale.x * 0.5f,
+			attribs.pos.y + attribs.scale.y * 0.5f
+		);
+		_canvas.drawBitmap(bitmap, src, dst, null);
 	}
 
 	@Override
@@ -66,7 +74,12 @@ public final class EntityPauseButton extends EntityAbstract{
 		assert bitmap != null;
 
 		Rect src = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-		RectF dst = new RectF(attribs.pos.x, attribs.pos.y, attribs.pos.x + attribs.scale.x, attribs.pos.y + attribs.scale.y);
+		RectF dst = new RectF(
+			attribs.pos.x - attribs.scale.x * 0.5f,
+			attribs.pos.y - attribs.scale.y * 0.5f,
+			attribs.pos.x + attribs.scale.x * 0.5f,
+			attribs.pos.y + attribs.scale.y * 0.5f
+		);
 		canvas.drawBitmap(bitmap, src, dst, null);
 	}
 

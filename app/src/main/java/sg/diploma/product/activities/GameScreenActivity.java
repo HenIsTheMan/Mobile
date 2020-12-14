@@ -137,7 +137,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.pauseButton.attribs.scale.x = buttonSize;
         GameData.pauseButton.attribs.scale.y = buttonSize;
         GameData.pauseButton.attribs.pos.x = DeviceManager.screenWidthF - buttonSize;
-        GameData.pauseButton.attribs.pos.y = 0.0f;
+        GameData.pauseButton.attribs.pos.y = buttonSize;
         //*/
     }
 
