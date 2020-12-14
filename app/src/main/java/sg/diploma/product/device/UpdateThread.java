@@ -9,7 +9,6 @@ import java.util.Objects;
 
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.entity.EntityManager;
-import sg.diploma.product.game.GameManager;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.state.StateManager;
 
@@ -41,20 +40,18 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
             final long currTime = System.nanoTime();
             final float deltaTime = ((currTime - prevTime) / 1000000000.0f);
             prevTime = currTime;
+            
+            StateManager.Instance.Update(deltaTime);
 
-            if(!GameManager.Instance.GetIsPaused()){
-                StateManager.Instance.Update(deltaTime);
-
-                ///Render
-                if(!Objects.equals(StateManager.Instance.GetCurrentStateName(), "")){
-                    Canvas canvas = surfaceHolder.lockCanvas(null);
-                    if(canvas != null){
-                        synchronized(surfaceHolder){ //Sync to draw
-                            canvas.drawColor(Color.BLACK);
-                            StateManager.Instance.Render(canvas);
-                        }
-                        surfaceHolder.unlockCanvasAndPost(canvas);
+            ///Render
+            if(!Objects.equals(StateManager.Instance.GetCurrentStateName(), "")){
+                Canvas canvas = surfaceHolder.lockCanvas(null);
+                if(canvas != null){
+                    synchronized(surfaceHolder){ //Sync to draw
+                        canvas.drawColor(Color.BLACK);
+                        StateManager.Instance.Render(canvas);
                     }
+                    surfaceHolder.unlockCanvasAndPost(canvas);
                 }
             }
 

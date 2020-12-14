@@ -10,6 +10,8 @@ import java.util.Objects;
 
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
+import sg.diploma.product.entity.entities.EntityPauseButton;
+import sg.diploma.product.game.GameManager;
 import sg.diploma.product.math.CollisionDataBoxBoxAABB;
 import sg.diploma.product.math.DetectCollision;
 import sg.diploma.product.math.ResolveCollision;
@@ -30,9 +32,19 @@ public final class EntityManager{ //Singleton
         }
         entityRemovalList.clear();
 
+        final boolean isPaused = GameManager.Instance.GetIsPaused();
+
         for(EntityAbstract entity: entityList.values()){
+            if(isPaused && !(entity instanceof EntityPauseButton)){
+                continue;
+            }
+
             entity.attribs.prevPos = entity.attribs.boxColliderPos;
             entity.Update(_dt);
+        }
+
+        if(isPaused){
+            return;
         }
 
         ArrayList<String> keys = new ArrayList(entityList.keySet());
