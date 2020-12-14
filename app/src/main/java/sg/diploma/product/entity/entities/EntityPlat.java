@@ -12,8 +12,6 @@ import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.event.Publisher;
 import sg.diploma.product.event.events.EventAddScore;
-import sg.diploma.product.event.events.EventEndGame;
-import sg.diploma.product.game.GameData;
 import sg.diploma.product.graphics.Color;
 
 public final class EntityPlat extends EntityAbstract{
@@ -40,16 +38,8 @@ public final class EntityPlat extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
-		if(myIndex == GameData.lowestPlatIndex
-			&& gamePlayerChar.attribs.vel.y > 0.0f
-			&& Math.abs(attribs.pos.y - gamePlayerChar.attribs.pos.y) > DeviceManager.screenHeightF * 0.5f){
-			Publisher.Broadcast(new EventEndGame());
-			return;
-		}
-
 		if(attribs.pos.y - gamePlayerChar.attribs.pos.y > DeviceManager.screenHeightF * 0.5f){ //0.25f if want exact
 			EntityManager.Instance.SendEntityForRemoval("plat_" + myIndex);
-			GameData.lowestPlatIndex = myIndex + 1;
 		}
 	}
 

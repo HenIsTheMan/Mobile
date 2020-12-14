@@ -11,6 +11,8 @@ import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
+import sg.diploma.product.event.Publisher;
+import sg.diploma.product.event.events.EventEndGame;
 import sg.diploma.product.game.GameData;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
@@ -55,6 +57,11 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
+		if(attribs.vel.y > 0.0f && Math.abs(yTrigger - attribs.pos.y) > DeviceManager.screenHeightF){
+			Publisher.Broadcast(new EventEndGame());
+			return;
+		}
+
 		final float beginY = attribs.pos.y;
 
 		if(collidingWithPlat){
