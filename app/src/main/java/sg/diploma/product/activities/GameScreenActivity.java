@@ -30,6 +30,7 @@ public final class GameScreenActivity extends Activity implements IState{
         textOnScreen = null;
 
         spawnThreshold = 0.0f;
+        platIndex = 0;
         score = -1;
 
         fingerDownPos = null;
@@ -84,7 +85,13 @@ public final class GameScreenActivity extends Activity implements IState{
         textOnScreen.SetTextSize(55.0f);
         //*/
 
-        startPlat = EntityPlat.Create("startPlat");
+        gamePlayerChar = EntityGamePlayerChar.Create(
+                "Special_gamePlayerChar",
+                R.drawable.player_char
+        );
+
+        startPlat = EntityPlat.Create("plat_0", gamePlayerChar);
+        startPlat.SetMyIndex(0);
         startPlat.attribs.scale.x = DeviceManager.screenWidthF;
         startPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
         startPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
@@ -93,11 +100,6 @@ public final class GameScreenActivity extends Activity implements IState{
         startPlat.attribs.boxColliderPos.y = startPlat.attribs.pos.y;
         startPlat.attribs.boxColliderScale.x = startPlat.attribs.scale.x;
         startPlat.attribs.boxColliderScale.y = startPlat.attribs.scale.y;
-
-        gamePlayerChar = EntityGamePlayerChar.Create(
-            "Special_gamePlayerChar",
-            R.drawable.player_char
-        );
 
         final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() / 9.f * 0.5f;
         final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getHeight() * 0.2f;
@@ -164,7 +166,8 @@ public final class GameScreenActivity extends Activity implements IState{
     private void GenAndDestroyPlats(){
         if(gamePlayerChar.attribs.boxColliderPos.y + gamePlayerChar.attribs.boxColliderScale.y <= spawnThreshold){
             spawnThreshold -= 700.0f;
-            EntityPlat plat = EntityPlat.Create("plat_" + spawnThreshold);
+            EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex, gamePlayerChar);
+            plat.SetMyIndex(platIndex);
             plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.15f, 0.25f);
             plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.03f, 0.07f);
             plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
@@ -183,6 +186,7 @@ public final class GameScreenActivity extends Activity implements IState{
 
     private float spawnThreshold;
     private int score;
+    private int platIndex;
 
     private Vector2 fingerDownPos;
     private Vector2 fingerUpPos;

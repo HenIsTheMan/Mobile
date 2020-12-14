@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import sg.diploma.product.BuildConfig;
+import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
@@ -12,7 +13,7 @@ import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.graphics.Color;
 
 public final class EntityPlat extends EntityAbstract{
-	private EntityPlat(){
+	private EntityPlat(final EntityGamePlayerChar gamePlayerChar){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.Plat;
@@ -26,10 +27,17 @@ public final class EntityPlat extends EntityAbstract{
 		paint.setARGB(153, 51, 51, 51);
 		paint.setStrokeWidth(strokeWidth);
 		paint.setStyle(paintStyle);
+
+		myIndex = 0;
+		this.gamePlayerChar = gamePlayerChar;
+		assert this.gamePlayerChar != null;
 	}
 
 	@Override
 	public void Update(final float dt){
+		if(attribs.pos.y - gamePlayerChar.attribs.pos.y > DeviceManager.screenHeightF * 0.25f){
+			EntityManager.Instance.SendEntityForRemoval("plat_" + myIndex);
+		}
 	}
 
 	@Override
@@ -59,8 +67,8 @@ public final class EntityPlat extends EntityAbstract{
 		SetColor(new Color(1.0f, 1.0f, 0.0f, 0.8f));
 	}
 
-	public static EntityPlat Create(final String key){
-		EntityPlat result = new EntityPlat();
+	public static EntityPlat Create(final String key, final EntityGamePlayerChar gamePlayerChar){
+		EntityPlat result = new EntityPlat(gamePlayerChar);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}
@@ -80,8 +88,15 @@ public final class EntityPlat extends EntityAbstract{
 		paint.setStyle(paintStyle);
 	}
 
+	public void SetMyIndex(final int myIndex){
+		this.myIndex = myIndex;
+	}
+
 	private Color color;
 	private float strokeWidth;
 	private Paint.Style paintStyle;
 	private final Paint paint;
+
+	private int myIndex;
+	private final EntityGamePlayerChar gamePlayerChar;
 }
