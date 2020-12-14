@@ -113,18 +113,19 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.startPlat.attribs.boxColliderScale.x = GameData.startPlat.attribs.scale.x;
         GameData.startPlat.attribs.boxColliderScale.y = GameData.startPlat.attribs.scale.y;
 
-        for(int i = 0; i < 3; ++i){
+        /*for(int i = 0; i < 5; ++i){
             EntityPlat plat = EntityPlat.Create("plat_" + ++GameData.platIndex, GameData.gamePlayerChar);
             plat.SetMyIndex(GameData.platIndex);
-            plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.6f);
-            plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.03f, 0.07f);
+            plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.4f);
+            plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.04f, 0.06f);
             plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
             plat.attribs.pos.y = DeviceManager.screenHeightF - 400.0f * (float)(i + 1);
+
             plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
             plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
             plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
             plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
-        }
+        }*/
 
         final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() / 9.f * 0.5f;
         final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getHeight() * 0.2f;
@@ -146,6 +147,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.pauseButton.attribs.pos.x = DeviceManager.screenWidthF - buttonSize;
         GameData.pauseButton.attribs.pos.y = buttonSize;
         //*/
+
+        GameData.totalYOffset = DeviceManager.screenHeightF;
     }
 
     @Override
@@ -198,7 +201,30 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
         EntityManager.Instance.Update(_dt);
 
+        SpawnPlats();
+
         EntityManager.Instance.LateUpdate(_dt);
+    }
+
+    private void SpawnPlats(){
+        final float offset = Pseudorand.PseudorandFloatMinMax(380.f, 490.f);
+        if(GameData.playerTravelledY > offset){
+            GameData.totalYOffset -= offset;
+
+            EntityPlat plat = EntityPlat.Create("plat_" + ++GameData.platIndex, GameData.gamePlayerChar);
+            plat.SetMyIndex(GameData.platIndex);
+            plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.4f);
+            plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.04f, 0.06f);
+            plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
+            plat.attribs.pos.y = GameData.totalYOffset;
+
+            plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
+            plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
+            plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
+            plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
+
+            GameData.playerTravelledY -= offset;
+        }
     }
 
     @Override

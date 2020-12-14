@@ -1,6 +1,5 @@
 package sg.diploma.product.game;
 
-import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.entity.entities.EntityPauseButton;
 import sg.diploma.product.entity.entities.EntityPlat;
@@ -8,7 +7,6 @@ import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.event.EventAbstract;
 import sg.diploma.product.event.IListener;
 import sg.diploma.product.event.events.EventAddScore;
-import sg.diploma.product.math.Pseudorand;
 import sg.diploma.product.math.Vector2;
 
 public final class GameData implements IListener{ //Singleton
@@ -23,6 +21,8 @@ public final class GameData implements IListener{ //Singleton
 		textOnScreenFPS = null;
 		textOnScreenScore = null;
 
+		playerTravelledY = 0.0f;
+		totalYOffset = 0.0f;
 		score = -1;
 		platIndex = 0;
 		lowestPlatIndex = 0;
@@ -31,7 +31,7 @@ public final class GameData implements IListener{ //Singleton
 		fingerUpPos = null;
 	}
 
-	private void SpawnPlat(){
+	/*private void SpawnPlat(){
 		EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex, gamePlayerChar);
 		plat.SetMyIndex(platIndex);
 		plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.6f);
@@ -42,14 +42,14 @@ public final class GameData implements IListener{ //Singleton
 		plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
 		plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
 		plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
-	}
+	}*/
 
 	@Override
 	public void OnEvent(EventAbstract event){
 		switch(event.GetID()){
-			case SpawnPlat:
+			/*case SpawnPlat:
 				SpawnPlat();
-				break;
+				break;*/
 			case AddScore:
 				score += ((EventAddScore)event).GetScoreAdd();
 				break;
@@ -63,6 +63,8 @@ public final class GameData implements IListener{ //Singleton
 	public static EntityTextOnScreen textOnScreenFPS;
 	public static EntityTextOnScreen textOnScreenScore;
 
+	public static float playerTravelledY;
+	public static float totalYOffset;
 	public static int score;
 	public static int platIndex;
 	public static int lowestPlatIndex;
@@ -80,6 +82,8 @@ public final class GameData implements IListener{ //Singleton
 		textOnScreenFPS = null;
 		textOnScreenScore = null;
 
+		playerTravelledY = 0.0f;
+		totalYOffset = 0.0f;
 		score = -1;
 		platIndex = 0;
 		lowestPlatIndex = 0;

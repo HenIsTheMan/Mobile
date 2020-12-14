@@ -13,7 +13,6 @@ import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.event.Publisher;
 import sg.diploma.product.event.events.EventAddScore;
 import sg.diploma.product.event.events.EventEndGame;
-import sg.diploma.product.event.events.EventSpawnPlat;
 import sg.diploma.product.game.GameData;
 import sg.diploma.product.graphics.Color;
 
@@ -81,7 +80,7 @@ public final class EntityPlat extends EntityAbstract{
 		if(!collided && other.attribs.type == EntityTypes.EntityType.GamePlayerChar){
 			collided = true;
 			SetColor(new Color(1.0f, 1.0f, 0.0f, 1.0f));
-			Publisher.Broadcast(new EventSpawnPlat());
+			//Publisher.Broadcast(new EventSpawnPlat());
 			Publisher.Broadcast(new EventAddScore(1));
 		}
 	}
