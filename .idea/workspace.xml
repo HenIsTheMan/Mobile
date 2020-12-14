@@ -33,7 +33,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/GameScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/GameScreenActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/device/UpdateThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/device/UpdateThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/EntityTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/EntityTypes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityPauseButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityPauseButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/game/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/game/GameData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,22 +276,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="829" y="401" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607591273898" />
-    <state width="1899" height="3" key="GridCell.Tab.0.bottom" timestamp="1607922021730">
+    <state width="1899" height="257" key="GridCell.Tab.0.bottom" timestamp="1607926493499">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="3" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607922021730" />
-    <state width="1899" height="3" key="GridCell.Tab.0.center" timestamp="1607922021730">
+    <state width="1899" height="257" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607926493499" />
+    <state width="1899" height="257" key="GridCell.Tab.0.center" timestamp="1607926493499">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="3" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607922021730" />
-    <state width="1899" height="3" key="GridCell.Tab.0.left" timestamp="1607922021730">
+    <state width="1899" height="257" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607926493499" />
+    <state width="1899" height="257" key="GridCell.Tab.0.left" timestamp="1607926493498">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="3" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607922021730" />
-    <state width="1899" height="3" key="GridCell.Tab.0.right" timestamp="1607922021730">
+    <state width="1899" height="257" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607926493498" />
+    <state width="1899" height="257" key="GridCell.Tab.0.right" timestamp="1607926493499">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="3" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607922021730" />
+    <state width="1899" height="257" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607926493499" />
     <state width="1899" height="184" key="GridCell.Tab.1.bottom" timestamp="1607913440650">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -316,10 +320,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="501" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607603081570" />
-    <state x="727" y="235" width="849" height="534" key="find.popup" timestamp="1607924201109">
+    <state x="727" y="235" width="849" height="534" key="find.popup" timestamp="1607926763962">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="727" y="235" width="849" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607924201109" />
+    <state x="727" y="235" width="849" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607926763962" />
     <state x="477" y="410" width="621" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1607422454863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

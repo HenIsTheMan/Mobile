@@ -3,11 +3,13 @@ package sg.diploma.product.entity.entities;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import sg.diploma.product.BuildConfig;
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.entity.EntityAbstract;
+import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
+import sg.diploma.product.entity.EntityRenderLayers;
+import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.game.GameManager;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.math.DetectCollision;
@@ -17,6 +19,11 @@ import sg.diploma.product.touch.TouchTypes;
 
 public final class EntityPauseButton extends EntityAbstract{
 	public EntityPauseButton(final int bitmapID){
+		super();
+		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.UI;
+		attribs.type = EntityTypes.EntityType.PauseButton;
+		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
+
 		paused = false;
 		bitmap = ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565);
 	}
@@ -32,21 +39,16 @@ public final class EntityPauseButton extends EntityAbstract{
 				attribs.scale.x * 0.5f
 			)
 		){
-			paused = true;
+			paused = !paused;
 			AudioManager.Instance.PlayAudio(R.raw.button_press, 5);
 			GameManager.Instance.SetIsPaused(paused);
-		} else{
-			paused = false;
 		}
 	}
 
 	@Override
 	public void Render(Canvas _canvas){
-		/*if (Paused == false)
-			_canvas.drawBitmap(scaledbmpP, xPos - scaledbmpP.getWidth() * 0.5f, yPos - scaledbmpP.getHeight() * 0.5f, null);
-		else*/
-
-		//_canvas.drawBitmap(scaledbmpUP, xPos - scaledbmpUP.getWidth() * 0.5f, yPos - scaledbmpUP.getHeight() * 0.5f, null);
+		assert bitmap != null;
+		_canvas.drawBitmap(bitmap, attribs.pos.x - attribs.scale.x * 0.5f, attribs.pos.y - attribs.scale.y * 0.5f, null);
 	}
 
 	@Override
@@ -59,9 +61,8 @@ public final class EntityPauseButton extends EntityAbstract{
 
 	@Override
 	public void SpecialRender(final Canvas canvas){
-		if(BuildConfig.DEBUG){
-			throw new AssertionError("Assertion failed");
-		}
+		assert bitmap != null;
+		canvas.drawBitmap(bitmap, attribs.pos.x - bitmap.getWidth() * 0.5f * attribs.scale.x, attribs.pos.y - bitmap.getHeight() * 0.5f * attribs.scale.y, null);
 	}
 
 	public static EntityPauseButton Create(final String key, final int bitmapID){

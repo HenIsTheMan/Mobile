@@ -11,6 +11,7 @@ import sg.diploma.product.R;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
+import sg.diploma.product.entity.entities.EntityPauseButton;
 import sg.diploma.product.entity.entities.EntityPlat;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.event.EventAbstract;
@@ -87,12 +88,13 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.textOnScreenScore.SetTextSize(55.0f);
         //*/
 
+        //* Create game player char and start plat
         GameData.gamePlayerChar = EntityGamePlayerChar.Create(
             "Special_gamePlayerChar",
             R.drawable.player_char
         );
 
-        GameData. startPlat = EntityPlat.Create("plat_0", GameData.gamePlayerChar);
+        GameData.startPlat = EntityPlat.Create("plat_0", GameData.gamePlayerChar);
         GameData.startPlat.SetMyIndex(GameData.platIndex++);
         GameData.startPlat.attribs.scale.x = DeviceManager.screenWidthF;
         GameData.startPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
@@ -126,6 +128,16 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.gamePlayerChar.attribs.boxColliderScale.y = playerCharHeight * 1.2f;
         GameData.gamePlayerChar.SetSpriteAnimXScale(1.2f);
         GameData.gamePlayerChar.SetSpriteAnimYScale(1.2f);
+        //*/
+
+        //* Create pause button
+        GameData.pauseButton = EntityPauseButton.Create("Special_pause", R.drawable.pause_icon);
+        final Bitmap pauseBitMap = ResourceManager.Instance.GetBitmap(R.drawable.pause_icon, Bitmap.Config.RGB_565);
+        GameData.pauseButton.attribs.pos.x = DeviceManager.screenWidthF - (float)pauseBitMap.getWidth();
+        GameData.pauseButton.attribs.pos.y = pauseBitMap.getHeight();
+        GameData.pauseButton.attribs.scale.x = 0.05f;
+        GameData.pauseButton.attribs.scale.y = 0.05f;
+        //*/
     }
 
     @Override

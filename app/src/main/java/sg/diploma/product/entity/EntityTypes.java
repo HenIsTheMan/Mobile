@@ -7,6 +7,7 @@ public final class EntityTypes{
 		GamePlayerChar,
 		TextOnScreen,
 		Plat,
+		PauseButton,
 		Amt;
 	};
 }

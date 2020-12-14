@@ -2,6 +2,7 @@ package sg.diploma.product.game;
 
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
+import sg.diploma.product.entity.entities.EntityPauseButton;
 import sg.diploma.product.entity.entities.EntityPlat;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.event.EventAbstract;
@@ -17,6 +18,7 @@ public final class GameData implements IListener{ //Singleton
 	public void ResetVars(){
 		//gameBG = null;
 		gamePlayerChar = null;
+		pauseButton = null;
 		startPlat = null;
 		textOnScreenFPS = null;
 		textOnScreenScore = null;
@@ -55,6 +57,7 @@ public final class GameData implements IListener{ //Singleton
 
 	//private EntityGameBG gameBG;
 	public static EntityGamePlayerChar gamePlayerChar;
+	public static EntityPauseButton pauseButton;
 	public static EntityPlat startPlat;
 	public static EntityTextOnScreen textOnScreenFPS;
 	public static EntityTextOnScreen textOnScreenScore;
@@ -70,6 +73,7 @@ public final class GameData implements IListener{ //Singleton
 	static{
 		//gameBG = null;
 		gamePlayerChar = null;
+		pauseButton = null;
 		startPlat = null;
 		textOnScreenFPS = null;
 		textOnScreenScore = null;
