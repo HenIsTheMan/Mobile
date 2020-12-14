@@ -110,7 +110,7 @@ public final class GameScreenActivity extends Activity implements IState{
         gamePlayerChar.SetSpriteAnimXScale(1.2f);
         gamePlayerChar.SetSpriteAnimYScale(1.2f);
 
-        spawnThreshold = gamePlayerChar.attribs.boxColliderPos.y + gamePlayerChar.attribs.boxColliderScale.y;
+        spawnThreshold = DeviceManager.screenHeightF;
     }
 
     @Override
@@ -168,7 +168,7 @@ public final class GameScreenActivity extends Activity implements IState{
             plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.15f, 0.25f);
             plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.03f, 0.07f);
             plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
-            plat.attribs.pos.y = DeviceManager.screenHeightF - plat.attribs.scale.y * 0.5f + spawnThreshold;
+            plat.attribs.pos.y = spawnThreshold;
             plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
             plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
             plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
