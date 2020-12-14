@@ -31,7 +31,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         //gameBG = null;
         gamePlayerChar = null;
         startPlat = null;
-        textOnScreen = null;
+        textOnScreenFPS = null;
+        textOnScreenScore = null;
 
         platIndex = 0;
         score = -1;
@@ -82,11 +83,17 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         //*/
 
         //* Create text on screen
-        textOnScreen = EntityTextOnScreen.Create("Special_gameTextOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
-        textOnScreen.attribs.pos.x = 30.0f;
-        textOnScreen.attribs.pos.y = 80.0f;
-        textOnScreen.SetStrokeWidth(300.0f);
-        textOnScreen.SetTextSize(55.0f);
+        textOnScreenFPS = EntityTextOnScreen.Create("Special_gameTextOnScreenFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
+        textOnScreenFPS.attribs.pos.x = 55.0f * 0.5f;
+        textOnScreenFPS.attribs.pos.y = 55.0f;
+        textOnScreenFPS.SetStrokeWidth(300.0f);
+        textOnScreenFPS.SetTextSize(55.0f);
+
+        textOnScreenScore = EntityTextOnScreen.Create("Special_gameTextOnScreenScore", _view.getContext().getAssets(), "fonts/grobold.ttf");
+        textOnScreenScore.attribs.pos.x = 55.0f * 0.5f;
+        textOnScreenScore.attribs.pos.y = 55.0f * 2.0f;
+        textOnScreenScore.SetStrokeWidth(300.0f);
+        textOnScreenScore.SetTextSize(55.0f);
         //*/
 
         gamePlayerChar = EntityGamePlayerChar.Create(
@@ -142,8 +149,11 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     @Override
     public void Update(float _dt) {
-        if(textOnScreen != null){
-            textOnScreen.SetText("FPS: " + 1.0f / _dt);
+        if(textOnScreenFPS != null){
+            textOnScreenFPS.SetText("FPS: " + 1.0f / _dt);
+        }
+        if(textOnScreenScore != null){
+            textOnScreenScore.SetText("Score: " + score);
         }
 
         if(gamePlayerChar != null){ //So player does not exit play area
@@ -201,7 +211,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     //private EntityGameBG gameBG;
     private EntityGamePlayerChar gamePlayerChar;
     private EntityPlat startPlat;
-    private EntityTextOnScreen textOnScreen;
+    private EntityTextOnScreen textOnScreenFPS;
+    private EntityTextOnScreen textOnScreenScore;
 
     private int score;
     private int platIndex;
