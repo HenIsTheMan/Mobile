@@ -7,12 +7,6 @@
     android:orientation="vertical"
     >
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/back_button" />
-
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -29,17 +23,27 @@
             <SeekBar
                 android:id="@+id/seekBarMusic"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8" />
+                android:layout_height="0dp"
+                android:progressDrawable="@drawable/seek_bar_ruler"
+                android:thumb="@drawable/seek_bar_thumb"
+                android:layout_weight="0.5" />
 
             <SeekBar
                 android:id="@+id/seekBarSounds"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.6" />
+                android:layout_height="0dp"
+                android:progressDrawable="@drawable/seek_bar_ruler"
+                android:thumb="@drawable/seek_bar_thumb"
+                android:layout_weight="0.5" />
 
         </LinearLayout>
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/back_button" />
 
 </RelativeLayout>
