@@ -24,8 +24,9 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
 
 		collidingWithPlat = false;
-		flipMinX = -999999.0f;
-		flipMaxX = 999999.0f;
+		flipMinX = -Float.MAX_VALUE;
+		flipMaxX = Float.MAX_VALUE;
+		yTrigger = Float.MAX_VALUE;
 
 		spriteAnim = new SpriteAnim(
 			ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565),
@@ -108,17 +109,19 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 	@Override
 	public void LateUpdate(final float dt){
-		if(attribs.pos.x < flipMinX){
-			attribs.pos.x = flipMinX;
-			SwitchFacing();
-		}
-		if(attribs.pos.x > flipMaxX){
-			attribs.pos.x = flipMaxX;
-			SwitchFacing();
+		if(attribs.pos.y >= yTrigger){
+			if(attribs.pos.x < flipMinX){
+				attribs.pos.x = flipMinX;
+				SwitchFacing();
+			}
+			if(attribs.pos.x > flipMaxX){
+				attribs.pos.x = flipMaxX;
+				SwitchFacing();
+			}
 		}
 
-		flipMinX = -999999.0f;
-		flipMaxX = 999999.0f;
+		flipMinX = -Float.MAX_VALUE;
+		flipMaxX = Float.MAX_VALUE;
 	}
 
 	@Override
@@ -126,6 +129,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		collidingWithPlat = true;
 		flipMinX = other.attribs.pos.x - other.attribs.scale.x * 0.5f + playerCharHalfWidth;
 		flipMaxX = other.attribs.pos.x + other.attribs.scale.x * 0.5f - playerCharHalfWidth;
+		yTrigger = other.attribs.pos.y - other.attribs.scale.y - attribs.scale.y * 0.5f;
 	}
 
 	public static EntityGamePlayerChar Create(final String key, final int bitmapID){
@@ -171,6 +175,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	private boolean collidingWithPlat;
 	private float flipMinX;
 	private float flipMaxX;
+	private float yTrigger;
 
 	private final SpriteAnim spriteAnim;
 	private final Paint paint;
