@@ -44,7 +44,7 @@ public final class EntityPlat extends EntityAbstract{
 			return;
 		}*/
 
-		if(attribs.pos.y - gamePlayerChar.attribs.pos.y > DeviceManager.screenHeightF * 0.25f){
+		if(attribs.pos.y - gamePlayerChar.attribs.pos.y > DeviceManager.screenHeightF * 0.5f){ //0.25f if want exact
 			EntityManager.Instance.SendEntityForRemoval("plat_" + myIndex);
 		}
 	}
