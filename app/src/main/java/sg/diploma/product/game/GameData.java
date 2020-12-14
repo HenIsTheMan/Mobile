@@ -23,8 +23,9 @@ public final class GameData implements IListener{ //Singleton
 		textOnScreenFPS = null;
 		textOnScreenScore = null;
 
-		platIndex = 0;
 		score = -1;
+		platIndex = 0;
+		lowestPlatIndex = 0;
 
 		fingerDownPos = null;
 		fingerUpPos = null;
@@ -64,6 +65,7 @@ public final class GameData implements IListener{ //Singleton
 
 	public static int score;
 	public static int platIndex;
+	public static int lowestPlatIndex;
 
 	public static Vector2 fingerDownPos;
 	public static Vector2 fingerUpPos;
@@ -78,8 +80,9 @@ public final class GameData implements IListener{ //Singleton
 		textOnScreenFPS = null;
 		textOnScreenScore = null;
 
-		platIndex = 0;
 		score = -1;
+		platIndex = 0;
+		lowestPlatIndex = 0;
 
 		fingerDownPos = null;
 		fingerUpPos = null;

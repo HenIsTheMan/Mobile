@@ -14,6 +14,7 @@ import sg.diploma.product.event.Publisher;
 import sg.diploma.product.event.events.EventAddScore;
 import sg.diploma.product.event.events.EventEndGame;
 import sg.diploma.product.event.events.EventSpawnPlat;
+import sg.diploma.product.game.GameData;
 import sg.diploma.product.graphics.Color;
 
 public final class EntityPlat extends EntityAbstract{
@@ -40,7 +41,7 @@ public final class EntityPlat extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
-		if(myIndex == lowestIndex
+		if(myIndex == GameData.lowestPlatIndex
 			&& gamePlayerChar.attribs.vel.y > 0.0f
 			&& Math.abs(attribs.pos.y - gamePlayerChar.attribs.pos.y) > DeviceManager.screenHeightF * 0.5f){
 			Publisher.Broadcast(new EventEndGame());
@@ -49,7 +50,7 @@ public final class EntityPlat extends EntityAbstract{
 
 		if(attribs.pos.y - gamePlayerChar.attribs.pos.y > DeviceManager.screenHeightF * 0.5f){ //0.25f if want exact
 			EntityManager.Instance.SendEntityForRemoval("plat_" + myIndex);
-			lowestIndex = myIndex + 1;
+			GameData.lowestPlatIndex = myIndex + 1;
 		}
 	}
 
@@ -118,10 +119,4 @@ public final class EntityPlat extends EntityAbstract{
 	private boolean collided;
 	private int myIndex;
 	private final EntityGamePlayerChar gamePlayerChar;
-
-	private static int lowestIndex;
-
-	static{
-		lowestIndex = 0;
-	}
 }
