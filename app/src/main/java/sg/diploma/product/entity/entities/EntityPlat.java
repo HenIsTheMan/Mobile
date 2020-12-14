@@ -77,7 +77,7 @@ public final class EntityPlat extends EntityAbstract{
 
 	@Override
 	public void Collided(EntityAbstract other){
-		if(!collided){
+		if(!collided && other.attribs.type == EntityTypes.EntityType.GamePlayerChar){
 			collided = true;
 			SetColor(new Color(1.0f, 1.0f, 0.0f, 1.0f));
 			Publisher.Broadcast(new EventSpawnPlat());

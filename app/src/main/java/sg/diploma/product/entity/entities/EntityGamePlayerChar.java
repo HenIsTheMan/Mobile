@@ -109,7 +109,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 	@Override
 	public void LateUpdate(final float dt){
-		if(attribs.pos.y >= yTrigger){
+		if(attribs.pos.y <= yTrigger){
 			if(attribs.pos.x < flipMinX){
 				attribs.pos.x = flipMinX;
 				SwitchFacing();
