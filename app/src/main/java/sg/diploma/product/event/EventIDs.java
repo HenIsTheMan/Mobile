@@ -4,7 +4,8 @@ public final class EventIDs{
 	public enum EventID{
 		EndGame(0),
 		SpawnPlat(1),
-		Amt(2);
+		AddScore(2),
+		Amt(3);
 
 		EventID(final int val){
 			this.val = val;

@@ -6,6 +6,7 @@ import sg.diploma.product.entity.entities.EntityPlat;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.event.EventAbstract;
 import sg.diploma.product.event.IListener;
+import sg.diploma.product.event.events.EventAddScore;
 import sg.diploma.product.math.Pseudorand;
 import sg.diploma.product.math.Vector2;
 
@@ -45,6 +46,9 @@ public final class GameData implements IListener{ //Singleton
 		switch(event.GetID()){
 			case SpawnPlat:
 				SpawnPlat();
+				break;
+			case AddScore:
+				score += ((EventAddScore)event).GetScoreAdd();
 				break;
 		}
 	}

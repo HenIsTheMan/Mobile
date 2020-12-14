@@ -11,6 +11,7 @@ import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.event.Publisher;
+import sg.diploma.product.event.events.EventAddScore;
 import sg.diploma.product.event.events.EventSpawnPlat;
 import sg.diploma.product.graphics.Color;
 
@@ -76,6 +77,7 @@ public final class EntityPlat extends EntityAbstract{
 			steppedOn = true;
 			SetColor(new Color(1.0f, 1.0f, 0.0f, 1.0f));
 			Publisher.Broadcast(new EventSpawnPlat());
+			Publisher.Broadcast(new EventAddScore(1));
 		}
 	}
 
