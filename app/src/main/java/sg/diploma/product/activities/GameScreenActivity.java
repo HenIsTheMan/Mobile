@@ -68,7 +68,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     @Override
     public void OnEnter(SurfaceView _view){
-        //* Create game BG
+        //* Create game BG (Removed as super laggy)
         /*gameBG = EntityGameBG.Create(
             "Special_gameBG",
             R.drawable.game_background
@@ -172,6 +172,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     private void GenAndDestroyPlats(){
         if(gamePlayerChar.attribs.boxColliderPos.y + gamePlayerChar.attribs.boxColliderScale.y <= spawnThreshold){
             spawnThreshold -= 700.0f;
+            
             EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex, gamePlayerChar);
             plat.SetMyIndex(platIndex);
             plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.15f, 0.25f);
