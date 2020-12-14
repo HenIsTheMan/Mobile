@@ -33,8 +33,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityGamePlayerChar.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityGamePlayerChar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityPlat.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityPlat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/OptionsScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/OptionsScreenActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/options_screen_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/options_screen_layout.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +44,7 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[FUHQWOGILFHE6T8D]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -245,10 +245,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="691" y="364" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1607439514864" />
-    <state x="352" y="145" width="1185" height="800" key="AVDManager" timestamp="1607916196046">
+    <state x="352" y="145" width="1185" height="800" key="AVDManager" timestamp="1607940418620">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="352" y="145" width="1185" height="800" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1607916196046" />
+    <state x="352" y="145" width="1185" height="800" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1607940418620" />
     <state x="595" y="255" key="AndroidCreateResourceDirectoryDialog" timestamp="1607495885517">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -273,22 +273,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="829" y="401" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607591273898" />
-    <state width="1899" height="241" key="GridCell.Tab.0.bottom" timestamp="1607937692445">
+    <state width="1899" height="58" key="GridCell.Tab.0.bottom" timestamp="1607941048624">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="241" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607937692445" />
-    <state width="1899" height="241" key="GridCell.Tab.0.center" timestamp="1607937692445">
+    <state width="1899" height="58" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607941048624" />
+    <state width="1899" height="58" key="GridCell.Tab.0.center" timestamp="1607941048624">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="241" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607937692445" />
-    <state width="1899" height="241" key="GridCell.Tab.0.left" timestamp="1607937692445">
+    <state width="1899" height="58" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607941048624" />
+    <state width="1899" height="58" key="GridCell.Tab.0.left" timestamp="1607941048623">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="241" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607937692445" />
-    <state width="1899" height="241" key="GridCell.Tab.0.right" timestamp="1607937692445">
+    <state width="1899" height="58" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607941048623" />
+    <state width="1899" height="58" key="GridCell.Tab.0.right" timestamp="1607941048624">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="241" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607937692445" />
+    <state width="1899" height="58" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607941048624" />
     <state width="1899" height="332" key="GridCell.Tab.1.bottom" timestamp="1607936929633">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
