@@ -1,5 +1,6 @@
 package sg.diploma.product.game;
 
+import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.entity.entities.EntityPauseButton;
 import sg.diploma.product.entity.entities.EntityPlat;
@@ -7,6 +8,7 @@ import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.event.EventAbstract;
 import sg.diploma.product.event.IListener;
 import sg.diploma.product.event.events.EventAddScore;
+import sg.diploma.product.math.Pseudorand;
 import sg.diploma.product.math.Vector2;
 
 public final class GameData implements IListener{ //Singleton
@@ -30,7 +32,7 @@ public final class GameData implements IListener{ //Singleton
 	}
 
 	private void SpawnPlat(){
-		/*EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex, gamePlayerChar);
+		EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex, gamePlayerChar);
 		plat.SetMyIndex(platIndex);
 		plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.6f);
 		plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.03f, 0.07f);
@@ -39,7 +41,7 @@ public final class GameData implements IListener{ //Singleton
 		plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
 		plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
 		plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
-		plat.attribs.boxColliderScale.y = plat.attribs.scale.y;*/
+		plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
 	}
 
 	@Override
