@@ -10,6 +10,10 @@ public final class Publisher{
 		listeners.put(flags, listener);
 	}
 
+	public static void RemoveListener(final int flags){
+		listeners.remove(flags);
+	}
+
 	public static void Broadcast(EventAbstract event){
 		for(IListener listener: listeners.values()){
 			listener.OnEvent(event);

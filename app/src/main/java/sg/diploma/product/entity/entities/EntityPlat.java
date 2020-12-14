@@ -10,6 +10,8 @@ import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
+import sg.diploma.product.event.Publisher;
+import sg.diploma.product.event.events.EventSpawnPlat;
 import sg.diploma.product.graphics.Color;
 
 public final class EntityPlat extends EntityAbstract{
@@ -28,6 +30,7 @@ public final class EntityPlat extends EntityAbstract{
 		paint.setStrokeWidth(strokeWidth);
 		paint.setStyle(paintStyle);
 
+		steppedOn = false;
 		myIndex = 0;
 		this.gamePlayerChar = gamePlayerChar;
 		assert this.gamePlayerChar != null;
@@ -35,7 +38,7 @@ public final class EntityPlat extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
-		/*if(color.r == 1.0f && color.g == 1.0f && color.b == 0.0f && attribs.pos.y - gamePlayerChar.attribs.pos.y < 50.0f){
+		/*if(steppedOn && attribs.pos.y - gamePlayerChar.attribs.pos.y < 50.0f){
 			Publisher.Broadcast(new EventEndGame());
 			return;
 		}*/
@@ -69,7 +72,11 @@ public final class EntityPlat extends EntityAbstract{
 
 	@Override
 	public void Collided(EntityAbstract other){
-		SetColor(new Color(1.0f, 1.0f, 0.0f, 1.0f));
+		if(!steppedOn){
+			steppedOn = true;
+			SetColor(new Color(1.0f, 1.0f, 0.0f, 1.0f));
+			Publisher.Broadcast(new EventSpawnPlat());
+		}
 	}
 
 	public static EntityPlat Create(final String key, final EntityGamePlayerChar gamePlayerChar){
@@ -102,6 +109,7 @@ public final class EntityPlat extends EntityAbstract{
 	private Paint.Style paintStyle;
 	private final Paint paint;
 
+	private boolean steppedOn;
 	private int myIndex;
 	private final EntityGamePlayerChar gamePlayerChar;
 }

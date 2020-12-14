@@ -10,13 +10,12 @@ import android.view.SurfaceView;
 import sg.diploma.product.R;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
-import sg.diploma.product.entity.entities.EntityGameBG;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.entity.entities.EntityPlat;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.event.EventAbstract;
-import sg.diploma.product.event.EventIDs;
 import sg.diploma.product.event.IListener;
+import sg.diploma.product.event.ListenerFlagsWrapper;
 import sg.diploma.product.event.Publisher;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.graphics.ResourceManager;
@@ -29,12 +28,11 @@ import sg.diploma.product.touch.TouchTypes;
 
 public final class GameScreenActivity extends Activity implements IState, IListener{
     public GameScreenActivity(){
-        gameBG = null;
+        //gameBG = null;
         gamePlayerChar = null;
         startPlat = null;
         textOnScreen = null;
 
-        spawnThreshold = 0.0f;
         platIndex = 0;
         score = -1;
 
@@ -46,7 +44,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         Instance = this;
-        Publisher.AddListener(IListener.ListenerFlags.EndGame.GetVal(), this);
+        Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameScreenActivity.GetVal(), Instance);
         setContentView(new GameView(this));
     }
 
@@ -97,7 +95,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         );
 
         startPlat = EntityPlat.Create("plat_0", gamePlayerChar);
-        startPlat.SetMyIndex(0);
+        startPlat.SetMyIndex(platIndex++);
         startPlat.attribs.scale.x = DeviceManager.screenWidthF;
         startPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
         startPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
@@ -106,6 +104,19 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         startPlat.attribs.boxColliderPos.y = startPlat.attribs.pos.y;
         startPlat.attribs.boxColliderScale.x = startPlat.attribs.scale.x;
         startPlat.attribs.boxColliderScale.y = startPlat.attribs.scale.y;
+
+        for(int i = 0; i < 3; ++i){
+            EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex, gamePlayerChar);
+            plat.SetMyIndex(platIndex);
+            plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.15f, 0.25f);
+            plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.03f, 0.07f);
+            plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
+            plat.attribs.pos.y = DeviceManager.screenHeightF - 400.0f * (float)(i + 1);
+            plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
+            plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
+            plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
+            plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
+        }
 
         final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() / 9.f * 0.5f;
         final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getHeight() * 0.2f;
@@ -117,8 +128,6 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         gamePlayerChar.attribs.boxColliderScale.y = playerCharHeight * 1.2f;
         gamePlayerChar.SetSpriteAnimXScale(1.2f);
         gamePlayerChar.SetSpriteAnimYScale(1.2f);
-
-        spawnThreshold = DeviceManager.screenHeightF;
     }
 
     @Override
@@ -149,8 +158,6 @@ public final class GameScreenActivity extends Activity implements IState, IListe
             }
         }
 
-        GenAndDestroyPlats();
-
         EntityManager.Instance.Update(_dt);
 
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
@@ -169,36 +176,33 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         EntityManager.Instance.LateUpdate(_dt);
     }
 
-    private void GenAndDestroyPlats(){
-        if(gamePlayerChar.attribs.boxColliderPos.y + gamePlayerChar.attribs.boxColliderScale.y <= spawnThreshold){
-            spawnThreshold -= 700.0f;
-            
-            EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex, gamePlayerChar);
-            plat.SetMyIndex(platIndex);
-            plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.15f, 0.25f);
-            plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.03f, 0.07f);
-            plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
-            plat.attribs.pos.y = spawnThreshold;
-            plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
-            plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
-            plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
-            plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
-        }
-    }
-
     public void OnEvent(EventAbstract event){
-        if(event.GetID() == EventIDs.EventID.EndGame){
-            EntityManager.Instance.SendAllEntitiesForRemoval();
-            StateManager.Instance.ChangeState("MenuScreen");
+        switch(event.GetID()){
+            case EndGame:
+                EntityManager.Instance.SendAllEntitiesForRemoval();
+                StateManager.Instance.ChangeState("MenuScreen");
+                break;
+            case SpawnPlat:
+                /*EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex, gamePlayerChar);
+                plat.SetMyIndex(platIndex);
+                plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.15f, 0.25f);
+                plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.03f, 0.07f);
+                plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
+                plat.attribs.pos.y = gamePlayerChar.attribs.boxColliderPos.y - DeviceManager.screenHeight + plat.attribs.scale.y * 0.5f;
+                plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
+                plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
+                plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
+                plat.attribs.boxColliderScale.y = plat.attribs.scale.y;*/
+
+                break;
         }
     }
 
-    private EntityGameBG gameBG;
+    //private EntityGameBG gameBG;
     private EntityGamePlayerChar gamePlayerChar;
     private EntityPlat startPlat;
     private EntityTextOnScreen textOnScreen;
 
-    private float spawnThreshold;
     private int score;
     private int platIndex;
 

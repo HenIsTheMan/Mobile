@@ -3,7 +3,8 @@ package sg.diploma.product.event;
 public final class EventIDs{
 	public enum EventID{
 		EndGame(0),
-		Amt(1);
+		SpawnPlat(1),
+		Amt(2);
 
 		EventID(final int val){
 			this.val = val;
