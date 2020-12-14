@@ -12,6 +12,7 @@ import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.event.Publisher;
 import sg.diploma.product.event.events.EventAddScore;
+import sg.diploma.product.event.events.EventEndGame;
 import sg.diploma.product.event.events.EventSpawnPlat;
 import sg.diploma.product.graphics.Color;
 
@@ -31,7 +32,7 @@ public final class EntityPlat extends EntityAbstract{
 		paint.setStrokeWidth(strokeWidth);
 		paint.setStyle(paintStyle);
 
-		steppedOn = false;
+		collided = false;
 		myIndex = 0;
 		this.gamePlayerChar = gamePlayerChar;
 		assert this.gamePlayerChar != null;
@@ -39,13 +40,16 @@ public final class EntityPlat extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
-		/*if(steppedOn && attribs.pos.y - gamePlayerChar.attribs.pos.y < 50.0f){
+		if(myIndex == lowestIndex
+			&& gamePlayerChar.attribs.vel.y > 0.0f
+			&& Math.abs(attribs.pos.y - gamePlayerChar.attribs.pos.y) > DeviceManager.screenHeightF * 0.5f){
 			Publisher.Broadcast(new EventEndGame());
 			return;
-		}*/
+		}
 
 		if(attribs.pos.y - gamePlayerChar.attribs.pos.y > DeviceManager.screenHeightF * 0.5f){ //0.25f if want exact
 			EntityManager.Instance.SendEntityForRemoval("plat_" + myIndex);
+			lowestIndex = myIndex + 1;
 		}
 	}
 
@@ -73,8 +77,8 @@ public final class EntityPlat extends EntityAbstract{
 
 	@Override
 	public void Collided(EntityAbstract other){
-		if(!steppedOn){
-			steppedOn = true;
+		if(!collided){
+			collided = true;
 			SetColor(new Color(1.0f, 1.0f, 0.0f, 1.0f));
 			Publisher.Broadcast(new EventSpawnPlat());
 			Publisher.Broadcast(new EventAddScore(1));
@@ -111,7 +115,13 @@ public final class EntityPlat extends EntityAbstract{
 	private Paint.Style paintStyle;
 	private final Paint paint;
 
-	private boolean steppedOn;
+	private boolean collided;
 	private int myIndex;
 	private final EntityGamePlayerChar gamePlayerChar;
+
+	private static int lowestIndex;
+
+	static{
+		lowestIndex = 0;
+	}
 }
