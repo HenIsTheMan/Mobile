@@ -21,4 +21,6 @@
     <string name="SettingsText">"Settings"</string>
     <string name="MusicVolText">"Music Vol"</string>
     <string name="SoundVolText">"Sound Vol"</string>
+
+    <string name="PercentPostfix">%.1f%%</string>
 </resources>
