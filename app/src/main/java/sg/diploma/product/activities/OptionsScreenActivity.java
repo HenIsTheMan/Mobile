@@ -40,7 +40,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 		SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);
 		seekBarMusic.setOnSeekBarChangeListener(this);
-		seekBarMusic.setProgress(50);
+		seekBarMusic.setProgress(100);
 		seekBarMusic.setPaddingRelative(relativePadding, 0, relativePadding, 0);
 		seekBarMusic.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.7f);
 		seekBarMusic.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.1f);
@@ -92,13 +92,9 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		musicVolPercentageText.setText(getString(R.string.PercentPostfix, musicVolPercentage));
 		musicVolPercentageText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 		musicVolPercentageText.setTranslationX(seekBarMusic.getTranslationX()
-			+ seekBarMusic.getLayoutParams().width * musicVolPercentage / 100.0f
-			- musicVolPercentageText.getMeasuredWidth() * 0.5f);
+			+ (seekBarMusic.getLayoutParams().width - seekBarMusic.getPaddingStart() - seekBarMusic.getPaddingEnd())
+			* musicVolPercentage / 100.0f);
 		musicVolPercentageText.setTranslationY(DeviceManager.screenHeightF * 0.45f);
-
-/*		final int soundVolProgress = seekBarMusic.getProgress();
-		final int soundVolMax = seekBarMusic.getMax();
-		final float soundVolPercentage = (float)soundVolProgress / (float)soundVolMax * 100.0f;*/
 
 		final float buttonFactor = DeviceManager.screenWidthF * 0.1f / 300.0f;
 		final int buttonSize = (int)(300.0f * buttonFactor);
@@ -186,8 +182,8 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 			musicVolPercentageText.setText(getString(R.string.PercentPostfix, percentage));
 			musicVolPercentageText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 			musicVolPercentageText.setTranslationX(seekBar.getTranslationX()
-					+ seekBar.getLayoutParams().width * percentage / 100.0f
-					- musicVolPercentageText.getMeasuredWidth() * 0.5f);
+					+ (seekBar.getLayoutParams().width - seekBar.getPaddingStart() - seekBar.getPaddingEnd())
+					* percentage / 100.0f);
 			return;
 		}
 
