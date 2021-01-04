@@ -109,7 +109,7 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 		//*/
 
 		storedVal = xPos - attribs.pos.x;
-		
+
 		if(storedVal > 0.0f){
 			spriteAnim.SetFrames(3 * 9 + 1, 3 * 9 + 9);
 		} else{
