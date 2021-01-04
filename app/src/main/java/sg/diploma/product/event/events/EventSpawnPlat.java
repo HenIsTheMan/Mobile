@@ -5,6 +5,6 @@ import sg.diploma.product.event.EventIDs;
 
 public final class EventSpawnPlat extends EventAbstract{
 	public EventSpawnPlat(){
-		ID = EventIDs.EventID.SpawnPlat;
+		super(EventIDs.EventID.SpawnPlat);
 	}
 }

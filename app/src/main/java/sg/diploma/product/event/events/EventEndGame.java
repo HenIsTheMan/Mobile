@@ -5,6 +5,6 @@ import sg.diploma.product.event.EventIDs;
 
 public final class EventEndGame extends EventAbstract{
 	public EventEndGame(){
-		ID = EventIDs.EventID.EndGame;
+		super(EventIDs.EventID.EndGame);
 	}
 }

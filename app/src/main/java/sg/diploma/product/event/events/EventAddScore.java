@@ -5,7 +5,7 @@ import sg.diploma.product.event.EventIDs;
 
 public final class EventAddScore extends EventAbstract{
 	public EventAddScore(final int scoreAdd){
-		ID = EventIDs.EventID.AddScore;
+		super(EventIDs.EventID.AddScore);
 		this.scoreAdd = scoreAdd;
 	}
 
