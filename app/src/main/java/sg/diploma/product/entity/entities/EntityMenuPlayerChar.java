@@ -44,6 +44,7 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 
 				attribs.spd = 0.0f;
 				attribs.pos = attribs.targetPos; //Snap if super close
+				attribs.targetPos = null;
 			} else{
 				attribs.spd = 400.0f;
 				attribs.dir = new Vector2(attribs.targetPos.x - attribs.pos.x, attribs.targetPos.y - attribs.pos.y).Normalized();
@@ -57,20 +58,7 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 		}
 
 		attribs.pos.x += attribs.dir.x * attribs.spd * dt;
-		if(attribs.xMin != null){
-			attribs.pos.x = Math.max(attribs.xMin.val, attribs.pos.x);
-		}
-		if(attribs.xMax != null){
-			attribs.pos.x = Math.min(attribs.xMax.val, attribs.pos.x);
-		}
-
 		attribs.pos.y += attribs.dir.y * attribs.spd * dt;
-		if(attribs.yMin != null){
-			attribs.pos.y = Math.max(attribs.yMin.val, attribs.pos.y);
-		}
-		if(attribs.yMax != null){
-			attribs.pos.y = Math.min(attribs.yMax.val, attribs.pos.y);
-		}
 
 		spriteAnim.Update(dt);
 	}
@@ -103,8 +91,25 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 
 	public void StartMoving(final float xPos, final float yPos){
 		attribs.targetPos = new Vector2(xPos, yPos);
-		storedVal = xPos - attribs.pos.x;
 
+		//* Bounds checking for attribs.targetPos
+		if(attribs.xMin != null){
+			attribs.targetPos.x = Math.max(attribs.xMin.val, attribs.targetPos.x);
+		}
+		if(attribs.xMax != null){
+			attribs.targetPos.x = Math.min(attribs.xMax.val, attribs.targetPos.x);
+		}
+
+		if(attribs.yMin != null){
+			attribs.targetPos.y = Math.max(attribs.yMin.val, attribs.targetPos.y);
+		}
+		if(attribs.yMax != null){
+			attribs.targetPos.y = Math.min(attribs.yMax.val, attribs.targetPos.y);
+		}
+		//*/
+
+		storedVal = xPos - attribs.pos.x;
+		
 		if(storedVal > 0.0f){
 			spriteAnim.SetFrames(3 * 9 + 1, 3 * 9 + 9);
 		} else{
