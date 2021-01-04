@@ -8,6 +8,6 @@ public final class EntityTypes{
 		TextOnScreen,
 		Plat,
 		PauseButton,
-		Amt;
+		Amt
 	};
 }

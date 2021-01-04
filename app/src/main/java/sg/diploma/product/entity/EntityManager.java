@@ -69,7 +69,7 @@ public final class EntityManager{ //Singleton
     }
 
     public void Render(Canvas _canvas){
-        //Determines render order
+        //* Determines render order
         final Object[] myArr = entityList.values().toArray();
         final int myArrLen = myArr.length;
         final EntityAbstract[] entityAbstractArr = new EntityAbstract[myArrLen];
@@ -77,6 +77,7 @@ public final class EntityManager{ //Singleton
             entityAbstractArr[i] = (EntityAbstract)myArr[i];
         }
         Arrays.sort(entityAbstractArr, (o1, o2)->o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal());
+        //*/
 
         for(EntityAbstract entity: entityAbstractArr){
             entity.Render(_canvas);
