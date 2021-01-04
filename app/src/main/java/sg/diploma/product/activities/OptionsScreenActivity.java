@@ -3,13 +3,16 @@ package sg.diploma.product.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
@@ -52,7 +55,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		seekBarMusic.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.7f);
 		seekBarMusic.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.1f);
 		seekBarMusic.setTranslationX(DeviceManager.screenWidthF * 0.5f - seekBarMusic.getLayoutParams().width * 0.5f);
-		seekBarMusic.setTranslationY(DeviceManager.screenHeightF * 0.4f - seekBarMusic.getLayoutParams().height * 0.5f);
+		seekBarMusic.setTranslationY(DeviceManager.screenHeightF * 0.5f - seekBarMusic.getLayoutParams().height * 0.5f);
 
 		seekBarSounds = findViewById(R.id.seekBarSounds);
 		seekBarSounds.setProgress(50);
@@ -60,7 +63,25 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		seekBarSounds.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.7f);
 		seekBarSounds.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.1f);
 		seekBarSounds.setTranslationX(DeviceManager.screenWidthF * 0.5f - seekBarSounds.getLayoutParams().width * 0.5f);
-		seekBarSounds.setTranslationY(DeviceManager.screenHeightF * 0.6f - seekBarSounds.getLayoutParams().height * 0.5f);
+		seekBarSounds.setTranslationY(DeviceManager.screenHeightF * 0.8f - seekBarSounds.getLayoutParams().height * 0.5f);
+
+		final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
+		final float textSize = DeviceManager.screenWidthF * 0.1f / DeviceManager.scaledDensity;
+		final float textTranslationX = DeviceManager.screenWidthF * 0.5f;
+
+		TextView musicVolText = findViewById(R.id.musicVolText);
+		musicVolText.setTypeface(font);
+		musicVolText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+		musicVolText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		musicVolText.setTranslationX(textTranslationX - (float)musicVolText.getMeasuredWidth() * 0.5f);
+		musicVolText.setTranslationY(DeviceManager.screenHeightF * 0.38f);
+
+		TextView soundVolText = findViewById(R.id.soundVolText);
+		soundVolText.setTypeface(font);
+		soundVolText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+		soundVolText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		soundVolText.setTranslationX(textTranslationX - (float)soundVolText.getMeasuredWidth() * 0.5f);
+		soundVolText.setTranslationY(DeviceManager.screenHeightF * 0.68f);
 
 		/*final int musicProgress = seekBarMusic.getProgress();
 		final int musicMax = seekBarMusic.getMax();

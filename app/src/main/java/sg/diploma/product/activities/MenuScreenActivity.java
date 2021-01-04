@@ -302,8 +302,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         gameTitleBossText = findViewById(R.id.gameTitleBossText);
         gameTitleBossText.setTypeface(font);
         gameTitleBossText.setTextSize(TypedValue.COMPLEX_UNIT_SP,
-                DeviceManager.screenWidthF * 0.2f
-                        / DeviceManager.scaledDensity);
+                DeviceManager.screenWidthF * 0.2f / DeviceManager.scaledDensity);
         gameTitleBossText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         gameTitleBossText.setTranslationX(DeviceManager.screenWidthF * 0.5f
                 - (float)gameTitleBossText.getMeasuredWidth() * 0.5f);
@@ -312,8 +311,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         gameTitleGirlText = findViewById(R.id.gameTitleGirlText);
         gameTitleGirlText.setTypeface(font);
         gameTitleGirlText.setTextSize(TypedValue.COMPLEX_UNIT_SP,
-                DeviceManager.screenWidthF * 0.18f
-                        / DeviceManager.scaledDensity);
+                DeviceManager.screenWidthF * 0.18f / DeviceManager.scaledDensity);
         gameTitleGirlText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         gameTitleGirlText.setTranslationX(DeviceManager.screenWidthF * 0.5f
                 - (float)gameTitleGirlText.getMeasuredWidth() * 0.5f);

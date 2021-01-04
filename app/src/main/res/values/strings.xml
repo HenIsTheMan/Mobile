@@ -18,4 +18,6 @@
     <string name="androidStudioText">AndroidStudioText</string>
     <string name="androidStudioLogo">AndroidStudioLogo</string>
 
+    <string name="MusicVolText">"Music Vol"</string>
+    <string name="SoundVolText">"Sound Vol"</string>
 </resources>

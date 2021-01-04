@@ -13,7 +13,7 @@
         android:fillViewport="true"
         >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -33,7 +33,19 @@
                 android:progressDrawable="@drawable/seek_bar_ruler"
                 android:thumb="@drawable/seek_bar_thumb_sounds" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/musicVolText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/MusicVolText" />
+
+            <TextView
+                android:id="@+id/soundVolText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/SoundVolText" />
+
+        </RelativeLayout>
 
     </ScrollView>
 
