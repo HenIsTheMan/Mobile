@@ -24,12 +24,9 @@ import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 
-public final class OptionsScreenActivity extends Activity implements View.OnClickListener, IState{
+public final class OptionsScreenActivity extends Activity implements View.OnClickListener, IState, SeekBar.OnSeekBarChangeListener{
 	public OptionsScreenActivity(){
 		backButton = null;
-		seekBarMusic = null;
-		seekBarSounds = null;
-		musicVolPercentageText = null;
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.P)
@@ -41,7 +38,8 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 		final int relativePadding = (int)(DeviceManager.screenWidthF * 0.05f);
 
-		seekBarMusic = findViewById(R.id.seekBarMusic);
+		SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);
+		seekBarMusic.setOnSeekBarChangeListener(this);
 		seekBarMusic.setProgress(50);
 		seekBarMusic.setPaddingRelative(relativePadding, 0, relativePadding, 0);
 		seekBarMusic.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.7f);
@@ -49,7 +47,8 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		seekBarMusic.setTranslationX(DeviceManager.screenWidthF * 0.5f - seekBarMusic.getLayoutParams().width * 0.5f);
 		seekBarMusic.setTranslationY(DeviceManager.screenHeightF * 0.4f - seekBarMusic.getLayoutParams().height * 0.5f);
 
-		seekBarSounds = findViewById(R.id.seekBarSounds);
+		SeekBar seekBarSounds = findViewById(R.id.seekBarSounds);
+		seekBarSounds.setOnSeekBarChangeListener(this);
 		seekBarSounds.setProgress(50);
 		seekBarSounds.setPaddingRelative(relativePadding, 0, relativePadding, 0);
 		seekBarSounds.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.7f);
@@ -87,7 +86,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		final int musicVolMax = seekBarMusic.getMax();
 		final float musicVolPercentage = (float)musicVolProgress / (float)musicVolMax * 100.0f;
 
-		musicVolPercentageText = findViewById(R.id.musicVolPercentageText);
+		TextView musicVolPercentageText = findViewById(R.id.musicVolPercentageText);
 		musicVolPercentageText.setTypeface(font);
 		musicVolPercentageText.setTextSize(TypedValue.COMPLEX_UNIT_SP, smallerTextSize);
 		musicVolPercentageText.setText(getString(R.string.PercentPostfix, musicVolPercentage));
@@ -173,10 +172,44 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		super.onDestroy();
 	}
 
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+		if(!fromUser){
+			return;
+		}
+
+		final float percentage = (float)progress / (float)seekBar.getMax() * 100.0f;
+		final String seekBarTag = (String)seekBar.getTag();
+
+		if(seekBarTag.equals("seekBarMusicTag")){
+			TextView musicVolPercentageText = findViewById(R.id.musicVolPercentageText);
+			musicVolPercentageText.setText(getString(R.string.PercentPostfix, percentage));
+			musicVolPercentageText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+			musicVolPercentageText.setTranslationX(seekBar.getTranslationX()
+					+ seekBar.getLayoutParams().width * percentage / 100.0f
+					- musicVolPercentageText.getMeasuredWidth() * 0.5f);
+			return;
+		}
+
+/*		if(seekBarTag.equals("seekBarSoundsTag")){
+			soundVolPercentageText.setText(getString(R.string.PercentPostfix, percentage));
+			soundVolPercentageText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+			soundVolPercentageText.setTranslationX(seekBar.getTranslationX()
+					+ seekBar.getLayoutParams().width * percentage / 100.0f
+					- soundVolPercentageText.getMeasuredWidth() * 0.5f);
+			return;
+		}*/
+	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar){
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar){
+	}
+
 	private Button backButton;
-	private SeekBar seekBarMusic;
-	private SeekBar seekBarSounds;
-	private TextView musicVolPercentageText;
 
 	public static OptionsScreenActivity Instance;
 

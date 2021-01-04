@@ -21,6 +21,7 @@
 
             <SeekBar
                 android:id="@+id/seekBarMusic"
+                android:tag="seekBarMusicTag"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:progressDrawable="@drawable/seek_bar_ruler"
@@ -28,6 +29,7 @@
 
             <SeekBar
                 android:id="@+id/seekBarSounds"
+                android:tag="seekBarSoundsTag"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:progressDrawable="@drawable/seek_bar_ruler"
