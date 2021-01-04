@@ -26,14 +26,8 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 			9,
 			10
 		);
-
-		if((int)Math.random() % 2 == 1){
-			spriteAnim.SetFrames(3 * 13, 3 * 9);
-			attribs.dir = new Vector2(1.0f, 0.0f);
-		} else{
-			spriteAnim.SetFrames(9, 9);
-			attribs.dir = new Vector2(-1.0f, 0.0f);
-		}
+		
+		attribs.dir = new Vector2((int)Math.random() % 2 == 1 ? 1.0f : -1.0f, 0.0f);
 		storedVal = attribs.dir.x;
 	}
 
