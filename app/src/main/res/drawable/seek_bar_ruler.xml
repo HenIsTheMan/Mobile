@@ -12,6 +12,7 @@
     <item android:id="@android:id/progress">
         <clip>
             <shape android:shape="rectangle">
+                <stroke android:color="#94A3B3" android:width="3dp"/>
                 <gradient
                     android:startColor="#18000D"
                     android:endColor="#18244D"
