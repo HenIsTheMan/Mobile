@@ -37,6 +37,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 		final float buttonFactor = DeviceManager.screenWidthF * 0.1f / 300.0f;
 		final int buttonSize = (int)(300.0f * buttonFactor);
+		final int relativePadding = (int)(DeviceManager.screenWidthF * 0.05f);
 
 		backButton = findViewById(R.id.backButton);
 		backButton.setOnClickListener(this);
@@ -46,12 +47,16 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		backButton.setTranslationY((float)buttonSize * 0.5f);
 
 		seekBarMusic = findViewById(R.id.seekBarMusic);
+		seekBarMusic.setProgress(50);
+		seekBarMusic.setPaddingRelative(relativePadding, 0, relativePadding, 0);
 		seekBarMusic.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.4f);
 		seekBarMusic.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.1f);
 		seekBarMusic.setTranslationX(DeviceManager.screenWidthF * 0.5f - seekBarMusic.getLayoutParams().width * 0.5f);
 		seekBarMusic.setTranslationY(DeviceManager.screenHeightF * 0.4f - seekBarMusic.getLayoutParams().height * 0.5f);
 
 		seekBarSounds = findViewById(R.id.seekBarSounds);
+		seekBarSounds.setProgress(50);
+		seekBarSounds.setPaddingRelative(relativePadding, 0, relativePadding, 0);
 		seekBarSounds.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.4f);
 		seekBarSounds.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.1f);
 		seekBarSounds.setTranslationX(DeviceManager.screenWidthF * 0.5f - seekBarSounds.getLayoutParams().width * 0.5f);
