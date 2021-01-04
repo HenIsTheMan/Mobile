@@ -47,11 +47,15 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 		seekBarMusic = findViewById(R.id.seekBarMusic);
 		seekBarMusic.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.4f);
+		seekBarMusic.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.1f);
 		seekBarMusic.setTranslationX(DeviceManager.screenWidthF * 0.5f - seekBarMusic.getLayoutParams().width * 0.5f);
+		seekBarMusic.setTranslationY(DeviceManager.screenHeightF * 0.4f - seekBarMusic.getLayoutParams().height * 0.5f);
 
 		seekBarSounds = findViewById(R.id.seekBarSounds);
 		seekBarSounds.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.4f);
+		seekBarSounds.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.1f);
 		seekBarSounds.setTranslationX(DeviceManager.screenWidthF * 0.5f - seekBarSounds.getLayoutParams().width * 0.5f);
+		seekBarSounds.setTranslationY(DeviceManager.screenHeightF * 0.7f - seekBarSounds.getLayoutParams().height * 0.5f);
 
 		/*final int musicProgress = seekBarMusic.getProgress();
 		final int musicMax = seekBarMusic.getMax();

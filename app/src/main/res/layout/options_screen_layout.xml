@@ -17,24 +17,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:weightSum="1"
             >
 
             <SeekBar
                 android:id="@+id/seekBarMusic"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:progressDrawable="@drawable/seek_bar_ruler"
-                android:thumb="@drawable/seek_bar_thumb"
-                android:layout_weight="0.5" />
+                android:thumb="@drawable/seek_bar_thumb" />
 
             <SeekBar
                 android:id="@+id/seekBarSounds"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:progressDrawable="@drawable/seek_bar_ruler"
+
                 android:thumb="@drawable/seek_bar_thumb"
-                android:layout_weight="0.5" />
+                android:progressDrawable="@drawable/seek_bar_ruler"
+                />
 
         </LinearLayout>
 
