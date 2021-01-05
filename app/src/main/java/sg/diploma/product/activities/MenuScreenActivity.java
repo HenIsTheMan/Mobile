@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -35,7 +39,9 @@ import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 
-public final class MenuScreenActivity extends Activity implements OnClickListener, IState{
+import static android.hardware.Sensor.TYPE_ACCELEROMETER;
+
+public final class MenuScreenActivity extends Activity implements OnClickListener, IState, SensorEventListener{
     public MenuScreenActivity(){
         isFingerOffScreenBefore = true;
         shldStartMoving = false;
@@ -53,6 +59,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         myShape = null;
 
         updateThread = null;
+
+        sensorManager = null;
 
         gameTitleBossText = null;
         gameTitleGirlText = null;
@@ -95,11 +103,66 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
             });
         }
 
+        sensorManager = (SensorManager)menuSurfaceView.getContext().getSystemService(SENSOR_SERVICE);
+        sensorManager.registerListener(this, sensorManager.getSensorList(TYPE_ACCELEROMETER).get(0), SensorManager.SENSOR_DELAY_NORMAL);
+
         AudioManager.Instance.LoadAudioVolData();
         AudioManager.Instance.PlayAudio(R.raw.theme, AudioTypes.AudioType.Music);
         InitOthers();
     }
 
+
+
+    private float[] values = {0,0,0};
+    private long lastTime = System.currentTimeMillis();
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy){
+        // Do something here if sensor accuracy changes.
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent SenseEvent){
+        values = SenseEvent.values;
+        // Many sensors return 3 values, one for each axis.
+        // Do something with this sensor value.
+    }
+
+    public void SensorMove(){
+        float tempX, tempY;
+
+        final float screenWidthF = DeviceManager.screenWidthF;
+        final float screenHeightF = DeviceManager.screenHeightF;
+
+        tempX = bX + (values[1] * (float)((System.currentTimeMillis() - lastTime) / 1000));
+        tempY = bY + (values[0] * (float)((System.currentTimeMillis() - lastTime) / 1000));
+
+        // Check if the ball is going out of screen along the x-axis
+        if (tempX <= ball.getWidth()/2 || tempX >= screenWidthF - ball.getWidth()/2)
+        {
+            // Check if ball is still within screen along the y-axis
+            if ( tempY > ball.getHeight()/2 && tempY < screenHeightF - ball.getHeight()/2)
+            {
+                bY = tempY;
+            }
+        }
+
+        // Check if the ball is going out of screen along the y-axis
+        if (tempY <= ball.getHeight()/2 || tempY >= screenHeightF - ball.getHeight()/2)
+        {
+            // Check if ball is still within screen along the x-axis
+            if (tempX > ball.getWidth()/2 && tempX < screenWidthF - ball.getWidth()/2)
+            {
+                bX = tempX;
+            }
+        }
+
+        bX = tempX;
+        bY = tempY;
+    }
+
+
+    
     @Override
     public boolean onTouchEvent(MotionEvent event){
         TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
@@ -336,6 +399,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private ImageView myShape;
 
     private UpdateThread updateThread;
+
+    private SensorManager sensorManager;
 
     private TextView gameTitleBossText;
     private TextView gameTitleGirlText;
