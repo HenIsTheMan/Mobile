@@ -3,6 +3,7 @@ package sg.diploma.product.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -181,9 +182,20 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 			TextView musicVolPercentageText = findViewById(R.id.musicVolPercentageText);
 			musicVolPercentageText.setText(getString(R.string.PercentPostfix, percentage));
 			musicVolPercentageText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-			musicVolPercentageText.setTranslationX(seekBar.getTranslationX()
+
+			Rect bounds = seekBar.getThumb().getBounds();
+			musicVolPercentageText.setTranslationX(seekBar.getX()
+				+ seekBar.getPaddingStart()
+				- seekBar.getThumbOffset()
+				+ bounds.left
+			);
+
+/*			final int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
+			musicVolPercentageText.setX(seekBar.getX() + val + (float)seekBar.getThumbOffset() * 0.5f);*/
+
+/*			musicVolPercentageText.setTranslationX(seekBar.getTranslationX()
 					+ (seekBar.getLayoutParams().width - seekBar.getPaddingStart() - seekBar.getPaddingEnd())
-					* percentage / 100.0f);
+					* percentage / 100.0f);*/
 			return;
 		}
 
