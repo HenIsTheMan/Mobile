@@ -192,6 +192,8 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 				- seekBar.getThumbOffset()
 				+ bounds.exactCenterX() + (fromUser ? 0.0f : 1.0f) * (seekBar.getLayoutParams().width * percentage / 100.0f) //ewww
 			);
+
+			AudioManager.Instance.OnMusicVolChanged(percentage / 100.0f);
 			return;
 		}
 		if(seekBarTag.equals("seekBarSoundsTag")){
@@ -205,6 +207,8 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 				- seekBar.getThumbOffset()
 				+ bounds.exactCenterX() + (fromUser ? 0.0f : 1.0f) * (seekBar.getLayoutParams().width * percentage / 100.0f) //ewww
 			);
+
+			AudioManager.Instance.OnSoundVolChanged(percentage / 100.0f);
 		}
 	}
 

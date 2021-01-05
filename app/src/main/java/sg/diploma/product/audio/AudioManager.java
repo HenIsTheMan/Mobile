@@ -14,8 +14,8 @@ public final class AudioManager{
 		musicMap = new HashMap<>();
 		soundMap = new HashMap<>();
 
-		musicVol = 4.0f;
-		soundVol = 4.0f;
+		musicVol = 1.0f; //Read from file instead??
+		soundVol = 1.0f; //Read from file instead??
 	}
 
 	public void Init(SurfaceView _view){
@@ -56,10 +56,18 @@ public final class AudioManager{
 		audioMap.get(ID).stop();
 	}
 
-	public void OnMusicVolChanged(final int amt){
+	public void OnMusicVolChanged(final float amt){
+		musicVol = amt;
+		for(MediaPlayer mediaPlayer: musicMap.values()){
+			mediaPlayer.setVolume(musicVol, musicVol);
+		}
 	}
 
-	public void OnSoundVolChanged(final int amt){
+	public void OnSoundVolChanged(final float amt){
+		soundVol = amt;
+		for(MediaPlayer mediaPlayer: soundMap.values()){
+			mediaPlayer.setVolume(soundVol, soundVol);
+		}
 	}
 
 	private SurfaceView view;
