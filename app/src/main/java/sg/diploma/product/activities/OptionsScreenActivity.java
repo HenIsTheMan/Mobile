@@ -187,8 +187,9 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 			Rect bounds = seekBar.getThumb().getBounds();
 			musicVolPercentageText.setTranslationX(seekBar.getX()
 				+ seekBar.getPaddingStart()
+				- musicVolPercentageText.getWidth() * 0.5f
 				- seekBar.getThumbOffset()
-				+ bounds.left
+				+ bounds.centerX()
 			);
 			return;
 		}
@@ -199,38 +200,15 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 			Rect bounds = seekBar.getThumb().getBounds();
 			soundVolPercentageText.setTranslationX(seekBar.getX()
 				+ seekBar.getPaddingStart()
+				- soundVolPercentageText.getWidth() * 0.5f
 				- seekBar.getThumbOffset()
-				+ bounds.left
+				+ bounds.centerX()
 			);
 		}
 	}
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar){
-		final String seekBarTag = (String)seekBar.getTag();
-
-		if(seekBarTag.equals("seekBarMusicTag")){
-			TextView musicVolPercentageText = findViewById(R.id.musicVolPercentageText);
-
-			Rect musicThumbBounds = seekBar.getThumb().getBounds();
-			musicVolPercentageText.setTranslationX(seekBar.getTranslationX()
-					+ seekBar.getPaddingStart()
-					- seekBar.getThumbOffset()
-					+ musicThumbBounds.left
-			);
-
-			return;
-		}
-		if(seekBarTag.equals("seekBarSoundsTag")){
-			TextView soundVolPercentageText = findViewById(R.id.soundVolPercentageText);
-
-			Rect soundThumbBounds = seekBar.getThumb().getBounds();
-			soundVolPercentageText.setTranslationX(seekBar.getTranslationX()
-					+ seekBar.getPaddingStart()
-					- seekBar.getThumbOffset()
-					+ soundThumbBounds.left
-			);
-		}
 	}
 
 	@Override
