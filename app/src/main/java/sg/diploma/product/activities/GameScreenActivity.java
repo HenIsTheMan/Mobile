@@ -3,9 +3,13 @@ package sg.diploma.product.activities;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
+import android.view.View;
 
 import sg.diploma.product.R;
 import sg.diploma.product.device.DeviceManager;
@@ -36,8 +40,10 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         Instance = this;
-        setContentView(new GameView(this));
+        View view = new GameView(this);
+        setContentView(view);
         Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameScreenActivity.GetVal(), this);
+        vibrator = (Vibrator)view.getContext().getSystemService(VIBRATOR_SERVICE);
     }
 
     @Override
@@ -231,6 +237,14 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     public void OnEvent(EventAbstract event){
         switch(event.GetID()){
             case EndGame:
+                if(Build.VERSION.SDK_INT >= 26){
+                    vibrator.vibrate(VibrationEffect.createOneShot(400, 255));
+                } else{
+                    final long[] pattern = {0, 400, 50};
+                    vibrator.vibrate(pattern, -1);
+                }
+                //vibrator.cancel();
+
                 GameData.globalInstance.ResetVars();
                 EntityManager.Instance.SendAllEntitiesForRemoval();
                 StateManager.Instance.ChangeState("MenuScreen");
@@ -238,9 +252,11 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         }
     }
 
+    private static Vibrator vibrator;
     public static GameScreenActivity Instance;
 
     static{
+        vibrator = null;
         Instance = null;
     }
 }
