@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.view.SurfaceView;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import sg.diploma.product.load_and_save.SharedPrefsManager;
 
@@ -32,8 +33,8 @@ public final class AudioManager{
 
 		final HashMap<Integer, MediaPlayer> audioMap = type == AudioTypes.AudioType.Music ? musicMap : soundMap;
 		if(audioMap.containsKey(ID)){
-			audioMap.get(ID).reset();
-			audioMap.get(ID).start();
+			Objects.requireNonNull(audioMap.get(ID)).reset();
+			Objects.requireNonNull(audioMap.get(ID)).start();
 		}
 
 		//* Load audio
