@@ -22,6 +22,7 @@ import androidx.annotation.RequiresApi;
 
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
+import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.device.UpdateThread;
 import sg.diploma.product.entity.EntityConstraint;
@@ -94,7 +95,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
             });
         }
 
-        AudioManager.Instance.PlayAudio(R.raw.theme, 7.0f);
+        AudioManager.Instance.PlayAudio(R.raw.theme, AudioTypes.AudioType.Music);
 
         InitOthers();
     }
@@ -107,7 +108,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void onClick(View v){
-        AudioManager.Instance.PlayAudio(R.raw.button_press, 5.0f);
+        AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
         if(v == startButton){
             EntityManager.Instance.SendAllEntitiesForRemoval();
             StateManager.Instance.ChangeState("GameScreen");

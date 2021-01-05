@@ -11,7 +11,11 @@ public final class AudioManager{
 		view = null;
 		res = null;
 
-		audioMap = new HashMap<>();
+		musicMap = new HashMap<>();
+		soundMap = new HashMap<>();
+
+		musicVol = 4.0f;
+		soundVol = 4.0f;
 	}
 
 	public void Init(SurfaceView _view){
@@ -19,36 +23,53 @@ public final class AudioManager{
 		res = _view.getResources();
 	}
 
-	public void PlayAudio(int _id, float _vol){
-		if(audioMap.containsKey(_id)){
-			audioMap.get(_id).reset();
-			audioMap.get(_id).start();
+	public void PlayAudio(final int ID, final AudioTypes.AudioType type){
+		final HashMap<Integer, MediaPlayer> audioMap = type == AudioTypes.AudioType.Music ? musicMap : soundMap;
+		if(audioMap.containsKey(ID)){
+			audioMap.get(ID).reset();
+			audioMap.get(ID).start();
 		}
 
-		///Load audio
-		MediaPlayer newAudio = MediaPlayer.create(view.getContext(), _id);
-		audioMap.put(_id, newAudio);
-		newAudio.setVolume(_vol, _vol);
-		newAudio.start();
+		//* Load audio
+		MediaPlayer mediaPlayer = MediaPlayer.create(view.getContext(), ID);
+		audioMap.put(ID, mediaPlayer);
+
+		final float audioVol = type == AudioTypes.AudioType.Music ? musicVol : soundVol;
+		mediaPlayer.setVolume(audioVol, audioVol);
+
+		mediaPlayer.start();
+		//*/
 	}
 
-	public boolean IsPlaying(int _id){
-		if(!audioMap.containsKey(_id)){
+	public boolean IsPlaying(final int ID, final AudioTypes.AudioType type){
+		final HashMap<Integer, MediaPlayer> audioMap = type == AudioTypes.AudioType.Music ? musicMap : soundMap;
+
+		if(!audioMap.containsKey(ID)){
 			return false;
 		}
 
-		return audioMap.get(_id).isPlaying();
+		return audioMap.get(ID).isPlaying();
 	}
 
-	public void StopAudio(int _id){
-		MediaPlayer newAudio = audioMap.get(_id);
-		newAudio.stop();
+	public void StopAudio(final int ID, final AudioTypes.AudioType type){
+		final HashMap<Integer, MediaPlayer> audioMap = type == AudioTypes.AudioType.Music ? musicMap : soundMap;
+		audioMap.get(ID).stop();
+	}
+
+	public void OnMusicVolChanged(final int amt){
+	}
+
+	public void OnSoundVolChanged(final int amt){
 	}
 
 	private SurfaceView view;
 	private Resources res;
 
-	private final HashMap<Integer, MediaPlayer> audioMap;
+	private final HashMap<Integer, MediaPlayer> musicMap;
+	private final HashMap<Integer, MediaPlayer> soundMap;
+
+	private float musicVol;
+	private float soundVol;
 
 	public final static AudioManager Instance;
 

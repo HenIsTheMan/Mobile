@@ -19,6 +19,7 @@ import androidx.annotation.RequiresApi;
 
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
+import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.state.IState;
@@ -122,7 +123,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 	@Override
 	public void onClick(View v){
-		AudioManager.Instance.PlayAudio(R.raw.button_press, 5.0f);
+		AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 		if(v == backButton){
 			EntityManager.Instance.SendAllEntitiesForRemoval();
 			StateManager.Instance.ChangeState("MenuScreen");
