@@ -10,6 +10,7 @@ import java.util.Objects;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.graphics.ResourceManager;
+import sg.diploma.product.load_and_save.SharedPrefsManager;
 import sg.diploma.product.state.StateManager;
 
 public final class UpdateThread extends Thread{ //Need dedicated thread to run Surfaceview's update method
@@ -26,6 +27,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         EntityManager.Instance.Init(view);
         ResourceManager.Instance.Init(view);
         AudioManager.Instance.Init(view);
+        SharedPrefsManager.Instance.Init(view);
     }
 
     @Override

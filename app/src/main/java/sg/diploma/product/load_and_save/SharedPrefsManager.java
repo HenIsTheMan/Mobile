@@ -15,36 +15,42 @@ public class SharedPrefsManager{
 		this.view = view;
 	}
 
-	public void Load(final String name){
-		//SharedPreferences sharedPrefs = view.getContext().getSharedPreferences(name, Context.MODE_APPEND);
+	public HashMap<String, Object> Load(final String name, final HashMap<String, Object> objs){
+		HashMap<String, Object> all = new HashMap<>();
 
-		//                                                          float val = sharedPrefs.getFloat("name", "");
+		SharedPreferences sharedPrefs = view.getContext().getSharedPreferences(name, Context.MODE_PRIVATE);
+		final String[] keys = objs.keySet().toArray(new String[0]);
+
+		for(final String key: keys){
+			final Object val = objs.get(key);
+			all.put(key, (Object)sharedPrefs.getFloat(key, 0.0f));
+		}
+
+		return all;
 	}
 
 	public void Save(final String name, final HashMap<String, Object> objs){
 		SharedPreferences sharedPrefs = view.getContext().getSharedPreferences(name, Context.MODE_PRIVATE);
 
 		SharedPreferences.Editor editor = sharedPrefs.edit();
-		Object sample = objs.values().stream().findFirst();
 		final String[] keys = objs.keySet().toArray(new String[0]);
 
-		if(sample instanceof Float){
-			for(final String key: keys){
-				editor.putFloat(key, (float)objs.get(key));
-			}
-			return;
-		}
+		for(final String key: keys){
+			final Object val = objs.get(key);
 
-		if(sample instanceof String){
-			for(final String key: keys){
-				editor.putString(key, (String)objs.get(key));
+			if(val instanceof Float){
+				editor.putFloat(key, (float)val);
+				return;
+			}
+			if(val instanceof String){
+				editor.putString(key, (String)val);
 			}
 		}
 
 		editor.apply();
 	}
 
-	static SharedPrefsManager Instance;
+	public static SharedPrefsManager Instance;
 
 	static{
 		Instance = new SharedPrefsManager();
