@@ -6,6 +6,8 @@ import android.view.SurfaceView;
 
 import java.util.HashMap;
 
+import sg.diploma.product.load_and_save.SharedPrefsManager;
+
 public final class AudioManager{
 	private AudioManager(){
 		view = null;
@@ -14,8 +16,8 @@ public final class AudioManager{
 		musicMap = new HashMap<>();
 		soundMap = new HashMap<>();
 
-		musicVol = 1.0f; //Read from file instead??
-		soundVol = 1.0f; //Read from file instead??
+		musicVol = 0.0f;
+		soundVol = 0.0f;
 	}
 
 	public void Init(SurfaceView _view){
@@ -68,6 +70,26 @@ public final class AudioManager{
 		for(MediaPlayer mediaPlayer: soundMap.values()){
 			mediaPlayer.setVolume(soundVol, soundVol);
 		}
+	}
+
+	public void LoadAudioVolData(){
+		final Float musicVolFloat = SharedPrefsManager.Instance.LoadDataFloat("AudioVolData", "MusicVolData");
+		final Float soundVolFloat = SharedPrefsManager.Instance.LoadDataFloat("AudioVolData", "SoundVolData");
+		musicVol = musicVolFloat == null ? 1.0f : musicVolFloat;
+		soundVol = soundVolFloat == null ? 1.0f : soundVolFloat;
+	}
+
+	public void SaveAudioVolData(){
+		SharedPrefsManager.Instance.SaveDataFloat("AudioVolData", "MusicVolData", musicVol);
+		SharedPrefsManager.Instance.SaveDataFloat("AudioVolData", "SoundVolData", soundVol);
+	}
+
+	public float GetMusicVol(){
+		return musicVol;
+	}
+
+	public float GetSoundVol(){
+		return soundVol;
 	}
 
 	private SurfaceView view;

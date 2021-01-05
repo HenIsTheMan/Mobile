@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.SurfaceView;
 
-import java.util.HashMap;
-
 public class SharedPrefsManager{
 	SharedPrefsManager(){
 		view = null;
@@ -15,38 +13,17 @@ public class SharedPrefsManager{
 		this.view = view;
 	}
 
-	public HashMap<String, Object> Load(final String name, final HashMap<String, Object> objs){
-		HashMap<String, Object> all = new HashMap<>();
-
+	public Float LoadDataFloat(final String name, final String key){
 		SharedPreferences sharedPrefs = view.getContext().getSharedPreferences(name, Context.MODE_PRIVATE);
-		final String[] keys = objs.keySet().toArray(new String[0]);
-
-		for(final String key: keys){
-			final Object val = objs.get(key);
-			all.put(key, (Object)sharedPrefs.getFloat(key, 0.0f));
+		if(!sharedPrefs.contains(key)){
+			return null;
 		}
-
-		return all;
+		return sharedPrefs.getFloat(key, 0.0f);
 	}
 
-	public void Save(final String name, final HashMap<String, Object> objs){
-		SharedPreferences sharedPrefs = view.getContext().getSharedPreferences(name, Context.MODE_PRIVATE);
-
-		SharedPreferences.Editor editor = sharedPrefs.edit();
-		final String[] keys = objs.keySet().toArray(new String[0]);
-
-		for(final String key: keys){
-			final Object val = objs.get(key);
-
-			if(val instanceof Float){
-				editor.putFloat(key, (float)val);
-				return;
-			}
-			if(val instanceof String){
-				editor.putString(key, (String)val);
-			}
-		}
-
+	public void SaveDataFloat(final String name, final String key, final float val){
+		SharedPreferences.Editor editor = view.getContext().getSharedPreferences(name, Context.MODE_PRIVATE).edit();
+		editor.putFloat(key, val);
 		editor.apply();
 	}
 

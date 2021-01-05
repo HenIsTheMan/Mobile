@@ -38,6 +38,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		Instance = this;
 		setContentView(R.layout.options_screen_layout);
 
+		AudioManager.Instance.LoadAudioVolData();
 		final int relativePadding = (int)(DeviceManager.screenWidthF * 0.05f);
 
 		SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);
@@ -82,27 +83,27 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		soundVolText.setTranslationX(textTranslationX - (float)soundVolText.getMeasuredWidth() * 0.5f);
 		soundVolText.setTranslationY(DeviceManager.screenHeightF * 0.58f);
 
-		final int musicVolProgress = 50;
-		final int musicVolMax = seekBarMusic.getMax();
-		final float musicVolPercentage = (float)musicVolProgress / (float)musicVolMax * 100.0f;
+		final float musicVolProgress = AudioManager.Instance.GetMusicVol() * 100.0f;
+		final float musicVolMax = (float)seekBarMusic.getMax();
+		final float musicVolPercentage = musicVolProgress / musicVolMax * 100.0f;
 
 		final TextView musicVolPercentageText = findViewById(R.id.musicVolPercentageText);
 		musicVolPercentageText.setTypeface(font);
 		musicVolPercentageText.setTextSize(TypedValue.COMPLEX_UNIT_SP, smallerTextSize);
 		musicVolPercentageText.setText(getString(R.string.PercentPostfix, musicVolPercentage));
 		musicVolPercentageText.setTranslationY(DeviceManager.screenHeightF * 0.45f);
-		seekBarMusic.setProgress(musicVolProgress);
+		seekBarMusic.setProgress((int)musicVolProgress);
 
-		final int soundVolProgress = 50;
-		final int soundVolMax = seekBarSounds.getMax();
-		final float soundVolPercentage = (float)soundVolProgress / (float)soundVolMax * 100.0f;
+		final float soundVolProgress = AudioManager.Instance.GetSoundVol() * 100.0f;
+		final float soundVolMax = seekBarSounds.getMax();
+		final float soundVolPercentage = soundVolProgress / soundVolMax * 100.0f;
 
 		final TextView soundVolPercentageText = findViewById(R.id.soundVolPercentageText);
 		soundVolPercentageText.setTypeface(font);
 		soundVolPercentageText.setTextSize(TypedValue.COMPLEX_UNIT_SP, smallerTextSize);
 		soundVolPercentageText.setText(getString(R.string.PercentPostfix, soundVolPercentage));
 		soundVolPercentageText.setTranslationY(DeviceManager.screenHeightF * 0.75f);
-		seekBarSounds.setProgress(soundVolProgress);
+		seekBarSounds.setProgress((int)soundVolProgress);
 
 		final float buttonFactor = DeviceManager.screenWidthF * 0.1f / 300.0f;
 		final int buttonSize = (int)(300.0f * buttonFactor);
@@ -126,6 +127,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 		if(v == backButton){
 			EntityManager.Instance.SendAllEntitiesForRemoval();
+			AudioManager.Instance.SaveAudioVolData();
 			StateManager.Instance.ChangeState("MenuScreen");
 
 			startActivity(new Intent(this, MenuScreenActivity.class));

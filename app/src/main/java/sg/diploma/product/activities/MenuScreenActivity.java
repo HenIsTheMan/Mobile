@@ -95,8 +95,8 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
             });
         }
 
+        AudioManager.Instance.LoadAudioVolData();
         AudioManager.Instance.PlayAudio(R.raw.theme, AudioTypes.AudioType.Music);
-
         InitOthers();
     }
 
@@ -118,6 +118,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         }
         if(v == optionsButton){
             EntityManager.Instance.SendAllEntitiesForRemoval();
+            AudioManager.Instance.SaveAudioVolData();
             StateManager.Instance.ChangeState("OptionsScreen");
 
             startActivity(new Intent(this, OptionsScreenActivity.class));
