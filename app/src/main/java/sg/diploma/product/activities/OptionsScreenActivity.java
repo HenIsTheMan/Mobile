@@ -186,10 +186,10 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 			final Rect bounds = seekBar.getThumb().getBounds();
 			musicVolPercentageText.setTranslationX(seekBar.getX()
-				+ seekBar.getPaddingStart()
+				+ (fromUser ? 1.0f : 0.0f) * seekBar.getPaddingStart() //ewww
 				- musicVolPercentageText.getWidth() * 0.5f
 				- seekBar.getThumbOffset()
-				+ bounds.exactCenterX()
+				+ bounds.exactCenterX() + (fromUser ? 0.0f : 1.0f) * (seekBar.getLayoutParams().width * percentage / 100.0f) //ewww
 			);
 			return;
 		}
@@ -199,10 +199,10 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 			final Rect bounds = seekBar.getThumb().getBounds();
 			soundVolPercentageText.setTranslationX(seekBar.getX()
-				+ seekBar.getPaddingStart()
+				+ (fromUser ? 1.0f : 0.0f) * seekBar.getPaddingStart() //ewww
 				- soundVolPercentageText.getWidth() * 0.5f
 				- seekBar.getThumbOffset()
-				+ bounds.exactCenterX()
+				+ bounds.exactCenterX() + (fromUser ? 0.0f : 1.0f) * (seekBar.getLayoutParams().width * percentage / 100.0f) //ewww
 			);
 		}
 	}
