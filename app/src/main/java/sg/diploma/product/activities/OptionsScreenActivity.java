@@ -41,7 +41,6 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 		SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);
 		seekBarMusic.setOnSeekBarChangeListener(this);
-		seekBarMusic.setProgress(50);
 		seekBarMusic.setPaddingRelative(relativePadding, 0, relativePadding, 0);
 		seekBarMusic.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.7f);
 		seekBarMusic.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.1f);
@@ -50,7 +49,6 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 		SeekBar seekBarSounds = findViewById(R.id.seekBarSounds);
 		seekBarSounds.setOnSeekBarChangeListener(this);
-		seekBarSounds.setProgress(50);
 		seekBarSounds.setPaddingRelative(relativePadding, 0, relativePadding, 0);
 		seekBarSounds.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.7f);
 		seekBarSounds.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.1f);
@@ -83,25 +81,27 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		soundVolText.setTranslationX(textTranslationX - (float)soundVolText.getMeasuredWidth() * 0.5f);
 		soundVolText.setTranslationY(DeviceManager.screenHeightF * 0.58f);
 
-		final int musicVolProgress = seekBarMusic.getProgress();
+		final int musicVolProgress = 50;
 		final int musicVolMax = seekBarMusic.getMax();
 		final float musicVolPercentage = (float)musicVolProgress / (float)musicVolMax * 100.0f;
 
-		TextView musicVolPercentageText = findViewById(R.id.musicVolPercentageText);
+		final TextView musicVolPercentageText = findViewById(R.id.musicVolPercentageText);
 		musicVolPercentageText.setTypeface(font);
 		musicVolPercentageText.setTextSize(TypedValue.COMPLEX_UNIT_SP, smallerTextSize);
 		musicVolPercentageText.setText(getString(R.string.PercentPostfix, musicVolPercentage));
 		musicVolPercentageText.setTranslationY(DeviceManager.screenHeightF * 0.45f);
+		seekBarMusic.setProgress(musicVolProgress);
 
-		final int soundVolProgress = seekBarSounds.getProgress();
+		final int soundVolProgress = 50;
 		final int soundVolMax = seekBarSounds.getMax();
 		final float soundVolPercentage = (float)soundVolProgress / (float)soundVolMax * 100.0f;
 
-		TextView soundVolPercentageText = findViewById(R.id.soundVolPercentageText);
+		final TextView soundVolPercentageText = findViewById(R.id.soundVolPercentageText);
 		soundVolPercentageText.setTypeface(font);
 		soundVolPercentageText.setTextSize(TypedValue.COMPLEX_UNIT_SP, smallerTextSize);
 		soundVolPercentageText.setText(getString(R.string.PercentPostfix, soundVolPercentage));
 		soundVolPercentageText.setTranslationY(DeviceManager.screenHeightF * 0.75f);
+		seekBarSounds.setProgress(soundVolProgress);
 
 		final float buttonFactor = DeviceManager.screenWidthF * 0.1f / 300.0f;
 		final int buttonSize = (int)(300.0f * buttonFactor);
@@ -181,28 +181,28 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		final String seekBarTag = (String)seekBar.getTag();
 
 		if(seekBarTag.equals("seekBarMusicTag")){
-			TextView musicVolPercentageText = findViewById(R.id.musicVolPercentageText);
+			final TextView musicVolPercentageText = findViewById(R.id.musicVolPercentageText);
 			musicVolPercentageText.setText(getString(R.string.PercentPostfix, percentage));
 
-			Rect bounds = seekBar.getThumb().getBounds();
+			final Rect bounds = seekBar.getThumb().getBounds();
 			musicVolPercentageText.setTranslationX(seekBar.getX()
 				+ seekBar.getPaddingStart()
 				- musicVolPercentageText.getWidth() * 0.5f
 				- seekBar.getThumbOffset()
-				+ bounds.centerX()
+				+ bounds.exactCenterX()
 			);
 			return;
 		}
 		if(seekBarTag.equals("seekBarSoundsTag")){
-			TextView soundVolPercentageText = findViewById(R.id.soundVolPercentageText);
+			final TextView soundVolPercentageText = findViewById(R.id.soundVolPercentageText);
 			soundVolPercentageText.setText(getString(R.string.PercentPostfix, percentage));
 
-			Rect bounds = seekBar.getThumb().getBounds();
+			final Rect bounds = seekBar.getThumb().getBounds();
 			soundVolPercentageText.setTranslationX(seekBar.getX()
 				+ seekBar.getPaddingStart()
 				- soundVolPercentageText.getWidth() * 0.5f
 				- seekBar.getThumbOffset()
-				+ bounds.centerX()
+				+ bounds.exactCenterX()
 			);
 		}
 	}
