@@ -18,6 +18,7 @@
     <string name="androidStudioText">AndroidStudioText</string>
     <string name="androidStudioLogo">AndroidStudioLogo</string>
 
+    <string name="ShopText">"Shop"</string>
     <string name="SettingsText">"Settings"</string>
     <string name="MusicVolText">"Music Vol"</string>
     <string name="SoundVolText">"Sound Vol"</string>
