@@ -10,6 +10,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -31,6 +32,7 @@ import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.device.UpdateThread;
 import sg.diploma.product.entity.EntityConstraint;
 import sg.diploma.product.entity.EntityManager;
+import sg.diploma.product.entity.entities.EntityBall;
 import sg.diploma.product.entity.entities.EntityMenuPlayerChar;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
 import sg.diploma.product.graphics.Color;
@@ -50,6 +52,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         optionsButton = null;
         exitButton = null;
 
+        ball = null;
         menuPlayerChar = null;
         textOnScreen = null;
 
@@ -111,57 +114,17 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         InitOthers();
     }
 
-
-
-    private float[] values = {0,0,0};
-    private long lastTime = System.currentTimeMillis();
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy){
-        // Do something here if sensor accuracy changes.
     }
 
     @Override
     public void onSensorChanged(SensorEvent SenseEvent){
-        values = SenseEvent.values;
-    }
-
-    public void SensorMove(){
-        float tempX, tempY;
-
-        final float screenWidthF = DeviceManager.screenWidthF;
-        final float screenHeightF = DeviceManager.screenHeightF;
-
-        final long currTime = System.currentTimeMillis();
-        tempX = bX + (values[1] * (float)((currTime - lastTime) / 1000));
-        tempY = bY + (values[0] * (float)((currTime - lastTime) / 1000));
-        lastTime = currTime;
-
-        // Check if the ball is going out of screen along the x-axis
-        if (tempX <= ball.getWidth()/2 || tempX >= screenWidthF - ball.getWidth()/2)
-        {
-            // Check if ball is still within screen along the y-axis
-            if ( tempY > ball.getHeight()/2 && tempY < screenHeightF - ball.getHeight()/2)
-            {
-                bY = tempY;
-            }
+        if(ball != null){
+            Log.e("Me", "Here");
+            ball.SetVals(SenseEvent.values);
         }
-
-        // Check if the ball is going out of screen along the y-axis
-        if (tempY <= ball.getHeight()/2 || tempY >= screenHeightF - ball.getHeight()/2)
-        {
-            // Check if ball is still within screen along the x-axis
-            if (tempX > ball.getWidth()/2 && tempX < screenWidthF - ball.getWidth()/2)
-            {
-                bX = tempX;
-            }
-        }
-
-        bX = tempX;
-        bY = tempY;
     }
-
-
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
@@ -207,12 +170,32 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public void OnEnter(SurfaceView _view){
-        menuPlayerChar = EntityMenuPlayerChar.Create(
-            "menuPlayerChar",
-            R.drawable.player_char
+        //* Create ball
+        ball = EntityBall.Create(
+            "ball"
         );
 
+        ball.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
+        ball.attribs.pos.y = DeviceManager.screenHeightF * 0.9f;
+        ball.attribs.scale.x = ball.attribs.scale.y = 100.0f;
+        final float ballHalfSize = ball.attribs.scale.x * 0.5f;
+
+        ball.attribs.xMin = new EntityConstraint();
+        ball.attribs.xMax = new EntityConstraint();
+        ball.attribs.yMin = new EntityConstraint();
+        ball.attribs.yMax = new EntityConstraint();
+        ball.attribs.xMin.val = 0.0f;
+        ball.attribs.xMax.val = DeviceManager.screenWidthF - ballHalfSize;
+        ball.attribs.yMin.val = 0.0f;
+        ball.attribs.yMax.val = DeviceManager.screenHeightF - ballHalfSize;
+        //*/
+
         //* Create menu player char
+        menuPlayerChar = EntityMenuPlayerChar.Create(
+                "menuPlayerChar",
+                R.drawable.player_char
+        );
+
         menuPlayerChar.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
         menuPlayerChar.attribs.pos.y = DeviceManager.screenHeightF * 3.0f * 0.225f;
 
@@ -390,6 +373,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     private Button optionsButton;
     private Button exitButton;
 
+    private static EntityBall ball;
     private EntityMenuPlayerChar menuPlayerChar;
     private EntityTextOnScreen textOnScreen;
 
