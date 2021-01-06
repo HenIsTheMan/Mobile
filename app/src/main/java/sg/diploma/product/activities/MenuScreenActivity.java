@@ -29,7 +29,7 @@ import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.device.UpdateThread;
-import sg.diploma.product.dialog_frag.MenuDialogFrag;
+import sg.diploma.product.dialog_frags.MenuDialogFrag;
 import sg.diploma.product.entity.EntityConstraint;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityBall;

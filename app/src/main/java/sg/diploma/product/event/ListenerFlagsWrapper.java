@@ -4,7 +4,8 @@ public final class ListenerFlagsWrapper{
 	public enum ListenerFlags{ //Flags enum
 		GameData(0),
 		GameScreenActivity(1),
-		MenuScreenActivity(2);
+		MenuScreenActivity(2),
+		OptionsScreenActivity(3);
 
 		ListenerFlags(final int val){
 			this.val = 1 << val;

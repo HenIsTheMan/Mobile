@@ -1,4 +1,4 @@
-package sg.diploma.product.dialog_frag;
+package sg.diploma.product.dialog_frags;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -9,6 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
+
+import sg.diploma.product.event.Publisher;
+import sg.diploma.product.event.events.EventReturnToMenu;
 
 public final class SaveDialogFrag extends DialogFragment{
 	@NonNull
@@ -21,7 +24,7 @@ public final class SaveDialogFrag extends DialogFragment{
 		builder.setMessage("Go Back Without Saving?")
 		.setPositiveButton("YES SIR", new DialogInterface.OnClickListener(){
 			public void onClick(DialogInterface dialog, int id){
-
+				Publisher.Broadcast(new EventReturnToMenu());
 				isShown = false;
 			}
 		})

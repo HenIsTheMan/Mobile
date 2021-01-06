@@ -40,7 +40,7 @@ public final class SplashScreenActivity extends Activity{
     }
 
     @Override
-    protected final void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.splash_screen_layout);
@@ -129,6 +129,31 @@ public final class SplashScreenActivity extends Activity{
 
         splashThread.start();
         splashControlThread.start();
+    }
+
+    @Override
+    protected final void onStart(){
+        super.onStart();
+    }
+
+    @Override
+    protected final void onResume(){
+        super.onResume();
+    }
+
+    @Override
+    protected final void onPause(){
+        super.onPause();
+    }
+
+    @Override
+    protected final void onStop(){
+        super.onStop();
+    }
+
+    @Override
+    protected final void onDestroy(){
+        super.onDestroy();
     }
 
     private boolean _active;

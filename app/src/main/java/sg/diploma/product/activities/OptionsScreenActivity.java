@@ -22,13 +22,17 @@ import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
-import sg.diploma.product.dialog_frag.SaveDialogFrag;
+import sg.diploma.product.dialog_frags.SaveDialogFrag;
 import sg.diploma.product.entity.EntityManager;
+import sg.diploma.product.event.EventAbstract;
+import sg.diploma.product.event.IListener;
+import sg.diploma.product.event.ListenerFlagsWrapper;
+import sg.diploma.product.event.Publisher;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 
-public final class OptionsScreenActivity extends FragmentActivity implements View.OnClickListener, IState, SeekBar.OnSeekBarChangeListener{
+public final class OptionsScreenActivity extends FragmentActivity implements View.OnClickListener, IState, SeekBar.OnSeekBarChangeListener, IListener{
 	public OptionsScreenActivity(){
 		areNewVolsSaved = true;
 
@@ -47,6 +51,8 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 		super.onCreate(savedInstanceState);
 		Instance = this;
 		setContentView(R.layout.options_screen_layout);
+
+		Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.OptionsScreenActivity.GetVal(), this);
 
 		AudioManager.Instance.LoadAudioVolData();
 
@@ -186,6 +192,12 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 	}
 
 	@Override
+	protected final void onDestroy(){
+		super.onDestroy();
+		Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.OptionsScreenActivity.GetVal());
+	}
+
+	@Override
 	public boolean onTouchEvent(MotionEvent event){
 		TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
 		return true;
@@ -206,12 +218,7 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 			}
 			//change back if don't save??
 
-			EntityManager.Instance.SendAllEntitiesForRemoval();
-			StateManager.Instance.ChangeState("MenuScreen");
-
-			startActivity(new Intent(this, MenuScreenActivity.class));
-			finish();
-
+			ReturnToMenu();
 			return;
 		}
 		if(v == saveButton){
@@ -225,6 +232,7 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 			final SeekBar seekBarSounds = findViewById(R.id.seekBarSounds);
 			seekBarMusic.setProgress(100);
 			seekBarSounds.setProgress(100);
+			areNewVolsSaved = false;
 		}
 	}
 
@@ -258,37 +266,10 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 	}
 
 	@Override
-	protected final void onStart(){
-		super.onStart();
-	}
-
-	@Override
-	protected final void onResume(){
-		super.onResume();
-	}
-
-	@Override
-	protected final void onPause(){
-		super.onPause();
-	}
-
-	@Override
-	protected final void onStop(){
-		super.onStop();
-	}
-
-	@Override
-	protected final void onDestroy(){
-		super.onDestroy();
-	}
-
-	@Override
 	public final void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-		/*if(!fromUser){
-			return;
-		}*/
-		areNewVolsSaved = false;
-
+		if(fromUser){
+			areNewVolsSaved = false;
+		}
 
 		final float percentage = (float)progress / (float)seekBar.getMax() * 100.0f;
 		final String seekBarTag = (String)seekBar.getTag();
@@ -328,6 +309,23 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 
 	@Override
 	public final void onStopTrackingTouch(SeekBar seekBar){
+	}
+
+	@Override
+	public final void OnEvent(EventAbstract event){
+		switch(event.GetID()){
+			case ReturnToMenu:
+				ReturnToMenu();
+				break;
+		}
+	}
+
+	private void ReturnToMenu(){
+		EntityManager.Instance.SendAllEntitiesForRemoval();
+		StateManager.Instance.ChangeState("MenuScreen");
+
+		startActivity(new Intent(this, MenuScreenActivity.class));
+		finish();
 	}
 
 	private boolean areNewVolsSaved;

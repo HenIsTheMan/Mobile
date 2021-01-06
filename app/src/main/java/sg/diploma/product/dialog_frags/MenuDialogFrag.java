@@ -1,4 +1,4 @@
-package sg.diploma.product.dialog_frag;
+package sg.diploma.product.dialog_frags;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
