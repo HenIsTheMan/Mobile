@@ -35,6 +35,8 @@ import sg.diploma.product.touch.TouchManager;
 public final class OptionsScreenActivity extends FragmentActivity implements View.OnClickListener, IState, SeekBar.OnSeekBarChangeListener, IListener{
 	public OptionsScreenActivity(){
 		areNewVolsSaved = true;
+		initialMusicVol = 0;
+		initialSoundVol = 0;
 
 		backButton = null;
 		saveButton = null;
@@ -99,6 +101,7 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 		final float musicVolProgress = AudioManager.Instance.GetMusicVol() * 100.0f;
 		final float musicVolMax = (float)seekBarMusic.getMax();
 		final float musicVolPercentage = musicVolProgress / musicVolMax * 100.0f;
+		initialMusicVol = (int)musicVolProgress;
 
 		final TextView musicVolPercentageText = findViewById(R.id.musicVolPercentageText);
 		musicVolPercentageText.setTypeface(font);
@@ -110,6 +113,7 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 		final float soundVolProgress = AudioManager.Instance.GetSoundVol() * 100.0f;
 		final float soundVolMax = seekBarSounds.getMax();
 		final float soundVolPercentage = soundVolProgress / soundVolMax * 100.0f;
+		initialSoundVol = (int)soundVolProgress;
 
 		final TextView soundVolPercentageText = findViewById(R.id.soundVolPercentageText);
 		soundVolPercentageText.setTypeface(font);
@@ -216,7 +220,6 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 				dialogFrag.show(getSupportFragmentManager(), "SaveDialogFrag");
 				return;
 			}
-			//change back if don't save??
 
 			ReturnToMenu();
 			return;
@@ -314,7 +317,12 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 	@Override
 	public final void OnEvent(EventAbstract event){
 		switch(event.GetID()){
-			case ReturnToMenu:
+			case ReturnToMenuWithoutSaving:
+				final SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);
+				final SeekBar seekBarSounds = findViewById(R.id.seekBarSounds);
+				seekBarMusic.setProgress(initialMusicVol);
+				seekBarSounds.setProgress(initialSoundVol);
+
 				ReturnToMenu();
 				break;
 		}
@@ -329,6 +337,8 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 	}
 
 	private boolean areNewVolsSaved;
+	private int initialMusicVol;
+	private int initialSoundVol;
 
 	private Button backButton;
 	private Button saveButton;

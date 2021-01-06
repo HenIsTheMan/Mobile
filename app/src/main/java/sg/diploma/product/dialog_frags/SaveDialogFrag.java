@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import sg.diploma.product.event.Publisher;
-import sg.diploma.product.event.events.EventReturnToMenu;
+import sg.diploma.product.event.events.EventReturnToMenuWithoutSaving;
 
 public final class SaveDialogFrag extends DialogFragment{
 	@NonNull
@@ -24,7 +24,7 @@ public final class SaveDialogFrag extends DialogFragment{
 		builder.setMessage("Go Back Without Saving?")
 		.setPositiveButton("YES SIR", new DialogInterface.OnClickListener(){
 			public void onClick(DialogInterface dialog, int id){
-				Publisher.Broadcast(new EventReturnToMenu());
+				Publisher.Broadcast(new EventReturnToMenuWithoutSaving());
 				isShown = false;
 			}
 		})

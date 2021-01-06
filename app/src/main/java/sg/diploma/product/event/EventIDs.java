@@ -6,7 +6,7 @@ public final class EventIDs{
 		SpawnPlat(1),
 		AddScore(2),
 		EndProg(3),
-		ReturnToMenu(4),
+		ReturnToMenuWithoutSaving(4),
 		Amt(5);
 
 		EventID(final int val){
