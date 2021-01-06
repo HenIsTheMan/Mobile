@@ -5,7 +5,8 @@ public final class EventIDs{
 		EndGame(0),
 		SpawnPlat(1),
 		AddScore(2),
-		Amt(3);
+		EndProg(3),
+		Amt(4);
 
 		EventID(final int val){
 			this.val = val;

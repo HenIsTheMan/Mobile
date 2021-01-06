@@ -42,8 +42,10 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         Instance = this;
         View view = new GameView(this);
         setContentView(view);
-        Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameScreenActivity.GetVal(), this);
+
         vibrator = (Vibrator)view.getContext().getSystemService(VIBRATOR_SERVICE);
+
+        Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameScreenActivity.GetVal(), this);
     }
 
     @Override

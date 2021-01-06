@@ -35,6 +35,10 @@ import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityBall;
 import sg.diploma.product.entity.entities.EntityMenuPlayerChar;
 import sg.diploma.product.entity.entities.EntityTextOnScreen;
+import sg.diploma.product.event.EventAbstract;
+import sg.diploma.product.event.IListener;
+import sg.diploma.product.event.ListenerFlagsWrapper;
+import sg.diploma.product.event.Publisher;
 import sg.diploma.product.graphics.Color;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
@@ -43,7 +47,7 @@ import sg.diploma.product.touch.TouchTypes;
 
 import static android.hardware.Sensor.TYPE_ACCELEROMETER;
 
-public final class MenuScreenActivity extends FragmentActivity implements OnClickListener, IState, SensorEventListener{
+public final class MenuScreenActivity extends FragmentActivity implements OnClickListener, IState, SensorEventListener, IListener{
     public MenuScreenActivity(){
         isFingerOffScreenBefore = true;
         shldStartMoving = false;
@@ -77,6 +81,8 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.menu_screen_layout);
+
+        Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.MenuScreenActivity.GetVal(), this);
 
         SurfaceView menuSurfaceView = findViewById(R.id.menuSurfaceView);
         updateThread = new UpdateThread(menuSurfaceView);
@@ -112,6 +118,12 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
         AudioManager.Instance.LoadAudioVolData();
         AudioManager.Instance.PlayAudio(R.raw.theme, AudioTypes.AudioType.Music);
         InitOthers();
+    }
+
+    @Override
+    protected final void onDestroy(){
+        super.onDestroy();
+        Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.MenuScreenActivity.GetVal());
     }
 
     @Override
@@ -165,9 +177,6 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
 
         MainMenuDialogFrag dialogFrag = new MainMenuDialogFrag();
         dialogFrag.show(getSupportFragmentManager(), (String)"MainMenuDialogFrag");
-
-        finishAndRemoveTask();
-        System.exit(0);
     }
 
     @Override
@@ -268,8 +277,13 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
     }
 
     @Override
-    protected final void onDestroy(){
-        super.onDestroy();
+    public final void OnEvent(EventAbstract event){
+        switch(event.GetID()){
+            case EndProg:
+                finishAndRemoveTask();
+                System.exit(0);
+                break;
+        }
     }
 
     private void InitOthers(){

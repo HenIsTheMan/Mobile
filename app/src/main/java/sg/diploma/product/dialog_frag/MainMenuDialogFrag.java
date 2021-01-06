@@ -10,6 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import sg.diploma.product.event.Publisher;
+import sg.diploma.product.event.events.EventEndProg;
+
 public final class MainMenuDialogFrag extends DialogFragment{
 	@NonNull
 	@Override
@@ -21,7 +24,7 @@ public final class MainMenuDialogFrag extends DialogFragment{
 		builder.setMessage("Exit Game?")
 		.setPositiveButton("+ve", new DialogInterface.OnClickListener(){
 			public void onClick(DialogInterface dialog, int id){
-
+				Publisher.Broadcast(new EventEndProg());
 				isShown = false;
 			}
 		})
