@@ -186,7 +186,7 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
         }
 
         MenuDialogFrag dialogFrag = new MenuDialogFrag();
-        dialogFrag.show(getSupportFragmentManager(), (String)"MenuDialogFrag");
+        dialogFrag.show(getSupportFragmentManager(), "MenuDialogFrag");
     }
 
     @Override

@@ -1,6 +1,5 @@
 package sg.diploma.product.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -17,18 +16,22 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentActivity;
 
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
+import sg.diploma.product.dialog_frag.SaveDialogFrag;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 
-public final class OptionsScreenActivity extends Activity implements View.OnClickListener, IState, SeekBar.OnSeekBarChangeListener{
+public final class OptionsScreenActivity extends FragmentActivity implements View.OnClickListener, IState, SeekBar.OnSeekBarChangeListener{
 	public OptionsScreenActivity(){
+		areNewVolsSaved = true;
+
 		backButton = null;
 		saveButton = null;
 		resetButton = null;
@@ -192,18 +195,29 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	public final void onClick(View v){
 		AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 		if(v == backButton){
+			if(!areNewVolsSaved){
+				if(SaveDialogFrag.isShown){
+					return;
+				}
+
+				SaveDialogFrag dialogFrag = new SaveDialogFrag();
+				dialogFrag.show(getSupportFragmentManager(), "SaveDialogFrag");
+				return;
+			}
+			//change back if don't save??
+
 			EntityManager.Instance.SendAllEntitiesForRemoval();
 			StateManager.Instance.ChangeState("MenuScreen");
 
-			//save or not??
-			//change back if don't save??
-
 			startActivity(new Intent(this, MenuScreenActivity.class));
 			finish();
+
 			return;
 		}
 		if(v == saveButton){
 			AudioManager.Instance.SaveAudioVolData();
+			areNewVolsSaved = true;
+
 			return;
 		}
 		if(v == resetButton){
@@ -273,6 +287,8 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		/*if(!fromUser){
 			return;
 		}*/
+		areNewVolsSaved = false;
+
 
 		final float percentage = (float)progress / (float)seekBar.getMax() * 100.0f;
 		final String seekBarTag = (String)seekBar.getTag();
@@ -313,6 +329,8 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	@Override
 	public final void onStopTrackingTouch(SeekBar seekBar){
 	}
+
+	private boolean areNewVolsSaved;
 
 	private Button backButton;
 	private Button saveButton;
