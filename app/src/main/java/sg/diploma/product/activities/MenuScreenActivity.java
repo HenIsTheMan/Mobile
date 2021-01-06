@@ -10,7 +10,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -139,6 +138,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
             StateManager.Instance.ChangeState("GameScreen");
 
             startActivity(new Intent(this, GameScreenActivity.class));
+            finish();
             return;
         }
         if(v == optionsButton){
@@ -147,6 +147,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
             StateManager.Instance.ChangeState("OptionsScreen");
 
             startActivity(new Intent(this, OptionsScreenActivity.class));
+            finish();
             return;
         }
         if(v == exitButton){

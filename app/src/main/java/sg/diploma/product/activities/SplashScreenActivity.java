@@ -101,16 +101,17 @@ public final class SplashScreenActivity extends Activity{
         Thread splashThread = new Thread(){
             @Override
             public void run(){
-            try{
-                sleep(_splashTime);
-            } catch(InterruptedException e){
-                e.printStackTrace();
-            } finally{
-                finishAffinity();
+                try{
+                    sleep(_splashTime);
+                } catch(InterruptedException e){
+                    e.printStackTrace();
+                } finally{
+                    finishAffinity();
 
-                StateManager.Instance.ChangeState("MenuScreen");
-                startActivity(new Intent(SplashScreenActivity.this, MenuScreenActivity.class));
-            }
+                    StateManager.Instance.ChangeState("MenuScreen");
+                    startActivity(new Intent(SplashScreenActivity.this, MenuScreenActivity.class));
+                    finish();
+                }
             }
         };
 

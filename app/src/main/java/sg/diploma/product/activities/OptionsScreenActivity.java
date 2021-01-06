@@ -131,6 +131,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 			StateManager.Instance.ChangeState("MenuScreen");
 
 			startActivity(new Intent(this, MenuScreenActivity.class));
+			finish();
 		}
 	}
 
