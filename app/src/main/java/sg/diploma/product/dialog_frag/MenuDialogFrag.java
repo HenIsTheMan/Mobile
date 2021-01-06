@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import sg.diploma.product.event.Publisher;
 import sg.diploma.product.event.events.EventEndProg;
 
-public final class MainMenuDialogFrag extends DialogFragment{
+public final class MenuDialogFrag extends DialogFragment{
 	@NonNull
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState){

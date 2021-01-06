@@ -29,7 +29,7 @@ import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.device.UpdateThread;
-import sg.diploma.product.dialog_frag.MainMenuDialogFrag;
+import sg.diploma.product.dialog_frag.MenuDialogFrag;
 import sg.diploma.product.entity.EntityConstraint;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityBall;
@@ -171,12 +171,12 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
 
     @Override
     public final void onBackPressed(){
-        if(MainMenuDialogFrag.isShown){
+        if(MenuDialogFrag.isShown){
             return;
         }
 
-        MainMenuDialogFrag dialogFrag = new MainMenuDialogFrag();
-        dialogFrag.show(getSupportFragmentManager(), (String)"MainMenuDialogFrag");
+        MenuDialogFrag dialogFrag = new MenuDialogFrag();
+        dialogFrag.show(getSupportFragmentManager(), (String)"MenuDialogFrag");
     }
 
     @Override
