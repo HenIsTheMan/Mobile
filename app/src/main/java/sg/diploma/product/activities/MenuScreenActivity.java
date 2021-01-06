@@ -54,7 +54,7 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
 
         startButton = null;
         optionsButton = null;
-        exitButton = null;
+        shopButton = null;
 
         ball = null;
         menuPlayerChar = null;
@@ -62,7 +62,7 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
 
         playIcon = null;
         gearsIcon = null;
-        leaveIcon = null;
+        shoppingCartIcon = null;
         myShape = null;
 
         updateThread = null;
@@ -163,10 +163,18 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
             finish();
             return;
         }
-        if(v == exitButton){
+        if(v == shopButton){
+            EntityManager.Instance.SendAllEntitiesForRemoval();
+            StateManager.Instance.ChangeState("ShopScreen");
+
+            startActivity(new Intent(this, ShopScreenActivity.class));
+            finish();
+            return;
+        }
+        /*if(v == exitButton){
             finishAndRemoveTask();
             System.exit(0);
-        }
+        }*/
     }
 
     @Override
@@ -330,12 +338,12 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
         optionsButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)buttonSize * 0.5f);
         optionsButton.setTranslationY(DeviceManager.screenHeightF * 0.4f);
 
-        exitButton = findViewById(R.id.exitButton);
-        exitButton.setOnClickListener(this);
-        exitButton.getLayoutParams().width = buttonSize;
-        exitButton.getLayoutParams().height = buttonSize;
-        exitButton.setTranslationX(DeviceManager.screenWidthF * 0.8f - (float)buttonSize * 0.5f);
-        exitButton.setTranslationY(DeviceManager.screenHeightF * 0.4f);
+        shopButton = findViewById(R.id.shopButton);
+        shopButton.setOnClickListener(this);
+        shopButton.getLayoutParams().width = buttonSize;
+        shopButton.getLayoutParams().height = buttonSize;
+        shopButton.setTranslationX(DeviceManager.screenWidthF * 0.8f - (float)buttonSize * 0.5f);
+        shopButton.setTranslationY(DeviceManager.screenHeightF * 0.4f);
 
         playIcon = findViewById(R.id.playIcon);
         playIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
@@ -357,15 +365,15 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
                 + (optionsButton.getLayoutParams().height
                 - gearsIcon.getLayoutParams().height) * 0.5f);
 
-        leaveIcon = findViewById(R.id.leaveIcon);
-        leaveIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
-        leaveIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
-        leaveIcon.setTranslationX(exitButton.getTranslationX()
-                + (exitButton.getLayoutParams().width
-                - leaveIcon.getLayoutParams().width) * 0.5f);
-        leaveIcon.setTranslationY(exitButton.getTranslationY()
-                + (exitButton.getLayoutParams().height
-                - leaveIcon.getLayoutParams().height) * 0.5f);
+        shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
+        shoppingCartIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
+        shoppingCartIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
+        shoppingCartIcon.setTranslationX(shopButton.getTranslationX()
+                + (shopButton.getLayoutParams().width
+                - shoppingCartIcon.getLayoutParams().width) * 0.5f);
+        shoppingCartIcon.setTranslationY(shopButton.getTranslationY()
+                + (shopButton.getLayoutParams().height
+                - shoppingCartIcon.getLayoutParams().height) * 0.5f);
 
         font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
 
@@ -393,7 +401,7 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
 
     private Button startButton;
     private Button optionsButton;
-    private Button exitButton;
+    private Button shopButton;
 
     private static EntityBall ball;
     private EntityMenuPlayerChar menuPlayerChar;
@@ -401,7 +409,7 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
 
     private ImageView playIcon;
     private ImageView gearsIcon;
-    private ImageView leaveIcon;
+    private ImageView shoppingCartIcon;
     private ImageView myShape;
 
     private UpdateThread updateThread;

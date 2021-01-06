@@ -24,10 +24,16 @@
         android:background="@drawable/button" />
 
     <Button
-        android:id="@+id/exitButton"
+        android:id="@+id/shopButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/button" />
+
+<!--    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button" />-->
 
     <ImageView
         android:id="@+id/playIcon"
@@ -44,11 +50,18 @@
         android:contentDescription="@string/gearsIconInfo" />
 
     <ImageView
+        android:id="@+id/shoppingCartIcon"
+        android:src="@drawable/shopping_cart_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/shoppingCartIconInfo" />
+
+<!--    <ImageView
         android:id="@+id/leaveIcon"
         android:src="@drawable/leave_icon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/leaveIconInfo" />
+        android:contentDescription="@string/leaveIconInfo" />-->
 
     <TextView
         android:id="@+id/gameTitleBossText"
