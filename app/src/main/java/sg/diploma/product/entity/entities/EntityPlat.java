@@ -37,14 +37,14 @@ public final class EntityPlat extends EntityAbstract{
 	}
 
 	@Override
-	public void Update(final float dt){
+	public final void Update(final float dt){
 		if(attribs.pos.y - gamePlayerChar.attribs.pos.y > DeviceManager.screenHeightF * 0.5f){ //0.25f if want exact
 			EntityManager.Instance.SendEntityForRemoval("plat_" + myIndex);
 		}
 	}
 
 	@Override
-	public void Render(final Canvas canvas){
+	public final void Render(final Canvas canvas){
 		canvas.drawRect(
 			attribs.pos.x - attribs.scale.x * 0.5f,
 			attribs.pos.y - attribs.scale.y * 0.5f,
@@ -55,18 +55,18 @@ public final class EntityPlat extends EntityAbstract{
 	}
 
 	@Override
-	public void LateUpdate(final float dt){
+	public final void LateUpdate(final float dt){
 	}
 
 	@Override
-	public void SpecialRender(final Canvas canvas){
+	public final void SpecialRender(final Canvas canvas){
 		if(BuildConfig.DEBUG){
 			throw new AssertionError("Assertion failed");
 		}
 	}
 
 	@Override
-	public void Collided(EntityAbstract other){
+	public final void Collided(EntityAbstract other){
 		if(!collided && other.attribs.type == EntityTypes.EntityType.GamePlayerChar){
 			collided = true;
 			SetColor(new Color(1.0f, 1.0f, 0.0f, 1.0f));
@@ -81,22 +81,22 @@ public final class EntityPlat extends EntityAbstract{
 		return result;
 	}
 
-	public void SetColor(final Color color){
+	public final void SetColor(final Color color){
 		this.color = color;
 		paint.setARGB((int)(color.a * 255.0f), (int)(color.r * 255.0f), (int)(color.g * 255.0f), (int)(color.b * 255.0f));
 	}
 
-	public void SetStrokeWidth(final float strokeWidth){
+	public final void SetStrokeWidth(final float strokeWidth){
 		this.strokeWidth = strokeWidth;
 		paint.setStrokeWidth(strokeWidth);
 	}
 
-	public void SetPaintStyle(final Paint.Style paintStyle){
+	public final void SetPaintStyle(final Paint.Style paintStyle){
 		this.paintStyle = paintStyle;
 		paint.setStyle(paintStyle);
 	}
 
-	public void SetMyIndex(final int myIndex){
+	public final void SetMyIndex(final int myIndex){
 		this.myIndex = myIndex;
 	}
 

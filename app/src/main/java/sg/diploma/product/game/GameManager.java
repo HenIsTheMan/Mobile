@@ -13,7 +13,7 @@ public final class GameManager{ //Singleton
         return isPaused;
     }
 
-    public void SetIsPaused(final boolean isPaused){
+    public final void SetIsPaused(final boolean isPaused){
         this.isPaused = isPaused;
     }
 

@@ -15,7 +15,7 @@ public final class ResourceManager{
 		options = new BitmapFactory.Options();
 	}
 
-	public void Init(final SurfaceView _view){
+	public final void Init(final SurfaceView _view){
 		res = _view.getResources();
 	}
 

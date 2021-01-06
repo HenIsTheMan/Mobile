@@ -27,7 +27,7 @@ public final class SplashScreenActivity extends Activity{
     }
 
     @Override
-    public void onBackPressed(){
+    public final void onBackPressed(){
         moveTaskToBack(true);
     }
 
@@ -100,7 +100,7 @@ public final class SplashScreenActivity extends Activity{
 
         Thread splashThread = new Thread(){
             @Override
-            public void run(){
+            public final void run(){
                 try{
                     sleep(_splashTime);
                 } catch(InterruptedException e){
@@ -117,7 +117,7 @@ public final class SplashScreenActivity extends Activity{
 
         Thread splashControlThread = new Thread(){
             @Override
-            public void run(){
+            public final void run(){
             for(;;){
                 if(!_active){
                     splashThread.interrupt();

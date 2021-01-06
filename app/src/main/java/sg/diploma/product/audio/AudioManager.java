@@ -21,12 +21,12 @@ public final class AudioManager{
 		soundVol = 0.0f;
 	}
 
-	public void Init(SurfaceView _view){
+	public final void Init(SurfaceView _view){
 		view = _view;
 		res = _view.getResources();
 	}
 
-	public void PlayAudio(final int ID, final AudioTypes.AudioType type){
+	public final void PlayAudio(final int ID, final AudioTypes.AudioType type){
 		if(AudioManager.Instance.IsPlaying(ID, type)){
 			return;
 		}
@@ -58,33 +58,33 @@ public final class AudioManager{
 		return audioMap.get(ID).isPlaying();
 	}
 
-	public void StopAudio(final int ID, final AudioTypes.AudioType type){
+	public final void StopAudio(final int ID, final AudioTypes.AudioType type){
 		final HashMap<Integer, MediaPlayer> audioMap = type == AudioTypes.AudioType.Music ? musicMap : soundMap;
 		audioMap.get(ID).stop();
 	}
 
-	public void OnMusicVolChanged(final float amt){
+	public final void OnMusicVolChanged(final float amt){
 		musicVol = amt;
 		for(MediaPlayer mediaPlayer: musicMap.values()){
 			mediaPlayer.setVolume(musicVol, musicVol);
 		}
 	}
 
-	public void OnSoundVolChanged(final float amt){
+	public final void OnSoundVolChanged(final float amt){
 		soundVol = amt;
 		for(MediaPlayer mediaPlayer: soundMap.values()){
 			mediaPlayer.setVolume(soundVol, soundVol);
 		}
 	}
 
-	public void LoadAudioVolData(){
+	public final void LoadAudioVolData(){
 		final Float musicVolFloat = SharedPrefsManager.Instance.LoadDataFloat("AudioVolData", "MusicVolData");
 		final Float soundVolFloat = SharedPrefsManager.Instance.LoadDataFloat("AudioVolData", "SoundVolData");
 		musicVol = musicVolFloat == null ? 1.0f : musicVolFloat;
 		soundVol = soundVolFloat == null ? 1.0f : soundVolFloat;
 	}
 
-	public void SaveAudioVolData(){
+	public final void SaveAudioVolData(){
 		SharedPrefsManager.Instance.SaveDataFloat("AudioVolData", "MusicVolData", musicVol);
 		SharedPrefsManager.Instance.SaveDataFloat("AudioVolData", "SoundVolData", soundVol);
 	}

@@ -59,7 +59,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    public void onBackPressed(){
+    public final void onBackPressed(){
         //Do nth
     }
 
@@ -69,7 +69,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    public void OnEnter(SurfaceView _view){
+    public final void OnEnter(SurfaceView _view){
         Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal(), GameData.globalInstance);
 
         //* Create game BG (Removed as super laggy)
@@ -158,19 +158,19 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    public void OnExit(){
+    public final void OnExit(){
         Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal());
 
         Instance.finish();
     }
 
     @Override
-    public void Render(Canvas _canvas){
+    public final void Render(Canvas _canvas){
         EntityManager.Instance.SpecialRender(_canvas, "Special_gamePlayerChar");
     }
 
     @Override
-    public void Update(float _dt) {
+    public final void Update(float _dt) {
         if(GameData.textOnScreenFPS != null){
             GameData.textOnScreenFPS.SetText("FPS: " + 1.0f / _dt);
         }
@@ -234,7 +234,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    public void OnEvent(EventAbstract event){
+    public final void OnEvent(EventAbstract event){
         switch(event.GetID()){
             case EndGame:
                 if(Build.VERSION.SDK_INT >= 26){

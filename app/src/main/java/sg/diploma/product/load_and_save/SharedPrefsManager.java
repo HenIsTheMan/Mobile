@@ -9,7 +9,7 @@ public final class SharedPrefsManager{
 		view = null;
 	}
 
-	public void Init(final SurfaceView view){ //??
+	public final void Init(final SurfaceView view){ //??
 		this.view = view;
 	}
 
@@ -21,7 +21,7 @@ public final class SharedPrefsManager{
 		return sharedPrefs.getFloat(key, 0.0f);
 	}
 
-	public void SaveDataFloat(final String name, final String key, final float val){
+	public final void SaveDataFloat(final String name, final String key, final float val){
 		SharedPreferences.Editor editor = view.getContext().getSharedPreferences(name, Context.MODE_PRIVATE).edit();
 		editor.putFloat(key, val);
 		editor.apply();

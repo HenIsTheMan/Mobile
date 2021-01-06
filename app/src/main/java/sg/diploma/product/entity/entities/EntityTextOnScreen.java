@@ -35,25 +35,25 @@ public final class EntityTextOnScreen extends EntityAbstract{
 	}
 
 	@Override
-	public void Update(final float dt){
+	public final void Update(final float dt){
 	}
 
 	@Override
-	public void Render(final Canvas canvas){
+	public final void Render(final Canvas canvas){
 		canvas.drawText(text, attribs.pos.x, attribs.pos.y, paint);
 	}
 
 	@Override
-	public void LateUpdate(final float dt){
+	public final void LateUpdate(final float dt){
 	}
 
 	@Override
-	public void SpecialRender(final Canvas canvas){
+	public final void SpecialRender(final Canvas canvas){
 		canvas.drawText(text, attribs.pos.x, attribs.pos.y, paint);
 	}
 
 	@Override
-	public void Collided(EntityAbstract other){
+	public final void Collided(EntityAbstract other){
 	}
 
 	public static EntityTextOnScreen Create(final String key, final AssetManager assets, final String fPath){
@@ -62,22 +62,22 @@ public final class EntityTextOnScreen extends EntityAbstract{
 		return result;
 	}
 
-	public void SetColor(final Color color){
+	public final void SetColor(final Color color){
 		this.color = color;
 		paint.setARGB((int)(color.a * 255.0f), (int)(color.r * 255.0f), (int)(color.g * 255.0f), (int)(color.b * 255.0f));
 	}
 
-	public void SetStrokeWidth(final float strokeWidth){
+	public final void SetStrokeWidth(final float strokeWidth){
 		this.strokeWidth = strokeWidth;
 		paint.setStrokeWidth(strokeWidth);
 	}
 
-	public void SetTextSize(final float textSize){
+	public final void SetTextSize(final float textSize){
 		this.textSize = textSize;
 		paint.setTextSize(textSize);
 	}
 
-	public void SetText(final String text){
+	public final void SetText(final String text){
 		this.text = text;
 	}
 

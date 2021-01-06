@@ -84,7 +84,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         if(surfaceHolder != null){
             surfaceHolder.addCallback(new SurfaceHolder.Callback(){
                 @Override
-                public void surfaceCreated(SurfaceHolder surfaceHolder){
+                public final void surfaceCreated(SurfaceHolder surfaceHolder){
                     if(!updateThread.GetIsRunning()){
                         updateThread.Init();
                     }
@@ -95,11 +95,11 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
                 }
 
                 @Override
-                public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height){
+                public final void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height){
                 }
 
                 @Override
-                public void surfaceDestroyed(SurfaceHolder surfaceHolder){
+                public final void surfaceDestroyed(SurfaceHolder surfaceHolder){
                     updateThread.Terminate();
                 }
             });
@@ -114,11 +114,11 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy){
+    public final void onAccuracyChanged(Sensor sensor, int accuracy){
     }
 
     @Override
-    public void onSensorChanged(SensorEvent SenseEvent){
+    public final void onSensorChanged(SensorEvent SenseEvent){
         if(ball != null){
             ball.SetVals(SenseEvent.values);
         }
@@ -131,7 +131,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     }
 
     @Override
-    public void onClick(View v){
+    public final void onClick(View v){
         AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
         if(v == startButton){
             EntityManager.Instance.SendAllEntitiesForRemoval();
@@ -157,19 +157,19 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     }
 
     @Override
-    public void onBackPressed(){
+    public final void onBackPressed(){
         finishAndRemoveTask();
         System.exit(0);
     }
 
     @Override
-    public void Render(Canvas _canvas){
+    public final void Render(Canvas _canvas){
         _canvas.drawColor(0xFF333333);
         EntityManager.Instance.Render(_canvas);
     }
 
     @Override
-    public void OnEnter(SurfaceView _view){
+    public final void OnEnter(SurfaceView _view){
         //* Create ball
         ball = EntityBall.Create(
             "ball"
@@ -218,11 +218,11 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     }
 
     @Override
-    public void OnExit(){
+    public final void OnExit(){
     }
 
     @Override
-    public void Update(float _dt){
+    public final void Update(float _dt){
         if(textOnScreen != null){
             textOnScreen.SetText("FPS: " + 1.0f / _dt);
         }
@@ -274,15 +274,15 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
             myShapeAnim.setStartOffset(799);
             myShapeAnim.setAnimationListener(new Animation.AnimationListener(){
                 @Override
-                public void onAnimationStart(Animation anim){
+                public final void onAnimationStart(Animation anim){
                 }
 
                 @Override
-                public void onAnimationRepeat(Animation anim){
+                public final void onAnimationRepeat(Animation anim){
                 }
 
                 @Override
-                public void onAnimationEnd(Animation anim){
+                public final void onAnimationEnd(Animation anim){
                     myShape.setVisibility(View.GONE);
                 }
             });

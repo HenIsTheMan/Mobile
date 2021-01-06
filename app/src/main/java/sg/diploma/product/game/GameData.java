@@ -13,7 +13,7 @@ public final class GameData implements IListener{ //Singleton
 	private GameData(){
 	}
 
-	public void ResetVars(){
+	public final void ResetVars(){
 		//gameBG = null;
 		gamePlayerChar = null;
 		pauseButton = null;
@@ -44,7 +44,7 @@ public final class GameData implements IListener{ //Singleton
 	}*/
 
 	@Override
-	public void OnEvent(EventAbstract event){
+	public final void OnEvent(EventAbstract event){
 		switch(event.GetID()){
 			/*case SpawnPlat:
 				SpawnPlat();

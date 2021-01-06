@@ -32,7 +32,7 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 	}
 
 	@Override
-	public void Update(final float dt){
+	public final void Update(final float dt){
 		if(attribs.targetPos != null){
 			Vector2 vec = new Vector2(attribs.targetPos.x - attribs.pos.x, attribs.targetPos.y - attribs.pos.y);
 			if(vec.Len() < attribs.spd * dt){
@@ -64,23 +64,23 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 	}
 
 	@Override
-	public void Render(final Canvas canvas){ //Render with img centered
+	public final void Render(final Canvas canvas){ //Render with img centered
 		spriteAnim.Render(canvas, attribs.pos.x, attribs.pos.y);
 	}
 
 	@Override
-	public void LateUpdate(final float dt){
+	public final void LateUpdate(final float dt){
 	}
 
 	@Override
-	public void SpecialRender(final Canvas canvas){
+	public final void SpecialRender(final Canvas canvas){
 		if(BuildConfig.DEBUG){
 			throw new AssertionError("Assertion failed");
 		}
 	}
 
 	@Override
-	public void Collided(EntityAbstract other){
+	public final void Collided(EntityAbstract other){
 	}
 
 	public static EntityMenuPlayerChar Create(final String key, final int bitmapID){
@@ -89,7 +89,7 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 		return result;
 	}
 
-	public void StartMoving(final float xPos, final float yPos){
+	public final void StartMoving(final float xPos, final float yPos){
 		attribs.targetPos = new Vector2(xPos, yPos);
 
 		//* Bounds checking for attribs.targetPos
@@ -117,15 +117,15 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 		}
 	}
 
-	public void GenScaledBitmap(){ //Slow
+	public final void GenScaledBitmap(){ //Slow
 		spriteAnim.GenScaledBitmap(attribs.scale);
 	}
 
-	public void SetSpriteAnimXScale(final float xScale){
+	public final void SetSpriteAnimXScale(final float xScale){
 		spriteAnim.SetXScale(xScale);
 	}
 
-	public void SetSpriteAnimYScale(final float yScale){
+	public final void SetSpriteAnimYScale(final float yScale){
 		spriteAnim.SetYScale(yScale);
 	}
 

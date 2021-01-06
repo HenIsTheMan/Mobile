@@ -56,7 +56,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	}
 
 	@Override
-	public void Update(final float dt){
+	public final void Update(final float dt){
 		if(attribs.vel.y > 0.0f && Math.abs(yTrigger - attribs.pos.y) > DeviceManager.screenHeightF){
 			Publisher.Broadcast(new EventEndGame());
 			return;
@@ -102,7 +102,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	}
 
 	@Override
-	public void Render(final Canvas canvas){ //Render with img centered
+	public final void Render(final Canvas canvas){ //Render with img centered
 		spriteAnim.Render(canvas, attribs.pos.x, attribs.pos.y);
 
 		canvas.drawRect(
@@ -115,12 +115,12 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	}
 
 	@Override
-	public void SpecialRender(final Canvas canvas){
+	public final void SpecialRender(final Canvas canvas){
 		spriteAnim.Render(canvas, attribs.pos.x, DeviceManager.screenHeightF * 0.75f);
 	}
 
 	@Override
-	public void LateUpdate(final float dt){
+	public final void LateUpdate(final float dt){
 		if(attribs.pos.y <= yTrigger){
 			if(attribs.pos.x < flipMinX){
 				attribs.pos.x = flipMinX;
@@ -137,7 +137,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	}
 
 	@Override
-	public void Collided(EntityAbstract other){
+	public final void Collided(EntityAbstract other){
 		collidingWithPlat = true;
 		flipMinX = other.attribs.pos.x - other.attribs.scale.x * 0.5f + playerCharHalfWidth;
 		flipMaxX = other.attribs.pos.x + other.attribs.scale.x * 0.5f - playerCharHalfWidth;
@@ -150,7 +150,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		return result;
 	}
 
-	public void SwitchFacing(){
+	public final void SwitchFacing(){
 		attribs.facing *= -1;
 		if(attribs.facing == 1){
 			spriteAnim.SetFrames(3 * 9 + 1, 3 * 9 + 9);
@@ -160,7 +160,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		attribs.vel.x = attribs.facing * 500.f;
 	}
 
-	public void Jump(final Vector2 fingerDownPos, final Vector2 fingerUpPos){
+	public final void Jump(final Vector2 fingerDownPos, final Vector2 fingerUpPos){
 		if(collidingWithPlat && fingerDownPos != null && fingerUpPos != null){
 			Vector2 vec = new Vector2(fingerUpPos.x - fingerDownPos.x, fingerUpPos.y - fingerDownPos.y);
 			attribs.vel.x = Math.min(vec.x * 0.25f, 800.0f);
@@ -176,11 +176,11 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		}
 	}
 
-	public void SetSpriteAnimXScale(final float xScale){
+	public final void SetSpriteAnimXScale(final float xScale){
 		spriteAnim.SetXScale(xScale);
 	}
 
-	public void SetSpriteAnimYScale(final float yScale){
+	public final void SetSpriteAnimYScale(final float yScale){
 		spriteAnim.SetYScale(yScale);
 	}
 

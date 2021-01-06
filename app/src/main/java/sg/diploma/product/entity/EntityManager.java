@@ -21,11 +21,11 @@ public final class EntityManager{ //Singleton
         entityRemovalList = new ArrayList<>();
     }
 
-    public void Init(SurfaceView _view){
+    public final void Init(SurfaceView _view){
         view = _view;
     }
 
-    public void Update(float _dt){
+    public final void Update(float _dt){
         for(String element: entityRemovalList){
             entityList.remove(element);
         }
@@ -68,7 +68,7 @@ public final class EntityManager{ //Singleton
         entityRemovalList.clear();
     }
 
-    public void Render(Canvas _canvas){
+    public final void Render(Canvas _canvas){
         //* Determines render order
         final Object[] myArr = entityList.values().toArray();
         final int myArrLen = myArr.length;
@@ -84,7 +84,7 @@ public final class EntityManager{ //Singleton
         }
     }
 
-    public void LateUpdate(final float dt){
+    public final void LateUpdate(final float dt){
         if(GameManager.Instance.GetIsPaused()){
             EntityAbstract pauseButton = entityList.get("Special_pauseButton");
             if(pauseButton != null){
@@ -98,7 +98,7 @@ public final class EntityManager{ //Singleton
         }
     }
 
-    public void SpecialRender(Canvas _canvas, String playerCharKey){
+    public final void SpecialRender(Canvas _canvas, String playerCharKey){
         if(!entityList.containsKey(playerCharKey)){
             return;
         }
@@ -138,15 +138,15 @@ public final class EntityManager{ //Singleton
         }
     }
 
-    public void AddEntity(String key, EntityAbstract _newEntity){
+    public final void AddEntity(String key, EntityAbstract _newEntity){
         entityList.put(key, _newEntity);
     }
 
-    public void SendEntityForRemoval(String key){
+    public final void SendEntityForRemoval(String key){
         entityRemovalList.add(key);
     }
 
-    public void SendAllEntitiesForRemoval(){
+    public final void SendAllEntitiesForRemoval(){
         entityRemovalList.addAll(entityList.keySet());
     }
 

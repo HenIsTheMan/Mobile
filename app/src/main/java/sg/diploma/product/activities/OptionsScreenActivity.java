@@ -123,7 +123,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	}
 
 	@Override
-	public void onClick(View v){
+	public final void onClick(View v){
 		AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 		if(v == backButton){
 			EntityManager.Instance.SendAllEntitiesForRemoval();
@@ -136,12 +136,12 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	}
 
 	@Override
-	public void onBackPressed(){
+	public final void onBackPressed(){
 		//Do nth
 	}
 
 	@Override
-	public void Update(float _dt){
+	public final void Update(float _dt){
 		EntityManager.Instance.Update(_dt);
 	}
 
@@ -151,16 +151,16 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	}
 
 	@Override
-	public void OnEnter(SurfaceView _view){
+	public final void OnEnter(SurfaceView _view){
 	}
 
 	@Override
-	public void OnExit(){
+	public final void OnExit(){
 		Instance.finish();
 	}
 
 	@Override
-	public void Render(Canvas _canvas){
+	public final void Render(Canvas _canvas){
 		EntityManager.Instance.Render(_canvas);
 	}
 
@@ -180,7 +180,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	}
 
 	@Override
-	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+	public final void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
 		final float percentage = (float)progress / (float)seekBar.getMax() * 100.0f;
 		final String seekBarTag = (String)seekBar.getTag();
 
@@ -216,11 +216,11 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	}
 
 	@Override
-	public void onStartTrackingTouch(SeekBar seekBar){
+	public final void onStartTrackingTouch(SeekBar seekBar){
 	}
 
 	@Override
-	public void onStopTrackingTouch(SeekBar seekBar){
+	public final void onStopTrackingTouch(SeekBar seekBar){
 	}
 
 	private Button backButton;
