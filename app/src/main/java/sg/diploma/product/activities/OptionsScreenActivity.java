@@ -41,7 +41,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		AudioManager.Instance.LoadAudioVolData();
 		final int relativePadding = (int)(DeviceManager.screenWidthF * 0.05f);
 
-		SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);
+		final SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);
 		seekBarMusic.setOnSeekBarChangeListener(this);
 		seekBarMusic.setPaddingRelative(relativePadding, 0, relativePadding, 0);
 		seekBarMusic.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.7f);
@@ -49,7 +49,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		seekBarMusic.setTranslationX(DeviceManager.screenWidthF * 0.5f - seekBarMusic.getLayoutParams().width * 0.5f);
 		seekBarMusic.setTranslationY(DeviceManager.screenHeightF * 0.4f - seekBarMusic.getLayoutParams().height * 0.5f);
 
-		SeekBar seekBarSounds = findViewById(R.id.seekBarSounds);
+		final SeekBar seekBarSounds = findViewById(R.id.seekBarSounds);
 		seekBarSounds.setOnSeekBarChangeListener(this);
 		seekBarSounds.setPaddingRelative(relativePadding, 0, relativePadding, 0);
 		seekBarSounds.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.7f);
@@ -165,6 +165,37 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	}
 
 	@Override
+	protected final void onStart(){
+		super.onStart();
+	}
+
+	@Override
+	protected final void onResume(){
+		super.onResume();
+
+		//* Hack
+		final SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);
+		final SeekBar seekBarSounds = findViewById(R.id.seekBarSounds);
+		final TextView musicVolPercentageText = findViewById(R.id.musicVolPercentageText);
+		final TextView soundVolPercentageText = findViewById(R.id.soundVolPercentageText);
+
+		musicVolPercentageText.setTranslationX(
+			(DeviceManager.screenWidthF - seekBarMusic.getLayoutParams().width) * 0.5f
+			+ seekBarMusic.getLayoutParams().width / 100.0f * (float)seekBarMusic.getProgress()
+			- musicVolPercentageText.getWidth() * 0.5f
+			- seekBarMusic.getPaddingStart()
+		);
+
+		soundVolPercentageText.setTranslationX(
+			(DeviceManager.screenWidthF - seekBarSounds.getLayoutParams().width) * 0.5f
+			+ seekBarSounds.getLayoutParams().width / 100.0f * (float)seekBarSounds.getProgress()
+			- soundVolPercentageText.getWidth() * 0.5f
+			- seekBarSounds.getPaddingStart()
+		);
+		//*/
+	}
+
+	@Override
 	protected final void onPause(){
 		super.onPause();
 	}
@@ -181,6 +212,10 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 	@Override
 	public final void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+		if(!fromUser){
+			return;
+		}
+
 		final float percentage = (float)progress / (float)seekBar.getMax() * 100.0f;
 		final String seekBarTag = (String)seekBar.getTag();
 
@@ -190,10 +225,10 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 			final Rect bounds = seekBar.getThumb().getBounds();
 			musicVolPercentageText.setTranslationX(seekBar.getX()
-				+ (fromUser ? 1.0f : 0.0f) * seekBar.getPaddingStart() //ewww
+				+ seekBar.getPaddingStart()
 				- musicVolPercentageText.getWidth() * 0.5f
 				- seekBar.getThumbOffset()
-				+ bounds.exactCenterX() + (fromUser ? 0.0f : 1.0f) * (seekBar.getLayoutParams().width * percentage / 100.0f) //ewww
+				+ bounds.exactCenterX()
 			);
 
 			AudioManager.Instance.OnMusicVolChanged(percentage / 100.0f);
@@ -205,10 +240,10 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 			final Rect bounds = seekBar.getThumb().getBounds();
 			soundVolPercentageText.setTranslationX(seekBar.getX()
-				+ (fromUser ? 1.0f : 0.0f) * seekBar.getPaddingStart() //ewww
+				+ seekBar.getPaddingStart()
 				- soundVolPercentageText.getWidth() * 0.5f
 				- seekBar.getThumbOffset()
-				+ bounds.exactCenterX() + (fromUser ? 0.0f : 1.0f) * (seekBar.getLayoutParams().width * percentage / 100.0f) //ewww
+				+ bounds.exactCenterX()
 			);
 
 			AudioManager.Instance.OnSoundVolChanged(percentage / 100.0f);
