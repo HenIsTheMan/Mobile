@@ -127,15 +127,29 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 		final float buttonFactor = DeviceManager.screenWidthF * 0.25f / 300.0f;
 		final int buttonSize = (int)(300.0f * buttonFactor * 0.7f);
+		final float buttonTranslateY = DeviceManager.screenHeightF
+				- (DeviceManager.screenWidthF - (DeviceManager.screenWidthF * 0.85f - buttonSize * 0.5f));
 
 		backButton = findViewById(R.id.backButton);
 		backButton.setOnClickListener(this);
 		backButton.getLayoutParams().width = buttonSize;
 		backButton.getLayoutParams().height = buttonSize;
-
 		backButton.setTranslationX(DeviceManager.screenWidthF * 0.15f - buttonSize * 0.5f);
-		backButton.setTranslationY(DeviceManager.screenHeightF
-			- (DeviceManager.screenWidthF - (DeviceManager.screenWidthF * 0.85f - buttonSize * 0.5f)));
+		backButton.setTranslationY(buttonTranslateY);
+
+		saveButton = findViewById(R.id.saveButton);
+		saveButton.setOnClickListener(this);
+		saveButton.getLayoutParams().width = buttonSize;
+		saveButton.getLayoutParams().height = buttonSize;
+		saveButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - buttonSize * 0.5f);
+		saveButton.setTranslationY(buttonTranslateY);
+
+		resetButton = findViewById(R.id.resetButton);
+		resetButton.setOnClickListener(this);
+		resetButton.getLayoutParams().width = buttonSize;
+		resetButton.getLayoutParams().height = buttonSize;
+		resetButton.setTranslationX(DeviceManager.screenWidthF * 0.85f - buttonSize * 0.5f);
+		resetButton.setTranslationY(buttonTranslateY);
 
 		leftArrowIcon = findViewById(R.id.leftArrowIcon);
 		leftArrowIcon.getLayoutParams().width = (int)(buttonSize * 0.65f);
@@ -146,6 +160,26 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		leftArrowIcon.setTranslationY(backButton.getTranslationY()
 				+ (backButton.getLayoutParams().height
 				- leftArrowIcon.getLayoutParams().height) * 0.5f);
+
+		floppyDiskIcon = findViewById(R.id.floppyDiskIcon);
+		floppyDiskIcon.getLayoutParams().width = (int)(buttonSize * 0.6f);
+		floppyDiskIcon.getLayoutParams().height = (int)(buttonSize * 0.6f);
+		floppyDiskIcon.setTranslationX(saveButton.getTranslationX()
+				+ (saveButton.getLayoutParams().width
+				- floppyDiskIcon.getLayoutParams().width) * 0.5f);
+		floppyDiskIcon.setTranslationY(saveButton.getTranslationY()
+				+ (saveButton.getLayoutParams().height
+				- floppyDiskIcon.getLayoutParams().height) * 0.5f);
+
+		gearResetIcon = findViewById(R.id.gearResetIcon);
+		gearResetIcon.getLayoutParams().width = (int)(buttonSize * 0.75f);
+		gearResetIcon.getLayoutParams().height = (int)(buttonSize * 0.75f);
+		gearResetIcon.setTranslationX(resetButton.getTranslationX()
+				+ (resetButton.getLayoutParams().width
+				- gearResetIcon.getLayoutParams().width) * 0.5f);
+		gearResetIcon.setTranslationY(resetButton.getTranslationY()
+				+ (resetButton.getLayoutParams().height
+				- gearResetIcon.getLayoutParams().height) * 0.5f);
 	}
 
 	@Override
@@ -159,11 +193,24 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 		if(v == backButton){
 			EntityManager.Instance.SendAllEntitiesForRemoval();
-			AudioManager.Instance.SaveAudioVolData();
 			StateManager.Instance.ChangeState("MenuScreen");
+
+			//save or not??
+			//change back if don't save??
 
 			startActivity(new Intent(this, MenuScreenActivity.class));
 			finish();
+			return;
+		}
+		if(v == saveButton){
+			AudioManager.Instance.SaveAudioVolData();
+			return;
+		}
+		if(v == resetButton){
+			final SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);
+			final SeekBar seekBarSounds = findViewById(R.id.seekBarSounds);
+			seekBarMusic.setProgress(100);
+			seekBarSounds.setProgress(100);
 		}
 	}
 
@@ -223,9 +270,9 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 	@Override
 	public final void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-		if(!fromUser){
+		/*if(!fromUser){
 			return;
-		}
+		}*/
 
 		final float percentage = (float)progress / (float)seekBar.getMax() * 100.0f;
 		final String seekBarTag = (String)seekBar.getTag();
