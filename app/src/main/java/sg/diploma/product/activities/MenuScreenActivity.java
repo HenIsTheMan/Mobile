@@ -124,8 +124,6 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     @Override
     public void onSensorChanged(SensorEvent SenseEvent){
         values = SenseEvent.values;
-        // Many sensors return 3 values, one for each axis.
-        // Do something with this sensor value.
     }
 
     public void SensorMove(){
@@ -134,8 +132,10 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
         final float screenWidthF = DeviceManager.screenWidthF;
         final float screenHeightF = DeviceManager.screenHeightF;
 
-        tempX = bX + (values[1] * (float)((System.currentTimeMillis() - lastTime) / 1000));
-        tempY = bY + (values[0] * (float)((System.currentTimeMillis() - lastTime) / 1000));
+        final long currTime = System.currentTimeMillis();
+        tempX = bX + (values[1] * (float)((currTime - lastTime) / 1000));
+        tempY = bY + (values[0] * (float)((currTime - lastTime) / 1000));
+        lastTime = currTime;
 
         // Check if the ball is going out of screen along the x-axis
         if (tempX <= ball.getWidth()/2 || tempX >= screenWidthF - ball.getWidth()/2)
@@ -162,7 +162,7 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     }
 
 
-    
+
     @Override
     public boolean onTouchEvent(MotionEvent event){
         TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());

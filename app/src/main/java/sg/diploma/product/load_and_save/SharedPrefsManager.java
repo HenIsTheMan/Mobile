@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.SurfaceView;
 
-public class SharedPrefsManager{
+public final class SharedPrefsManager{
 	SharedPrefsManager(){
 		view = null;
 	}
