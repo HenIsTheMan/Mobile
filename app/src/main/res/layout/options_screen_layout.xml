@@ -77,11 +77,37 @@
         android:layout_height="0dp"
         android:background="@drawable/button" />
 
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button" />
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button" />
+
     <ImageView
         android:id="@+id/leftArrowIcon"
         android:src="@drawable/left_arrow_icon"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/leftArrowIconInfo" />
+
+    <ImageView
+        android:id="@+id/floppyDiskIcon"
+        android:src="@drawable/floppy_disk_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/floppyDiskIconInfo" />
+
+    <ImageView
+        android:id="@+id/gearResetIcon"
+        android:src="@drawable/gear_reset_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/gearResetIconInfo" />
 
 </RelativeLayout>

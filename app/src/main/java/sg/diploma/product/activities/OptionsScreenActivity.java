@@ -30,7 +30,12 @@ import sg.diploma.product.touch.TouchManager;
 public final class OptionsScreenActivity extends Activity implements View.OnClickListener, IState, SeekBar.OnSeekBarChangeListener{
 	public OptionsScreenActivity(){
 		backButton = null;
+		saveButton = null;
+		resetButton = null;
+
 		leftArrowIcon = null;
+		floppyDiskIcon = null;
+		gearResetIcon = null;
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.P)
@@ -127,9 +132,10 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		backButton.setOnClickListener(this);
 		backButton.getLayoutParams().width = buttonSize;
 		backButton.getLayoutParams().height = buttonSize;
-		
+
 		backButton.setTranslationX(DeviceManager.screenWidthF * 0.15f - buttonSize * 0.5f);
-		backButton.setTranslationY(DeviceManager.screenHeightF - (DeviceManager.screenWidthF - (DeviceManager.screenWidthF * 0.85f - buttonSize * 0.5f)));
+		backButton.setTranslationY(DeviceManager.screenHeightF
+			- (DeviceManager.screenWidthF - (DeviceManager.screenWidthF * 0.85f - buttonSize * 0.5f)));
 
 		leftArrowIcon = findViewById(R.id.leftArrowIcon);
 		leftArrowIcon.getLayoutParams().width = (int)(buttonSize * 0.65f);
@@ -262,7 +268,12 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	}
 
 	private Button backButton;
+	private Button saveButton;
+	private Button resetButton;
+
 	private ImageView leftArrowIcon;
+	private ImageView floppyDiskIcon;
+	private ImageView gearResetIcon;
 
 	public static OptionsScreenActivity Instance;
 
