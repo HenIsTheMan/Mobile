@@ -55,6 +55,7 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
         startButton = null;
         optionsButton = null;
         shopButton = null;
+        exitButton = null;
 
         ball = null;
         menuPlayerChar = null;
@@ -63,6 +64,7 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
         playIcon = null;
         gearsIcon = null;
         shoppingCartIcon = null;
+        leaveIcon = null;
         myShape = null;
 
         updateThread = null;
@@ -171,10 +173,10 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
             finish();
             return;
         }
-        /*if(v == exitButton){
+        if(v == exitButton){
             finishAndRemoveTask();
             System.exit(0);
-        }*/
+        }
     }
 
     @Override
@@ -275,16 +277,6 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
     }
 
     @Override
-    protected final void onPause(){
-        super.onPause();
-    }
-
-    @Override
-    protected final void onStop(){
-        super.onStop();
-    }
-
-    @Override
     public final void OnEvent(EventAbstract event){
         switch(event.GetID()){
             case EndProg:
@@ -345,6 +337,13 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
         shopButton.setTranslationX(DeviceManager.screenWidthF * 0.8f - (float)buttonSize * 0.5f);
         shopButton.setTranslationY(DeviceManager.screenHeightF * 0.4f);
 
+        final float exitButtonSize = (float)buttonSize * 0.7f;
+        exitButton = findViewById(R.id.exitButton);
+        exitButton.setOnClickListener(this);
+        exitButton.getLayoutParams().width = exitButton.getLayoutParams().height = (int)exitButtonSize;
+        exitButton.setTranslationX(DeviceManager.screenWidthF - exitButtonSize * 1.5f);
+        exitButton.setTranslationY(DeviceManager.screenHeightF - exitButtonSize * 1.5f);
+
         playIcon = findViewById(R.id.playIcon);
         playIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
         playIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
@@ -375,6 +374,16 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
                 + (shopButton.getLayoutParams().height
                 - shoppingCartIcon.getLayoutParams().height) * 0.5f);
 
+        leaveIcon = findViewById(R.id.leaveIcon);
+        leaveIcon.getLayoutParams().width = (int)(exitButtonSize * 0.65f);
+        leaveIcon.getLayoutParams().height = (int)(exitButtonSize * 0.65f);
+        leaveIcon.setTranslationX(exitButton.getTranslationX()
+                + (exitButton.getLayoutParams().width
+                - leaveIcon.getLayoutParams().width) * 0.5f);
+        leaveIcon.setTranslationY(exitButton.getTranslationY()
+                + (exitButton.getLayoutParams().height
+                - leaveIcon.getLayoutParams().height) * 0.5f);
+
         font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
 
         gameTitleBossText = findViewById(R.id.gameTitleBossText);
@@ -402,6 +411,7 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
     private Button startButton;
     private Button optionsButton;
     private Button shopButton;
+    private Button exitButton;
 
     private static EntityBall ball;
     private EntityMenuPlayerChar menuPlayerChar;
@@ -410,6 +420,7 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
     private ImageView playIcon;
     private ImageView gearsIcon;
     private ImageView shoppingCartIcon;
+    private ImageView leaveIcon;
     private ImageView myShape;
 
     private UpdateThread updateThread;

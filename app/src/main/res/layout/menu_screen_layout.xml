@@ -29,11 +29,11 @@
         android:layout_height="0dp"
         android:background="@drawable/button" />
 
-<!--    <Button
+    <Button
         android:id="@+id/exitButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/button" />-->
+        android:background="@drawable/button" />
 
     <ImageView
         android:id="@+id/playIcon"
@@ -56,12 +56,12 @@
         android:layout_height="0dp"
         android:contentDescription="@string/shoppingCartIconInfo" />
 
-<!--    <ImageView
+    <ImageView
         android:id="@+id/leaveIcon"
         android:src="@drawable/leave_icon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/leaveIconInfo" />-->
+        android:contentDescription="@string/leaveIconInfo" />
 
     <TextView
         android:id="@+id/gameTitleBossText"
