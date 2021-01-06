@@ -118,15 +118,15 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		);
 		//*/
 
-		final float buttonFactor = DeviceManager.screenWidthF * 0.1f / 300.0f;
-		final int buttonSize = (int)(300.0f * buttonFactor);
+		final float buttonFactor = DeviceManager.screenWidthF * 0.25f / 300.0f;
+		final int buttonSize = (int)(300.0f * buttonFactor * 0.7f);
 
 		backButton = findViewById(R.id.backButton);
 		backButton.setOnClickListener(this);
 		backButton.getLayoutParams().width = buttonSize;
 		backButton.getLayoutParams().height = buttonSize;
-		backButton.setTranslationX((float)buttonSize);
-		backButton.setTranslationY(DeviceManager.screenHeightF - (float)buttonSize * 2.0f);
+		backButton.setTranslationX((float)buttonSize * 1.5f);
+		backButton.setTranslationY(DeviceManager.screenHeightF - (float)buttonSize * 1.5f);
 	}
 
 	@Override
