@@ -37,7 +37,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected final void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         Instance = this;
         View view = new GameView(this);
@@ -47,7 +47,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    protected void onDestroy(){
+    protected final void onDestroy(){
         super.onDestroy();
         Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.GameScreenActivity.GetVal());
     }

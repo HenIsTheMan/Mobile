@@ -33,7 +33,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 
 	@RequiresApi(api = Build.VERSION_CODES.P)
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected final void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Instance = this;
 		setContentView(R.layout.options_screen_layout);
@@ -165,17 +165,17 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	}
 
 	@Override
-	protected void onPause(){
+	protected final void onPause(){
 		super.onPause();
 	}
 
 	@Override
-	protected void onStop(){
+	protected final void onStop(){
 		super.onStop();
 	}
 
 	@Override
-	protected void onDestroy(){
+	protected final void onDestroy(){
 		super.onDestroy();
 	}
 
