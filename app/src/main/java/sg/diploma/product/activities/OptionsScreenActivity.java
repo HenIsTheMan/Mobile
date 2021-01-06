@@ -106,14 +106,15 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		musicVolPercentageText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 		musicVolPercentageText.setTranslationX(
 			seekBarMusic.getX()
-			//+ seekBarMusic.getWidth() / 100.0f * (float)seekBarMusic.getProgress()
+			+ seekBarMusic.getLayoutParams().width / 100.0f * (float)seekBarMusic.getProgress()
 			- musicVolPercentageText.getMeasuredWidth() * 0.5f
 		);
 
+		soundVolPercentageText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 		soundVolPercentageText.setTranslationX(
-			(DeviceManager.screenWidthF - seekBarSounds.getLayoutParams().width) * 0.5f
+			seekBarSounds.getX()
 			+ seekBarSounds.getLayoutParams().width / 100.0f * (float)seekBarSounds.getProgress()
-			- soundVolPercentageText.getWidth() * 0.5f
+			- soundVolPercentageText.getMeasuredWidth() * 0.5f
 		);
 		//*/
 
