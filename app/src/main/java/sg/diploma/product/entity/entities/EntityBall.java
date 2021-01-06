@@ -38,8 +38,9 @@ public final class EntityBall extends EntityAbstract{
 		final float screenWidthF = DeviceManager.screenWidthF;
 		final float screenHeightF = DeviceManager.screenHeightF;
 
-		attribs.pos.x += vals[1] * dt;
-		attribs.pos.y += vals[0] * dt; //??
+		final float moveFactor = 100.0f;
+		attribs.pos.x += -vals[0] * moveFactor * dt;
+		attribs.pos.y += vals[1] * moveFactor * dt;
 
 		//* Bounds checking
 		if(attribs.xMin != null){
@@ -63,7 +64,7 @@ public final class EntityBall extends EntityAbstract{
 		canvas.drawCircle(
 			attribs.pos.x,
 			attribs.pos.y,
-			attribs.scale.x,
+			attribs.scale.x * 0.5f,
 			paint
 		);
 	}

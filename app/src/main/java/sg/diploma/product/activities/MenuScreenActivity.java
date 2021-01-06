@@ -177,16 +177,16 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
         ball.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
         ball.attribs.pos.y = DeviceManager.screenHeightF * 0.9f;
-        ball.attribs.scale.x = ball.attribs.scale.y = 100.0f;
+        ball.attribs.scale.x = ball.attribs.scale.y = 400.0f;
         final float ballHalfSize = ball.attribs.scale.x * 0.5f;
 
         ball.attribs.xMin = new EntityConstraint();
         ball.attribs.xMax = new EntityConstraint();
         ball.attribs.yMin = new EntityConstraint();
         ball.attribs.yMax = new EntityConstraint();
-        ball.attribs.xMin.val = 0.0f;
+        ball.attribs.xMin.val = ballHalfSize;
         ball.attribs.xMax.val = DeviceManager.screenWidthF - ballHalfSize;
-        ball.attribs.yMin.val = 0.0f;
+        ball.attribs.yMin.val = ballHalfSize;
         ball.attribs.yMax.val = DeviceManager.screenHeightF - ballHalfSize;
         //*/
 
