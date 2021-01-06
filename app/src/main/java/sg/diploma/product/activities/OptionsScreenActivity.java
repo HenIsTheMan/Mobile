@@ -127,8 +127,9 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		backButton.setOnClickListener(this);
 		backButton.getLayoutParams().width = buttonSize;
 		backButton.getLayoutParams().height = buttonSize;
-		backButton.setTranslationX((float)buttonSize * 1.5f);
-		backButton.setTranslationY(DeviceManager.screenHeightF - (float)buttonSize * 1.5f);
+		
+		backButton.setTranslationX(DeviceManager.screenWidthF * 0.15f - buttonSize * 0.5f);
+		backButton.setTranslationY(DeviceManager.screenHeightF - (DeviceManager.screenWidthF - (DeviceManager.screenWidthF * 0.85f - buttonSize * 0.5f)));
 
 		leftArrowIcon = findViewById(R.id.leftArrowIcon);
 		leftArrowIcon.getLayoutParams().width = (int)(buttonSize * 0.65f);

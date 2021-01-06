@@ -321,28 +321,29 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
         startButton.getLayoutParams().width = buttonSize;
         startButton.getLayoutParams().height = buttonSize;
         startButton.setTranslationX(DeviceManager.screenWidthF * 0.2f - (float)buttonSize * 0.5f);
-        startButton.setTranslationY(DeviceManager.screenHeightF * 0.4f);
+        startButton.setTranslationY(DeviceManager.screenHeightF * 0.45f - (float)buttonSize * 0.5f);
 
         optionsButton = findViewById(R.id.optionsButton);
         optionsButton.setOnClickListener(this);
         optionsButton.getLayoutParams().width = buttonSize;
         optionsButton.getLayoutParams().height = buttonSize;
         optionsButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)buttonSize * 0.5f);
-        optionsButton.setTranslationY(DeviceManager.screenHeightF * 0.4f);
+        optionsButton.setTranslationY(DeviceManager.screenHeightF * 0.45f - (float)buttonSize * 0.5f);
 
         shopButton = findViewById(R.id.shopButton);
         shopButton.setOnClickListener(this);
         shopButton.getLayoutParams().width = buttonSize;
         shopButton.getLayoutParams().height = buttonSize;
         shopButton.setTranslationX(DeviceManager.screenWidthF * 0.8f - (float)buttonSize * 0.5f);
-        shopButton.setTranslationY(DeviceManager.screenHeightF * 0.4f);
+        shopButton.setTranslationY(DeviceManager.screenHeightF * 0.45f - (float)buttonSize * 0.5f);
 
         final float exitButtonSize = (float)buttonSize * 0.7f;
         exitButton = findViewById(R.id.exitButton);
         exitButton.setOnClickListener(this);
         exitButton.getLayoutParams().width = exitButton.getLayoutParams().height = (int)exitButtonSize;
-        exitButton.setTranslationX(DeviceManager.screenWidthF - exitButtonSize * 1.5f);
-        exitButton.setTranslationY(DeviceManager.screenHeightF - exitButtonSize * 1.5f);
+        final float exitButttonTranslateX = DeviceManager.screenWidthF * 0.85f - exitButtonSize * 0.5f;
+        exitButton.setTranslationX(exitButttonTranslateX);
+        exitButton.setTranslationY(DeviceManager.screenHeightF - (DeviceManager.screenWidthF - exitButttonTranslateX));
 
         playIcon = findViewById(R.id.playIcon);
         playIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
