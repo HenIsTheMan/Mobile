@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ import sg.diploma.product.touch.TouchManager;
 public final class OptionsScreenActivity extends Activity implements View.OnClickListener, IState, SeekBar.OnSeekBarChangeListener{
 	public OptionsScreenActivity(){
 		backButton = null;
+		leftArrowIcon = null;
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.P)
@@ -127,6 +129,16 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 		backButton.getLayoutParams().height = buttonSize;
 		backButton.setTranslationX((float)buttonSize * 1.5f);
 		backButton.setTranslationY(DeviceManager.screenHeightF - (float)buttonSize * 1.5f);
+
+		leftArrowIcon = findViewById(R.id.leftArrowIcon);
+		leftArrowIcon.getLayoutParams().width = (int)(buttonSize * 0.65f);
+		leftArrowIcon.getLayoutParams().height = (int)(buttonSize * 0.65f);
+		leftArrowIcon.setTranslationX(backButton.getTranslationX()
+				+ (backButton.getLayoutParams().width
+				- leftArrowIcon.getLayoutParams().width) * 0.5f);
+		leftArrowIcon.setTranslationY(backButton.getTranslationY()
+				+ (backButton.getLayoutParams().height
+				- leftArrowIcon.getLayoutParams().height) * 0.5f);
 	}
 
 	@Override
@@ -249,6 +261,7 @@ public final class OptionsScreenActivity extends Activity implements View.OnClic
 	}
 
 	private Button backButton;
+	private ImageView leftArrowIcon;
 
 	public static OptionsScreenActivity Instance;
 

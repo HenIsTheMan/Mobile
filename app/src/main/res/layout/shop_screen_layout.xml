@@ -35,6 +35,13 @@
         android:id="@+id/backButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/back_button" />
+        android:background="@drawable/button" />
+
+    <ImageView
+        android:id="@+id/leftArrowIcon"
+        android:src="@drawable/left_arrow_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/leftArrowIconInfo" />
 
 </RelativeLayout>
