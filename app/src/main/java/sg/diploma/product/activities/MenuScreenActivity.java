@@ -1,6 +1,5 @@
 package sg.diploma.product.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
@@ -23,12 +22,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentActivity;
 
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.device.UpdateThread;
+import sg.diploma.product.dialog_frag.MainMenuDialogFrag;
 import sg.diploma.product.entity.EntityConstraint;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.entities.EntityBall;
@@ -42,7 +43,7 @@ import sg.diploma.product.touch.TouchTypes;
 
 import static android.hardware.Sensor.TYPE_ACCELEROMETER;
 
-public final class MenuScreenActivity extends Activity implements OnClickListener, IState, SensorEventListener{
+public final class MenuScreenActivity extends FragmentActivity implements OnClickListener, IState, SensorEventListener{
     public MenuScreenActivity(){
         isFingerOffScreenBefore = true;
         shldStartMoving = false;
@@ -158,6 +159,13 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
 
     @Override
     public final void onBackPressed(){
+        if(MainMenuDialogFrag.isShown){
+            return;
+        }
+
+        MainMenuDialogFrag dialogFrag = new MainMenuDialogFrag();
+        dialogFrag.show(getSupportFragmentManager(), (String)"MainMenuDialogFrag");
+
         finishAndRemoveTask();
         System.exit(0);
     }
