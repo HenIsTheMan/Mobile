@@ -121,7 +121,6 @@ public final class MenuScreenActivity extends Activity implements OnClickListene
     @Override
     public void onSensorChanged(SensorEvent SenseEvent){
         if(ball != null){
-            Log.e("Me", "Here");
             ball.SetVals(SenseEvent.values);
         }
     }

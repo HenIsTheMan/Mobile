@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import sg.diploma.product.BuildConfig;
-import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
@@ -16,7 +15,7 @@ import sg.diploma.product.math.Pseudorand;
 public final class EntityBall extends EntityAbstract{
 	private EntityBall(){
 		super();
-		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
+		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.NormalBack;
 		attribs.type = EntityTypes.EntityType.Ball;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
 
@@ -35,12 +34,18 @@ public final class EntityBall extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
-		final float screenWidthF = DeviceManager.screenWidthF;
-		final float screenHeightF = DeviceManager.screenHeightF;
+		final float accelFactor = 20000.0f;
+		attribs.accel.x = -vals[0] * accelFactor * dt;
+		attribs.accel.y = vals[1] * accelFactor * dt;
 
-		final float moveFactor = 100.0f;
-		attribs.pos.x += -vals[0] * moveFactor * dt;
-		attribs.pos.y += vals[1] * moveFactor * dt;
+		attribs.vel.x += attribs.accel.x * dt;
+		attribs.vel.y += attribs.accel.y * dt;
+
+		attribs.vel.x = Math.max(-2000.0f, Math.min(attribs.vel.x, 2000.0f));
+		attribs.vel.y = Math.max(-2000.0f, Math.min(attribs.vel.y, 2000.0f));
+
+		attribs.pos.x += attribs.vel.x * dt;
+		attribs.pos.y += attribs.vel.y * dt;
 
 		//* Bounds checking
 		if(attribs.xMin != null){
@@ -96,6 +101,13 @@ public final class EntityBall extends EntityAbstract{
 	}
 
 	public void SetVals(final float[] vals){
+		if((this.vals[0] > 0.0f && vals[0] < 0.0f) || (this.vals[0] < 0.0f && vals[0] > 0.0f)){
+			attribs.vel.x = vals[0] < 0.0f ? 40.0f : -40.0f;
+		}
+		if((this.vals[1] > 0.0f && vals[1] < 0.0f) || (this.vals[1] < 0.0f && vals[1] > 0.0f)){
+			attribs.vel.y = vals[1] < 0.0f ? -40.0f : 40.0f;
+		}
+
 		this.vals = vals;
 	}
 
