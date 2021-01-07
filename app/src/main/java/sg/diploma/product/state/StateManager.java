@@ -14,15 +14,15 @@ public final class StateManager{ //Singleton
         stateMap = new HashMap<String, IState>();
     }
 
-    public final void Init(SurfaceView _view){
+    public void Init(SurfaceView _view){
         view = _view;
     }
 
-    public final void AddState(IState _newState){
+    public void AddState(IState _newState){
         stateMap.put(_newState.GetName(), _newState);
     }
 
-    public final void ChangeState(String _nextState){
+    public void ChangeState(String _nextState){
         try{
             nextState = stateMap.get(_nextState);
             if(nextState == null){
@@ -34,7 +34,7 @@ public final class StateManager{ //Singleton
         }
     }
 
-    public final void Update(float _dt){
+    public void Update(float _dt){
         if(nextState != currState){
             if(currState != null){
                 currState.OnExit();
@@ -51,7 +51,7 @@ public final class StateManager{ //Singleton
         currState.Update(_dt);
     }
 
-    public final void Render(Canvas _canvas){
+    public void Render(Canvas _canvas){
         currState.Render(_canvas);
     }
 

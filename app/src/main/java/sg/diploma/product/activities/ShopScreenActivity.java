@@ -43,7 +43,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	@SuppressLint("ClickableViewAccessibility")
 	@RequiresApi(api = Build.VERSION_CODES.P)
 	@Override
-	protected final void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Instance = this;
 		setContentView(R.layout.shop_screen_layout);
@@ -102,7 +102,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	}
 
 	@Override
-	public final boolean onTouchEvent(MotionEvent event){
+	public boolean onTouchEvent(MotionEvent event){
 		TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
 		return true;
 	}
@@ -129,12 +129,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	}
 
 	@Override
-	public final void onBackPressed(){
+	public void onBackPressed(){
 		//Do nth
 	}
 
 	@Override
-	public final void Update(float _dt){
+	public void Update(float _dt){
 		EntityManager.Instance.Update(_dt);
 	}
 
@@ -144,16 +144,16 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	}
 
 	@Override
-	public final void OnEnter(SurfaceView _view){
+	public void OnEnter(SurfaceView _view){
 	}
 
 	@Override
-	public final void OnExit(){
+	public void OnExit(){
 		Instance.finish();
 	}
 
 	@Override
-	public final void Render(Canvas _canvas){
+	public void Render(Canvas _canvas){
 		EntityManager.Instance.Render(_canvas);
 	}
 

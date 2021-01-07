@@ -94,7 +94,7 @@ public final class MenuScreenActivity
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
-    protected final void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.menu_screen_layout);
@@ -109,7 +109,7 @@ public final class MenuScreenActivity
         if(surfaceHolder != null){
             surfaceHolder.addCallback(new SurfaceHolder.Callback(){
                 @Override
-                public final void surfaceCreated(SurfaceHolder surfaceHolder){
+                public void surfaceCreated(SurfaceHolder surfaceHolder){
                     if(!updateThread.GetIsRunning()){
                         updateThread.Init();
                     }
@@ -120,11 +120,11 @@ public final class MenuScreenActivity
                 }
 
                 @Override
-                public final void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height){
+                public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height){
                 }
 
                 @Override
-                public final void surfaceDestroyed(SurfaceHolder surfaceHolder){
+                public void surfaceDestroyed(SurfaceHolder surfaceHolder){
                     updateThread.Terminate();
                 }
             });
@@ -139,24 +139,24 @@ public final class MenuScreenActivity
     }
 
     @Override
-    protected final void onDestroy(){
+    protected void onDestroy(){
         super.onDestroy();
         Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.MenuScreenActivity.GetVal());
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int accuracy){
+    public void onAccuracyChanged(Sensor sensor, int accuracy){
     }
 
     @Override
-    public final void onSensorChanged(SensorEvent SenseEvent){
+    public void onSensorChanged(SensorEvent SenseEvent){
         if(ball != null){
             ball.SetVals(SenseEvent.values);
         }
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event){
         TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
         return true;
     }
@@ -243,7 +243,7 @@ public final class MenuScreenActivity
     }
 
     @Override
-    public final void onBackPressed(){
+    public void onBackPressed(){
         if(MenuDialogFrag.isShown){
             return;
         }
@@ -253,12 +253,12 @@ public final class MenuScreenActivity
     }
 
     @Override
-    public final void Render(Canvas _canvas){
+    public void Render(Canvas _canvas){
         EntityManager.Instance.Render(_canvas);
     }
 
     @Override
-    public final void OnEnter(SurfaceView _view){
+    public void OnEnter(SurfaceView _view){
         //* Create ball
         ball = EntityBall.Create(
             "ball"
@@ -313,11 +313,11 @@ public final class MenuScreenActivity
     }
 
     @Override
-    public final void OnExit(){
+    public void OnExit(){
     }
 
     @Override
-    public final void Update(float _dt){
+    public void Update(float _dt){
         if(textOnScreen != null){
             textOnScreen.SetText("FPS: " + 1.0f / _dt);
         }
@@ -345,7 +345,7 @@ public final class MenuScreenActivity
     }
 
     @Override
-    public final void OnEvent(EventAbstract event){
+    public void OnEvent(EventAbstract event){
         switch(event.GetID()){
             case EndProg:
                 finishAndRemoveTask();
@@ -365,15 +365,15 @@ public final class MenuScreenActivity
             myShapeAnim.setStartOffset(799);
             myShapeAnim.setAnimationListener(new Animation.AnimationListener(){
                 @Override
-                public final void onAnimationStart(Animation anim){
+                public void onAnimationStart(Animation anim){
                 }
 
                 @Override
-                public final void onAnimationRepeat(Animation anim){
+                public void onAnimationRepeat(Animation anim){
                 }
 
                 @Override
-                public final void onAnimationEnd(Animation anim){
+                public void onAnimationEnd(Animation anim){
                     myShape.setVisibility(View.GONE);
                 }
             });

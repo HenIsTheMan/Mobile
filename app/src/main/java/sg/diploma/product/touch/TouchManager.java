@@ -7,7 +7,7 @@ public final class TouchManager{ //Singleton
         motionEventAction = -999;
     }
 
-    public final void Update(final float xPos, final float yPos, final int motionEventAction){
+    public void Update(final float xPos, final float yPos, final int motionEventAction){
         this.xPos = xPos;
         this.yPos = yPos;
         this.motionEventAction = motionEventAction;

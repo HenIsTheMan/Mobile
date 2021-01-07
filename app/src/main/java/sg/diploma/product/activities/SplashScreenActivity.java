@@ -27,12 +27,12 @@ public final class SplashScreenActivity extends Activity{
     }
 
     @Override
-    public final void onBackPressed(){
+    public void onBackPressed(){
         moveTaskToBack(true);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event){
         if(event.getAction() == TouchTypes.TouchType.Down.GetVal()){
             _active = false;
         }
@@ -40,7 +40,7 @@ public final class SplashScreenActivity extends Activity{
     }
 
     @Override
-    protected final void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.splash_screen_layout);
@@ -113,7 +113,7 @@ public final class SplashScreenActivity extends Activity{
 
         Thread splashThread = new Thread(){
             @Override
-            public final void run(){
+            public void run(){
                 try{
                     sleep(_splashTime);
                 } catch(InterruptedException e){
@@ -130,7 +130,7 @@ public final class SplashScreenActivity extends Activity{
 
         Thread splashControlThread = new Thread(){
             @Override
-            public final void run(){
+            public void run(){
             for(;;){
                 if(!_active){
                     splashThread.interrupt();
@@ -145,27 +145,27 @@ public final class SplashScreenActivity extends Activity{
     }
 
     @Override
-    protected final void onStart(){
+    protected void onStart(){
         super.onStart();
     }
 
     @Override
-    protected final void onResume(){
+    protected void onResume(){
         super.onResume();
     }
 
     @Override
-    protected final void onPause(){
+    protected void onPause(){
         super.onPause();
     }
 
     @Override
-    protected final void onStop(){
+    protected void onStop(){
         super.onStop();
     }
 
     @Override
-    protected final void onDestroy(){
+    protected void onDestroy(){
         super.onDestroy();
     }
 

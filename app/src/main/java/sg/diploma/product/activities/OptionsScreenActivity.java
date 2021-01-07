@@ -65,7 +65,7 @@ public final class OptionsScreenActivity
 	@SuppressLint("ClickableViewAccessibility")
 	@RequiresApi(api = Build.VERSION_CODES.P)
 	@Override
-	protected final void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Instance = this;
 		setContentView(R.layout.options_screen_layout);
@@ -211,15 +211,15 @@ public final class OptionsScreenActivity
 		saveButtonUpAnimSet.setDuration(400);
 		saveButtonUpAnimSet.setAnimationListener(new Animation.AnimationListener(){
 			@Override
-			public final void onAnimationStart(Animation anim){
+			public void onAnimationStart(Animation anim){
 			}
 
 			@Override
-			public final void onAnimationRepeat(Animation anim){
+			public void onAnimationRepeat(Animation anim){
 			}
 
 			@Override
-			public final void onAnimationEnd(Animation anim){
+			public void onAnimationEnd(Animation anim){
 				saveButton.setVisibility(View.INVISIBLE);
 				floppyDiskIcon.setVisibility(View.INVISIBLE);
 			}
@@ -285,13 +285,13 @@ public final class OptionsScreenActivity
 	}
 
 	@Override
-	protected final void onDestroy(){
+	protected void onDestroy(){
 		super.onDestroy();
 		Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.OptionsScreenActivity.GetVal());
 	}
 
 	@Override
-	public final boolean onTouchEvent(MotionEvent event){
+	public boolean onTouchEvent(MotionEvent event){
 		TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
 		return true;
 	}
@@ -369,12 +369,12 @@ public final class OptionsScreenActivity
 	}
 
 	@Override
-	public final void onBackPressed(){
+	public void onBackPressed(){
 		//Do nth
 	}
 
 	@Override
-	public final void Update(float _dt){
+	public void Update(float _dt){
 		EntityManager.Instance.Update(_dt);
 	}
 
@@ -384,21 +384,21 @@ public final class OptionsScreenActivity
 	}
 
 	@Override
-	public final void OnEnter(SurfaceView _view){
+	public void OnEnter(SurfaceView _view){
 	}
 
 	@Override
-	public final void OnExit(){
+	public void OnExit(){
 		Instance.finish();
 	}
 
 	@Override
-	public final void Render(Canvas _canvas){
+	public void Render(Canvas _canvas){
 		EntityManager.Instance.Render(_canvas);
 	}
 
 	@Override
-	public final void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
 		if(fromUser){
 			areNewVolsSaved = false;
 			saveButton.setClickable(true);
@@ -439,15 +439,15 @@ public final class OptionsScreenActivity
 	}
 
 	@Override
-	public final void onStartTrackingTouch(SeekBar seekBar){
+	public void onStartTrackingTouch(SeekBar seekBar){
 	}
 
 	@Override
-	public final void onStopTrackingTouch(SeekBar seekBar){
+	public void onStopTrackingTouch(SeekBar seekBar){
 	}
 
 	@Override
-	public final void OnEvent(EventAbstract event){
+	public void OnEvent(EventAbstract event){
 		switch(event.GetID()){
 			case ReturnToMenuWithoutSaving:
 				final SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);

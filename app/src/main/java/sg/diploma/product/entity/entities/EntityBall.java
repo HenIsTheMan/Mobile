@@ -33,7 +33,7 @@ public final class EntityBall extends EntityAbstract{
 	}
 
 	@Override
-	public final void Update(final float dt){
+	public void Update(final float dt){
 		final float accelFactor = 20000.0f;
 		attribs.accel.x = -vals[0] * accelFactor * dt;
 		attribs.accel.y = vals[1] * accelFactor * dt;
@@ -65,7 +65,7 @@ public final class EntityBall extends EntityAbstract{
 	}
 
 	@Override
-	public final void Render(final Canvas canvas){
+	public void Render(final Canvas canvas){
 		canvas.drawCircle(
 			attribs.pos.x,
 			attribs.pos.y,
@@ -75,18 +75,18 @@ public final class EntityBall extends EntityAbstract{
 	}
 
 	@Override
-	public final void LateUpdate(final float dt){
+	public void LateUpdate(final float dt){
 	}
 
 	@Override
-	public final void SpecialRender(final Canvas canvas){
+	public void SpecialRender(final Canvas canvas){
 		if(BuildConfig.DEBUG){
 			throw new AssertionError("Assertion failed");
 		}
 	}
 
 	@Override
-	public final void Collided(EntityAbstract other){
+	public void Collided(EntityAbstract other){
 	}
 
 	public static EntityBall Create(final String key){
@@ -95,12 +95,12 @@ public final class EntityBall extends EntityAbstract{
 		return result;
 	}
 
-	public final void SetColor(final Color color){
+	public void SetColor(final Color color){
 		this.color = color;
 		paint.setARGB((int)(color.a * 255.0f), (int)(color.r * 255.0f), (int)(color.g * 255.0f), (int)(color.b * 255.0f));
 	}
 
-	public final void SetVals(final float[] vals){
+	public void SetVals(final float[] vals){
 		if((this.vals[0] > 0.0f && vals[0] < 0.0f) || (this.vals[0] < 0.0f && vals[0] > 0.0f)){
 			attribs.vel.x = vals[0] < 0.0f ? 40.0f : -40.0f;
 		}

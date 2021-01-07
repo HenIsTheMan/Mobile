@@ -5,11 +5,11 @@ public final class GameManager{ //Singleton
         isPaused = false;
     }
 
-    public final boolean GetIsPaused(){
+    public boolean GetIsPaused(){
         return isPaused;
     }
 
-    public final void SetIsPaused(final boolean isPaused){
+    public void SetIsPaused(final boolean isPaused){
         this.isPaused = isPaused;
     }
 

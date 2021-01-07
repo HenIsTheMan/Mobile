@@ -37,7 +37,7 @@ public final class SpriteAnim{
 		paint.setDither(true);
 	}
 
-	public final void Update(float _dt){
+	public void Update(float _dt){
 		timeAcc += _dt;
 		if(timeAcc > timePerFrame){
 			++currFrame;
@@ -48,7 +48,7 @@ public final class SpriteAnim{
 		}
 	}
 
-	public final void Render(final Canvas _canvas, float x, float y){
+	public void Render(final Canvas _canvas, float x, float y){
 		final int frameX = currFrame % cols;
 		final int frameY = currFrame / cols;
 		final int srcX = frameX * width;
@@ -66,14 +66,14 @@ public final class SpriteAnim{
 		_canvas.drawBitmap(bmp, src, dst, paint);
 	}
 
-	public final void SetFrames(int _start, int _end){
+	public void SetFrames(int _start, int _end){
 		timeAcc = 0.0f;
 		currFrame = _start;
 		startFrame = _start;
 		endFrame = _end;
 	}
 
-	public final void GenScaledBitmap(final Vector2 scale){
+	public void GenScaledBitmap(final Vector2 scale){
 		bmp = Bitmap.createScaledBitmap(bmp, bmp.getWidth() * (int)scale.x, bmp.getHeight() * (int)scale.y, true);
 		width = bmp.getWidth() / cols;
 		height = bmp.getHeight() / rows;
@@ -87,11 +87,11 @@ public final class SpriteAnim{
 		return height;
 	}
 
-	public final void SetXScale(final float xScale){
+	public void SetXScale(final float xScale){
 		this.xScale = xScale;
 	}
 
-	public final void SetYScale(final float yScale){
+	public void SetYScale(final float yScale){
 		this.yScale = yScale;
 	}
 

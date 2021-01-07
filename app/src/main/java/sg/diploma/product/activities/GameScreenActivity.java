@@ -37,7 +37,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    protected final void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         Instance = this;
         View view = new GameView(this);
@@ -49,19 +49,19 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    protected final void onDestroy(){
+    protected void onDestroy(){
         super.onDestroy();
         Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.GameScreenActivity.GetVal());
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event){
         TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
         return true;
     }
 
     @Override
-    public final void onBackPressed(){
+    public void onBackPressed(){
         //Do nth
     }
 
@@ -71,7 +71,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    public final void OnEnter(SurfaceView _view){
+    public void OnEnter(SurfaceView _view){
         Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal(), GameData.globalInstance);
 
         //* Create game BG (Removed as super laggy)
@@ -160,19 +160,19 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    public final void OnExit(){
+    public void OnExit(){
         Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal());
 
         Instance.finish();
     }
 
     @Override
-    public final void Render(Canvas _canvas){
+    public void Render(Canvas _canvas){
         EntityManager.Instance.SpecialRender(_canvas, "Special_gamePlayerChar");
     }
 
     @Override
-    public final void Update(float _dt) {
+    public void Update(float _dt) {
         if(GameData.textOnScreenFPS != null){
             GameData.textOnScreenFPS.SetText("FPS: " + 1.0f / _dt);
         }
@@ -236,7 +236,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    public final void OnEvent(EventAbstract event){
+    public void OnEvent(EventAbstract event){
         switch(event.GetID()){
             case EndGame:
                 if(Build.VERSION.SDK_INT >= 26){

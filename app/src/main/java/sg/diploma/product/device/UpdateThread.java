@@ -40,7 +40,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
     }
 
     @Override
-    public final void run(){
+    public void run(){
         long framePerSecond = 1000 / targetFPS;
         long startTime;
 
@@ -106,15 +106,15 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         }
     }
 
-    public final boolean GetIsRunning(){
+    public boolean GetIsRunning(){
         return isRunning;
     }
 
-    public final void Init(){
+    public void Init(){
         isRunning = true;
     }
 
-    public final void Terminate(){
+    public void Terminate(){
         isRunning = false;
     }
 

@@ -36,7 +36,7 @@ public final class EntityPauseButton extends EntityAbstract{
 	}
 
 	@Override
-	public final void Update(float _dt){
+	public void Update(float _dt){
 		elapsedTime += _dt;
 
 		if(BT <= elapsedTime && TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()
@@ -56,19 +56,19 @@ public final class EntityPauseButton extends EntityAbstract{
 	}
 
 	@Override
-	public final void Render(Canvas _canvas){
+	public void Render(Canvas _canvas){
 	}
 
 	@Override
-	public final void Collided(EntityAbstract other){
+	public void Collided(EntityAbstract other){
 	}
 
 	@Override
-	public final void LateUpdate(final float dt){
+	public void LateUpdate(final float dt){
 	}
 
 	@Override
-	public final void SpecialRender(final Canvas canvas){
+	public void SpecialRender(final Canvas canvas){
 		if(paused){
 			Rect src = new Rect(0, 0, pausedBitmap.getWidth(), pausedBitmap.getHeight());
 			RectF dst = new RectF(
