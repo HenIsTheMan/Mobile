@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -44,8 +45,8 @@ public final class OptionsScreenActivity
 		initialMusicVol = 0;
 		initialSoundVol = 0;
 
-		backButtonDownAnim = null;
-		backButtonUpAnim = null;
+		backButtonDownAnimSet = null;
+		backButtonUpAnimSet = null;
 
 		backButton = null;
 		saveButton = null;
@@ -160,21 +161,23 @@ public final class OptionsScreenActivity
 		backButton.setTranslationX(DeviceManager.screenWidthF * 0.15f - buttonSize * 0.5f);
 		backButton.setTranslationY(buttonTranslateY);
 
-		backButtonDownAnim = new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+		backButtonDownAnimSet = new AnimationSet(true);
+		backButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
 				Animation.ABSOLUTE, backButton.getTranslationX() + buttonSize * 0.5f,
-				Animation.ABSOLUTE, backButton.getTranslationY() + buttonSize * 0.5f);
-		backButtonDownAnim.setDuration(500);
-		backButtonDownAnim.setFillEnabled(true);
-		backButtonDownAnim.setFillAfter(true);
-		backButtonDownAnim.setInterpolator(this, R.anim.my_accelerate_interpolator);
+				Animation.ABSOLUTE, backButton.getTranslationY() + buttonSize * 0.5f));
+		backButtonDownAnimSet.setDuration(500);
+		backButtonDownAnimSet.setFillEnabled(true);
+		backButtonDownAnimSet.setFillAfter(true);
+		backButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
 
-		backButtonUpAnim = new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
+		backButtonUpAnimSet = new AnimationSet(true);
+		backButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
 				Animation.ABSOLUTE, backButton.getTranslationX() + buttonSize * 0.5f,
-				Animation.ABSOLUTE, backButton.getTranslationY() + buttonSize * 0.5f);
-		backButtonUpAnim.setDuration(500);
-		backButtonUpAnim.setFillEnabled(true);
-		backButtonUpAnim.setFillAfter(true);
-		backButtonUpAnim.setInterpolator(this, R.anim.my_decelerate_interpolator);
+				Animation.ABSOLUTE, backButton.getTranslationY() + buttonSize * 0.5f));
+		backButtonUpAnimSet.setDuration(500);
+		backButtonUpAnimSet.setFillEnabled(true);
+		backButtonUpAnimSet.setFillAfter(true);
+		backButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
 
 		saveButton = findViewById(R.id.saveButton);
 		saveButton.setOnTouchListener(this);
@@ -239,10 +242,10 @@ public final class OptionsScreenActivity
 		if(view == backButton){
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
-					backButton.startAnimation(backButtonDownAnim);
+					backButton.startAnimation(backButtonDownAnimSet);
 					return true;
 				case MotionEvent.ACTION_UP:
-					backButton.startAnimation(backButtonUpAnim);
+					backButton.startAnimation(backButtonUpAnimSet);
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 					if(!areNewVolsSaved){
@@ -409,8 +412,8 @@ public final class OptionsScreenActivity
 	private int initialMusicVol;
 	private int initialSoundVol;
 
-	private Animation backButtonDownAnim;
-	private Animation backButtonUpAnim;
+	private AnimationSet backButtonDownAnimSet;
+	private AnimationSet backButtonUpAnimSet;
 
 	private Button backButton;
 	private Button saveButton;
