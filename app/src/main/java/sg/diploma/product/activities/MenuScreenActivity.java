@@ -182,29 +182,62 @@ public final class MenuScreenActivity
             }
             return false;
         }
+        if(view == optionsButton){
+            switch(motionEvent.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    optionsButton.startAnimation(optionsButtonDownAnimSet);
+                    return true;
+                case MotionEvent.ACTION_UP:
+                    optionsButton.startAnimation(optionsButtonUpAnimSet);
+                    AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
+                    EntityManager.Instance.SendAllEntitiesForRemoval();
+                    AudioManager.Instance.SaveAudioVolData();
+                    StateManager.Instance.ChangeState("OptionsScreen");
 
-/*        if(v == optionsButton){
-            EntityManager.Instance.SendAllEntitiesForRemoval();
-            AudioManager.Instance.SaveAudioVolData();
-            StateManager.Instance.ChangeState("OptionsScreen");
+                    startActivity(new Intent(this, OptionsScreenActivity.class));
+                    finish();
 
-            startActivity(new Intent(this, OptionsScreenActivity.class));
-            finish();
-            return;
+                    return true;
+            }
+            return false;
         }
-        if(v == shopButton){
-            EntityManager.Instance.SendAllEntitiesForRemoval();
-            StateManager.Instance.ChangeState("ShopScreen");
+        if(view == shopButton){
+            switch(motionEvent.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    shopButton.startAnimation(shopButtonDownAnimSet);
+                    return true;
+                case MotionEvent.ACTION_UP:
+                    shopButton.startAnimation(shopButtonUpAnimSet);
+                    AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
-            startActivity(new Intent(this, ShopScreenActivity.class));
-            finish();
-            return;
+                    EntityManager.Instance.SendAllEntitiesForRemoval();
+                    StateManager.Instance.ChangeState("ShopScreen");
+
+                    startActivity(new Intent(this, ShopScreenActivity.class));
+                    finish();
+
+                    return true;
+            }
+            return false;
         }
-        if(v == exitButton){
-            finishAndRemoveTask();
-            System.exit(0);
-        }*/
+        if(view == exitButton){
+            switch(motionEvent.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    exitButton.startAnimation(exitButtonDownAnimSet);
+                    return true;
+                case MotionEvent.ACTION_UP:
+                    exitButton.startAnimation(exitButtonUpAnimSet);
+                    AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+
+                    finishAndRemoveTask();
+                    System.exit(0);
+
+                    return true;
+            }
+            return false;
+        }
+
         return false;
     }
 
@@ -361,7 +394,7 @@ public final class MenuScreenActivity
         startButtonDownAnimSet.setDuration(400);
         startButtonDownAnimSet.setFillEnabled(true);
         startButtonDownAnimSet.setFillAfter(true);
-        startButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
+        startButtonDownAnimSet.setInterpolator(this, R.anim.my_anticipate_interpolator);
 
         startButtonUpAnimSet = new AnimationSet(true);
         startButtonUpAnimSet.addAnimation(new ScaleAnimation(1.1f, 1.0f, 1.1f, 1.0f,
@@ -371,15 +404,7 @@ public final class MenuScreenActivity
         startButtonUpAnimSet.setDuration(400);
         startButtonUpAnimSet.setFillEnabled(true);
         startButtonUpAnimSet.setFillAfter(true);
-        startButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
-
-        /*startButtonUpAnimSet = null;
-        optionsButtonDownAnimSet = null;
-        optionsButtonUpAnimSet = null;
-        shopButtonDownAnimSet = null;
-        shopButtonUpAnimSet = null;
-        exitButtonDownAnimSet = null;
-        exitButtonUpAnimSet = null;*/
+        startButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
 
         optionsButton = findViewById(R.id.optionsButton);
         optionsButton.setOnTouchListener(this);
@@ -388,12 +413,52 @@ public final class MenuScreenActivity
         optionsButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)buttonSize * 0.5f);
         optionsButton.setTranslationY(DeviceManager.screenHeightF * 0.45f - (float)buttonSize * 0.5f);
 
+        optionsButtonDownAnimSet = new AnimationSet(true);
+        optionsButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f,
+                Animation.ABSOLUTE, optionsButton.getTranslationX() + buttonSize * 0.5f,
+                Animation.ABSOLUTE, optionsButton.getTranslationY() + buttonSize * 0.5f));
+        optionsButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+        optionsButtonDownAnimSet.setDuration(400);
+        optionsButtonDownAnimSet.setFillEnabled(true);
+        optionsButtonDownAnimSet.setFillAfter(true);
+        optionsButtonDownAnimSet.setInterpolator(this, R.anim.my_anticipate_interpolator);
+
+        optionsButtonUpAnimSet = new AnimationSet(true);
+        optionsButtonUpAnimSet.addAnimation(new ScaleAnimation(1.1f, 1.0f, 1.1f, 1.0f,
+                Animation.ABSOLUTE, optionsButton.getTranslationX() + buttonSize * 0.5f,
+                Animation.ABSOLUTE, optionsButton.getTranslationY() + buttonSize * 0.5f));
+        optionsButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+        optionsButtonUpAnimSet.setDuration(400);
+        optionsButtonUpAnimSet.setFillEnabled(true);
+        optionsButtonUpAnimSet.setFillAfter(true);
+        optionsButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
+
         shopButton = findViewById(R.id.shopButton);
         shopButton.setOnTouchListener(this);
         shopButton.getLayoutParams().width = buttonSize;
         shopButton.getLayoutParams().height = buttonSize;
         shopButton.setTranslationX(DeviceManager.screenWidthF * 0.8f - (float)buttonSize * 0.5f);
         shopButton.setTranslationY(DeviceManager.screenHeightF * 0.45f - (float)buttonSize * 0.5f);
+
+        shopButtonDownAnimSet = new AnimationSet(true);
+        shopButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f,
+                Animation.ABSOLUTE, shopButton.getTranslationX() + buttonSize * 0.5f,
+                Animation.ABSOLUTE, shopButton.getTranslationY() + buttonSize * 0.5f));
+        shopButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+        shopButtonDownAnimSet.setDuration(400);
+        shopButtonDownAnimSet.setFillEnabled(true);
+        shopButtonDownAnimSet.setFillAfter(true);
+        shopButtonDownAnimSet.setInterpolator(this, R.anim.my_anticipate_interpolator);
+
+        shopButtonUpAnimSet = new AnimationSet(true);
+        shopButtonUpAnimSet.addAnimation(new ScaleAnimation(1.1f, 1.0f, 1.1f, 1.0f,
+                Animation.ABSOLUTE, shopButton.getTranslationX() + buttonSize * 0.5f,
+                Animation.ABSOLUTE, shopButton.getTranslationY() + buttonSize * 0.5f));
+        shopButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+        shopButtonUpAnimSet.setDuration(400);
+        shopButtonUpAnimSet.setFillEnabled(true);
+        shopButtonUpAnimSet.setFillAfter(true);
+        shopButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
 
         final float exitButtonSize = (float)buttonSize * 0.7f;
         exitButton = findViewById(R.id.exitButton);
@@ -402,6 +467,26 @@ public final class MenuScreenActivity
         final float exitButttonTranslateX = DeviceManager.screenWidthF * 0.85f - exitButtonSize * 0.5f;
         exitButton.setTranslationX(exitButttonTranslateX);
         exitButton.setTranslationY(DeviceManager.screenHeightF - (DeviceManager.screenWidthF - exitButttonTranslateX));
+
+        exitButtonDownAnimSet = new AnimationSet(true);
+        exitButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f,
+                Animation.ABSOLUTE, exitButton.getTranslationX() + exitButtonSize * 0.5f,
+                Animation.ABSOLUTE, exitButton.getTranslationY() + exitButtonSize * 0.5f));
+        exitButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+        exitButtonDownAnimSet.setDuration(400);
+        exitButtonDownAnimSet.setFillEnabled(true);
+        exitButtonDownAnimSet.setFillAfter(true);
+        exitButtonDownAnimSet.setInterpolator(this, R.anim.my_anticipate_interpolator);
+
+        exitButtonUpAnimSet = new AnimationSet(true);
+        exitButtonUpAnimSet.addAnimation(new ScaleAnimation(1.1f, 1.0f, 1.1f, 1.0f,
+                Animation.ABSOLUTE, exitButton.getTranslationX() + exitButtonSize * 0.5f,
+                Animation.ABSOLUTE, exitButton.getTranslationY() + exitButtonSize * 0.5f));
+        exitButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+        exitButtonUpAnimSet.setDuration(400);
+        exitButtonUpAnimSet.setFillEnabled(true);
+        exitButtonUpAnimSet.setFillAfter(true);
+        exitButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
 
         playIcon = findViewById(R.id.playIcon);
         playIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);

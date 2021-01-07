@@ -220,7 +220,6 @@ public final class OptionsScreenActivity
 
 			@Override
 			public final void onAnimationEnd(Animation anim){
-				saveButton.setClickable(false);
 				saveButton.setVisibility(View.INVISIBLE);
 				floppyDiskIcon.setVisibility(View.INVISIBLE);
 			}
@@ -325,18 +324,21 @@ public final class OptionsScreenActivity
 			return false;
 		}
 		if(view == saveButton){
-			switch(motionEvent.getAction()){
-				case MotionEvent.ACTION_DOWN:
-					saveButton.startAnimation(saveButtonDownAnimSet);
-					return true;
-				case MotionEvent.ACTION_UP:
-					saveButton.startAnimation(saveButtonUpAnimSet);
-					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+			if(saveButton.isClickable()){
+				switch(motionEvent.getAction()){
+					case MotionEvent.ACTION_DOWN:
+						saveButton.startAnimation(saveButtonDownAnimSet);
+						return true;
+					case MotionEvent.ACTION_UP:
+						saveButton.startAnimation(saveButtonUpAnimSet);
+						AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
-					AudioManager.Instance.SaveAudioVolData();
-					areNewVolsSaved = true;
+						AudioManager.Instance.SaveAudioVolData();
+						areNewVolsSaved = true;
+						saveButton.setClickable(false);
 
-					return true;
+						return true;
+				}
 			}
 			return false;
 		}
