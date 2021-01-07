@@ -117,6 +117,14 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 		}
 	}
 
+	public float GetWidth(){
+		return spriteAnim.GetWidth();
+	}
+
+	public float GetHeight(){
+		return spriteAnim.GetHeight();
+	}
+
 	public final void GenScaledBitmap(){ //Slow
 		spriteAnim.GenScaledBitmap(attribs.scale);
 	}

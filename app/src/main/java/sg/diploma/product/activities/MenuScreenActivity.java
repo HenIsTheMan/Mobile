@@ -292,8 +292,14 @@ public final class MenuScreenActivity
         menuPlayerChar.SetSpriteAnimXScale(1.8f);
         menuPlayerChar.SetSpriteAnimYScale(1.8f);
 
+        menuPlayerChar.attribs.xMin = new EntityConstraint();
+        menuPlayerChar.attribs.xMin.val = menuPlayerChar.GetWidth() * menuPlayerChar.attribs.scale.x * 0.25f;
+        menuPlayerChar.attribs.xMax = new EntityConstraint();
+        menuPlayerChar.attribs.xMax.val = DeviceManager.screenWidthF - menuPlayerChar.GetWidth() * menuPlayerChar.attribs.scale.x * 0.25f;
         menuPlayerChar.attribs.yMin = new EntityConstraint();
         menuPlayerChar.attribs.yMin.val = (DeviceManager.screenHeightF * 0.35f + DeviceManager.screenWidthF * 0.25f) * 1.3f;
+        menuPlayerChar.attribs.yMax = new EntityConstraint();
+        menuPlayerChar.attribs.yMax.val = DeviceManager.screenHeightF - menuPlayerChar.GetHeight() * menuPlayerChar.attribs.scale.y * 0.5f;
         //*/
 
         //* Create text on screen

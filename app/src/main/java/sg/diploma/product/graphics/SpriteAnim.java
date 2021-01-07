@@ -79,6 +79,14 @@ public final class SpriteAnim{
 		height = bmp.getHeight() / rows;
 	}
 
+	public float GetWidth(){
+		return width;
+	}
+
+	public float GetHeight(){
+		return height;
+	}
+
 	public final void SetXScale(final float xScale){
 		this.xScale = xScale;
 	}
