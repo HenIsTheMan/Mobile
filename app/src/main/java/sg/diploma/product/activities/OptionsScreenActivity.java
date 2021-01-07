@@ -35,7 +35,8 @@ import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 
-public final class OptionsScreenActivity extends FragmentActivity implements View.OnClickListener, IState, SeekBar.OnSeekBarChangeListener, IListener{
+public final class OptionsScreenActivity extends FragmentActivity implements
+	View.OnTouchListener, View.OnClickListener, IState, SeekBar.OnSeekBarChangeListener, IListener{
 	public OptionsScreenActivity(){
 		areNewVolsSaved = true;
 		initialMusicVol = 0;
@@ -151,35 +152,11 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 
 		backButton = findViewById(R.id.backButton);
 		backButton.setOnClickListener(this);
+		backButton.setOnTouchListener(this);
 		backButton.getLayoutParams().width = buttonSize;
 		backButton.getLayoutParams().height = buttonSize;
 		backButton.setTranslationX(DeviceManager.screenWidthF * 0.15f - buttonSize * 0.5f);
 		backButton.setTranslationY(buttonTranslateY);
-
-		Animation anim = new ScaleAnimation(
-				1.0f, 1.0f, // Start and end values for the X axis scaling
-				1.2f, 1.2f, // Start and end values for the Y axis scaling
-				Animation.RELATIVE_TO_SELF, 0f, // Pivot point of X scaling
-				Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
-		//anim.setFillAfter(true); // Needed to keep the result of the animation
-		anim.setDuration(1000);
-
-		//buttonPopAnim = AnimationUtils.loadAnimation(this, R.anim.button_pop_anim);
-		backButton.setOnTouchListener(new View.OnTouchListener(){
-			@SuppressLint("ClickableViewAccessibility")
-			@Override
-			public boolean onTouch(View view, MotionEvent motionEvent){
-				switch(motionEvent.getAction()){
-					case MotionEvent.ACTION_DOWN:
-						backButton.startAnimation(anim);
-						return true;
-					/*ase MotionEvent.ACTION_UP:
-						backButton.startAnimation(buttonPopAnim);
-						return true;*/
-				}
-				return false;
-			}
-		});
 
 		saveButton = findViewById(R.id.saveButton);
 		saveButton.setOnClickListener(this);
@@ -233,9 +210,31 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 	}
 
 	@Override
-	public boolean onTouchEvent(MotionEvent event){
+	public final boolean onTouchEvent(MotionEvent event){
 		TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
 		return true;
+	}
+
+	@SuppressLint("ClickableViewAccessibility")
+	@Override
+	public boolean onTouch(View view, MotionEvent motionEvent){
+		if(view == backButton){
+			//buttonPopAnim = AnimationUtils.loadAnimation(this, R.anim.button_pop_anim);
+			//view.setPivotX(50);
+			//view.setPivotY(50);
+			buttonPopAnim = new ScaleAnimation(1.0f, 0.8f, 1.0f, 0.8f,
+				Animation.ABSOLUTE, view.getTranslationX(), Animation.ABSOLUTE, view.getTranslationY());
+			buttonPopAnim.setDuration(1000);
+			switch(motionEvent.getAction()){
+				case MotionEvent.ACTION_DOWN:
+					backButton.startAnimation(buttonPopAnim);
+					return true;
+				/*case MotionEvent.ACTION_UP:
+					backButton.startAnimation(buttonPopAnim);
+					return true;*/
+			}
+		}
+		return false;
 	}
 
 	@Override
