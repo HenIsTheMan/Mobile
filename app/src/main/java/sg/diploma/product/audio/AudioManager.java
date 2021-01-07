@@ -48,7 +48,7 @@ public final class AudioManager{
 		//*/
 	}
 
-	public boolean IsPlaying(final int ID, final AudioTypes.AudioType type){
+	public final boolean IsPlaying(final int ID, final AudioTypes.AudioType type){
 		final HashMap<Integer, MediaPlayer> audioMap = type == AudioTypes.AudioType.Music ? musicMap : soundMap;
 
 		if(!audioMap.containsKey(ID)){

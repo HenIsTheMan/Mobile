@@ -1,15 +1,11 @@
 package sg.diploma.product.game;
 
-import sg.diploma.product.activities.GameScreenActivity;
-import sg.diploma.product.activities.MenuScreenActivity;
-import sg.diploma.product.state.StateManager;
-
 public final class GameManager{ //Singleton
     private GameManager(){
         isPaused = false;
     }
 
-    public boolean GetIsPaused(){
+    public final boolean GetIsPaused(){
         return isPaused;
     }
 

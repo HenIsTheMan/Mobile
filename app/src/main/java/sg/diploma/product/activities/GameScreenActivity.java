@@ -55,7 +55,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public final boolean onTouchEvent(MotionEvent event){
         TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
         return true;
     }

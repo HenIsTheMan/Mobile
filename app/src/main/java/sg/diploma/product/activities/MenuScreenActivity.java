@@ -140,7 +140,7 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public final boolean onTouchEvent(MotionEvent event){
         TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
         return true;
     }

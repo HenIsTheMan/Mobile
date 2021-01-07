@@ -28,7 +28,7 @@ public final class ShopScreenActivity extends Activity implements View.OnClickLi
 	}
 
 	@Override
-	public boolean onTouchEvent(MotionEvent event){
+	public final boolean onTouchEvent(MotionEvent event){
 		TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
 		return true;
 	}

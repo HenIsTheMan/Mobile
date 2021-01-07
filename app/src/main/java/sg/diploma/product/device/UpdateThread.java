@@ -71,7 +71,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         }
     }
 
-    public boolean GetIsRunning(){
+    public final boolean GetIsRunning(){
         return isRunning;
     }
 

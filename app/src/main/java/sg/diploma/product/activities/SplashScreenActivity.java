@@ -32,7 +32,7 @@ public final class SplashScreenActivity extends Activity{
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public final boolean onTouchEvent(MotionEvent event){
         if(event.getAction() == TouchTypes.TouchType.Down.GetVal()){
             _active = false;
         }
