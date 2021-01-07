@@ -1,5 +1,6 @@
 package sg.diploma.product.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
@@ -14,9 +15,11 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,10 +50,22 @@ import sg.diploma.product.touch.TouchTypes;
 
 import static android.hardware.Sensor.TYPE_ACCELEROMETER;
 
-public final class MenuScreenActivity extends FragmentActivity implements OnClickListener, IState, SensorEventListener, IListener{
+public final class MenuScreenActivity
+    extends FragmentActivity
+    implements View.OnTouchListener, IState, SensorEventListener, IListener{
+
     public MenuScreenActivity(){
         isFingerOffScreenBefore = true;
         shldStartMoving = false;
+
+        startButtonDownAnimSet = null;
+        startButtonUpAnimSet = null;
+        optionsButtonDownAnimSet = null;
+        optionsButtonUpAnimSet = null;
+        shopButtonDownAnimSet = null;
+        shopButtonUpAnimSet = null;
+        exitButtonDownAnimSet = null;
+        exitButtonUpAnimSet = null;
 
         startButton = null;
         optionsButton = null;
@@ -145,18 +160,31 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
         return true;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
-    public final void onClick(View v){
-        AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
-        if(v == startButton){
-            EntityManager.Instance.SendAllEntitiesForRemoval();
-            StateManager.Instance.ChangeState("GameScreen");
+    public boolean onTouch(View view, MotionEvent motionEvent){
+        if(view == startButton){
+            switch(motionEvent.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    startButton.startAnimation(startButtonDownAnimSet);
+                    return true;
+                case MotionEvent.ACTION_UP:
+                    startButton.startAnimation(startButtonUpAnimSet);
+                    AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
-            startActivity(new Intent(this, GameScreenActivity.class));
-            finish();
-            return;
+                    EntityManager.Instance.SendAllEntitiesForRemoval();
+                    StateManager.Instance.ChangeState("GameScreen");
+
+                    startActivity(new Intent(this, GameScreenActivity.class));
+                    //finish();
+
+                    return true;
+            }
+            return false;
         }
-        if(v == optionsButton){
+
+
+/*        if(v == optionsButton){
             EntityManager.Instance.SendAllEntitiesForRemoval();
             AudioManager.Instance.SaveAudioVolData();
             StateManager.Instance.ChangeState("OptionsScreen");
@@ -176,7 +204,8 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
         if(v == exitButton){
             finishAndRemoveTask();
             System.exit(0);
-        }
+        }*/
+        return false;
     }
 
     @Override
@@ -286,6 +315,7 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void InitOthers(){
         if(showMyShape){
             myShape = findViewById(R.id.myShape);
@@ -317,21 +347,49 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
         final int buttonSize = (int)(300.0f * buttonFactor);
 
         startButton = findViewById(R.id.startButton);
-        startButton.setOnClickListener(this);
+        startButton.setOnTouchListener(this);
         startButton.getLayoutParams().width = buttonSize;
         startButton.getLayoutParams().height = buttonSize;
         startButton.setTranslationX(DeviceManager.screenWidthF * 0.2f - (float)buttonSize * 0.5f);
         startButton.setTranslationY(DeviceManager.screenHeightF * 0.45f - (float)buttonSize * 0.5f);
 
+        startButtonDownAnimSet = new AnimationSet(true);
+        startButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f,
+                Animation.ABSOLUTE, startButton.getTranslationX() + buttonSize * 0.5f,
+                Animation.ABSOLUTE, startButton.getTranslationY() + buttonSize * 0.5f));
+        startButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+        startButtonDownAnimSet.setDuration(400);
+        startButtonDownAnimSet.setFillEnabled(true);
+        startButtonDownAnimSet.setFillAfter(true);
+        startButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
+
+        startButtonUpAnimSet = new AnimationSet(true);
+        startButtonUpAnimSet.addAnimation(new ScaleAnimation(1.1f, 1.0f, 1.1f, 1.0f,
+                Animation.ABSOLUTE, startButton.getTranslationX() + buttonSize * 0.5f,
+                Animation.ABSOLUTE, startButton.getTranslationY() + buttonSize * 0.5f));
+        startButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+        startButtonUpAnimSet.setDuration(400);
+        startButtonUpAnimSet.setFillEnabled(true);
+        startButtonUpAnimSet.setFillAfter(true);
+        startButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
+
+        /*startButtonUpAnimSet = null;
+        optionsButtonDownAnimSet = null;
+        optionsButtonUpAnimSet = null;
+        shopButtonDownAnimSet = null;
+        shopButtonUpAnimSet = null;
+        exitButtonDownAnimSet = null;
+        exitButtonUpAnimSet = null;*/
+
         optionsButton = findViewById(R.id.optionsButton);
-        optionsButton.setOnClickListener(this);
+        optionsButton.setOnTouchListener(this);
         optionsButton.getLayoutParams().width = buttonSize;
         optionsButton.getLayoutParams().height = buttonSize;
         optionsButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)buttonSize * 0.5f);
         optionsButton.setTranslationY(DeviceManager.screenHeightF * 0.45f - (float)buttonSize * 0.5f);
 
         shopButton = findViewById(R.id.shopButton);
-        shopButton.setOnClickListener(this);
+        shopButton.setOnTouchListener(this);
         shopButton.getLayoutParams().width = buttonSize;
         shopButton.getLayoutParams().height = buttonSize;
         shopButton.setTranslationX(DeviceManager.screenWidthF * 0.8f - (float)buttonSize * 0.5f);
@@ -339,7 +397,7 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
 
         final float exitButtonSize = (float)buttonSize * 0.7f;
         exitButton = findViewById(R.id.exitButton);
-        exitButton.setOnClickListener(this);
+        exitButton.setOnTouchListener(this);
         exitButton.getLayoutParams().width = exitButton.getLayoutParams().height = (int)exitButtonSize;
         final float exitButttonTranslateX = DeviceManager.screenWidthF * 0.85f - exitButtonSize * 0.5f;
         exitButton.setTranslationX(exitButttonTranslateX);
@@ -408,6 +466,15 @@ public final class MenuScreenActivity extends FragmentActivity implements OnClic
 
     private boolean isFingerOffScreenBefore;
     private boolean shldStartMoving;
+
+    private AnimationSet startButtonDownAnimSet;
+    private AnimationSet startButtonUpAnimSet;
+    private AnimationSet optionsButtonDownAnimSet;
+    private AnimationSet optionsButtonUpAnimSet;
+    private AnimationSet shopButtonDownAnimSet;
+    private AnimationSet shopButtonUpAnimSet;
+    private AnimationSet exitButtonDownAnimSet;
+    private AnimationSet exitButtonUpAnimSet;
 
     private Button startButton;
     private Button optionsButton;
