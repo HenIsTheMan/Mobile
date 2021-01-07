@@ -34,15 +34,12 @@ public final class EntityBall extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
-		final float accelFactor = 20000.0f;
-		attribs.accel.x = -vals[0] * accelFactor * dt;
-		attribs.accel.y = vals[1] * accelFactor * dt;
+		final float factor = 400.0f;
+		attribs.vel.x += -vals[0] * factor * dt;
+		attribs.vel.y += vals[1] * factor * dt;
 
-		attribs.vel.x += attribs.accel.x * dt;
-		attribs.vel.y += attribs.accel.y * dt;
-
-		attribs.vel.x = Math.max(-2000.0f, Math.min(attribs.vel.x, 2000.0f));
-		attribs.vel.y = Math.max(-2000.0f, Math.min(attribs.vel.y, 2000.0f));
+		attribs.vel.x = Math.max(-1000.0f, Math.min(attribs.vel.x, 1000.0f));
+		attribs.vel.y = Math.max(-1000.0f, Math.min(attribs.vel.y, 1000.0f));
 
 		attribs.pos.x += attribs.vel.x * dt;
 		attribs.pos.y += attribs.vel.y * dt;

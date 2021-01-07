@@ -48,8 +48,6 @@ import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 
-import static android.hardware.Sensor.TYPE_ACCELEROMETER;
-
 public final class MenuScreenActivity
     extends FragmentActivity
     implements View.OnTouchListener, IState, SensorEventListener, IListener{
@@ -131,7 +129,11 @@ public final class MenuScreenActivity
         }
 
         sensorManager = (SensorManager)menuSurfaceView.getContext().getSystemService(SENSOR_SERVICE);
-        sensorManager.registerListener(this, sensorManager.getSensorList(TYPE_ACCELEROMETER).get(0), SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(
+            this,
+            sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+            SensorManager.SENSOR_DELAY_FASTEST
+        );
 
         AudioManager.Instance.LoadAudioVolData();
         AudioManager.Instance.PlayAudio(R.raw.theme, AudioTypes.AudioType.Music);
@@ -266,7 +268,7 @@ public final class MenuScreenActivity
 
         ball.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
         ball.attribs.pos.y = DeviceManager.screenHeightF * 0.9f;
-        ball.attribs.scale.x = ball.attribs.scale.y = 400.0f;
+        ball.attribs.scale.x = ball.attribs.scale.y = 80.0f;
         final float ballHalfSize = ball.attribs.scale.x * 0.5f;
 
         ball.attribs.xMin = new EntityConstraint();
