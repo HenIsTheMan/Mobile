@@ -32,10 +32,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/checkbox_selector.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/tick.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/weird_shape.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/MenuScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/MenuScreenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/menu_screen_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/menu_screen_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/options_screen_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/options_screen_layout.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,10 +256,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="595" y="255" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607495885517" />
-    <state x="755" y="355" key="AndroidCreateResourceFileDialog" timestamp="1610008352768">
+    <state x="755" y="355" key="AndroidCreateResourceFileDialog" timestamp="1610038072061">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="755" y="355" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610008352768" />
+    <state x="755" y="355" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610038072061" />
     <state x="850" y="289" key="AndroidCreateXmlResourceDialog" timestamp="1609941149370">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
