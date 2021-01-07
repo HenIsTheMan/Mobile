@@ -1,27 +1,14 @@
 package sg.diploma.product.game;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Movie;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import java.io.InputStream;
-
-import sg.diploma.product.R;
 import sg.diploma.product.device.UpdateThread;
 
 public final class GameView extends SurfaceView{
     public GameView(final Context context){
         super(context);
-
-        setWillNotDraw(false);
-        final InputStream is = context.getResources().openRawResource(R.raw.game_background);
-        movie = Movie.decodeStream(is);
-        delay = 0;
-        nextUpdateTime = 0;
-        currMovieTime = 0;
-
         updateThread = new UpdateThread(this);
         SurfaceHolder surfaceHolder = getHolder(); //Holds content
 
@@ -52,31 +39,5 @@ public final class GameView extends SurfaceView{
         }
     }
 
-    @Override
-    protected void onDraw(Canvas canvas){
-        super.onDraw(canvas);
-
-        final long timeNow = android.os.SystemClock.uptimeMillis();
-        if(nextUpdateTime == 0){
-            nextUpdateTime = timeNow + delay;
-        } else if(timeNow >= nextUpdateTime){
-            ++currMovieTime;
-            nextUpdateTime = timeNow + delay;
-        }
-
-        if(currMovieTime == movie.duration()){
-            currMovieTime = 0;
-        }
-
-        android.util.Log.e("me", String.valueOf(currMovieTime));
-        movie.setTime(currMovieTime);
-        movie.draw(canvas, (float)getWidth() * 0.5f, (float)getHeight() * 0.5f);
-        invalidate();
-    }
-
     private final UpdateThread updateThread;
-    private final Movie movie;
-    private final long delay;
-    private long nextUpdateTime;
-    private int currMovieTime;
 }

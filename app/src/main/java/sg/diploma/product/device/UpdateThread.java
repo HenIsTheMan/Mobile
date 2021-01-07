@@ -2,11 +2,15 @@ package sg.diploma.product.device;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Movie;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
+import java.io.InputStream;
 import java.util.Objects;
 
+import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.graphics.ResourceManager;
@@ -18,9 +22,18 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         this(null);
     }
 
-    public UpdateThread(SurfaceView view){
+    public UpdateThread(SurfaceView _view){
+        view = _view;
         isRunning = false;
         surfaceHolder = view.getHolder();
+
+        view.setLayerType(View.LAYER_TYPE_NONE, null);
+        view.setWillNotDraw(false);
+        final InputStream is = view.getContext().getResources().openRawResource(R.raw.game_background);
+        movie = Movie.decodeStream(is);
+        delay = 0;
+        nextUpdateTime = 0;
+        currMovieTime = 0;
 
         ///Init managers (if any)
         StateManager.Instance.Init(view);
@@ -50,8 +63,31 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
                 Canvas canvas = surfaceHolder.lockCanvas(null);
                 if(canvas != null){
                     synchronized(surfaceHolder){ //Sync to draw
+
                         canvas.drawColor(Color.BLACK);
+
+                        final long timeNow = android.os.SystemClock.uptimeMillis();
+                        if(nextUpdateTime == 0){
+                            nextUpdateTime = timeNow + delay;
+                        } else if(timeNow >= nextUpdateTime){
+                            ++currMovieTime;
+                            nextUpdateTime = timeNow + delay;
+                        }
+
+                        if(currMovieTime >= movie.duration()){
+                            currMovieTime = 0;
+                        }
+
+                        movie.setTime(currMovieTime);
+                        movie.draw(canvas, (float)view.getWidth() * 0.5f, (float)view.getHeight() * 0.5f);
+                        //invalidate();
+
+
                         StateManager.Instance.Render(canvas);
+
+
+
+
                     }
                     surfaceHolder.unlockCanvasAndPost(canvas);
                 }
@@ -85,6 +121,12 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
 
     private boolean isRunning;
     private final SurfaceHolder surfaceHolder;
+    private final SurfaceView view;
+
+    private final Movie movie;
+    private final long delay;
+    private long nextUpdateTime;
+    private int currMovieTime;
 
     static final long targetFPS;
 
