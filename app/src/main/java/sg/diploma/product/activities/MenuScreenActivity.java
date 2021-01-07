@@ -253,7 +253,6 @@ public final class MenuScreenActivity
 
     @Override
     public final void Render(Canvas _canvas){
-        _canvas.drawColor(0xFF333333);
         EntityManager.Instance.Render(_canvas);
     }
 
