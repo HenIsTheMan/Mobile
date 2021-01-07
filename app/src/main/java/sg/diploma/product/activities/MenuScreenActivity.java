@@ -102,7 +102,8 @@ public final class MenuScreenActivity
         Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.MenuScreenActivity.GetVal(), this);
 
         SurfaceView menuSurfaceView = findViewById(R.id.menuSurfaceView);
-        updateThread = new UpdateThread(menuSurfaceView);
+        updateThread = new UpdateThread(menuSurfaceView, R.raw.space, 8);
+        updateThread.SetDelay(10);
         SurfaceHolder surfaceHolder = menuSurfaceView.getHolder();
 
         if(surfaceHolder != null){
