@@ -18,7 +18,9 @@ public final class GameView extends SurfaceView{
         setWillNotDraw(false);
         final InputStream is = context.getResources().openRawResource(R.raw.game_background);
         movie = Movie.decodeStream(is);
-        movieStart = 0;
+        delay = 0;
+        nextUpdateTime = 0;
+        currMovieTime = 0;
 
         updateThread = new UpdateThread(this);
         SurfaceHolder surfaceHolder = getHolder(); //Holds content
@@ -54,18 +56,27 @@ public final class GameView extends SurfaceView{
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
 
-        final long now = android.os.SystemClock.uptimeMillis();
-        if(movieStart == 0){
-            movieStart = now;
+        final long timeNow = android.os.SystemClock.uptimeMillis();
+        if(nextUpdateTime == 0){
+            nextUpdateTime = timeNow + delay;
+        } else if(timeNow >= nextUpdateTime){
+            ++currMovieTime;
+            nextUpdateTime = timeNow + delay;
         }
 
-        final int relTime = (int)((now - movieStart) % movie.duration());
-        movie.setTime(relTime);
+        if(currMovieTime == movie.duration()){
+            currMovieTime = 0;
+        }
+
+        android.util.Log.e("me", String.valueOf(currMovieTime));
+        movie.setTime(currMovieTime);
         movie.draw(canvas, (float)getWidth() * 0.5f, (float)getHeight() * 0.5f);
         invalidate();
     }
 
     private final UpdateThread updateThread;
     private final Movie movie;
-    private long movieStart;
+    private final long delay;
+    private long nextUpdateTime;
+    private int currMovieTime;
 }
