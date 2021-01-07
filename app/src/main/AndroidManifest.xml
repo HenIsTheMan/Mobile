@@ -18,8 +18,20 @@
         android:fullBackupContent="@xml/backup_descriptor"
         >
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+
+
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationName"
+            android:value="@string/app_name" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider1854328631556764"
+            android:exported="false" />
 
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
@@ -36,6 +48,11 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
+
+
+
+
 
         <activity android:name="sg.diploma.product.activities.SplashScreenActivity"
             android:screenOrientation="portrait">
