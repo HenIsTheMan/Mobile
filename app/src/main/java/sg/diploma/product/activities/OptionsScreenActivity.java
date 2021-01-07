@@ -271,6 +271,9 @@ public final class OptionsScreenActivity
 
 					AudioManager.Instance.SaveAudioVolData();
 					areNewVolsSaved = true;
+					saveButton.setClickable(false);
+					saveButton.setVisibility(View.INVISIBLE);
+					floppyDiskIcon.setVisibility(View.INVISIBLE);
 
 					return true;
 			}
@@ -289,7 +292,11 @@ public final class OptionsScreenActivity
 					final SeekBar seekBarSounds = findViewById(R.id.seekBarSounds);
 					seekBarMusic.setProgress(100);
 					seekBarSounds.setProgress(100);
+
 					areNewVolsSaved = false;
+					saveButton.setClickable(true);
+					saveButton.setVisibility(View.VISIBLE);
+					floppyDiskIcon.setVisibility(View.VISIBLE);
 
 					return true;
 			}
@@ -331,6 +338,9 @@ public final class OptionsScreenActivity
 	public final void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
 		if(fromUser){
 			areNewVolsSaved = false;
+			saveButton.setClickable(true);
+			saveButton.setVisibility(View.VISIBLE);
+			floppyDiskIcon.setVisibility(View.VISIBLE);
 		}
 
 		final float percentage = (float)progress / (float)seekBar.getMax() * 100.0f;

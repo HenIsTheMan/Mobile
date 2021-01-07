@@ -81,6 +81,8 @@
         android:id="@+id/saveButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:clickable="false"
+        android:visibility="invisible"
         android:background="@drawable/button" />
 
     <Button
@@ -101,6 +103,7 @@
         android:src="@drawable/floppy_disk_icon"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="invisible"
         android:contentDescription="@string/floppyDiskIconInfo" />
 
     <ImageView
