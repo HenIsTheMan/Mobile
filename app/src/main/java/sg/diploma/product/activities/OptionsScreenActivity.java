@@ -35,8 +35,10 @@ import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 
-public final class OptionsScreenActivity extends FragmentActivity implements
-	View.OnTouchListener, View.OnClickListener, IState, SeekBar.OnSeekBarChangeListener, IListener{
+public final class OptionsScreenActivity
+	extends FragmentActivity
+	implements View.OnTouchListener, IState, SeekBar.OnSeekBarChangeListener, IListener{
+
 	public OptionsScreenActivity(){
 		areNewVolsSaved = true;
 		initialMusicVol = 0;
@@ -152,7 +154,6 @@ public final class OptionsScreenActivity extends FragmentActivity implements
 				- (DeviceManager.screenWidthF - (DeviceManager.screenWidthF * 0.85f - buttonSize * 0.5f));
 
 		backButton = findViewById(R.id.backButton);
-		backButton.setOnClickListener(this);
 		backButton.setOnTouchListener(this);
 		backButton.getLayoutParams().width = buttonSize;
 		backButton.getLayoutParams().height = buttonSize;
@@ -176,14 +177,14 @@ public final class OptionsScreenActivity extends FragmentActivity implements
 		backButtonUpAnim.setInterpolator(this, R.anim.my_decelerate_interpolator);
 
 		saveButton = findViewById(R.id.saveButton);
-		saveButton.setOnClickListener(this);
+		saveButton.setOnTouchListener(this);
 		saveButton.getLayoutParams().width = buttonSize;
 		saveButton.getLayoutParams().height = buttonSize;
 		saveButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - buttonSize * 0.5f);
 		saveButton.setTranslationY(buttonTranslateY);
 
 		resetButton = findViewById(R.id.resetButton);
-		resetButton.setOnClickListener(this);
+		resetButton.setOnTouchListener(this);
 		resetButton.getLayoutParams().width = buttonSize;
 		resetButton.getLayoutParams().height = buttonSize;
 		resetButton.setTranslationX(DeviceManager.screenWidthF * 0.85f - buttonSize * 0.5f);
@@ -242,42 +243,59 @@ public final class OptionsScreenActivity extends FragmentActivity implements
 					return true;
 				case MotionEvent.ACTION_UP:
 					backButton.startAnimation(backButtonUpAnim);
+					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+
+					if(!areNewVolsSaved){
+						if(SaveDialogFrag.isShown){
+							return false;
+						}
+
+						SaveDialogFrag dialogFrag = new SaveDialogFrag();
+						dialogFrag.show(getSupportFragmentManager(), "SaveDialogFrag");
+						return true;
+					}
+
+					ReturnToMenu();
+					return true;
+			}
+			return false;
+		}
+		if(view == saveButton){
+			switch(motionEvent.getAction()){
+				case MotionEvent.ACTION_DOWN:
+					//backButton.startAnimation(backButtonDownAnim);
+					return true;
+				case MotionEvent.ACTION_UP:
+					//backButton.startAnimation(backButtonUpAnim);
+					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+
+					AudioManager.Instance.SaveAudioVolData();
+					areNewVolsSaved = true;
+
+					return true;
+			}
+			return false;
+		}
+		if(view == resetButton){
+			switch(motionEvent.getAction()){
+				case MotionEvent.ACTION_DOWN:
+					//backButton.startAnimation(backButtonDownAnim);
+					return true;
+				case MotionEvent.ACTION_UP:
+					//backButton.startAnimation(backButtonUpAnim);
+					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+
+					final SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);
+					final SeekBar seekBarSounds = findViewById(R.id.seekBarSounds);
+					seekBarMusic.setProgress(100);
+					seekBarSounds.setProgress(100);
+					areNewVolsSaved = false;
+
 					return true;
 			}
 		}
+
 		return false;
-	}
-
-	@Override
-	public final void onClick(View v){
-		AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
-		if(v == backButton){
-			if(!areNewVolsSaved){
-				if(SaveDialogFrag.isShown){
-					return;
-				}
-
-				SaveDialogFrag dialogFrag = new SaveDialogFrag();
-				dialogFrag.show(getSupportFragmentManager(), "SaveDialogFrag");
-				return;
-			}
-
-			ReturnToMenu();
-			return;
-		}
-		if(v == saveButton){
-			AudioManager.Instance.SaveAudioVolData();
-			areNewVolsSaved = true;
-
-			return;
-		}
-		if(v == resetButton){
-			final SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);
-			final SeekBar seekBarSounds = findViewById(R.id.seekBarSounds);
-			seekBarMusic.setProgress(100);
-			seekBarSounds.setProgress(100);
-			areNewVolsSaved = false;
-		}
 	}
 
 	@Override
