@@ -33,8 +33,6 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-import java.util.Collections;
-
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
@@ -568,57 +566,30 @@ public final class MenuScreenActivity
         gameTitleGirlText.setTranslationY(DeviceManager.screenHeightF * 0.17f);
     }
 
-    private static final String EMAIL = "email";
-
     private void InitFB(){
         callbackManager = CallbackManager.Factory.create();
         final LoginButton loginButton = findViewById(R.id.login_button);
+        loginButton.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.8f);
+        loginButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - loginButton.getLayoutParams().width * 0.5f);
+        loginButton.setTranslationY(DeviceManager.screenHeightF * 0.3f - loginButton.getLayoutParams().height * 0.5f);
 
-        loginButton.setReadPermissions(Collections.singletonList(EMAIL));
-        // If you are using in a fragment, call loginButton.setFragment(this);
-
-        // Callback registration
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>(){
             @Override
-            public void onSuccess(LoginResult loginResult) {
-                // App code
+            public void onSuccess(LoginResult loginResult){
             }
 
             @Override
-            public void onCancel() {
-                // App code
+            public void onCancel(){
             }
 
             @Override
-            public void onError(FacebookException exception) {
-                // App code
+            public void onError(FacebookException exception){
             }
         });
-
-
-        /*callbackManager = CallbackManager.Factory.create();
-
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        // App code
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });*/
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
