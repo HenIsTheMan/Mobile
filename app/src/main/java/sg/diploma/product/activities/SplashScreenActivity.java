@@ -48,6 +48,7 @@ public final class SplashScreenActivity extends Activity{
         StateManager.Instance.AddState(new MenuScreenActivity());
         StateManager.Instance.AddState(new GameScreenActivity());
         StateManager.Instance.AddState(new OptionsScreenActivity());
+        StateManager.Instance.AddState(new ShopScreenActivity());
 
         AnimationSet androidLogoAnimSet0 = new AnimationSet(true);
         androidLogoAnimSet0.addAnimation(AnimationUtils.loadAnimation(this, R.anim.android_logo_anim));
