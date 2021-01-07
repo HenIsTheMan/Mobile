@@ -32,9 +32,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/my_decelerate_interpolator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/OptionsScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/OptionsScreenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/anim/button_pop_anim.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/anim/button_pop_anim.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/anim/button_pop_anim.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,10 +255,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="595" y="255" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607495885517" />
-    <state x="755" y="355" key="AndroidCreateResourceFileDialog" timestamp="1609980602462">
+    <state x="755" y="355" key="AndroidCreateResourceFileDialog" timestamp="1609999394410">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="755" y="355" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609980602462" />
+    <state x="755" y="355" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609999394410" />
     <state x="850" y="289" key="AndroidCreateXmlResourceDialog" timestamp="1609941149370">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -310,6 +311,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="823" y="181" width="998" height="708" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607616363801" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1609999033307">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1609999033307" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1607912075938">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

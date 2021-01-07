@@ -42,7 +42,8 @@ public final class OptionsScreenActivity extends FragmentActivity implements
 		initialMusicVol = 0;
 		initialSoundVol = 0;
 
-		buttonPopAnim = null;
+		backButtonDownAnim = null;
+		backButtonUpAnim = null;
 
 		backButton = null;
 		saveButton = null;
@@ -158,6 +159,22 @@ public final class OptionsScreenActivity extends FragmentActivity implements
 		backButton.setTranslationX(DeviceManager.screenWidthF * 0.15f - buttonSize * 0.5f);
 		backButton.setTranslationY(buttonTranslateY);
 
+		backButtonDownAnim = new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+				Animation.ABSOLUTE, backButton.getTranslationX() + buttonSize * 0.5f,
+				Animation.ABSOLUTE, backButton.getTranslationY() + buttonSize * 0.5f);
+		backButtonDownAnim.setDuration(500);
+		backButtonDownAnim.setFillEnabled(true);
+		backButtonDownAnim.setFillAfter(true);
+		backButtonDownAnim.setInterpolator(this, R.anim.my_accelerate_interpolator);
+
+		backButtonUpAnim = new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
+				Animation.ABSOLUTE, backButton.getTranslationX() + buttonSize * 0.5f,
+				Animation.ABSOLUTE, backButton.getTranslationY() + buttonSize * 0.5f);
+		backButtonUpAnim.setDuration(500);
+		backButtonUpAnim.setFillEnabled(true);
+		backButtonUpAnim.setFillAfter(true);
+		backButtonUpAnim.setInterpolator(this, R.anim.my_decelerate_interpolator);
+
 		saveButton = findViewById(R.id.saveButton);
 		saveButton.setOnClickListener(this);
 		saveButton.getLayoutParams().width = buttonSize;
@@ -219,19 +236,13 @@ public final class OptionsScreenActivity extends FragmentActivity implements
 	@Override
 	public boolean onTouch(View view, MotionEvent motionEvent){
 		if(view == backButton){
-			//buttonPopAnim = AnimationUtils.loadAnimation(this, R.anim.button_pop_anim);
-			//view.setPivotX(50);
-			//view.setPivotY(50);
-			buttonPopAnim = new ScaleAnimation(1.0f, 0.8f, 1.0f, 0.8f,
-				Animation.ABSOLUTE, view.getTranslationX(), Animation.ABSOLUTE, view.getTranslationY());
-			buttonPopAnim.setDuration(1000);
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
-					backButton.startAnimation(buttonPopAnim);
+					backButton.startAnimation(backButtonDownAnim);
 					return true;
-				/*case MotionEvent.ACTION_UP:
-					backButton.startAnimation(buttonPopAnim);
-					return true;*/
+				case MotionEvent.ACTION_UP:
+					backButton.startAnimation(backButtonUpAnim);
+					return true;
 			}
 		}
 		return false;
@@ -370,7 +381,8 @@ public final class OptionsScreenActivity extends FragmentActivity implements
 	private int initialMusicVol;
 	private int initialSoundVol;
 
-	private Animation buttonPopAnim;
+	private Animation backButtonDownAnim;
+	private Animation backButtonUpAnim;
 
 	private Button backButton;
 	private Button saveButton;
