@@ -1,5 +1,6 @@
 package sg.diploma.product.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -10,6 +11,8 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -38,6 +41,8 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 		initialMusicVol = 0;
 		initialSoundVol = 0;
 
+		buttonPopAnim = null;
+
 		backButton = null;
 		saveButton = null;
 		resetButton = null;
@@ -47,6 +52,7 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 		gearResetIcon = null;
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	@RequiresApi(api = Build.VERSION_CODES.P)
 	@Override
 	protected final void onCreate(Bundle savedInstanceState) {
@@ -149,6 +155,31 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 		backButton.getLayoutParams().height = buttonSize;
 		backButton.setTranslationX(DeviceManager.screenWidthF * 0.15f - buttonSize * 0.5f);
 		backButton.setTranslationY(buttonTranslateY);
+
+		Animation anim = new ScaleAnimation(
+				1.0f, 1.0f, // Start and end values for the X axis scaling
+				1.2f, 1.2f, // Start and end values for the Y axis scaling
+				Animation.RELATIVE_TO_SELF, 0f, // Pivot point of X scaling
+				Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
+		//anim.setFillAfter(true); // Needed to keep the result of the animation
+		anim.setDuration(1000);
+
+		//buttonPopAnim = AnimationUtils.loadAnimation(this, R.anim.button_pop_anim);
+		backButton.setOnTouchListener(new View.OnTouchListener(){
+			@SuppressLint("ClickableViewAccessibility")
+			@Override
+			public boolean onTouch(View view, MotionEvent motionEvent){
+				switch(motionEvent.getAction()){
+					case MotionEvent.ACTION_DOWN:
+						backButton.startAnimation(anim);
+						return true;
+					/*ase MotionEvent.ACTION_UP:
+						backButton.startAnimation(buttonPopAnim);
+						return true;*/
+				}
+				return false;
+			}
+		});
 
 		saveButton = findViewById(R.id.saveButton);
 		saveButton.setOnClickListener(this);
@@ -339,6 +370,8 @@ public final class OptionsScreenActivity extends FragmentActivity implements Vie
 	private boolean areNewVolsSaved;
 	private int initialMusicVol;
 	private int initialSoundVol;
+
+	private Animation buttonPopAnim;
 
 	private Button backButton;
 	private Button saveButton;

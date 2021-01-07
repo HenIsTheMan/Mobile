@@ -32,11 +32,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/button_pop_anim.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/my_accelerate_interpolator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/OptionsScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/OptionsScreenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/dialog_frags/SaveDialogFrag.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/dialog_frags/SaveDialogFrag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/event/EventIDs.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/event/EventIDs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/event/events/EventReturnToMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/event/events/EventReturnToMenuWithoutSaving.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,10 +83,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="resourceFile" />
         <option value="layoutResourceFile" />
         <option value="valueResourceFile" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -228,10 +227,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="713" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607914578978" />
-    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1609774055451">
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1609980932524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1609774055451" />
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1609980932524" />
     <state x="621" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607783919201">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -256,10 +255,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="595" y="255" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607495885517" />
-    <state x="755" y="355" key="AndroidCreateResourceFileDialog" timestamp="1609939792316">
+    <state x="755" y="355" key="AndroidCreateResourceFileDialog" timestamp="1609980602462">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="755" y="355" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609939792316" />
+    <state x="755" y="355" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609980602462" />
     <state x="850" y="289" key="AndroidCreateXmlResourceDialog" timestamp="1609941149370">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -304,10 +303,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="501" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607603081570" />
-    <state x="870" y="323" width="849" height="624" key="find.popup" timestamp="1609953463537">
+    <state x="870" y="323" width="849" height="624" key="find.popup" timestamp="1609980755823">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="870" y="323" width="849" height="624" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1609953463537" />
+    <state x="870" y="323" width="849" height="624" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1609980755823" />
     <state x="477" y="410" width="621" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1607422454863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
