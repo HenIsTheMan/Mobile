@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillEnabled="true"
+    android:fillAfter="true"
     >
 
     <alpha
@@ -24,10 +26,5 @@
         android:toAlpha="0.0"
         android:duration="300"
         android:startOffset="5000" />
-
-    <alpha
-        android:toAlpha="0.0"
-        android:duration="999999"
-        android:startOffset="5300" />
 
 </set>

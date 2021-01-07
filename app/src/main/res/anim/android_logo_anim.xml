@@ -15,9 +15,4 @@
         android:duration="100"
         android:startOffset="5600" />
 
-    <alpha
-        android:toAlpha="0.0"
-        android:duration="999999"
-        android:startOffset="5600" />
-
 </set>

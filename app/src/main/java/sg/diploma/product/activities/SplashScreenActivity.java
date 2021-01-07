@@ -49,19 +49,31 @@ public final class SplashScreenActivity extends Activity{
         StateManager.Instance.AddState(new GameScreenActivity());
         StateManager.Instance.AddState(new OptionsScreenActivity());
 
-        final float factor0 = DeviceManager.screenWidthF * 0.25f / 254.0f;
         AnimationSet androidLogoAnimSet0 = new AnimationSet(true);
         androidLogoAnimSet0.addAnimation(AnimationUtils.loadAnimation(this, R.anim.android_logo_anim));
         androidLogoAnimSet0.addAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_with_top_left_pivot));
+        androidLogoAnimSet0.setFillEnabled(true);
+        androidLogoAnimSet0.setFillAfter(true);
+
         AnimationSet androidLogoAnimSet1 = new AnimationSet(true);
         androidLogoAnimSet1.addAnimation(AnimationUtils.loadAnimation(this, R.anim.android_logo_anim));
         androidLogoAnimSet1.addAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_with_top_right_pivot));
+        androidLogoAnimSet1.setFillEnabled(true);
+        androidLogoAnimSet1.setFillAfter(true);
+
         AnimationSet androidLogoAnimSet2 = new AnimationSet(true);
         androidLogoAnimSet2.addAnimation(AnimationUtils.loadAnimation(this, R.anim.android_logo_anim));
         androidLogoAnimSet2.addAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_with_bottom_left_pivot));
+        androidLogoAnimSet2.setFillEnabled(true);
+        androidLogoAnimSet2.setFillAfter(true);
+
         AnimationSet androidLogoAnimSet3 = new AnimationSet(true);
         androidLogoAnimSet3.addAnimation(AnimationUtils.loadAnimation(this, R.anim.android_logo_anim));
         androidLogoAnimSet3.addAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_with_bottom_right_pivot));
+        androidLogoAnimSet3.setFillEnabled(true);
+        androidLogoAnimSet3.setFillAfter(true);
+
+        final float factor0 = DeviceManager.screenWidthF * 0.25f / 254.0f;
 
         androidLogo0 = findViewById(R.id.androidLogo0);
         androidLogo0.startAnimation(androidLogoAnimSet0);
