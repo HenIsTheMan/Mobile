@@ -32,6 +32,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         final InputStream is = view.getContext().getResources().openRawResource(R.raw.game_background);
         movie = Movie.decodeStream(is);
         delay = 0;
+        timeAddPerFrame = 5;
         nextUpdateTime = 0;
         currMovieTime = 0;
 
@@ -55,6 +56,17 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
             final long currTime = System.nanoTime();
             final float deltaTime = ((currTime - prevTime) / 1000000000.0f);
             prevTime = currTime;
+
+            final long timeNow = android.os.SystemClock.uptimeMillis();
+            if(nextUpdateTime == 0){
+                nextUpdateTime = timeNow + delay;
+            } else if(timeNow >= nextUpdateTime){
+                currMovieTime += timeAddPerFrame;
+                nextUpdateTime = timeNow + delay;
+            }
+            if(currMovieTime >= movie.duration()){
+                currMovieTime = 0;
+            }
             
             StateManager.Instance.Update(deltaTime);
 
@@ -63,30 +75,18 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
                 Canvas canvas = surfaceHolder.lockCanvas(null);
                 if(canvas != null){
                     synchronized(surfaceHolder){ //Sync to draw
-
                         canvas.drawColor(Color.BLACK);
 
-                        final long timeNow = android.os.SystemClock.uptimeMillis();
-                        if(nextUpdateTime == 0){
-                            nextUpdateTime = timeNow + delay;
-                        } else if(timeNow >= nextUpdateTime){
-                            ++currMovieTime;
-                            nextUpdateTime = timeNow + delay;
-                        }
-
-                        if(currMovieTime >= movie.duration()){
-                            currMovieTime = 0;
-                        }
-
+                        final float viewWidthF = (float)view.getWidth();
+                        final float viewHeightF = (float)view.getHeight();
+                        final float movieWidthF = (float)movie.width();
+                        final float movieHeightF = (float)movie.height();
                         movie.setTime(currMovieTime);
-                        movie.draw(canvas, (float)view.getWidth() * 0.5f, (float)view.getHeight() * 0.5f);
-                        //invalidate();
-
+                        canvas.scale(viewWidthF / movieWidthF, viewHeightF / movieHeightF);
+                        movie.draw(canvas, 0.0f, 0.0f);
+                        canvas.scale(movieWidthF / viewWidthF, movieHeightF / viewHeightF);
 
                         StateManager.Instance.Render(canvas);
-
-
-
 
                     }
                     surfaceHolder.unlockCanvasAndPost(canvas);
@@ -125,6 +125,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
 
     private final Movie movie;
     private final long delay;
+    private final long timeAddPerFrame;
     private long nextUpdateTime;
     private int currMovieTime;
 
