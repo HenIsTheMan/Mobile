@@ -11,6 +11,7 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
@@ -47,6 +48,10 @@ public final class OptionsScreenActivity
 
 		backButtonDownAnimSet = null;
 		backButtonUpAnimSet = null;
+		saveButtonDownAnimSet = null;
+		saveButtonUpAnimSet = null;
+		resetButtonDownAnimSet = null;
+		resetButtonUpAnimSet = null;
 
 		backButton = null;
 		saveButton = null;
@@ -165,7 +170,8 @@ public final class OptionsScreenActivity
 		backButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
 				Animation.ABSOLUTE, backButton.getTranslationX() + buttonSize * 0.5f,
 				Animation.ABSOLUTE, backButton.getTranslationY() + buttonSize * 0.5f));
-		backButtonDownAnimSet.setDuration(500);
+		backButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+		backButtonDownAnimSet.setDuration(400);
 		backButtonDownAnimSet.setFillEnabled(true);
 		backButtonDownAnimSet.setFillAfter(true);
 		backButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
@@ -174,7 +180,8 @@ public final class OptionsScreenActivity
 		backButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
 				Animation.ABSOLUTE, backButton.getTranslationX() + buttonSize * 0.5f,
 				Animation.ABSOLUTE, backButton.getTranslationY() + buttonSize * 0.5f));
-		backButtonUpAnimSet.setDuration(500);
+		backButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+		backButtonUpAnimSet.setDuration(400);
 		backButtonUpAnimSet.setFillEnabled(true);
 		backButtonUpAnimSet.setFillAfter(true);
 		backButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
@@ -186,12 +193,66 @@ public final class OptionsScreenActivity
 		saveButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - buttonSize * 0.5f);
 		saveButton.setTranslationY(buttonTranslateY);
 
+		saveButtonDownAnimSet = new AnimationSet(true);
+		saveButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+				Animation.ABSOLUTE, saveButton.getTranslationX() + buttonSize * 0.5f,
+				Animation.ABSOLUTE, saveButton.getTranslationY() + buttonSize * 0.5f));
+		saveButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+		saveButtonDownAnimSet.setDuration(400);
+		saveButtonDownAnimSet.setFillEnabled(true);
+		saveButtonDownAnimSet.setFillAfter(true);
+		saveButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
+
+		saveButtonUpAnimSet = new AnimationSet(true);
+		saveButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
+				Animation.ABSOLUTE, saveButton.getTranslationX() + buttonSize * 0.5f,
+				Animation.ABSOLUTE, saveButton.getTranslationY() + buttonSize * 0.5f));
+		saveButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+		saveButtonUpAnimSet.setDuration(400);
+		saveButtonUpAnimSet.setAnimationListener(new Animation.AnimationListener(){
+			@Override
+			public final void onAnimationStart(Animation anim){
+			}
+
+			@Override
+			public final void onAnimationRepeat(Animation anim){
+			}
+
+			@Override
+			public final void onAnimationEnd(Animation anim){
+				saveButton.setClickable(false);
+				saveButton.setVisibility(View.INVISIBLE);
+				floppyDiskIcon.setVisibility(View.INVISIBLE);
+			}
+		});
+		saveButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
+
 		resetButton = findViewById(R.id.resetButton);
 		resetButton.setOnTouchListener(this);
 		resetButton.getLayoutParams().width = buttonSize;
 		resetButton.getLayoutParams().height = buttonSize;
 		resetButton.setTranslationX(DeviceManager.screenWidthF * 0.85f - buttonSize * 0.5f);
 		resetButton.setTranslationY(buttonTranslateY);
+
+		resetButtonDownAnimSet = new AnimationSet(true);
+		resetButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+				Animation.ABSOLUTE, resetButton.getTranslationX() + buttonSize * 0.5f,
+				Animation.ABSOLUTE, resetButton.getTranslationY() + buttonSize * 0.5f));
+		resetButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+		resetButtonDownAnimSet.setDuration(400);
+		resetButtonDownAnimSet.setFillEnabled(true);
+		resetButtonDownAnimSet.setFillAfter(true);
+		resetButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
+
+		resetButtonUpAnimSet = new AnimationSet(true);
+		resetButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
+				Animation.ABSOLUTE, resetButton.getTranslationX() + buttonSize * 0.5f,
+				Animation.ABSOLUTE, resetButton.getTranslationY() + buttonSize * 0.5f));
+		resetButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+		resetButtonUpAnimSet.setDuration(400);
+		resetButtonUpAnimSet.setFillEnabled(true);
+		resetButtonUpAnimSet.setFillAfter(true);
+		resetButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
 
 		leftArrowIcon = findViewById(R.id.leftArrowIcon);
 		leftArrowIcon.getLayoutParams().width = (int)(buttonSize * 0.65f);
@@ -266,17 +327,14 @@ public final class OptionsScreenActivity
 		if(view == saveButton){
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
-					//backButton.startAnimation(backButtonDownAnim);
+					saveButton.startAnimation(saveButtonDownAnimSet);
 					return true;
 				case MotionEvent.ACTION_UP:
-					//backButton.startAnimation(backButtonUpAnim);
+					saveButton.startAnimation(saveButtonUpAnimSet);
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 					AudioManager.Instance.SaveAudioVolData();
 					areNewVolsSaved = true;
-					saveButton.setClickable(false);
-					saveButton.setVisibility(View.INVISIBLE);
-					floppyDiskIcon.setVisibility(View.INVISIBLE);
 
 					return true;
 			}
@@ -285,10 +343,10 @@ public final class OptionsScreenActivity
 		if(view == resetButton){
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
-					//backButton.startAnimation(backButtonDownAnim);
+					resetButton.startAnimation(resetButtonDownAnimSet);
 					return true;
 				case MotionEvent.ACTION_UP:
-					//backButton.startAnimation(backButtonUpAnim);
+					resetButton.startAnimation(resetButtonUpAnimSet);
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 					final SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);
@@ -414,6 +472,10 @@ public final class OptionsScreenActivity
 
 	private AnimationSet backButtonDownAnimSet;
 	private AnimationSet backButtonUpAnimSet;
+	private AnimationSet saveButtonDownAnimSet;
+	private AnimationSet saveButtonUpAnimSet;
+	private AnimationSet resetButtonDownAnimSet;
+	private AnimationSet resetButtonUpAnimSet;
 
 	private Button backButton;
 	private Button saveButton;
