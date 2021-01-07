@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="GameName">Boss Girl</string>
+    <string name="app_name">Boss Girl</string>
 
     <string name="GameTitleBossText">"BOSS"</string>
     <string name="GameTitleGirlText">"Girl"</string>
@@ -28,4 +28,7 @@
     <string name="SoundVolText">"Sound Vol"</string>
 
     <string name="PercentPostfix">%.1f%%</string>
+
+    <string name="facebook_app_id">224207475849791</string>
+    <string name="fb_login_protocol_scheme">fb224207475849791</string>
 </resources>
