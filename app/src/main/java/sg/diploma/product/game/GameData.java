@@ -14,7 +14,6 @@ public final class GameData implements IListener{ //Singleton
 	}
 
 	public void ResetVars(){
-		//gameBG = null;
 		gamePlayerChar = null;
 		pauseButton = null;
 		startPlat = null;
@@ -55,7 +54,6 @@ public final class GameData implements IListener{ //Singleton
 		}
 	}
 
-	//private EntityGameBG gameBG;
 	public static EntityGamePlayerChar gamePlayerChar;
 	public static EntityPauseButton pauseButton;
 	public static EntityPlat startPlat;
@@ -73,7 +71,6 @@ public final class GameData implements IListener{ //Singleton
 	public static GameData globalInstance;
 
 	static{
-		//gameBG = null;
 		gamePlayerChar = null;
 		pauseButton = null;
 		startPlat = null;

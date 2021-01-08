@@ -74,21 +74,6 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     public void OnEnter(SurfaceView _view){
         Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal(), GameData.globalInstance);
 
-        //* Create game BG (Removed as super laggy)
-        /*GameData.gameBG = EntityGameBG.Create(
-            "Special_gameBG",
-            R.drawable.game_background
-        );
-
-        GameData.gameBG.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        GameData.gameBG.attribs.pos.y = DeviceManager.screenHeightF * 0.5f;
-        final float scaleFactor = DeviceManager.screenHeightF / (ResourceManager.Instance.GetBitmap(R.drawable.game_background, Bitmap.Config.RGB_565).getHeight() * 0.5f);
-        GameData.gameBG.attribs.scale.x = scaleFactor;
-        GameData.gameBG.attribs.scale.y = scaleFactor;
-        GameData.gameBG.SetSpriteAnimXScale(scaleFactor);
-        GameData.gameBG.SetSpriteAnimYScale(scaleFactor);*/
-        //*/
-
         //* Create text on screen
         final float textSize = DeviceManager.screenWidthF * 0.05f;
         GameData.textOnScreenFPS = EntityTextOnScreen.Create("Special_gameTextOnScreenFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
