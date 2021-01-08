@@ -29,25 +29,9 @@ public final class GameData implements IListener{ //Singleton
 		fingerUpPos = null;
 	}
 
-	/*private void SpawnPlat(){
-		EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex, gamePlayerChar);
-		plat.SetMyIndex(platIndex);
-		plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.6f);
-		plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.03f, 0.07f);
-		plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
-		plat.attribs.pos.y = gamePlayerChar.attribs.boxColliderPos.y - DeviceManager.screenHeight + plat.attribs.scale.y * 0.5f;
-		plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
-		plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
-		plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
-		plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
-	}*/
-
 	@Override
 	public void OnEvent(EventAbstract event){
 		switch(event.GetID()){
-			/*case SpawnPlat:
-				SpawnPlat();
-				break;*/
 			case AddScore:
 				score += ((EventAddScore)event).GetScoreAdd();
 				break;

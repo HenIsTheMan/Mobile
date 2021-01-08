@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import sg.diploma.product.BuildConfig;
-import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.easing.Easing;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
@@ -43,10 +42,6 @@ public final class EntityPlat extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
-		if(attribs.pos.y - gamePlayerChar.attribs.pos.y > DeviceManager.screenHeightF * 0.5f){ //0.25f if want exact
-			EntityManager.Instance.SendEntityForRemoval("plat_" + myIndex);
-		}
-
 		if(currPopTime >= 0.0f){
 			final float startScale = 1.0f;
 			final float endScale = 1.2f;
@@ -90,8 +85,6 @@ public final class EntityPlat extends EntityAbstract{
 		if(!collided && other.attribs.type == EntityTypes.EntityType.GamePlayerChar){
 			collided = true;
 			SetColor(new Color(1.0f, 1.0f, 0.0f, 1.0f));
-
-			//Publisher.Broadcast(new EventSpawnPlat());
 			Publisher.Broadcast(new EventAddScore(1));
 
 			currPopTime = maxPopTime;

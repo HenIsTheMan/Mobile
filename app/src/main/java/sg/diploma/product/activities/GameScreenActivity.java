@@ -106,20 +106,6 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.startPlat.attribs.boxColliderScale.x = GameData.startPlat.attribs.scale.x;
         GameData.startPlat.attribs.boxColliderScale.y = GameData.startPlat.attribs.scale.y;
 
-        /*for(int i = 0; i < 5; ++i){
-            EntityPlat plat = EntityPlat.Create("plat_" + ++GameData.platIndex, GameData.gamePlayerChar);
-            plat.SetMyIndex(GameData.platIndex);
-            plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.4f);
-            plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.04f, 0.06f);
-            plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
-            plat.attribs.pos.y = DeviceManager.screenHeightF - 400.0f * (float)(i + 1);
-
-            plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
-            plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
-            plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
-            plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
-        }*/
-
         final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() / 9.f * 0.5f;
         final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getHeight() * 0.2f;
 
@@ -194,7 +180,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
         EntityManager.Instance.Update(_dt);
 
-        SpawnPlats();
+        //SpawnPlats();
 
         EntityManager.Instance.LateUpdate(_dt);
     }
