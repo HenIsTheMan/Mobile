@@ -2,18 +2,14 @@ package sg.diploma.product.entity.entities;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 
 import sg.diploma.product.BuildConfig;
 import sg.diploma.product.R;
-import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
-import sg.diploma.product.event.Publisher;
-import sg.diploma.product.event.events.EventEndGame;
 import sg.diploma.product.game.GameData;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
@@ -27,10 +23,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		attribs.type = EntityTypes.EntityType.GamePlayerChar;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
 
-		collidingWithPlat = false;
-		flipMinX = -Float.MAX_VALUE;
-		flipMaxX = Float.MAX_VALUE;
-		yTrigger = Float.MAX_VALUE;
+		currPlat = null;
 
 		spriteAnim = new SpriteAnim(
 			ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565),
@@ -48,31 +41,18 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		}
 
 		attribs.accel.y = 4000.0f; //Gravitational accel
-
-		paint = new Paint();
-
-		paint.setARGB(153, 51, 51, 51);
-		paint.setStrokeWidth(50.0f);
-		paint.setStyle(Paint.Style.FILL);
 	}
 
 	@Override
 	public void Update(final float dt){
-		if(attribs.vel.y > 0.0f && Math.abs(yTrigger - attribs.pos.y) > DeviceManager.screenHeightF){
-			Publisher.Broadcast(new EventEndGame());
-			return;
-		}
-
 		final float beginY = attribs.pos.y;
 
-		if(collidingWithPlat){
+		if(currPlat != null){
 			attribs.vel.x = attribs.facing * 500.f;
-		}
-
-		attribs.vel.x += attribs.accel.x * dt;
-		if(!collidingWithPlat){
+		} else{
 			attribs.vel.y += attribs.accel.y * dt;
 		}
+		attribs.vel.x += attribs.accel.x * dt;
 		attribs.vel.y = Math.min(attribs.vel.y, 3000.0f);
 
 		attribs.pos.x += attribs.vel.x * dt;
@@ -97,8 +77,6 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 		GameData.playerTravelledY += Math.abs(attribs.pos.y - beginY);
 
-		collidingWithPlat = false;
-
 		spriteAnim.Update(dt);
 	}
 
@@ -116,7 +94,10 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 	@Override
 	public void LateUpdate(final float dt){
-		if(attribs.pos.y <= yTrigger){
+		if(currPlat != null){
+			final float flipMinX = currPlat.attribs.pos.x - currPlat.attribs.scale.x * 0.5f;
+			final float flipMaxX = currPlat.attribs.pos.x + currPlat.attribs.scale.x * 0.5f;
+
 			if(attribs.pos.x < flipMinX){
 				attribs.pos.x = flipMinX;
 				SwitchFacing();
@@ -126,17 +107,13 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 				SwitchFacing();
 			}
 		}
-
-		flipMinX = -Float.MAX_VALUE;
-		flipMaxX = Float.MAX_VALUE;
 	}
 
 	@Override
 	public void Collided(EntityAbstract other){
-		collidingWithPlat = true;
-		flipMinX = other.attribs.pos.x - other.attribs.scale.x * 0.5f + playerCharHalfWidth;
-		flipMaxX = other.attribs.pos.x + other.attribs.scale.x * 0.5f - playerCharHalfWidth;
-		yTrigger = other.attribs.pos.y - other.attribs.scale.y - attribs.scale.y * 0.5f;
+		if(other.attribs.type == EntityTypes.EntityType.Plat && attribs.vel.y >= 0.0f){
+			currPlat = (EntityPlat)other;
+		}
 	}
 
 	public static EntityGamePlayerChar Create(final String key, final int bitmapID){
@@ -156,7 +133,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	}
 
 	public void Jump(final Vector2 fingerDownPos, final Vector2 fingerUpPos){
-		if(collidingWithPlat && fingerDownPos != null && fingerUpPos != null){
+		if(currPlat != null && fingerDownPos != null && fingerUpPos != null){
 			Vector2 vec = new Vector2(fingerUpPos.x - fingerDownPos.x, fingerUpPos.y - fingerDownPos.y);
 			attribs.vel.x = Math.min(vec.x * 0.25f, 800.0f);
 			attribs.vel.y = Math.max(vec.y * 3.5f, -3000.0f);
@@ -168,6 +145,8 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 				spriteAnim.SetFrames(9 + 1, 9 + 9);
 				attribs.facing = -1;
 			}
+
+			currPlat = null;
 		}
 	}
 
@@ -179,13 +158,9 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		spriteAnim.SetYScale(yScale);
 	}
 
-	private boolean collidingWithPlat;
-	private float flipMinX;
-	private float flipMaxX;
-	private float yTrigger;
+	private EntityPlat currPlat;
 
 	private final SpriteAnim spriteAnim;
-	private final Paint paint;
 
 	static final float playerCharHalfWidth;
 

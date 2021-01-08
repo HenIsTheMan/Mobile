@@ -127,8 +127,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.pauseButton.attribs.pos.y = buttonSize;
         //*/
 
-        EntityManager.Instance.cam.SetPosY(GameData.gamePlayerChar.attribs.pos.y);
-        EntityManager.Instance.cam.SetVelY(-50.0f);
+        EntityManager.Instance.cam.SetPosY(GameData.gamePlayerChar.attribs.pos.y - DeviceManager.screenHeightF * 0.5f);
+        EntityManager.Instance.cam.SetVelY(-100.0f);
     }
 
     @Override
