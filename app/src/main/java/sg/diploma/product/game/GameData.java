@@ -21,7 +21,6 @@ public final class GameData implements IListener{ //Singleton
 		textOnScreenScore = null;
 
 		playerTravelledY = 0.0f;
-		totalYOffset = 0.0f;
 		score = -1;
 
 		fingerDownPos = null;
@@ -44,7 +43,6 @@ public final class GameData implements IListener{ //Singleton
 	public static EntityTextOnScreen textOnScreenScore;
 
 	public static float playerTravelledY;
-	public static float totalYOffset;
 	public static int score;
 
 	public static Vector2 fingerDownPos;
@@ -60,7 +58,6 @@ public final class GameData implements IListener{ //Singleton
 		textOnScreenScore = null;
 
 		playerTravelledY = 0.0f;
-		totalYOffset = 0.0f;
 		score = -1;
 
 		fingerDownPos = null;

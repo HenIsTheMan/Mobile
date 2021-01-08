@@ -69,7 +69,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
 
             ///Render
             if(!Objects.equals(StateManager.Instance.GetCurrentStateName(), "")){
-                Canvas canvas = surfaceHolder.lockCanvas(null);
+                Canvas canvas = surfaceHolder.lockCanvas(null); //Origin is top left
                 if(canvas != null){
                     synchronized(surfaceHolder){ //Sync to draw
                         if(useGifBG){

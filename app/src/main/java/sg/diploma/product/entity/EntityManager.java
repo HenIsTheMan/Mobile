@@ -163,6 +163,10 @@ public final class EntityManager{ //Singleton
         }
     }
 
+    public float GetCanvasYOffset(){
+        return canvasYOffset;
+    }
+
     public void SetCanvasYOffset(final float canvasYOffset){
         this.canvasYOffset = canvasYOffset;
     }

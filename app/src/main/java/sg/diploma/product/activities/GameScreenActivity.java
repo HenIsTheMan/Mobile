@@ -127,10 +127,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.pauseButton.attribs.pos.y = buttonSize;
         //*/
 
-        GameData.totalYOffset = DeviceManager.screenHeightF;
-
-        EntityManager.Instance.SetCanvasYOffset(-GameData.gamePlayerChar.attribs.pos.y * 0.25f);
-        EntityManager.Instance.SetCanvasYScrollVel(50.0f);
+        EntityManager.Instance.SetCanvasYOffset(-GameData.gamePlayerChar.attribs.pos.y); //Determines what is at the top of the screen
+        EntityManager.Instance.SetCanvasYScrollVel(0.0f);
     }
 
     @Override
@@ -189,15 +187,38 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     private void SpawnPlats(){
+        final float canvasMinY = EntityManager.Instance.GetCanvasYOffset();
+        final float canvasMaxY = canvasMinY + DeviceManager.screenHeightF;
+        Float viewableMinY = null;
+        Float viewableMaxY = null;
+
+        if(canvasMinY >= 0.0f && canvasMinY <= DeviceManager.screenHeightF){
+            viewableMinY = canvasMinY;
+        } else if(canvasMaxY >= 0.0f && canvasMaxY <= DeviceManager.screenHeightF){
+            viewableMinY = 0.0f;
+        }
+        if(viewableMinY == null){
+            return;
+        }
+
+        if(canvasMaxY >= 0.0f && canvasMaxY <= DeviceManager.screenHeightF){
+            viewableMaxY = canvasMaxY;
+        } else if(canvasMinY >= 0.0f && canvasMinY <= DeviceManager.screenHeightF){
+            viewableMaxY = DeviceManager.screenHeightF;
+        }
+        if(viewableMaxY == null){
+            return;
+        }
+
         final float offset = Pseudorand.PseudorandFloatMinMax(380.f, 490.f);
         if(GameData.playerTravelledY > offset){
-            GameData.totalYOffset -= offset;
+            //GameData.totalYOffset -= offset;
 
             EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
             plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.4f);
             plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.04f, 0.06f);
             plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
-            plat.attribs.pos.y = GameData.totalYOffset;
+            //plat.attribs.pos.y = GameData.totalYOffset;
 
             plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
             plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
