@@ -61,16 +61,6 @@
                 android:layout_height="wrap_content"
                 android:text="" />
 
-            <CheckBox
-                android:id="@+id/round"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@drawable/checkbox_selector"
-                android:clickable="true"
-                android:focusable="true"
-                android:scaleX="0.2"
-                android:scaleY="0.2" />
-
         </RelativeLayout>
 
     </ScrollView>
