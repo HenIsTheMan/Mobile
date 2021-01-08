@@ -162,16 +162,15 @@ public final class GameScreenActivity extends Activity implements IState, IListe
             GameData.textOnScreenScore.SetText("Score: " + GameData.score);
         }
 
-        final int motionEventAction = TouchManager.Instance.GetMotionEventAction();
+        EntityManager.Instance.Update(_dt);
 
+        final int motionEventAction = TouchManager.Instance.GetMotionEventAction();
         if(motionEventAction == TouchTypes.TouchType.Down.GetVal()){
             jumpMag = -2000.0f; //??
         } else if(motionEventAction == TouchTypes.TouchType.Up.GetVal()){
             GameData.gamePlayerChar.Jump(jumpMag);
             jumpMag = 0.0f;
         }
-
-        EntityManager.Instance.Update(_dt);
 
         EntityManager.Instance.cam.SetPosX(GameData.gamePlayerChar.attribs.pos.x - DeviceManager.screenWidthF * 0.5f);
         SpawnPlats();

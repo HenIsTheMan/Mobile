@@ -39,7 +39,7 @@ public final class EntityPauseButton extends EntityAbstract{
 	public void Update(float _dt){
 		elapsedTime += _dt;
 
-		if(BT <= elapsedTime && TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()
+		if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()
 			&& DetectCollision.CircleCircle(new Vector2(
 				TouchManager.Instance.GetXPos(),
 				TouchManager.Instance.GetYPos()),
@@ -48,10 +48,16 @@ public final class EntityPauseButton extends EntityAbstract{
 				attribs.scale.x * 0.5f
 			)
 		){
-			paused = !paused;
-			AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
-			GameManager.Instance.SetIsPaused(paused);
-			BT = elapsedTime + 0.2f;
+			TouchManager.Instance.SetMotionEventAction(-999);
+
+			if(BT <= elapsedTime){
+				paused = !paused;
+
+				AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+				GameManager.Instance.SetIsPaused(paused);
+
+				BT = elapsedTime + 0.2f;
+			}
 		}
 	}
 

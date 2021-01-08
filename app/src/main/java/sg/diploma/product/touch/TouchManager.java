@@ -25,6 +25,10 @@ public final class TouchManager{ //Singleton
         return motionEventAction;
     }
 
+    public void SetMotionEventAction(final int motionEventAction){
+        this.motionEventAction = motionEventAction;
+    }
+
     private float xPos;
     private float yPos;
     private int motionEventAction;

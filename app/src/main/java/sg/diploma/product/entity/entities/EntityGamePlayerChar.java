@@ -96,6 +96,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			final float flipMinX = currPlat.attribs.pos.x - currPlat.attribs.scale.x * 0.5f;
 			final float flipMaxX = currPlat.attribs.pos.x + currPlat.attribs.scale.x * 0.5f;
 
+			///Can be more accurate but I think not worth the computational cost
 			if(attribs.pos.x < flipMinX){
 				attribs.pos.x = flipMinX;
 				SwitchFacing();
