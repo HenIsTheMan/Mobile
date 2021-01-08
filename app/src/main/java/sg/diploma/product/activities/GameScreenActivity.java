@@ -35,8 +35,6 @@ import sg.diploma.product.touch.TouchTypes;
 public final class GameScreenActivity extends Activity implements IState, IListener{
     public GameScreenActivity(){
         platIndex = 0;
-        lastTriggerPosX = 0.0f;
-        lastTriggerScaleX = 1.0f;
         lastTriggerPosY = 0.0f;
         lastTriggerScaleY = 1.0f;
         jumpMag = 0.0f;
@@ -133,8 +131,6 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.pauseButton.attribs.pos.y = buttonSize;
         //*/
 
-        lastTriggerPosX = GameData.startPlat.attribs.pos.x;
-        lastTriggerScaleX = GameData.startPlat.attribs.scale.x;
         lastTriggerPosY = GameData.startPlat.attribs.pos.y;
         lastTriggerScaleY = GameData.startPlat.attribs.scale.y;
         EntityManager.Instance.cam.SetPosY(GameData.gamePlayerChar.attribs.pos.y - DeviceManager.screenHeightF * 0.5f);
@@ -164,16 +160,18 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
         EntityManager.Instance.Update(_dt);
 
-        final int motionEventAction = TouchManager.Instance.GetMotionEventAction();
-        if(motionEventAction == TouchTypes.TouchType.Down.GetVal()){
-            jumpMag = -2000.0f; //??
-        } else if(motionEventAction == TouchTypes.TouchType.Up.GetVal()){
-            GameData.gamePlayerChar.Jump(jumpMag);
-            jumpMag = 0.0f;
-        }
+        if(GameData.gamePlayerChar != null){
+            final int motionEventAction = TouchManager.Instance.GetMotionEventAction();
+            if(motionEventAction == TouchTypes.TouchType.Down.GetVal()){
+                jumpMag = -2000.0f; //??
+            } else if(motionEventAction == TouchTypes.TouchType.Up.GetVal()){
+                GameData.gamePlayerChar.Jump(jumpMag);
+                jumpMag = 0.0f;
+            }
 
-        EntityManager.Instance.cam.SetPosX(GameData.gamePlayerChar.attribs.pos.x - DeviceManager.screenWidthF * 0.5f);
-        SpawnPlats();
+            EntityManager.Instance.cam.SetPosX(GameData.gamePlayerChar.attribs.pos.x - DeviceManager.screenWidthF * 0.5f);
+            SpawnPlats();
+        }
 
         EntityManager.Instance.LateUpdate(_dt);
     }
@@ -214,13 +212,12 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 GameData.globalInstance.ResetVars();
                 EntityManager.Instance.SendAllEntitiesForRemoval();
                 StateManager.Instance.ChangeState("MenuScreen");
+
                 break;
         }
     }
 
     private int platIndex;
-    private float lastTriggerPosX;
-    private float lastTriggerScaleX;
     private float lastTriggerPosY;
     private float lastTriggerScaleY;
     private float jumpMag;

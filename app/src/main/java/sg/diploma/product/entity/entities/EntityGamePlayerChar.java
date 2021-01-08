@@ -5,11 +5,14 @@ import android.graphics.Canvas;
 
 import sg.diploma.product.BuildConfig;
 import sg.diploma.product.R;
+import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
+import sg.diploma.product.event.Publisher;
+import sg.diploma.product.event.events.EventEndGame;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
 import sg.diploma.product.math.Pseudorand;
@@ -73,6 +76,13 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		attribs.boxColliderPos.x = attribs.pos.x;
 		attribs.boxColliderPos.y = attribs.pos.y + attribs.boxColliderScale.y * 0.075f;
 
+		//* Check for end of game
+		if(attribs.pos.y + attribs.boxColliderScale.y * 0.5f >= EntityManager.Instance.cam.GetPos().y + DeviceManager.screenHeightF){
+			Publisher.Broadcast(new EventEndGame());
+			return;
+		}
+		//*/
+
 		currPlat = null;
 
 		spriteAnim.Update(dt);
@@ -96,13 +106,12 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			final float flipMinX = currPlat.attribs.pos.x - currPlat.attribs.scale.x * 0.5f;
 			final float flipMaxX = currPlat.attribs.pos.x + currPlat.attribs.scale.x * 0.5f;
 
-			///Can be more accurate but I think not worth the computational cost
-			if(attribs.pos.x < flipMinX){
-				attribs.pos.x = flipMinX;
+			if(attribs.pos.x - attribs.boxColliderScale.x * 0.5f < flipMinX){
+				attribs.pos.x = flipMinX + attribs.boxColliderScale.x * 0.5f;
 				SwitchFacing();
 			}
-			if(attribs.pos.x > flipMaxX){
-				attribs.pos.x = flipMaxX;
+			if(attribs.pos.x + attribs.boxColliderScale.x * 0.5f > flipMaxX){
+				attribs.pos.x = flipMaxX - attribs.boxColliderScale.x * 0.5f;
 				SwitchFacing();
 			}
 		}
