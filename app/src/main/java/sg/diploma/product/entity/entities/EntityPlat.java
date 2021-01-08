@@ -5,6 +5,7 @@ import android.graphics.Paint;
 
 import sg.diploma.product.BuildConfig;
 import sg.diploma.product.device.DeviceManager;
+import sg.diploma.product.easing.Easing;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
@@ -20,8 +21,7 @@ public final class EntityPlat extends EntityAbstract{
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.Plat;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
-
-		color = new Color(0.2f, 0.2f, 0.2f, 0.6f);
+		
 		strokeWidth = 50.0f;
 		paintStyle = Paint.Style.FILL;
 		paint = new Paint();
@@ -36,20 +36,39 @@ public final class EntityPlat extends EntityAbstract{
 		assert this.gamePlayerChar != null;
 	}
 
+
+	private float scaleTime = 0.0f;
+	private float renderScaleX = 0.0f;
+	private float renderScaleY = 0.0f;
+
 	@Override
 	public void Update(final float dt){
 		if(attribs.pos.y - gamePlayerChar.attribs.pos.y > DeviceManager.screenHeightF * 0.5f){ //0.25f if want exact
 			EntityManager.Instance.SendEntityForRemoval("plat_" + myIndex);
+		}
+
+		if(scaleTime >= 0.0f){
+			final float startScale = 1.0f;
+			final float endScale = 1.2f;
+			final float lerpFactor = Easing.EaseInOutCubic(scaleTime / 0.4f);
+			final float component = (1.0f - lerpFactor) * startScale + lerpFactor * endScale;
+			renderScaleX = attribs.scale.x * component;
+			renderScaleY = attribs.scale.y * component;
+
+			scaleTime -= dt;
+		} else{
+			renderScaleX = attribs.scale.x;
+			renderScaleY = attribs.scale.y;
 		}
 	}
 
 	@Override
 	public void Render(final Canvas canvas){
 		canvas.drawRect(
-			attribs.pos.x - attribs.scale.x * 0.5f,
-			attribs.pos.y - attribs.scale.y * 0.5f,
-			attribs.pos.x + attribs.scale.x * 0.5f,
-			attribs.pos.y + attribs.scale.y * 0.5f,
+			attribs.pos.x - renderScaleX * 0.5f,
+			attribs.pos.y - renderScaleY * 0.5f,
+			attribs.pos.x + renderScaleX * 0.5f,
+			attribs.pos.y + renderScaleY * 0.5f,
 			paint
 		);
 	}
@@ -70,10 +89,16 @@ public final class EntityPlat extends EntityAbstract{
 		if(!collided && other.attribs.type == EntityTypes.EntityType.GamePlayerChar){
 			collided = true;
 			SetColor(new Color(1.0f, 1.0f, 0.0f, 1.0f));
+
 			//Publisher.Broadcast(new EventSpawnPlat());
 			Publisher.Broadcast(new EventAddScore(1));
+
+			scaleTime = 0.4f;
 		}
 	}
+
+
+
 
 	public static EntityPlat Create(final String key, final EntityGamePlayerChar gamePlayerChar){
 		EntityPlat result = new EntityPlat(gamePlayerChar);
@@ -82,7 +107,6 @@ public final class EntityPlat extends EntityAbstract{
 	}
 
 	public void SetColor(final Color color){
-		this.color = color;
 		paint.setARGB((int)(color.a * 255.0f), (int)(color.r * 255.0f), (int)(color.g * 255.0f), (int)(color.b * 255.0f));
 	}
 
@@ -100,7 +124,6 @@ public final class EntityPlat extends EntityAbstract{
 		this.myIndex = myIndex;
 	}
 
-	private Color color;
 	private float strokeWidth;
 	private Paint.Style paintStyle;
 	private final Paint paint;
