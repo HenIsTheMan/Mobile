@@ -80,7 +80,7 @@ public final class EntityPlat extends EntityAbstract{
 
 	@Override
 	public void Collided(EntityAbstract other){
-		if(!collided && other.attribs.type == EntityTypes.EntityType.GamePlayerChar){
+		if(!collided && other.attribs.type == EntityTypes.EntityType.GamePlayerChar && other.attribs.vel.y >= 0.0f){
 			collided = true;
 			ChangeColor(steppedOnColor);
 			Publisher.Broadcast(new EventAddScore(1));

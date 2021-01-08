@@ -36,8 +36,10 @@ import sg.diploma.product.touch.TouchTypes;
 public final class GameScreenActivity extends Activity implements IState, IListener{
     public GameScreenActivity(){
         platIndex = 0;
+        lastTriggerPosX = 0.0f;
+        lastTriggerScaleX = 1.0f;
         lastTriggerPosY = 0.0f;
-        lastTriggerScaleY = 0.0f;
+        lastTriggerScaleY = 1.0f;
     }
 
     @Override
@@ -131,6 +133,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.pauseButton.attribs.pos.y = buttonSize;
         //*/
 
+        lastTriggerPosX = GameData.startPlat.attribs.pos.x;
+        lastTriggerScaleX = GameData.startPlat.attribs.scale.x;
         lastTriggerPosY = GameData.startPlat.attribs.pos.y;
         lastTriggerScaleY = GameData.startPlat.attribs.scale.y;
         EntityManager.Instance.cam.SetPosY(GameData.gamePlayerChar.attribs.pos.y - DeviceManager.screenHeightF * 0.5f);
@@ -182,25 +186,23 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     private void SpawnPlats(){
-        if(lastTriggerPosY + lastTriggerScaleY * 0.5f <= EntityManager.Instance.cam.GetPos().y){
-            return;
+        if(lastTriggerPosY + lastTriggerScaleY * 0.5f > EntityManager.Instance.cam.GetPos().y){
+            final float offset = Pseudorand.PseudorandFloatMinMax(380.f, 490.f);
+            EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
+
+            plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.4f);
+            plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.04f, 0.06f);
+            plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
+            plat.attribs.pos.y = lastTriggerPosY - offset;
+
+            plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
+            plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
+            plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
+            plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
+
+            lastTriggerPosY = plat.attribs.pos.y;
+            lastTriggerScaleY =  plat.attribs.scale.y;
         }
-        
-        final float offset = Pseudorand.PseudorandFloatMinMax(380.f, 490.f);
-        EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
-
-        plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.4f);
-        plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.04f, 0.06f);
-        plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
-        plat.attribs.pos.y = lastTriggerPosY - offset;
-
-        plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
-        plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
-        plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
-        plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
-
-        lastTriggerPosY = plat.attribs.pos.y;
-        lastTriggerScaleY =  plat.attribs.scale.y;
     }
 
     @Override
@@ -223,6 +225,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     private int platIndex;
+    private float lastTriggerPosX;
+    private float lastTriggerScaleX;
     private float lastTriggerPosY;
     private float lastTriggerScaleY;
 
