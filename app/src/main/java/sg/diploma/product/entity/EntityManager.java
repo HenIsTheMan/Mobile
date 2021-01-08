@@ -20,7 +20,7 @@ public final class EntityManager{ //Singleton
         view = null;
 
         canvasYOffset = 0.0f;
-        canvasYScrollVel = 100.0f;
+        canvasYScrollVel = 0.0f;
     }
 
     public void Init(SurfaceView _view){
@@ -163,12 +163,20 @@ public final class EntityManager{ //Singleton
         }
     }
 
+    public void SetCanvasYOffset(final float canvasYOffset){
+        this.canvasYOffset = canvasYOffset;
+    }
+
+    public void SetCanvasYScrollVel(final float canvasYScrollVel){
+        this.canvasYScrollVel = canvasYScrollVel;
+    }
+
     private final HashMap<String, EntityAbstract> entityList;
     private final ArrayList<String> entityRemovalList;
     public SurfaceView view;
 
     private float canvasYOffset;
-    private final float canvasYScrollVel;
+    private float canvasYScrollVel;
 
     public static final EntityManager Instance;
 

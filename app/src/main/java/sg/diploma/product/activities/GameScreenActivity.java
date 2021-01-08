@@ -128,6 +128,9 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         //*/
 
         GameData.totalYOffset = DeviceManager.screenHeightF;
+
+        EntityManager.Instance.SetCanvasYOffset(-GameData.gamePlayerChar.attribs.pos.y * 0.25f);
+        EntityManager.Instance.SetCanvasYScrollVel(50.0f);
     }
 
     @Override
