@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import sg.diploma.product.BuildConfig;
+import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.easing.Easing;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
@@ -31,6 +32,7 @@ public final class EntityPlat extends EntityAbstract{
 		paint.setStyle(paintStyle);
 
 		collided = false;
+		myIndex = 0;
 
 		currPopTime = 0.0f;
 		maxPopTime = 0.4f;
@@ -40,6 +42,12 @@ public final class EntityPlat extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
+		//* Despawn if outside view
+		if(attribs.pos.y - attribs.scale.y * 0.5f >= EntityManager.Instance.cam.GetPos().y + DeviceManager.screenHeightF){
+			EntityManager.Instance.SendEntityForRemoval("plat_" + myIndex);
+		}
+		//*/
+
 		if(currPopTime >= 0.0f){
 			final float startScale = 1.0f;
 			final float endScale = 1.2f;
@@ -99,10 +107,6 @@ public final class EntityPlat extends EntityAbstract{
 		paint.setARGB((int)(color.a * 255.0f), (int)(color.r * 255.0f), (int)(color.g * 255.0f), (int)(color.b * 255.0f));
 	}
 
-	public void SetSteppedOnColor(final Color color){
-		this.steppedOnColor = color;
-	}
-
 	public void SetStrokeWidth(final float strokeWidth){
 		this.strokeWidth = strokeWidth;
 		paint.setStrokeWidth(strokeWidth);
@@ -113,12 +117,21 @@ public final class EntityPlat extends EntityAbstract{
 		paint.setStyle(paintStyle);
 	}
 
+	public void SetSteppedOnColor(final Color color){
+		this.steppedOnColor = color;
+	}
+
+	public void SetMyIndex(final int myIndex){
+		this.myIndex = myIndex;
+	}
+
 	private float strokeWidth;
 	private Paint.Style paintStyle;
 	private final Paint paint;
 	private Color steppedOnColor;
 
 	private boolean collided;
+	private int myIndex;
 
 	private float currPopTime;
 	private final float maxPopTime;

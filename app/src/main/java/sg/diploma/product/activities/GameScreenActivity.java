@@ -180,9 +180,10 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     private void SpawnPlats(){
-        if(lastTriggerPosY + lastTriggerScaleY * 0.5f > EntityManager.Instance.cam.GetPos().y){
+        if(lastTriggerPosY + lastTriggerScaleY * 0.5f >= EntityManager.Instance.cam.GetPos().y){
             final float offset = Pseudorand.PseudorandFloatMinMax(380.f, 490.f);
             EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
+            plat.SetMyIndex(platIndex);
 
             plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.4f);
             plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.04f, 0.06f);
