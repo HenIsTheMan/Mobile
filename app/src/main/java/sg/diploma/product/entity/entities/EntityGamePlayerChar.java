@@ -77,6 +77,8 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 		GameData.playerTravelledY += Math.abs(attribs.pos.y - beginY);
 
+		currPlat = null;
+
 		spriteAnim.Update(dt);
 	}
 
@@ -111,7 +113,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 	@Override
 	public void Collided(EntityAbstract other){
-		if(other.attribs.type == EntityTypes.EntityType.Plat && attribs.vel.y >= 0.0f){
+		if(other.attribs.type == EntityTypes.EntityType.Plat && currPlat == null && attribs.vel.y >= 0.0f){
 			currPlat = (EntityPlat)other;
 		}
 	}
@@ -145,8 +147,6 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 				spriteAnim.SetFrames(9 + 1, 9 + 9);
 				attribs.facing = -1;
 			}
-
-			currPlat = null;
 		}
 	}
 

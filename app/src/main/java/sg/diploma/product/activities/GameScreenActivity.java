@@ -165,18 +165,6 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 GameData.fingerDownPos = null;
                 GameData.fingerUpPos = null;
             }
-
-            //* So player does not exit play area
-            final float playerCharHalfWidth = ((float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() / 9.f * 0.5f) * 0.5f;
-            if(GameData.gamePlayerChar.attribs.pos.x < playerCharHalfWidth){
-                GameData.gamePlayerChar.attribs.pos.x = playerCharHalfWidth;
-                GameData.gamePlayerChar.SwitchFacing();
-            }
-            if(GameData.gamePlayerChar.attribs.pos.x > DeviceManager.screenWidthF - playerCharHalfWidth){
-                GameData.gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF - playerCharHalfWidth;
-                GameData.gamePlayerChar.SwitchFacing();
-            }
-            //*/
         }
 
         EntityManager.Instance.Update(_dt);
