@@ -10,7 +10,6 @@ import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
-import sg.diploma.product.game.GameData;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
 import sg.diploma.product.math.Pseudorand;
@@ -74,8 +73,6 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 		attribs.boxColliderPos.x = attribs.pos.x;
 		attribs.boxColliderPos.y = attribs.pos.y + attribs.boxColliderScale.y * 0.075f;
-
-		GameData.playerTravelledY += Math.abs(attribs.pos.y - beginY);
 
 		currPlat = null;
 
