@@ -27,7 +27,6 @@ import sg.diploma.product.game.GameView;
 import sg.diploma.product.graphics.Color;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.math.Pseudorand;
-import sg.diploma.product.math.Vector2;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
@@ -40,6 +39,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         lastTriggerScaleX = 1.0f;
         lastTriggerPosY = 0.0f;
         lastTriggerScaleY = 1.0f;
+        jumpMag = 0.0f;
     }
 
     @Override
@@ -162,19 +162,13 @@ public final class GameScreenActivity extends Activity implements IState, IListe
             GameData.textOnScreenScore.SetText("Score: " + GameData.score);
         }
 
-        if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
-            GameData.fingerDownPos = new Vector2(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
-        }
-        if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Up.GetVal()) {
-            GameData.fingerUpPos = new Vector2(TouchManager.Instance.GetXPos(), TouchManager.Instance.GetYPos());
-        }
+        final int motionEventAction = TouchManager.Instance.GetMotionEventAction();
 
-        if(GameData.gamePlayerChar != null){
-            GameData.gamePlayerChar.Jump(GameData.fingerDownPos, GameData.fingerUpPos);
-            if(GameData.fingerDownPos != null && GameData.fingerUpPos != null){
-                GameData.fingerDownPos = null;
-                GameData.fingerUpPos = null;
-            }
+        if(motionEventAction == TouchTypes.TouchType.Down.GetVal()){
+            jumpMag = -2000.0f; //??
+        } else if(motionEventAction == TouchTypes.TouchType.Up.GetVal()){
+            GameData.gamePlayerChar.Jump(jumpMag);
+            jumpMag = 0.0f;
         }
 
         EntityManager.Instance.Update(_dt);
@@ -229,6 +223,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     private float lastTriggerScaleX;
     private float lastTriggerPosY;
     private float lastTriggerScaleY;
+    private float jumpMag;
 
     private static Vibrator vibrator;
     public static GameScreenActivity Instance;

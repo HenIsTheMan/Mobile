@@ -13,7 +13,6 @@ import sg.diploma.product.entity.EntityTypes;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
 import sg.diploma.product.math.Pseudorand;
-import sg.diploma.product.math.Vector2;
 
 public final class EntityGamePlayerChar extends EntityAbstract{
 	private EntityGamePlayerChar(final int bitmapID){
@@ -131,19 +130,9 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		attribs.vel.x = attribs.facing * 500.f;
 	}
 
-	public void Jump(final Vector2 fingerDownPos, final Vector2 fingerUpPos){
-		if(currPlat != null && fingerDownPos != null && fingerUpPos != null){
-			Vector2 vec = new Vector2(fingerUpPos.x - fingerDownPos.x, fingerUpPos.y - fingerDownPos.y);
-			attribs.vel.x = Math.min(vec.x * 0.25f, 800.0f);
-			attribs.vel.y = Math.max(vec.y * 3.5f, -3000.0f);
-
-			if(attribs.vel.x > 0.0f){
-				spriteAnim.SetFrames(3 * 9 + 1, 3 * 9 + 9);
-				attribs.facing = 1;
-			} else{
-				spriteAnim.SetFrames(9 + 1, 9 + 9);
-				attribs.facing = -1;
-			}
+	public void Jump(final float jumpMag){
+		if(currPlat != null){
+			attribs.vel.y = jumpMag;
 		}
 	}
 
