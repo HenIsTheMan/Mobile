@@ -117,6 +117,8 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	@Override
 	public void SpecialRender(final Canvas canvas){
 		spriteAnim.Render(canvas, attribs.pos.x, DeviceManager.screenHeightF * 0.75f);
+
+		//canvas.drawCircle(attribs.pos.x, DeviceManager.screenHeightF * 0.75f, 400.0f, paint);
 	}
 
 	@Override

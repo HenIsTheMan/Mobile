@@ -44,7 +44,7 @@ public final class EntityManager{ //Singleton
             entity.Update(_dt);
         }
 
-        ArrayList<String> keys = new ArrayList(entityList.keySet());
+        ArrayList<String> keys = new ArrayList<>(entityList.keySet());
         final int keysSize = keys.size();
         for(int i = 0; i < keysSize; ++i){
             EntityAbstract currEntity = entityList.get(keys.get(i));
@@ -102,6 +102,7 @@ public final class EntityManager{ //Singleton
         if(!entityList.containsKey(playerCharKey)){
             return;
         }
+        final EntityGamePlayerChar playerChar = (EntityGamePlayerChar)entityList.get(playerCharKey);
 
         final Object[] keys = entityList.keySet().toArray();
         final Object[] myArr = entityList.values().toArray();
@@ -109,6 +110,7 @@ public final class EntityManager{ //Singleton
         final int myArrLen = myArr.length;
         final EntityAbstract[] entityAbstractArr = new EntityAbstract[myArrLen];
         final HashMap<EntityAbstract, String> entityToKey = new HashMap<>();
+
         for(int i = 0; i < myArrLen; ++i){
             EntityAbstract entity = (EntityAbstract)myArr[i];
             entityToKey.put(entity, (String)keys[i]);
@@ -116,11 +118,7 @@ public final class EntityManager{ //Singleton
         }
         Arrays.sort(entityAbstractArr, (o1, o2)->o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal());
 
-        final EntityGamePlayerChar playerChar = (EntityGamePlayerChar)entityList.get(playerCharKey);
-        assert playerChar != null;
-
         _canvas.translate(0.0f, DeviceManager.screenHeightF * 0.75f - playerChar.attribs.pos.y);
-
         for(int i = 0; i < myArrLen; ++i){
             EntityAbstract entity = entityAbstractArr[i];
             if(!Objects.requireNonNull(entityToKey.get(entity)).startsWith("Special_")){ //Not special XD
@@ -129,7 +127,6 @@ public final class EntityManager{ //Singleton
         }
 
         _canvas.translate(0.0f, -DeviceManager.screenHeightF * 0.75f + playerChar.attribs.pos.y);
-
         for(int i = 0; i < myArrLen; ++i){
             EntityAbstract entity = entityAbstractArr[i];
             if(Objects.requireNonNull(entityToKey.get(entity)).startsWith("Special_")){ //✨ Special ✨
