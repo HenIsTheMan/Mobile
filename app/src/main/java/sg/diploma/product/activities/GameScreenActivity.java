@@ -181,6 +181,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
         EntityManager.Instance.Update(_dt);
 
+        EntityManager.Instance.cam.SetPosX(GameData.gamePlayerChar.attribs.pos.x - DeviceManager.screenWidthF * 0.5f);
         SpawnPlats();
 
         EntityManager.Instance.LateUpdate(_dt);
