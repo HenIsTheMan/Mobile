@@ -127,8 +127,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.pauseButton.attribs.pos.y = buttonSize;
         //*/
 
-        EntityManager.Instance.SetCanvasYOffset(-GameData.gamePlayerChar.attribs.pos.y); //Determines what is at the top of the screen
-        EntityManager.Instance.SetCanvasYScrollVel(0.0f);
+        EntityManager.Instance.cam.SetPosY(GameData.gamePlayerChar.attribs.pos.y);
+        EntityManager.Instance.cam.SetVelY(-50.0f);
     }
 
     @Override
@@ -187,7 +187,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     private void SpawnPlats(){
-        final float canvasMinY = EntityManager.Instance.GetCanvasYOffset();
+        /*final float canvasMinY = EntityManager.Instance.GetCanvasYOffset();
         final float canvasMaxY = canvasMinY + DeviceManager.screenHeightF;
         Float viewableMinY = null;
         Float viewableMaxY = null;
@@ -208,7 +208,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         }
         if(viewableMaxY == null){
             return;
-        }
+        }*/
 
         final float offset = Pseudorand.PseudorandFloatMinMax(380.f, 490.f);
         if(GameData.playerTravelledY > offset){

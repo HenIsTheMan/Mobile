@@ -8,19 +8,19 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
 
+import sg.diploma.product.cam.SceneCam;
 import sg.diploma.product.game.GameManager;
 import sg.diploma.product.math.CollisionDataBoxBoxAABB;
 import sg.diploma.product.math.DetectCollision;
 import sg.diploma.product.math.ResolveCollision;
+import sg.diploma.product.math.Vector2;
 
 public final class EntityManager{ //Singleton
     private EntityManager(){
         entityList = new HashMap<>();
         entityRemovalList = new ArrayList<>();
+        cam = new SceneCam();
         view = null;
-
-        canvasYOffset = 0.0f;
-        canvasYScrollVel = 0.0f;
     }
 
     public void Init(SurfaceView _view){
@@ -69,7 +69,7 @@ public final class EntityManager{ //Singleton
         }
         entityRemovalList.clear();
 
-        canvasYOffset += canvasYScrollVel * _dt;
+        cam.Update(_dt);
     }
 
     public void Render(Canvas _canvas){
@@ -117,7 +117,9 @@ public final class EntityManager{ //Singleton
         }
         Arrays.sort(entityAbstractArr, (o1, o2)->o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal());
 
-        _canvas.translate(0.0f, canvasYOffset);
+        final Vector2 camPos = cam.GetPos();
+
+        _canvas.translate(-camPos.x, -camPos.y);
         for(int i = 0; i < myArrLen; ++i){
             EntityAbstract entity = entityAbstractArr[i];
             if(!Objects.requireNonNull(entityToKey.get(entity)).startsWith("Special_")){ //Not special XD
@@ -125,7 +127,7 @@ public final class EntityManager{ //Singleton
             }
         }
 
-        _canvas.translate(0.0f, -canvasYOffset);
+        _canvas.translate(camPos.x, camPos.y);
         for(int i = 0; i < myArrLen; ++i){
             EntityAbstract entity = entityAbstractArr[i];
             if(Objects.requireNonNull(entityToKey.get(entity)).startsWith("Special_")){ //✨ Special ✨
@@ -163,24 +165,10 @@ public final class EntityManager{ //Singleton
         }
     }
 
-    public float GetCanvasYOffset(){
-        return canvasYOffset;
-    }
-
-    public void SetCanvasYOffset(final float canvasYOffset){
-        this.canvasYOffset = canvasYOffset;
-    }
-
-    public void SetCanvasYScrollVel(final float canvasYScrollVel){
-        this.canvasYScrollVel = canvasYScrollVel;
-    }
-
     private final HashMap<String, EntityAbstract> entityList;
     private final ArrayList<String> entityRemovalList;
+    public SceneCam cam;
     public SurfaceView view;
-
-    private float canvasYOffset;
-    private float canvasYScrollVel;
 
     public static final EntityManager Instance;
 
