@@ -8,8 +8,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
 
-import sg.diploma.product.device.DeviceManager;
-import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.game.GameManager;
 import sg.diploma.product.math.CollisionDataBoxBoxAABB;
 import sg.diploma.product.math.DetectCollision;
@@ -19,6 +17,10 @@ public final class EntityManager{ //Singleton
     private EntityManager(){
         entityList = new HashMap<>();
         entityRemovalList = new ArrayList<>();
+        view = null;
+
+        canvasYOffset = 0.0f;
+        canvasYScrollVel = 100.0f;
     }
 
     public void Init(SurfaceView _view){
@@ -66,6 +68,8 @@ public final class EntityManager{ //Singleton
             entityList.remove(element);
         }
         entityRemovalList.clear();
+
+        canvasYOffset += canvasYScrollVel * _dt;
     }
 
     public void Render(Canvas _canvas){
@@ -98,12 +102,7 @@ public final class EntityManager{ //Singleton
         }
     }
 
-    public void SpecialRender(Canvas _canvas, String playerCharKey){
-        if(!entityList.containsKey(playerCharKey)){
-            return;
-        }
-        final EntityGamePlayerChar playerChar = (EntityGamePlayerChar)entityList.get(playerCharKey);
-
+    public void SpecialRender(Canvas _canvas){
         final Object[] keys = entityList.keySet().toArray();
         final Object[] myArr = entityList.values().toArray();
 
@@ -118,7 +117,7 @@ public final class EntityManager{ //Singleton
         }
         Arrays.sort(entityAbstractArr, (o1, o2)->o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal());
 
-        _canvas.translate(0.0f, DeviceManager.screenHeightF * 0.75f - playerChar.attribs.pos.y);
+        _canvas.translate(0.0f, canvasYOffset);
         for(int i = 0; i < myArrLen; ++i){
             EntityAbstract entity = entityAbstractArr[i];
             if(!Objects.requireNonNull(entityToKey.get(entity)).startsWith("Special_")){ //Not special XD
@@ -126,7 +125,7 @@ public final class EntityManager{ //Singleton
             }
         }
 
-        _canvas.translate(0.0f, -DeviceManager.screenHeightF * 0.75f + playerChar.attribs.pos.y);
+        _canvas.translate(0.0f, -canvasYOffset);
         for(int i = 0; i < myArrLen; ++i){
             EntityAbstract entity = entityAbstractArr[i];
             if(Objects.requireNonNull(entityToKey.get(entity)).startsWith("Special_")){ //✨ Special ✨
@@ -167,6 +166,9 @@ public final class EntityManager{ //Singleton
     private final HashMap<String, EntityAbstract> entityList;
     private final ArrayList<String> entityRemovalList;
     public SurfaceView view;
+
+    private float canvasYOffset;
+    private final float canvasYScrollVel;
 
     public static final EntityManager Instance;
 

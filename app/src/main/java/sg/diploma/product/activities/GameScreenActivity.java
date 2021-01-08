@@ -92,7 +92,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
         //* Create game player char and start plat
         GameData.gamePlayerChar = EntityGamePlayerChar.Create(
-            "Special_gamePlayerChar",
+            "gamePlayerChar",
             R.drawable.player_char
         );
 
@@ -139,7 +139,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     @Override
     public void Render(Canvas _canvas){
-        EntityManager.Instance.SpecialRender(_canvas, "Special_gamePlayerChar");
+        EntityManager.Instance.SpecialRender(_canvas);
     }
 
     @Override

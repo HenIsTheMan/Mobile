@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import sg.diploma.product.BuildConfig;
 import sg.diploma.product.R;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
@@ -104,21 +105,13 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	@Override
 	public void Render(final Canvas canvas){ //Render with img centered
 		spriteAnim.Render(canvas, attribs.pos.x, attribs.pos.y);
-
-		canvas.drawRect(
-			attribs.boxColliderPos.x - attribs.boxColliderScale.x * 0.5f,
-			attribs.boxColliderPos.y - attribs.boxColliderScale.y * 0.5f,
-			attribs.boxColliderPos.x + attribs.boxColliderScale.x * 0.5f,
-			attribs.boxColliderPos.y + attribs.boxColliderScale.y * 0.5f,
-			paint
-		);
 	}
 
 	@Override
 	public void SpecialRender(final Canvas canvas){
-		spriteAnim.Render(canvas, attribs.pos.x, DeviceManager.screenHeightF * 0.75f);
-
-		//canvas.drawCircle(attribs.pos.x, DeviceManager.screenHeightF * 0.75f, 400.0f, paint);
+		if(BuildConfig.DEBUG){
+			throw new AssertionError("Assertion failed");
+		}
 	}
 
 	@Override
