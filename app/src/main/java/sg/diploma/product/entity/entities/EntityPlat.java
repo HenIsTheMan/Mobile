@@ -21,7 +21,7 @@ public final class EntityPlat extends EntityAbstract{
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.Plat;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
-		
+
 		strokeWidth = 50.0f;
 		paintStyle = Paint.Style.FILL;
 		paint = new Paint();
@@ -34,12 +34,12 @@ public final class EntityPlat extends EntityAbstract{
 		myIndex = 0;
 		this.gamePlayerChar = gamePlayerChar;
 		assert this.gamePlayerChar != null;
+
+		currPopTime = 0.0f;
+		maxPopTime = 0.4f;
+		renderScaleX = 1.0f;
+		renderScaleY = 1.0f;
 	}
-
-
-	private float scaleTime = 0.0f;
-	private float renderScaleX = 0.0f;
-	private float renderScaleY = 0.0f;
 
 	@Override
 	public void Update(final float dt){
@@ -47,15 +47,16 @@ public final class EntityPlat extends EntityAbstract{
 			EntityManager.Instance.SendEntityForRemoval("plat_" + myIndex);
 		}
 
-		if(scaleTime >= 0.0f){
+		if(currPopTime >= 0.0f){
 			final float startScale = 1.0f;
 			final float endScale = 1.2f;
-			final float lerpFactor = Easing.EaseInOutCubic(scaleTime / 0.4f);
-			final float component = (1.0f - lerpFactor) * startScale + lerpFactor * endScale;
-			renderScaleX = attribs.scale.x * component;
-			renderScaleY = attribs.scale.y * component;
+			final float lerpFactor = Easing.EaseInOutCubic(currPopTime / maxPopTime);
+			final float scaleFactor = (1.0f - lerpFactor) * startScale + lerpFactor * endScale;
 
-			scaleTime -= dt;
+			renderScaleX = attribs.scale.x * scaleFactor;
+			renderScaleY = attribs.scale.y * scaleFactor;
+
+			currPopTime -= dt;
 		} else{
 			renderScaleX = attribs.scale.x;
 			renderScaleY = attribs.scale.y;
@@ -93,12 +94,9 @@ public final class EntityPlat extends EntityAbstract{
 			//Publisher.Broadcast(new EventSpawnPlat());
 			Publisher.Broadcast(new EventAddScore(1));
 
-			scaleTime = 0.4f;
+			currPopTime = maxPopTime;
 		}
 	}
-
-
-
 
 	public static EntityPlat Create(final String key, final EntityGamePlayerChar gamePlayerChar){
 		EntityPlat result = new EntityPlat(gamePlayerChar);
@@ -131,4 +129,9 @@ public final class EntityPlat extends EntityAbstract{
 	private boolean collided;
 	private int myIndex;
 	private final EntityGamePlayerChar gamePlayerChar;
+
+	private float currPopTime;
+	private final float maxPopTime;
+	private float renderScaleX;
+	private float renderScaleY;
 }
