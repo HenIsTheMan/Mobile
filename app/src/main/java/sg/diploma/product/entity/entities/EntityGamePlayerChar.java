@@ -46,8 +46,6 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 	@Override
 	public void Update(final float dt){
-		final float beginY = attribs.pos.y;
-
 		if(currPlat != null){
 			attribs.vel.x = attribs.facing * 500.f;
 		} else{
