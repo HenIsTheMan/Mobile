@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
 
-import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.game.GameManager;
 import sg.diploma.product.math.CollisionDataBoxBoxAABB;
@@ -24,6 +23,8 @@ public final class EntityManager{ //Singleton
     public void Init(SurfaceView _view){
         view = _view;
     }
+
+    private float canvasYOffset = 0.0f;
 
     public void Update(float _dt){
         for(String element: entityRemovalList){
@@ -66,6 +67,11 @@ public final class EntityManager{ //Singleton
             entityList.remove(element);
         }
         entityRemovalList.clear();
+
+
+
+
+        canvasYOffset += 100.0f * _dt;
     }
 
     public void Render(Canvas _canvas){
@@ -118,7 +124,8 @@ public final class EntityManager{ //Singleton
         }
         Arrays.sort(entityAbstractArr, (o1, o2)->o1.attribs.renderLayer.GetVal() - o2.attribs.renderLayer.GetVal());
 
-        _canvas.translate(0.0f, DeviceManager.screenHeightF * 0.75f - playerChar.attribs.pos.y);
+        _canvas.translate(0.0f, canvasYOffset);
+        //_canvas.translate(0.0f, DeviceManager.screenHeightF * 0.75f - playerChar.attribs.pos.y);
         for(int i = 0; i < myArrLen; ++i){
             EntityAbstract entity = entityAbstractArr[i];
             if(!Objects.requireNonNull(entityToKey.get(entity)).startsWith("Special_")){ //Not special XD
@@ -126,7 +133,8 @@ public final class EntityManager{ //Singleton
             }
         }
 
-        _canvas.translate(0.0f, -DeviceManager.screenHeightF * 0.75f + playerChar.attribs.pos.y);
+        _canvas.translate(0.0f, -canvasYOffset);
+        //_canvas.translate(0.0f, -DeviceManager.screenHeightF * 0.75f + playerChar.attribs.pos.y);
         for(int i = 0; i < myArrLen; ++i){
             EntityAbstract entity = entityAbstractArr[i];
             if(Objects.requireNonNull(entityToKey.get(entity)).startsWith("Special_")){ //✨ Special ✨

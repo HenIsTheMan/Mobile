@@ -153,6 +153,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     @Override
     public void Render(Canvas _canvas){
+        //EntityManager.Instance.Render(_canvas);
         EntityManager.Instance.SpecialRender(_canvas, "Special_gamePlayerChar");
     }
 
