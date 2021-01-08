@@ -15,7 +15,7 @@ import sg.diploma.product.event.events.EventAddScore;
 import sg.diploma.product.graphics.Color;
 
 public final class EntityPlat extends EntityAbstract{
-	private EntityPlat(final EntityGamePlayerChar gamePlayerChar){
+	private EntityPlat(){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.Plat;
@@ -30,9 +30,6 @@ public final class EntityPlat extends EntityAbstract{
 		paint.setStyle(paintStyle);
 
 		collided = false;
-		myIndex = 0;
-		this.gamePlayerChar = gamePlayerChar;
-		assert this.gamePlayerChar != null;
 
 		currPopTime = 0.0f;
 		maxPopTime = 0.4f;
@@ -91,8 +88,8 @@ public final class EntityPlat extends EntityAbstract{
 		}
 	}
 
-	public static EntityPlat Create(final String key, final EntityGamePlayerChar gamePlayerChar){
-		EntityPlat result = new EntityPlat(gamePlayerChar);
+	public static EntityPlat Create(final String key){
+		EntityPlat result = new EntityPlat();
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}
@@ -111,17 +108,11 @@ public final class EntityPlat extends EntityAbstract{
 		paint.setStyle(paintStyle);
 	}
 
-	public void SetMyIndex(final int myIndex){
-		this.myIndex = myIndex;
-	}
-
 	private float strokeWidth;
 	private Paint.Style paintStyle;
 	private final Paint paint;
 
 	private boolean collided;
-	private int myIndex;
-	private final EntityGamePlayerChar gamePlayerChar;
 
 	private float currPopTime;
 	private final float maxPopTime;

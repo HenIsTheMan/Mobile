@@ -34,6 +34,7 @@ import sg.diploma.product.touch.TouchTypes;
 
 public final class GameScreenActivity extends Activity implements IState, IListener{
     public GameScreenActivity(){
+        platIndex = 0;
     }
 
     @Override
@@ -95,8 +96,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
             R.drawable.player_char
         );
 
-        GameData.startPlat = EntityPlat.Create("plat_0", GameData.gamePlayerChar);
-        GameData.startPlat.SetMyIndex(GameData.platIndex++);
+        GameData.startPlat = EntityPlat.Create("plat_start");
         GameData.startPlat.attribs.scale.x = DeviceManager.screenWidthF;
         GameData.startPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
         GameData.startPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
@@ -180,7 +180,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
         EntityManager.Instance.Update(_dt);
 
-        //SpawnPlats();
+        SpawnPlats();
 
         EntityManager.Instance.LateUpdate(_dt);
     }
@@ -190,8 +190,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         if(GameData.playerTravelledY > offset){
             GameData.totalYOffset -= offset;
 
-            EntityPlat plat = EntityPlat.Create("plat_" + ++GameData.platIndex, GameData.gamePlayerChar);
-            plat.SetMyIndex(GameData.platIndex);
+            EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
             plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.4f);
             plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.04f, 0.06f);
             plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
@@ -225,6 +224,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         }
     }
 
+    private int platIndex;
     private static Vibrator vibrator;
     public static GameScreenActivity Instance;
 

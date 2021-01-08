@@ -23,7 +23,6 @@ public final class GameData implements IListener{ //Singleton
 		playerTravelledY = 0.0f;
 		totalYOffset = 0.0f;
 		score = -1;
-		platIndex = 0;
 
 		fingerDownPos = null;
 		fingerUpPos = null;
@@ -47,7 +46,6 @@ public final class GameData implements IListener{ //Singleton
 	public static float playerTravelledY;
 	public static float totalYOffset;
 	public static int score;
-	public static int platIndex;
 
 	public static Vector2 fingerDownPos;
 	public static Vector2 fingerUpPos;
@@ -64,7 +62,6 @@ public final class GameData implements IListener{ //Singleton
 		playerTravelledY = 0.0f;
 		totalYOffset = 0.0f;
 		score = -1;
-		platIndex = 0;
 
 		fingerDownPos = null;
 		fingerUpPos = null;
