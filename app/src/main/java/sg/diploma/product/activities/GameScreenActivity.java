@@ -24,6 +24,7 @@ import sg.diploma.product.event.ListenerFlagsWrapper;
 import sg.diploma.product.event.Publisher;
 import sg.diploma.product.game.GameData;
 import sg.diploma.product.game.GameView;
+import sg.diploma.product.graphics.Color;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.math.Pseudorand;
 import sg.diploma.product.math.Vector2;
@@ -107,6 +108,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.startPlat.attribs.boxColliderPos.y = GameData.startPlat.attribs.pos.y;
         GameData.startPlat.attribs.boxColliderScale.x = GameData.startPlat.attribs.scale.x;
         GameData.startPlat.attribs.boxColliderScale.y = GameData.startPlat.attribs.scale.y;
+        GameData.startPlat.SetSteppedOnColor(new Color(1.0f, 0.0f, 1.0f, 0.7f));
 
         final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() / 9.f * 0.5f;
         final float playerCharHeight = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getHeight() * 0.2f;

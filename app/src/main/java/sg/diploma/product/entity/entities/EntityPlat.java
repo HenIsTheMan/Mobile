@@ -24,8 +24,9 @@ public final class EntityPlat extends EntityAbstract{
 		strokeWidth = 50.0f;
 		paintStyle = Paint.Style.FILL;
 		paint = new Paint();
+		steppedOnColor = new Color(1.0f, 1.0f, 0.0f, 0.7f);
 
-		paint.setARGB(153, 51, 51, 51);
+		paint.setARGB(255, 51, 51, 51);
 		paint.setStrokeWidth(strokeWidth);
 		paint.setStyle(paintStyle);
 
@@ -81,7 +82,7 @@ public final class EntityPlat extends EntityAbstract{
 	public void Collided(EntityAbstract other){
 		if(!collided && other.attribs.type == EntityTypes.EntityType.GamePlayerChar){
 			collided = true;
-			SetColor(new Color(1.0f, 1.0f, 0.0f, 1.0f));
+			ChangeColor(steppedOnColor);
 			Publisher.Broadcast(new EventAddScore(1));
 
 			currPopTime = maxPopTime;
@@ -94,8 +95,12 @@ public final class EntityPlat extends EntityAbstract{
 		return result;
 	}
 
-	public void SetColor(final Color color){
+	private void ChangeColor(final Color color){
 		paint.setARGB((int)(color.a * 255.0f), (int)(color.r * 255.0f), (int)(color.g * 255.0f), (int)(color.b * 255.0f));
+	}
+
+	public void SetSteppedOnColor(final Color color){
+		this.steppedOnColor = color;
 	}
 
 	public void SetStrokeWidth(final float strokeWidth){
@@ -111,6 +116,7 @@ public final class EntityPlat extends EntityAbstract{
 	private float strokeWidth;
 	private Paint.Style paintStyle;
 	private final Paint paint;
+	private Color steppedOnColor;
 
 	private boolean collided;
 
