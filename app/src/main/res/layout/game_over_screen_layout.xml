@@ -7,39 +7,24 @@
     android:orientation="vertical"
     >
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fillViewport="true"
-        >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-        </RelativeLayout>
-
-    </ScrollView>
-
     <TextView
-        android:id="@+id/gameOverText"
+        android:id="@+id/gameOverTextGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/GameOverText" />
+        android:text="@string/GameOverTextGame" />
+
+    <TextView
+        android:id="@+id/gameOverTextOver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/GameOverTextOver" />
 
     <Button
-        android:id="@+id/backButton"
+        android:id="@+id/continueButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/button" />
-
-    <ImageView
-        android:id="@+id/leftArrowIcon"
-        android:src="@drawable/left_arrow_icon"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/leftArrowIconInfo" />
+        android:text="@string/ContinueButtonText"
+        android:textAlignment="center"
+        android:background="@drawable/button2" />
 
 </RelativeLayout>

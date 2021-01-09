@@ -22,12 +22,15 @@
     <string name="androidStudioText">AndroidStudioText</string>
     <string name="androidStudioLogo">AndroidStudioLogo</string>
 
-    <string name="GameOverText">"Game Over"</string>
+    <string name="GameOverTextGame">"Game"</string>
+    <string name="GameOverTextOver">"Over"</string>
     <string name="RankingsText">"Rankings"</string>
     <string name="ShopText">"Shop"</string>
     <string name="SettingsText">"Settings"</string>
     <string name="MusicVolText">"Music Vol"</string>
     <string name="SoundVolText">"Sound Vol"</string>
+
+    <string name="ContinueButtonText">"Continue…"</string>
 
     <string name="PercentPostfix">%.1f%%</string>
 

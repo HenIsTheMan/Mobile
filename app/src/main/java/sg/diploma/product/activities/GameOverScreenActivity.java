@@ -15,7 +15,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -31,12 +30,10 @@ import sg.diploma.product.touch.TouchManager;
 
 public final class GameOverScreenActivity extends Activity implements View.OnTouchListener, IState{
 	public GameOverScreenActivity(){
-		backButtonDownAnimSet = null;
-		backButtonUpAnimSet = null;
+		continueButtonDownAnimSet = null;
+		continueButtonUpAnimSet = null;
 
-		backButton = null;
-
-		leftArrowIcon = null;
+		continueButton = null;
 	}
 
 	@SuppressLint("ClickableViewAccessibility")
@@ -48,56 +45,54 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		setContentView(R.layout.game_over_screen_layout);
 
 		final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
-		final float textTranslationX = DeviceManager.screenWidthF * 0.5f;
 
-		TextView gameOverText = findViewById(R.id.gameOverText);
-		gameOverText.setTypeface(font);
-		gameOverText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.18f / DeviceManager.scaledDensity);
-		gameOverText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-		gameOverText.setTranslationX(textTranslationX - (float)gameOverText.getMeasuredWidth() * 0.5f);
-		gameOverText.setTranslationY(DeviceManager.screenHeightF * 0.05f);
+		TextView gameOverTextGame = findViewById(R.id.gameOverTextGame);
+		gameOverTextGame.setTypeface(font);
+		gameOverTextGame.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.18f / DeviceManager.scaledDensity);
+		gameOverTextGame.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		gameOverTextGame.setTranslationX(DeviceManager.screenWidthF * 0.4f - (float)gameOverTextGame.getMeasuredWidth() * 0.5f);
+		gameOverTextGame.setTranslationY(DeviceManager.screenHeightF * 0.05f);
+
+		TextView gameOverTextOver = findViewById(R.id.gameOverTextOver);
+		gameOverTextOver.setTypeface(font);
+		gameOverTextOver.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.18f / DeviceManager.scaledDensity);
+		gameOverTextOver.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		gameOverTextOver.setTranslationX(DeviceManager.screenWidthF * 0.6f - (float)gameOverTextOver.getMeasuredWidth() * 0.5f);
+		gameOverTextOver.setTranslationY(DeviceManager.screenHeightF * 0.15f);
 
 		final float buttonFactor = DeviceManager.screenWidthF * 0.25f / 300.0f;
 		final int buttonSize = (int)(300.0f * buttonFactor * 0.7f);
 		final float buttonTranslateY = DeviceManager.screenHeightF
 				- (DeviceManager.screenWidthF - (DeviceManager.screenWidthF * 0.85f - buttonSize * 0.5f));
 
-		backButton = findViewById(R.id.backButton);
-		backButton.setOnTouchListener(this);
-		backButton.getLayoutParams().width = buttonSize;
-		backButton.getLayoutParams().height = buttonSize;
-		backButton.setTranslationX(DeviceManager.screenWidthF * 0.15f - buttonSize * 0.5f);
-		backButton.setTranslationY(buttonTranslateY);
+		continueButton = findViewById(R.id.continueButton);
+		continueButton.setOnTouchListener(this);
+		continueButton.setTypeface(font);
+		continueButton.getLayoutParams().width = buttonSize * 3;
+		continueButton.getLayoutParams().height = buttonSize;
+		continueButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - continueButton.getLayoutParams().width * 0.5f);
+		continueButton.setTranslationY(buttonTranslateY);
+		continueButton.setTextSize(buttonSize * 0.15f);
 
-		backButtonDownAnimSet = new AnimationSet(true);
-		backButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
-				Animation.ABSOLUTE, backButton.getTranslationX() + buttonSize * 0.5f,
-				Animation.ABSOLUTE, backButton.getTranslationY() + buttonSize * 0.5f));
-		backButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
-		backButtonDownAnimSet.setDuration(400);
-		backButtonDownAnimSet.setFillEnabled(true);
-		backButtonDownAnimSet.setFillAfter(true);
-		backButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
+		continueButtonDownAnimSet = new AnimationSet(true);
+		continueButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+				Animation.ABSOLUTE, continueButton.getTranslationX() + buttonSize * 0.5f,
+				Animation.ABSOLUTE, continueButton.getTranslationY() + buttonSize * 0.5f));
+		continueButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+		continueButtonDownAnimSet.setDuration(400);
+		continueButtonDownAnimSet.setFillEnabled(true);
+		continueButtonDownAnimSet.setFillAfter(true);
+		continueButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
 
-		backButtonUpAnimSet = new AnimationSet(true);
-		backButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
-				Animation.ABSOLUTE, backButton.getTranslationX() + buttonSize * 0.5f,
-				Animation.ABSOLUTE, backButton.getTranslationY() + buttonSize * 0.5f));
-		backButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
-		backButtonUpAnimSet.setDuration(400);
-		backButtonUpAnimSet.setFillEnabled(true);
-		backButtonUpAnimSet.setFillAfter(true);
-		backButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
-
-		leftArrowIcon = findViewById(R.id.leftArrowIcon);
-		leftArrowIcon.getLayoutParams().width = (int)(buttonSize * 0.65f);
-		leftArrowIcon.getLayoutParams().height = (int)(buttonSize * 0.65f);
-		leftArrowIcon.setTranslationX(backButton.getTranslationX()
-				+ (backButton.getLayoutParams().width
-				- leftArrowIcon.getLayoutParams().width) * 0.5f);
-		leftArrowIcon.setTranslationY(backButton.getTranslationY()
-				+ (backButton.getLayoutParams().height
-				- leftArrowIcon.getLayoutParams().height) * 0.5f);
+		continueButtonUpAnimSet = new AnimationSet(true);
+		continueButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
+				Animation.ABSOLUTE, continueButton.getTranslationX() + buttonSize * 0.5f,
+				Animation.ABSOLUTE, continueButton.getTranslationY() + buttonSize * 0.5f));
+		continueButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+		continueButtonUpAnimSet.setDuration(400);
+		continueButtonUpAnimSet.setFillEnabled(true);
+		continueButtonUpAnimSet.setFillAfter(true);
+		continueButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
 	}
 
 	@Override
@@ -109,13 +104,13 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View view, MotionEvent motionEvent){
-		if(view == backButton){
+		if(view == continueButton){
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
-					backButton.startAnimation(backButtonDownAnimSet);
+					continueButton.startAnimation(continueButtonDownAnimSet);
 					return true;
 				case MotionEvent.ACTION_UP:
-					backButton.startAnimation(backButtonUpAnimSet);
+					continueButton.startAnimation(continueButtonUpAnimSet);
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 					ReturnToMenu();
@@ -164,12 +159,10 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		finish();
 	}
 
-	private AnimationSet backButtonDownAnimSet;
-	private AnimationSet backButtonUpAnimSet;
+	private AnimationSet continueButtonDownAnimSet;
+	private AnimationSet continueButtonUpAnimSet;
 
-	private Button backButton;
-
-	private ImageView leftArrowIcon;
+	private Button continueButton;
 
 	public static GameOverScreenActivity Instance;
 
