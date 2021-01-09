@@ -314,12 +314,13 @@ public final class MenuScreenActivity
         //*/
 
         //* Create text on screen
+        final float textSize = 50.0f;
         textOnScreen = EntityTextOnScreen.Create("menuTextOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
-        textOnScreen.attribs.pos.x = 30.0f * 0.5f;
-        textOnScreen.attribs.pos.y = DeviceManager.screenHeightF - 30.0f;
+        textOnScreen.attribs.pos.x = DeviceManager.screenWidthF * 0.05f;
+        textOnScreen.attribs.pos.y = DeviceManager.screenHeightF - textOnScreen.attribs.pos.x;
         textOnScreen.SetColor(Color.green);
         textOnScreen.SetStrokeWidth(100.0f);
-        textOnScreen.SetTextSize(30.0f);
+        textOnScreen.SetTextSize(textSize);
         //*/
     }
 
