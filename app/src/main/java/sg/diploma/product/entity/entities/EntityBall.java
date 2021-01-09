@@ -99,10 +99,10 @@ public final class EntityBall extends EntityAbstract{
 
 	public void SetVals(final float[] vals){
 		if((this.vals[0] > 0.0f && vals[0] < 0.0f) || (this.vals[0] < 0.0f && vals[0] > 0.0f)){
-			attribs.vel.x = vals[0] < 0.0f ? 40.0f : -40.0f;
+			attribs.vel.x = 0.0f;
 		}
 		if((this.vals[1] > 0.0f && vals[1] < 0.0f) || (this.vals[1] < 0.0f && vals[1] > 0.0f)){
-			attribs.vel.y = vals[1] < 0.0f ? -40.0f : 40.0f;
+			attribs.vel.y = 0.0f;
 		}
 
 		this.vals = vals;

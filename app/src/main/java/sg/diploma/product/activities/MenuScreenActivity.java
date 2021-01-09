@@ -59,6 +59,7 @@ public final class MenuScreenActivity
     implements View.OnTouchListener, IState, SensorEventListener, IListener{
 
     public MenuScreenActivity(){
+        calibrated = false;
         isFingerOffScreenBefore = true;
         shldStartMoving = false;
 
@@ -166,6 +167,12 @@ public final class MenuScreenActivity
     @Override
     public void onSensorChanged(SensorEvent SenseEvent){
         if(ball != null){
+            if(!calibrated){
+                SenseEvent.values[0] = 0.0f;
+                SenseEvent.values[1] = 0.0f;
+                SenseEvent.values[2] = 0.0f;
+                calibrated = true;
+            }
             ball.SetVals(SenseEvent.values);
         }
     }
@@ -299,7 +306,7 @@ public final class MenuScreenActivity
         );
 
         ball.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
-        ball.attribs.pos.y = DeviceManager.screenHeightF * 0.9f;
+        ball.attribs.pos.y = DeviceManager.screenHeightF * 0.8f;
         ball.attribs.scale.x = ball.attribs.scale.y = 80.0f;
         final float ballHalfSize = ball.attribs.scale.x * 0.5f;
 
@@ -662,6 +669,7 @@ public final class MenuScreenActivity
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    private boolean calibrated;
     private boolean isFingerOffScreenBefore;
     private boolean shldStartMoving;
 
