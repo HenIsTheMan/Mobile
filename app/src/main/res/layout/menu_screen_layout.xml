@@ -18,13 +18,19 @@
         android:background="@drawable/button" />
 
     <Button
-        android:id="@+id/optionsButton"
+        android:id="@+id/rankingsButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/button" />
 
     <Button
         android:id="@+id/shopButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button" />
+
+    <Button
+        android:id="@+id/optionsButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/button" />
@@ -43,11 +49,11 @@
         android:contentDescription="@string/playIconInfo" />
 
     <ImageView
-        android:id="@+id/gearsIcon"
-        android:src="@drawable/gears_icon"
+        android:id="@+id/podiumIcon"
+        android:src="@drawable/podium_icon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/gearsIconInfo" />
+        android:contentDescription="@string/podiumIconInfo" />
 
     <ImageView
         android:id="@+id/shoppingCartIcon"
@@ -55,6 +61,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/shoppingCartIconInfo" />
+
+    <ImageView
+        android:id="@+id/gearsIcon"
+        android:src="@drawable/gears_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/gearsIconInfo" />
 
     <ImageView
         android:id="@+id/leaveIcon"

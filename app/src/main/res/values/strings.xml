@@ -7,9 +7,10 @@
     <string name="GameTitleGirlText">"Girl"</string>
 
     <string name="playIconInfo">PlayIcon</string>
+    <string name="podiumIconInfo">RankingsIcon</string>
+    <string name="shoppingCartIconInfo">ShoppingaCartIcon</string>
     <string name="gearsIconInfo">GearsIcon</string>
     <string name="leaveIconInfo">LeaveIcon</string>
-    <string name="shoppingCartIconInfo">ShoppingaCartIcon</string>
     <string name="leftArrowIconInfo">LeftArrowIcon</string>
     <string name="floppyDiskIconInfo">FloppyDiskIcon</string>
     <string name="gearResetIconInfo">GearResetIcon</string>

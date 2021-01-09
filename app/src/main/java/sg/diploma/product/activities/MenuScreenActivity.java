@@ -64,16 +64,19 @@ public final class MenuScreenActivity
 
         startButtonDownAnimSet = null;
         startButtonUpAnimSet = null;
-        optionsButtonDownAnimSet = null;
-        optionsButtonUpAnimSet = null;
+        rankingsButtonDownAnimSet = null;
+        rankingsButtonUpAnimSet = null;
         shopButtonDownAnimSet = null;
         shopButtonUpAnimSet = null;
+        optionsButtonDownAnimSet = null;
+        optionsButtonUpAnimSet = null;
         exitButtonDownAnimSet = null;
         exitButtonUpAnimSet = null;
 
         startButton = null;
-        optionsButton = null;
+        rankingsButton = null;
         shopButton = null;
+        optionsButton = null;
         exitButton = null;
 
         ball = null;
@@ -81,8 +84,9 @@ public final class MenuScreenActivity
         textOnScreen = null;
 
         playIcon = null;
-        gearsIcon = null;
+        podiumIcon = null;
         shoppingCartIcon = null;
+        gearsIcon = null;
         leaveIcon = null;
         myShape = null;
 
@@ -424,32 +428,32 @@ public final class MenuScreenActivity
         startButtonUpAnimSet.setFillAfter(true);
         startButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
 
-        optionsButton = findViewById(R.id.optionsButton);
-        optionsButton.setOnTouchListener(this);
-        optionsButton.getLayoutParams().width = buttonSize;
-        optionsButton.getLayoutParams().height = buttonSize;
-        optionsButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)buttonSize * 0.5f);
-        optionsButton.setTranslationY(DeviceManager.screenHeightF * 0.45f - (float)buttonSize * 0.5f);
+        rankingsButton = findViewById(R.id.rankingsButton);
+        rankingsButton.setOnTouchListener(this);
+        rankingsButton.getLayoutParams().width = buttonSize;
+        rankingsButton.getLayoutParams().height = buttonSize;
+        rankingsButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)buttonSize * 0.5f);
+        rankingsButton.setTranslationY(DeviceManager.screenHeightF * 0.45f - (float)buttonSize * 0.5f);
 
-        optionsButtonDownAnimSet = new AnimationSet(true);
-        optionsButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f,
-                Animation.ABSOLUTE, optionsButton.getTranslationX() + buttonSize * 0.5f,
-                Animation.ABSOLUTE, optionsButton.getTranslationY() + buttonSize * 0.5f));
-        optionsButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
-        optionsButtonDownAnimSet.setDuration(400);
-        optionsButtonDownAnimSet.setFillEnabled(true);
-        optionsButtonDownAnimSet.setFillAfter(true);
-        optionsButtonDownAnimSet.setInterpolator(this, R.anim.my_anticipate_interpolator);
+        rankingsButtonDownAnimSet = new AnimationSet(true);
+        rankingsButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f,
+                Animation.ABSOLUTE, rankingsButton.getTranslationX() + buttonSize * 0.5f,
+                Animation.ABSOLUTE, rankingsButton.getTranslationY() + buttonSize * 0.5f));
+        rankingsButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+        rankingsButtonDownAnimSet.setDuration(400);
+        rankingsButtonDownAnimSet.setFillEnabled(true);
+        rankingsButtonDownAnimSet.setFillAfter(true);
+        rankingsButtonDownAnimSet.setInterpolator(this, R.anim.my_anticipate_interpolator);
 
-        optionsButtonUpAnimSet = new AnimationSet(true);
-        optionsButtonUpAnimSet.addAnimation(new ScaleAnimation(1.1f, 1.0f, 1.1f, 1.0f,
-                Animation.ABSOLUTE, optionsButton.getTranslationX() + buttonSize * 0.5f,
-                Animation.ABSOLUTE, optionsButton.getTranslationY() + buttonSize * 0.5f));
-        optionsButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
-        optionsButtonUpAnimSet.setDuration(400);
-        optionsButtonUpAnimSet.setFillEnabled(true);
-        optionsButtonUpAnimSet.setFillAfter(true);
-        optionsButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
+        rankingsButtonUpAnimSet = new AnimationSet(true);
+        rankingsButtonUpAnimSet.addAnimation(new ScaleAnimation(1.1f, 1.0f, 1.1f, 1.0f,
+                Animation.ABSOLUTE, rankingsButton.getTranslationX() + buttonSize * 0.5f,
+                Animation.ABSOLUTE, rankingsButton.getTranslationY() + buttonSize * 0.5f));
+        rankingsButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+        rankingsButtonUpAnimSet.setDuration(400);
+        rankingsButtonUpAnimSet.setFillEnabled(true);
+        rankingsButtonUpAnimSet.setFillAfter(true);
+        rankingsButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
 
         shopButton = findViewById(R.id.shopButton);
         shopButton.setOnTouchListener(this);
@@ -478,18 +482,46 @@ public final class MenuScreenActivity
         shopButtonUpAnimSet.setFillAfter(true);
         shopButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
 
-        final float exitButtonSize = (float)buttonSize * 0.7f;
+        final float otherButtonSize = (float)buttonSize * 0.7f;
+
+        optionsButton = findViewById(R.id.optionsButton);
+        optionsButton.setOnTouchListener(this);
+        optionsButton.getLayoutParams().width = optionsButton.getLayoutParams().height = (int)otherButtonSize;
+        final float optionsButttonTranslateX = DeviceManager.screenWidthF * 0.65f - otherButtonSize * 0.5f;
+        optionsButton.setTranslationX(optionsButttonTranslateX);
+        optionsButton.setTranslationY(DeviceManager.screenHeightF - (DeviceManager.screenWidthF - optionsButttonTranslateX));
+
+        optionsButtonDownAnimSet = new AnimationSet(true);
+        optionsButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f,
+                Animation.ABSOLUTE, optionsButton.getTranslationX() + otherButtonSize * 0.5f,
+                Animation.ABSOLUTE, optionsButton.getTranslationY() + otherButtonSize * 0.5f));
+        optionsButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+        optionsButtonDownAnimSet.setDuration(400);
+        optionsButtonDownAnimSet.setFillEnabled(true);
+        optionsButtonDownAnimSet.setFillAfter(true);
+        optionsButtonDownAnimSet.setInterpolator(this, R.anim.my_anticipate_interpolator);
+
+        optionsButtonUpAnimSet = new AnimationSet(true);
+        optionsButtonUpAnimSet.addAnimation(new ScaleAnimation(1.1f, 1.0f, 1.1f, 1.0f,
+                Animation.ABSOLUTE, optionsButton.getTranslationX() + otherButtonSize * 0.5f,
+                Animation.ABSOLUTE, optionsButton.getTranslationY() + otherButtonSize * 0.5f));
+        optionsButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+        optionsButtonUpAnimSet.setDuration(400);
+        optionsButtonUpAnimSet.setFillEnabled(true);
+        optionsButtonUpAnimSet.setFillAfter(true);
+        optionsButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
+
         exitButton = findViewById(R.id.exitButton);
         exitButton.setOnTouchListener(this);
-        exitButton.getLayoutParams().width = exitButton.getLayoutParams().height = (int)exitButtonSize;
-        final float exitButttonTranslateX = DeviceManager.screenWidthF * 0.85f - exitButtonSize * 0.5f;
+        exitButton.getLayoutParams().width = exitButton.getLayoutParams().height = (int)otherButtonSize;
+        final float exitButttonTranslateX = DeviceManager.screenWidthF * 0.85f - otherButtonSize * 0.5f;
         exitButton.setTranslationX(exitButttonTranslateX);
         exitButton.setTranslationY(DeviceManager.screenHeightF - (DeviceManager.screenWidthF - exitButttonTranslateX));
 
         exitButtonDownAnimSet = new AnimationSet(true);
         exitButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f,
-                Animation.ABSOLUTE, exitButton.getTranslationX() + exitButtonSize * 0.5f,
-                Animation.ABSOLUTE, exitButton.getTranslationY() + exitButtonSize * 0.5f));
+                Animation.ABSOLUTE, exitButton.getTranslationX() + otherButtonSize * 0.5f,
+                Animation.ABSOLUTE, exitButton.getTranslationY() + otherButtonSize * 0.5f));
         exitButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
         exitButtonDownAnimSet.setDuration(400);
         exitButtonDownAnimSet.setFillEnabled(true);
@@ -498,14 +530,15 @@ public final class MenuScreenActivity
 
         exitButtonUpAnimSet = new AnimationSet(true);
         exitButtonUpAnimSet.addAnimation(new ScaleAnimation(1.1f, 1.0f, 1.1f, 1.0f,
-                Animation.ABSOLUTE, exitButton.getTranslationX() + exitButtonSize * 0.5f,
-                Animation.ABSOLUTE, exitButton.getTranslationY() + exitButtonSize * 0.5f));
+                Animation.ABSOLUTE, exitButton.getTranslationX() + otherButtonSize * 0.5f,
+                Animation.ABSOLUTE, exitButton.getTranslationY() + otherButtonSize * 0.5f));
         exitButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
         exitButtonUpAnimSet.setDuration(400);
         exitButtonUpAnimSet.setFillEnabled(true);
         exitButtonUpAnimSet.setFillAfter(true);
         exitButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
 
+        //* Init icons
         playIcon = findViewById(R.id.playIcon);
         playIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
         playIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
@@ -516,15 +549,15 @@ public final class MenuScreenActivity
                 + (startButton.getLayoutParams().height
                 - playIcon.getLayoutParams().height) * 0.5f);
 
-        gearsIcon = findViewById(R.id.gearsIcon);
-        gearsIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
-        gearsIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
-        gearsIcon.setTranslationX(optionsButton.getTranslationX()
-                + (optionsButton.getLayoutParams().width
-                - gearsIcon.getLayoutParams().width) * 0.5f);
-        gearsIcon.setTranslationY(optionsButton.getTranslationY()
-                + (optionsButton.getLayoutParams().height
-                - gearsIcon.getLayoutParams().height) * 0.5f);
+        podiumIcon = findViewById(R.id.podiumIcon);
+        podiumIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
+        podiumIcon.getLayoutParams().height = (int)((float)buttonSize * 0.65f);
+        podiumIcon.setTranslationX(rankingsButton.getTranslationX()
+                + (rankingsButton.getLayoutParams().width
+                - podiumIcon.getLayoutParams().width) * 0.5f);
+        podiumIcon.setTranslationY(rankingsButton.getTranslationY()
+                + (rankingsButton.getLayoutParams().height
+                - podiumIcon.getLayoutParams().height) * 0.5f);
 
         shoppingCartIcon = findViewById(R.id.shoppingCartIcon);
         shoppingCartIcon.getLayoutParams().width = (int)((float)buttonSize * 0.65f);
@@ -536,16 +569,28 @@ public final class MenuScreenActivity
                 + (shopButton.getLayoutParams().height
                 - shoppingCartIcon.getLayoutParams().height) * 0.5f);
 
+        gearsIcon = findViewById(R.id.gearsIcon);
+        gearsIcon.getLayoutParams().width = (int)(otherButtonSize * 0.65f);
+        gearsIcon.getLayoutParams().height = (int)(otherButtonSize * 0.65f);
+        gearsIcon.setTranslationX(optionsButton.getTranslationX()
+                + (optionsButton.getLayoutParams().width
+                - gearsIcon.getLayoutParams().width) * 0.5f);
+        gearsIcon.setTranslationY(optionsButton.getTranslationY()
+                + (optionsButton.getLayoutParams().height
+                - gearsIcon.getLayoutParams().height) * 0.5f);
+
         leaveIcon = findViewById(R.id.leaveIcon);
-        leaveIcon.getLayoutParams().width = (int)(exitButtonSize * 0.65f);
-        leaveIcon.getLayoutParams().height = (int)(exitButtonSize * 0.65f);
+        leaveIcon.getLayoutParams().width = (int)(otherButtonSize * 0.65f);
+        leaveIcon.getLayoutParams().height = (int)(otherButtonSize * 0.65f);
         leaveIcon.setTranslationX(exitButton.getTranslationX()
                 + (exitButton.getLayoutParams().width
                 - leaveIcon.getLayoutParams().width) * 0.5f);
         leaveIcon.setTranslationY(exitButton.getTranslationY()
                 + (exitButton.getLayoutParams().height
                 - leaveIcon.getLayoutParams().height) * 0.5f);
+        //*/
 
+        //* Init texts
         font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
 
         gameTitleBossText = findViewById(R.id.gameTitleBossText);
@@ -565,6 +610,7 @@ public final class MenuScreenActivity
         gameTitleGirlText.setTranslationX(DeviceManager.screenWidthF * 0.5f
                 - (float)gameTitleGirlText.getMeasuredWidth() * 0.5f);
         gameTitleGirlText.setTranslationY(DeviceManager.screenHeightF * 0.17f);
+        //*/
     }
 
     private void InitFB(){
@@ -600,16 +646,19 @@ public final class MenuScreenActivity
 
     private AnimationSet startButtonDownAnimSet;
     private AnimationSet startButtonUpAnimSet;
-    private AnimationSet optionsButtonDownAnimSet;
-    private AnimationSet optionsButtonUpAnimSet;
+    private AnimationSet rankingsButtonDownAnimSet;
+    private AnimationSet rankingsButtonUpAnimSet;
     private AnimationSet shopButtonDownAnimSet;
     private AnimationSet shopButtonUpAnimSet;
+    private AnimationSet optionsButtonDownAnimSet;
+    private AnimationSet optionsButtonUpAnimSet;
     private AnimationSet exitButtonDownAnimSet;
     private AnimationSet exitButtonUpAnimSet;
 
     private Button startButton;
-    private Button optionsButton;
+    private Button rankingsButton;
     private Button shopButton;
+    private Button optionsButton;
     private Button exitButton;
 
     private static EntityBall ball;
@@ -617,8 +666,9 @@ public final class MenuScreenActivity
     private EntityTextOnScreen textOnScreen;
 
     private ImageView playIcon;
-    private ImageView gearsIcon;
+    private ImageView podiumIcon;
     private ImageView shoppingCartIcon;
+    private ImageView gearsIcon;
     private ImageView leaveIcon;
     private ImageView myShape;
 
