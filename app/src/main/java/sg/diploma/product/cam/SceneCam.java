@@ -2,7 +2,7 @@ package sg.diploma.product.cam;
 
 import sg.diploma.product.math.Vector2;
 
-public class SceneCam{ //Imaginary //Uses the same coord system as canvas
+public final class SceneCam{ //Imaginary //Uses the same coord system as canvas
 	public SceneCam(){
 		pos = new Vector2();
 		vel = new Vector2();
