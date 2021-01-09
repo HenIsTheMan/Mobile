@@ -22,8 +22,8 @@
     <string name="androidStudioText">AndroidStudioText</string>
     <string name="androidStudioLogo">AndroidStudioLogo</string>
 
-    <string name="GameOverTextGame">"Game"</string>
-    <string name="GameOverTextOver">"Over"</string>
+    <string name="GameOverText0">"Game"</string>
+    <string name="GameOverText1">"End"</string>
     <string name="RankingsText">"Rankings"</string>
     <string name="ShopText">"Shop"</string>
     <string name="SettingsText">"Settings"</string>

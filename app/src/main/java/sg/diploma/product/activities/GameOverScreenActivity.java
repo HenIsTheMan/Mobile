@@ -46,19 +46,19 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 
 		final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
 
-		TextView gameOverTextGame = findViewById(R.id.gameOverTextGame);
-		gameOverTextGame.setTypeface(font);
-		gameOverTextGame.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.18f / DeviceManager.scaledDensity);
-		gameOverTextGame.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-		gameOverTextGame.setTranslationX(DeviceManager.screenWidthF * 0.4f - (float)gameOverTextGame.getMeasuredWidth() * 0.5f);
-		gameOverTextGame.setTranslationY(DeviceManager.screenHeightF * 0.05f);
+		TextView gameOverText0 = findViewById(R.id.gameOverText0);
+		gameOverText0.setTypeface(font);
+		gameOverText0.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.18f / DeviceManager.scaledDensity);
+		gameOverText0.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		gameOverText0.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)gameOverText0.getMeasuredWidth() * 0.5f);
+		gameOverText0.setTranslationY(DeviceManager.screenHeightF * 0.05f);
 
-		TextView gameOverTextOver = findViewById(R.id.gameOverTextOver);
-		gameOverTextOver.setTypeface(font);
-		gameOverTextOver.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.18f / DeviceManager.scaledDensity);
-		gameOverTextOver.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-		gameOverTextOver.setTranslationX(DeviceManager.screenWidthF * 0.6f - (float)gameOverTextOver.getMeasuredWidth() * 0.5f);
-		gameOverTextOver.setTranslationY(DeviceManager.screenHeightF * 0.15f);
+		TextView gameOverText1 = findViewById(R.id.gameOverText1);
+		gameOverText1.setTypeface(font);
+		gameOverText1.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.18f / DeviceManager.scaledDensity);
+		gameOverText1.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		gameOverText1.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)gameOverText1.getMeasuredWidth() * 0.5f);
+		gameOverText1.setTranslationY(DeviceManager.screenHeightF * 0.15f);
 
 		final float buttonFactor = DeviceManager.screenWidthF * 0.25f / 300.0f;
 		final int buttonSize = (int)(300.0f * buttonFactor * 0.7f);

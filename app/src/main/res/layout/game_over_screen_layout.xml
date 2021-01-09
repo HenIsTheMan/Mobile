@@ -8,16 +8,16 @@
     >
 
     <TextView
-        android:id="@+id/gameOverTextGame"
+        android:id="@+id/gameOverText0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/GameOverTextGame" />
+        android:text="@string/GameOverText0" />
 
     <TextView
-        android:id="@+id/gameOverTextOver"
+        android:id="@+id/gameOverText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/GameOverTextOver" />
+        android:text="@string/GameOverText1" />
 
     <Button
         android:id="@+id/continueButton"
