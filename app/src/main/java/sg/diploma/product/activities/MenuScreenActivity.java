@@ -198,20 +198,19 @@ public final class MenuScreenActivity
             }
             return false;
         }
-        if(view == optionsButton){
+        if(view == rankingsButton){
             switch(motionEvent.getAction()){
                 case MotionEvent.ACTION_DOWN:
-                    optionsButton.startAnimation(optionsButtonDownAnimSet);
+                    rankingsButton.startAnimation(rankingsButtonDownAnimSet);
                     return true;
                 case MotionEvent.ACTION_UP:
-                    optionsButton.startAnimation(optionsButtonUpAnimSet);
+                    rankingsButton.startAnimation(rankingsButtonUpAnimSet);
                     AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
                     EntityManager.Instance.SendAllEntitiesForRemoval();
-                    AudioManager.Instance.SaveAudioVolData();
-                    StateManager.Instance.ChangeState("OptionsScreen");
+                    StateManager.Instance.ChangeState("RankingsScreen");
 
-                    startActivity(new Intent(this, OptionsScreenActivity.class));
+                    startActivity(new Intent(this, RankingsScreenActivity.class));
                     finish();
 
                     return true;
@@ -231,6 +230,26 @@ public final class MenuScreenActivity
                     StateManager.Instance.ChangeState("ShopScreen");
 
                     startActivity(new Intent(this, ShopScreenActivity.class));
+                    finish();
+
+                    return true;
+            }
+            return false;
+        }
+        if(view == optionsButton){
+            switch(motionEvent.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    optionsButton.startAnimation(optionsButtonDownAnimSet);
+                    return true;
+                case MotionEvent.ACTION_UP:
+                    optionsButton.startAnimation(optionsButtonUpAnimSet);
+                    AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+
+                    EntityManager.Instance.SendAllEntitiesForRemoval();
+                    AudioManager.Instance.SaveAudioVolData();
+                    StateManager.Instance.ChangeState("OptionsScreen");
+
+                    startActivity(new Intent(this, OptionsScreenActivity.class));
                     finish();
 
                     return true;
@@ -483,13 +502,15 @@ public final class MenuScreenActivity
         shopButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
 
         final float otherButtonSize = (float)buttonSize * 0.7f;
+        final float exitButttonTranslateX = DeviceManager.screenWidthF * 0.85f - otherButtonSize * 0.5f;
+        final float otherButtonTranslateY = DeviceManager.screenHeightF - (DeviceManager.screenWidthF - exitButttonTranslateX);
+        final float otherButtonSpacing = DeviceManager.screenWidthF - exitButttonTranslateX;
 
         optionsButton = findViewById(R.id.optionsButton);
         optionsButton.setOnTouchListener(this);
         optionsButton.getLayoutParams().width = optionsButton.getLayoutParams().height = (int)otherButtonSize;
-        final float optionsButttonTranslateX = DeviceManager.screenWidthF * 0.65f - otherButtonSize * 0.5f;
-        optionsButton.setTranslationX(optionsButttonTranslateX);
-        optionsButton.setTranslationY(DeviceManager.screenHeightF - (DeviceManager.screenWidthF - optionsButttonTranslateX));
+        optionsButton.setTranslationX(exitButttonTranslateX - otherButtonSpacing);
+        optionsButton.setTranslationY(otherButtonTranslateY);
 
         optionsButtonDownAnimSet = new AnimationSet(true);
         optionsButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f,
@@ -514,9 +535,9 @@ public final class MenuScreenActivity
         exitButton = findViewById(R.id.exitButton);
         exitButton.setOnTouchListener(this);
         exitButton.getLayoutParams().width = exitButton.getLayoutParams().height = (int)otherButtonSize;
-        final float exitButttonTranslateX = DeviceManager.screenWidthF * 0.85f - otherButtonSize * 0.5f;
+
         exitButton.setTranslationX(exitButttonTranslateX);
-        exitButton.setTranslationY(DeviceManager.screenHeightF - (DeviceManager.screenWidthF - exitButttonTranslateX));
+        exitButton.setTranslationY(otherButtonTranslateY);
 
         exitButtonDownAnimSet = new AnimationSet(true);
         exitButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f,
