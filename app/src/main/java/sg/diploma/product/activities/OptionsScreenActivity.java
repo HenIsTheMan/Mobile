@@ -1,6 +1,7 @@
 package sg.diploma.product.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -463,7 +464,7 @@ public final class OptionsScreenActivity
 		EntityManager.Instance.SendAllEntitiesForRemoval();
 		StateManager.Instance.ChangeState("MenuScreen");
 
-		//startActivity(new Intent(this, MenuScreenActivity.class));
+		startActivity(new Intent(this, MenuScreenActivity.class));
 		finish();
 	}
 

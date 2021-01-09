@@ -2,6 +2,7 @@ package sg.diploma.product.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -155,7 +156,7 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		EntityManager.Instance.SendAllEntitiesForRemoval();
 		StateManager.Instance.ChangeState("MenuScreen");
 
-		//startActivity(new Intent(this, MenuScreenActivity.class));
+		startActivity(new Intent(this, MenuScreenActivity.class));
 		finish();
 	}
 
