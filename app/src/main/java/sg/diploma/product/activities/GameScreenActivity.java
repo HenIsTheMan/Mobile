@@ -212,9 +212,9 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
                 GameData.globalInstance.ResetVars();
                 EntityManager.Instance.SendAllEntitiesForRemoval();
-                StateManager.Instance.ChangeState("RankingsScreen");
+                StateManager.Instance.ChangeState("GameOverScreen");
 
-                startActivity(new Intent(this, RankingsScreenActivity.class));
+                startActivity(new Intent(this, GameOverScreenActivity.class));
                 finish();
 
                 break;
