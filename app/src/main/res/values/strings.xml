@@ -22,6 +22,7 @@
     <string name="androidStudioText">AndroidStudioText</string>
     <string name="androidStudioLogo">AndroidStudioLogo</string>
 
+    <string name="RankingsText">"Rankings"</string>
     <string name="ShopText">"Shop"</string>
     <string name="SettingsText">"Settings"</string>
     <string name="MusicVolText">"Music Vol"</string>

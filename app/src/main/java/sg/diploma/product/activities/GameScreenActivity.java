@@ -1,6 +1,7 @@
 package sg.diploma.product.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Build;
@@ -211,7 +212,10 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
                 GameData.globalInstance.ResetVars();
                 EntityManager.Instance.SendAllEntitiesForRemoval();
-                StateManager.Instance.ChangeState("MenuScreen");
+                StateManager.Instance.ChangeState("RankingsScreen");
+
+                startActivity(new Intent(this, RankingsScreenActivity.class));
+                finish();
 
                 break;
         }

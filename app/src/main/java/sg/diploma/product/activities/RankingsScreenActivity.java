@@ -29,8 +29,8 @@ import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
 
-public final class ShopScreenActivity extends Activity implements View.OnTouchListener, IState{
-	public ShopScreenActivity(){
+public final class RankingsScreenActivity extends Activity implements View.OnTouchListener, IState{
+	public RankingsScreenActivity(){
 		backButtonDownAnimSet = null;
 		backButtonUpAnimSet = null;
 
@@ -45,17 +45,17 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Instance = this;
-		setContentView(R.layout.shop_screen_layout);
+		setContentView(R.layout.rankings_screen_layout);
 
 		final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
 		final float textTranslationX = DeviceManager.screenWidthF * 0.5f;
 
-		TextView shopText = findViewById(R.id.shopText);
-		shopText.setTypeface(font);
-		shopText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.18f / DeviceManager.scaledDensity);
-		shopText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-		shopText.setTranslationX(textTranslationX - (float)shopText.getMeasuredWidth() * 0.5f);
-		shopText.setTranslationY(DeviceManager.screenHeightF * 0.05f);
+		TextView RankingsText = findViewById(R.id.rankingsText);
+		RankingsText.setTypeface(font);
+		RankingsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.18f / DeviceManager.scaledDensity);
+		RankingsText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		RankingsText.setTranslationX(textTranslationX - (float)RankingsText.getMeasuredWidth() * 0.5f);
+		RankingsText.setTranslationY(DeviceManager.screenHeightF * 0.05f);
 
 		final float buttonFactor = DeviceManager.screenWidthF * 0.25f / 300.0f;
 		final int buttonSize = (int)(300.0f * buttonFactor * 0.7f);
@@ -139,7 +139,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 
 	@Override
 	public String GetName(){
-		return "ShopScreen";
+		return "RankingsScreen";
 	}
 
 	@Override
@@ -171,7 +171,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 
 	private ImageView leftArrowIcon;
 
-	public static ShopScreenActivity Instance;
+	public static RankingsScreenActivity Instance;
 
 	static{
 		Instance = null;
