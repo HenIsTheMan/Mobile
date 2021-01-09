@@ -112,8 +112,8 @@ public final class MenuScreenActivity
         Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.MenuScreenActivity.GetVal(), this);
 
         SurfaceView menuSurfaceView = findViewById(R.id.menuSurfaceView);
-        updateThread = new UpdateThread(menuSurfaceView, R.raw.space, 8);
-        updateThread.SetDelay(10);
+        updateThread = new UpdateThread(menuSurfaceView, R.raw.space, 80);
+        updateThread.SetDelay(60);
         SurfaceHolder surfaceHolder = menuSurfaceView.getHolder();
 
         if(surfaceHolder != null){
@@ -192,7 +192,7 @@ public final class MenuScreenActivity
                     StateManager.Instance.ChangeState("GameScreen");
 
                     startActivity(new Intent(this, GameScreenActivity.class));
-                    //finish();
+                    finish();
 
                     return true;
             }

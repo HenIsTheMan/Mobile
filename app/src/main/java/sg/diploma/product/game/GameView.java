@@ -10,8 +10,8 @@ import sg.diploma.product.device.UpdateThread;
 public final class GameView extends SurfaceView{
     public GameView(final Context context){
         super(context);
-        updateThread = new UpdateThread(this, R.raw.future_place, 10);
-        updateThread.SetDelay(10);
+        updateThread = new UpdateThread(this, R.raw.future_place, 80);
+        updateThread.SetDelay(100);
         SurfaceHolder surfaceHolder = getHolder(); //Holds content
 
         if(surfaceHolder != null){
