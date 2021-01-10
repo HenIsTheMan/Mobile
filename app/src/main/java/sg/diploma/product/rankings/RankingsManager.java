@@ -46,32 +46,33 @@ public class RankingsManager{
 		}*/
 	}
 
-	public void SaveRankings(final Context context, final String name){
+	/** @noinspection ResultOfMethodCallIgnored*/
+	public void SaveRankings(final Context context, final String scoresFileName, final String namesFileName){
 		String state = Environment.getExternalStorageState();
 		if(!Environment.MEDIA_MOUNTED.equals(state)){
 			Log.e("no", "HERE");
 			return;
 		}
 
-
-/*		// create a File object for the output file
-		File outputFile = new File(wallpaperDirectory, filename);
-		// now attach the OutputStream to the file object, instead of a String representation
-		FileOutputStream fos = new FileOutputStream(outputFile);*/
-
 		String pathToAppFolder = context.getExternalFilesDir(null).getAbsolutePath();
 		File dir = new File(pathToAppFolder + File.separator);
 		dir.mkdirs();
-		File file = new File(dir, name);
 
-		FileOutputStream fos = null;
-		ObjectOutputStream os = null;
+		File scoresFile = new File(dir, scoresFileName);
+		File namesFile = new File(dir, namesFileName);
+
+		FileOutputStream scoresFOS = null;
+		ObjectOutputStream scoresOOS = null;
+		FileOutputStream namesFOS = null;
+		ObjectOutputStream namesOOS = null;
 		try{
-			fos = new FileOutputStream(file);
-			os = new ObjectOutputStream(fos);
+			scoresFOS = new FileOutputStream(scoresFile);
+			scoresOOS = new ObjectOutputStream(scoresFOS);
+			scoresOOS.writeObject(rankings.keys().toArray());
 
-			//os.writeObject(rankings.keys());
-			os.writeObject(rankings.values().toArray());
+			namesFOS = new FileOutputStream(namesFile);
+			namesOOS = new ObjectOutputStream(namesFOS);
+			namesOOS.writeObject(rankings.values().toArray());
 		} catch(FileNotFoundException e){
 			Log.e("me222", "HERE");
 			e.printStackTrace();
@@ -80,14 +81,21 @@ public class RankingsManager{
 			e.printStackTrace();
 		} finally{
 			try{
-				if(os != null){
-					os.close();
+				if(scoresOOS != null){
+					scoresOOS.close();
 				}
-				if(fos != null){
-					fos.close();
+				if(scoresFOS != null){
+					scoresFOS.close();
+				}
+				if(namesOOS != null){
+					namesOOS.close();
+				}
+				if(namesFOS != null){
+					namesFOS.close();
 				}
 			} catch(IOException e){
 				Log.e("me444", "HERE");
+				e.printStackTrace();
 			}
 		}
 	}
