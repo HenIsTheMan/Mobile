@@ -10,6 +10,8 @@ import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
+import sg.diploma.product.event.Publisher;
+import sg.diploma.product.event.events.EventDeactivateParticle;
 import sg.diploma.product.graphics.ResourceManager;
 
 public final class EntityParticle extends EntityAbstract{
@@ -27,7 +29,7 @@ public final class EntityParticle extends EntityAbstract{
 	public void Update(float dt){
 		life -= dt;
 		if(life <= 0.0f){
-			//??
+			Publisher.Broadcast(new EventDeactivateParticle(this));
 			return;
 		}
 

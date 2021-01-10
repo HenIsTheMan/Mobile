@@ -24,6 +24,7 @@ import sg.diploma.product.event.EventAbstract;
 import sg.diploma.product.event.IListener;
 import sg.diploma.product.event.ListenerFlagsWrapper;
 import sg.diploma.product.event.Publisher;
+import sg.diploma.product.event.events.EventDeactivateParticle;
 import sg.diploma.product.game.GameData;
 import sg.diploma.product.game.GameView;
 import sg.diploma.product.graphics.Color;
@@ -37,7 +38,6 @@ import sg.diploma.product.touch.TouchTypes;
 
 public final class GameScreenActivity extends Activity implements IState, IListener{
     public GameScreenActivity(){
-        particleSystem = new ParticleSystem();
         platIndex = 0;
         lastTriggerPosY = 0.0f;
         lastTriggerScaleY = 1.0f;
@@ -231,10 +231,12 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 finish();
 
                 break;
+            case DeactivateParticle:
+                particleSystem.DeactivateParticle(((EventDeactivateParticle)event).GetParticle());
+                break;
         }
     }
 
-    private final ParticleSystem particleSystem;
     private int platIndex;
     private float lastTriggerPosY;
     private float lastTriggerScaleY;
@@ -242,9 +244,11 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     private static Vibrator vibrator;
     public static GameScreenActivity Instance;
+    private static ParticleSystem particleSystem;
 
     static{
         vibrator = null;
         Instance = null;
+        particleSystem = new ParticleSystem();
     }
 }

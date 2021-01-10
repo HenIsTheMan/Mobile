@@ -12,6 +12,9 @@ public abstract class ObjPool<T>{
 	}
 
 	public void Init(final int size, @NonNull final Class<T> cls) throws InstantiationException, IllegalAccessException{
+		if(activeObjs != null){
+			return;
+		}
 		activeObjs = new ArrayList<>();
 
 		inactiveObjs = new ArrayList<>();

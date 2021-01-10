@@ -9,7 +9,6 @@ import sg.diploma.product.object_pooling.obj_pools.ParticlePool;
 
 public final class ParticleSystem{
 	public ParticleSystem(){
-		particleIndex = -1;
 		particlePool = new ParticlePool();
 	}
 
@@ -23,9 +22,8 @@ public final class ParticleSystem{
 
 	public void Update(final float dt){
 		ArrayList<EntityParticle> activeParticles = particlePool.RetrieveActiveParticles();
-		final int activeParticlesSize = activeParticles.size();
 
-		for(int i = 0; i < activeParticlesSize; ++i){
+		for(int i = 0; i < activeParticles.size(); ++i){
 			activeParticles.get(i).Update(dt);
 		}
 	}
@@ -47,6 +45,5 @@ public final class ParticleSystem{
 		particlePool.DeactivateObj(particle);
 	}
 
-	private int particleIndex;
 	private final ParticlePool particlePool;
 }
