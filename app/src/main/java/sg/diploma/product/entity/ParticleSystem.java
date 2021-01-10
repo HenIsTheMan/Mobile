@@ -1,5 +1,7 @@
 package sg.diploma.product.entity;
 
+import android.graphics.Canvas;
+
 import java.util.ArrayList;
 
 import sg.diploma.product.entity.entities.EntityParticle;
@@ -11,9 +13,9 @@ public final class ParticleSystem{
 		particlePool = new ParticlePool();
 	}
 
-	public void Init(final int size){
+	public void Init(final int size, final int bitmapID){
 		try{
-			particlePool.Init(size, EntityParticle::Create);
+			particlePool.Init(size, ()->EntityParticle.Create(bitmapID));
 		} catch(Exception e){
 			e.printStackTrace();
 		}
@@ -25,6 +27,15 @@ public final class ParticleSystem{
 
 		for(int i = 0; i < activeParticlesSize; ++i){
 			activeParticles.get(i).Update(dt);
+		}
+	}
+
+	public void Render(final Canvas canvas){
+		ArrayList<EntityParticle> activeParticles = particlePool.RetrieveActiveParticles();
+		final int activeParticlesSize = activeParticles.size();
+
+		for(int i = 0; i < activeParticlesSize; ++i){
+			activeParticles.get(i).Render(canvas);
 		}
 	}
 

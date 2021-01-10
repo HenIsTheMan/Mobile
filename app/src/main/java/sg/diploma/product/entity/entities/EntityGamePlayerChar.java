@@ -45,6 +45,13 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		attribs.accel.y = 4000.0f; //Gravitational accel
 
 		this.particleSystem = particleSystem;
+
+		EntityParticle particle = particleSystem.ActivateParticle();
+		particle.attribs.pos.x = attribs.pos.x;
+		particle.attribs.pos.y = attribs.pos.y;
+		particle.attribs.scale.x = 200.0f;
+		particle.attribs.scale.y = 200.0f;
+		particle.attribs.vel.y = -1000.0f;
 	}
 
 	@Override
@@ -85,10 +92,12 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		//*/
 
 		//* Spawning of particles
-		EntityParticle particle = particleSystem.ActivateParticle();
+		/*EntityParticle particle = particleSystem.ActivateParticle();
 		particle.attribs.pos.x = attribs.pos.x;
 		particle.attribs.pos.y = attribs.pos.y;
-		particle.attribs.vel.y = -1000.0f;
+		particle.attribs.scale.x = 200.0f;
+		particle.attribs.scale.y = 200.0f;
+		particle.attribs.vel.y = -1000.0f;*/
 		//*/
 
 		currPlat = null;

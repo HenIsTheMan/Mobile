@@ -81,7 +81,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     public void OnEnter(SurfaceView _view){
         Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal(), GameData.globalInstance);
 
-        particleSystem.Init(999);
+        particleSystem.Init(999, R.drawable.button);
 
         //* Create text on screen
         final float textSize = DeviceManager.screenWidthF * 0.05f;
@@ -152,6 +152,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     @Override
     public void Render(Canvas _canvas){
+        particleSystem.Render(_canvas);
         EntityManager.Instance.SpecialRender(_canvas);
     }
 

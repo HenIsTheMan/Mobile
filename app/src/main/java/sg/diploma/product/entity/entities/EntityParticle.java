@@ -10,15 +10,16 @@ import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
+import sg.diploma.product.graphics.ResourceManager;
 
 public final class EntityParticle extends EntityAbstract{
-	private EntityParticle(){
+	private EntityParticle(final int bitmapID){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.Particle;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
 
-		bitmap = null;
+		bitmap = ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565);
 		life = 2.0f;
 	}
 
@@ -78,8 +79,8 @@ public final class EntityParticle extends EntityAbstract{
 		}
 	}
 
-	public static EntityParticle Create(){
-		return new EntityParticle();
+	public static EntityParticle Create(final int bitmapID){
+		return new EntityParticle(bitmapID);
 	}
 
 	private Bitmap bitmap;
