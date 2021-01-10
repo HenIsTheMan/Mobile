@@ -23,7 +23,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import java.util.TreeMap;
+import com.google.common.collect.TreeMultimap;
 
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
@@ -57,7 +57,7 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		setContentView(R.layout.game_over_screen_layout);
 
 		RankingsManager.Instance.LoadRankings("Rankings.ser");
-		TreeMap<Integer, String> rankings = RankingsManager.Instance.GetRankings();
+		TreeMultimap<Integer, String> rankings = RankingsManager.Instance.GetRankings();
 		android.util.Log.e("me", String.valueOf(rankings.size()));
 
 		final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");

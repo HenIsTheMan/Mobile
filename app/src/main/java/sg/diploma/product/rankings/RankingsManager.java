@@ -1,15 +1,17 @@
 package sg.diploma.product.rankings;
 
+import com.google.common.collect.Ordering;
+import com.google.common.collect.TreeMultimap;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.TreeMap;
 
 public class RankingsManager{
 	RankingsManager(){
-		rankings = new TreeMap<>();
+		rankings = TreeMultimap.create(Ordering.arbitrary(), Ordering.arbitrary());
 	}
 
 	public void LoadRankings(final String name){
@@ -17,7 +19,7 @@ public class RankingsManager{
 			FileInputStream fis = new FileInputStream(name);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
-			rankings = (TreeMap<Integer, String>)ois.readObject();
+			rankings = (TreeMultimap<Integer, String>)ois.readObject();
 
 			ois.close();
 			fis.close();
@@ -44,11 +46,11 @@ public class RankingsManager{
 		rankings.put(score, name);
 	}
 
-	public TreeMap<Integer, String> GetRankings(){
+	public TreeMultimap<Integer, String> GetRankings(){
 		return rankings;
 	}
 
-	private TreeMap<Integer, String> rankings;
+	private TreeMultimap<Integer, String> rankings;
 
 	public final static RankingsManager Instance;
 
