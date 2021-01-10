@@ -1,51 +1,45 @@
 package sg.diploma.product.object_pooling;
 
-import java.util.Enumeration;
-import java.util.Hashtable;
+import java.util.ArrayList;
+
+import sg.diploma.product.BuildConfig;
 
 public abstract class ObjPool<T>{
-	private long expirationTime;
-
-	private Hashtable<T, Long> locked, unlocked;
-
-	public ObjPool() {
-		expirationTime = 30000; // 30 seconds
-		locked = new Hashtable<T, Long>();
-		unlocked = new Hashtable<T, Long>();
+	public ObjPool(){
+		activeObjs = null;
+		inactiveObjs = null;
 	}
 
-	public synchronized T checkOut() {
-		long now = System.currentTimeMillis();
-		T t;
-		if (unlocked.size() > 0){
-			Enumeration<T> e = unlocked.keys();
-			while (e.hasMoreElements()) {
-				t = e.nextElement();
-				if ((now - unlocked.get(t)) > expirationTime){
-					unlocked.remove(t);
-					expire(t);
-					t = null;
-				} else{
-					if(validate(t)){
-						unlocked.remove(t);
-						locked.put(t, now);
-						return (t);
-					} else{
-						unlocked.remove(t);
-						expire(t);
-						t = null;
-					}
-				}
-			}
+	public void Init(final int size, Class<T> cls) throws InstantiationException, IllegalAccessException{
+		activeObjs = new ArrayList<>();
+
+		inactiveObjs = new ArrayList<>();
+		for(int i = 0; i < size; ++i){
+			inactiveObjs.add(cls.newInstance());
+		}
+	}
+
+	T ActivateObj(){
+		if(BuildConfig.DEBUG && inactiveObjs.size() != 0){
+			throw new AssertionError("Assertion failed");
 		}
 
-		t = create();
-		locked.put(t, now);
-		return (t);
+		T obj = inactiveObjs.get(0);
+		activeObjs.add(obj);
+		inactiveObjs.remove(obj);
+		return obj;
 	}
 
-	public synchronized void checkIn(T t){
-		locked.remove(t);
-		unlocked.put(t, System.currentTimeMillis());
+	public void DeactivateObj(final T obj){
+		if(BuildConfig.DEBUG && activeObjs.size() == 0){
+			throw new AssertionError("Assertion failed");
+		}
+
+		if(activeObjs.remove(obj)){
+			inactiveObjs.add(obj);
+		}
 	}
+
+	private ArrayList<T> activeObjs;
+	private ArrayList<T> inactiveObjs;
 }
