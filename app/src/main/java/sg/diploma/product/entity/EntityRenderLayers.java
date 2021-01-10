@@ -2,7 +2,6 @@ package sg.diploma.product.entity;
 
 public final class EntityRenderLayers{
 	public enum EntityRenderLayer{
-		BG(0),
 		NormalBack(380),
 		Normal(400),
 		UI(9999),

@@ -3,12 +3,12 @@ package sg.diploma.product.entity;
 public final class EntityTypes{
 	public enum EntityType{
 		Ball,
-		BG,
-		MenuPlayerChar,
 		GamePlayerChar,
-		TextOnScreen,
-		Plat,
+		MenuPlayerChar,
+		Particle,
 		PauseButton,
+		Plat,
+		TextOnScreen,
 		Amt
 	};
 }

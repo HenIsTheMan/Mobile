@@ -12,19 +12,14 @@ public final class ParticleSystem{
 	public void Init(final int size){
 		try{
 			particlePool.Init(size, ()->EntityParticle.Create("particle_" + ++particleIndex));
-		} catch(IllegalAccessException e){
-			android.util.Log.e("me", "HERE2");
-		} catch(InstantiationException e){
-			//e.printStackTrace();
-			android.util.Log.e("me", "HERE");
 		} catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 
 	public void Update(final float dt){
-		//EntityParticle particle = particlePool.ActivateObj();
-		//particlePool.DeactivateObj(particle);
+		EntityParticle particle = particlePool.ActivateObj();
+		particlePool.DeactivateObj(particle);
 	}
 
 	private int particleIndex;
