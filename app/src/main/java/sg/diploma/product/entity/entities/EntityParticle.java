@@ -22,7 +22,7 @@ public final class EntityParticle extends EntityAbstract{
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
 
 		bitmap = ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565);
-		life = 2.0f;
+		life = 0.8f;
 	}
 
 	@Override
@@ -85,6 +85,6 @@ public final class EntityParticle extends EntityAbstract{
 		return new EntityParticle(bitmapID);
 	}
 
-	private Bitmap bitmap;
+	private final Bitmap bitmap;
 	private float life;
 }
