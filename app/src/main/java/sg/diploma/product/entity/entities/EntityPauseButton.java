@@ -21,7 +21,7 @@ import sg.diploma.product.touch.TouchManager;
 import sg.diploma.product.touch.TouchTypes;
 
 public final class EntityPauseButton extends EntityAbstract{
-	public EntityPauseButton(final int notPausedBitmapID, final int pausedBitmapID){
+	private EntityPauseButton(final int notPausedBitmapID, final int pausedBitmapID){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.UI;
 		attribs.type = EntityTypes.EntityType.PauseButton;

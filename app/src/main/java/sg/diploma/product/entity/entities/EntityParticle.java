@@ -9,7 +9,7 @@ import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
 
 public final class EntityParticle extends EntityAbstract{
-	EntityParticle(){
+	private EntityParticle(){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.Particle;
