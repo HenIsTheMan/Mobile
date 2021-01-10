@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
@@ -291,7 +292,7 @@ public final class OptionsScreenActivity
 	}
 
 	@Override
-	public boolean onTouchEvent(MotionEvent event){
+	public boolean onTouchEvent(@NonNull MotionEvent event){
 		TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
 		return true;
 	}
@@ -447,7 +448,7 @@ public final class OptionsScreenActivity
 	}
 
 	@Override
-	public void OnEvent(EventAbstract event){
+	public void OnEvent(@NonNull EventAbstract event){
 		switch(event.GetID()){
 			case ReturnToMenuWithoutSaving:
 				final SeekBar seekBarMusic = findViewById(R.id.seekBarMusic);

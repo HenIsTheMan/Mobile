@@ -8,6 +8,8 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
 import sg.diploma.product.R;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.state.StateManager;
@@ -32,7 +34,7 @@ public final class SplashScreenActivity extends Activity{
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(@NonNull MotionEvent event){
         if(event.getAction() == TouchTypes.TouchType.Down.GetVal()){
             _active = false;
         }

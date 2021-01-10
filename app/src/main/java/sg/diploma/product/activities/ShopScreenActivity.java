@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import sg.diploma.product.R;
@@ -102,7 +103,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	}
 
 	@Override
-	public boolean onTouchEvent(MotionEvent event){
+	public boolean onTouchEvent(@NonNull MotionEvent event){
 		TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
 		return true;
 	}

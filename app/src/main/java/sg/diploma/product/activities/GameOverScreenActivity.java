@@ -20,6 +20,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import sg.diploma.product.R;
@@ -132,7 +133,7 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 	}
 
 	@Override
-	public boolean onTouchEvent(MotionEvent event){
+	public boolean onTouchEvent(@NonNull MotionEvent event){
 		TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
 		return true;
 	}

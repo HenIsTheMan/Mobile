@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
@@ -178,7 +179,7 @@ public final class MenuScreenActivity
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(@NonNull MotionEvent event){
         TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
         return true;
     }
@@ -299,7 +300,7 @@ public final class MenuScreenActivity
     }
 
     @Override
-    public void OnEnter(SurfaceView _view){
+    public void OnEnter(@NonNull SurfaceView _view){
         //* Create ball
         ball = EntityBall.Create(
             "ball"
@@ -387,7 +388,7 @@ public final class MenuScreenActivity
     }
 
     @Override
-    public void OnEvent(EventAbstract event){
+    public void OnEvent(@NonNull EventAbstract event){
         switch(event.GetID()){
             case EndProg:
                 finishAndRemoveTask();

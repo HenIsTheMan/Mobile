@@ -12,6 +12,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 import sg.diploma.product.R;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
@@ -63,7 +65,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(@NonNull MotionEvent event){
         TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
         return true;
     }
@@ -79,7 +81,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    public void OnEnter(SurfaceView _view){
+    public void OnEnter(@NonNull SurfaceView _view){
         Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal(), GameData.globalInstance);
 
         particleSystem.Init(999, R.drawable.smoke_particle);
@@ -212,7 +214,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    public void OnEvent(EventAbstract event){
+    public void OnEvent(@NonNull EventAbstract event){
         switch(event.GetID()){
             case EndGame:
                 if(Build.VERSION.SDK_INT >= 26){
