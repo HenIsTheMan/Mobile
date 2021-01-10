@@ -153,12 +153,12 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     @Override
     public void Render(Canvas _canvas){
+        EntityManager.Instance.SpecialRender(_canvas);
+
         Vector2 camPos = EntityManager.Instance.GetSceneCam().GetPos();
         _canvas.translate(-camPos.x, -camPos.y);
         particleSystem.Render(_canvas);
         _canvas.translate(camPos.x, camPos.y);
-
-        EntityManager.Instance.SpecialRender(_canvas);
     }
 
     @Override

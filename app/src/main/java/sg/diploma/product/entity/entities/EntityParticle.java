@@ -22,7 +22,11 @@ public final class EntityParticle extends EntityAbstract{
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
 
 		bitmap = ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565);
-		life = 0.8f;
+
+		maxLife = 0.0f;
+		life = 0.0f;
+		minScale = 1.0f;
+		maxScale = 1.0f;
 	}
 
 	@Override
@@ -32,6 +36,9 @@ public final class EntityParticle extends EntityAbstract{
 			Publisher.Broadcast(new EventDeactivateParticle(this));
 			return;
 		}
+
+		final float lifeRatio = life / maxLife;
+		attribs.scale.x = attribs.scale.y = (1.0f - lifeRatio) * maxScale + lifeRatio * minScale; //Lerp
 
 		attribs.vel.x += attribs.accel.x * dt;
 		attribs.vel.y += attribs.accel.y * dt;
@@ -85,6 +92,26 @@ public final class EntityParticle extends EntityAbstract{
 		return new EntityParticle(bitmapID);
 	}
 
+	public void SetLife(final float life){
+		this.life = life;
+	}
+
+	public void SetMaxLife(final float maxLife){
+		this.maxLife = maxLife;
+	}
+
+	public void SetMinScale(final float minScale){
+		this.minScale = minScale;
+	}
+
+	public void SetMaxScale(final float maxScale){
+		this.maxScale = maxScale;
+	}
+
 	private final Bitmap bitmap;
+
 	private float life;
+	private float maxLife;
+	private float minScale;
+	private float maxScale;
 }

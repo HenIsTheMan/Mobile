@@ -95,18 +95,21 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		//* Spawning of particles
 		if(spawnParticleBT <= elapsedTime && !(attribs.vel.x <= epsilon && -attribs.vel.x <= epsilon)){
 			EntityParticle particle = particleSystem.ActivateParticle();
-
-			final float scaleFactor = attribs.boxColliderScale.x * 0.7f;
-			particle.attribs.scale.x = scaleFactor;
-			particle.attribs.scale.y = scaleFactor;
+			particle.SetLife(0.8f);
+			particle.SetMaxLife(0.8f);
+			particle.SetMinScale(attribs.boxColliderScale.x * 0.5f);
+			particle.SetMaxScale(attribs.boxColliderScale.x * 0.8f);
 
 			particle.attribs.pos.x = attribs.boxColliderPos.x;
 			particle.attribs.pos.y = attribs.boxColliderPos.y + attribs.boxColliderScale.y * 0.5f - particle.attribs.scale.y * 0.5f;
 
-			particle.attribs.vel.x = attribs.vel.x / abs(attribs.vel.x) * 200.0f;
-			particle.attribs.vel.y = -200.0f;
+			particle.attribs.vel.x = attribs.vel.x / abs(attribs.vel.x) * 10.0f;
+			particle.attribs.vel.y = -10.0f;
 
-			spawnParticleBT = elapsedTime + 0.2f;
+			particle.attribs.accel.y = 80.0f;
+			particle.attribs.accel.y = -200.0f;
+
+			spawnParticleBT = elapsedTime + 0.1f;
 		}
 		//*/
 
