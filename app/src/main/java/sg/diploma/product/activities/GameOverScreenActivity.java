@@ -56,7 +56,7 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		Instance = this;
 		setContentView(R.layout.game_over_screen_layout);
 
-		RankingsManager.Instance.LoadRankings("Rankings.ser");
+		RankingsManager.Instance.LoadRankings(Instance, "Rankings.ser");
 		TreeMultimap<Integer, String> rankings = RankingsManager.Instance.GetRankings();
 		android.util.Log.e("me", String.valueOf(rankings.size()));
 
@@ -158,7 +158,7 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 					RankingsManager.Instance.AddRanking(GameData.score, nameTextInputBox.getText().toString());
-					RankingsManager.Instance.SaveRankings("Rankings.ser");
+					RankingsManager.Instance.SaveRankings(Instance, "Rankings.ser");
 					ReturnToMenu();
 					return true;
 			}

@@ -1,27 +1,29 @@
 package sg.diploma.product.rankings;
 
+import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
+
 import com.google.common.collect.Ordering;
 import com.google.common.collect.TreeMultimap;
 
-import java.io.FileInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 
 public class RankingsManager{
 	RankingsManager(){
 		rankings = TreeMultimap.create(Ordering.arbitrary(), Ordering.arbitrary());
 	}
 
-	public void LoadRankings(final String name){
-		InputStream is = null;
+	public void LoadRankings(final Context context, final String name){
+		/*FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try{
-			is = new FileInputStream(name);
-			ois = new ObjectInputStream(is);
+			fis = context.openFileInput(name);
+			ois = new ObjectInputStream(fis);
 
 			rankings = (TreeMultimap<Integer, String>)ois.readObject();
 		} catch(IOException e){
@@ -32,31 +34,60 @@ public class RankingsManager{
 			android.util.Log.e("me010", "HERE");
 		} finally{
 			try{
-				if (ois != null) ois.close();
-				if (is != null) is.close();
+				if(ois != null){
+					ois.close();
+				}
+				if(fis != null){
+					fis.close();
+				}
 			} catch(IOException e){
 				android.util.Log.e("me111", "HERE");
 			}
-		}
+		}*/
 	}
 
-	public void SaveRankings(final String name){
-		OutputStream os = null;
-		ObjectOutputStream oos = null;
-		try{
-			os = new FileOutputStream(name);
-			oos = new ObjectOutputStream(os);
+	public void SaveRankings(final Context context, final String name){
+		String state = Environment.getExternalStorageState();
+		if(!Environment.MEDIA_MOUNTED.equals(state)){
+			Log.e("no", "HERE");
+			return;
+		}
 
-			oos.writeObject(rankings);
+
+/*		// create a File object for the output file
+		File outputFile = new File(wallpaperDirectory, filename);
+		// now attach the OutputStream to the file object, instead of a String representation
+		FileOutputStream fos = new FileOutputStream(outputFile);*/
+
+		String pathToAppFolder = context.getExternalFilesDir(null).getAbsolutePath();
+		File dir = new File(pathToAppFolder + File.separator);
+		dir.mkdirs();
+		File file = new File(dir, name);
+
+		FileOutputStream fos = null;
+		ObjectOutputStream os = null;
+		try{
+			fos = new FileOutputStream(file);
+			os = new ObjectOutputStream(fos);
+
+			//os.writeObject(rankings.keys());
+			os.writeObject(rankings.values().toArray());
+		} catch(FileNotFoundException e){
+			Log.e("me222", "HERE");
+			e.printStackTrace();
 		} catch(IOException e){
-			android.util.Log.e("me222", "HERE");
+			Log.e("me333", "HERE");
 			e.printStackTrace();
 		} finally{
 			try{
-				if (oos != null) oos.close();
-				if (os != null) os.close();
+				if(os != null){
+					os.close();
+				}
+				if(fos != null){
+					fos.close();
+				}
 			} catch(IOException e){
-				android.util.Log.e("me333", "HERE");
+				Log.e("me444", "HERE");
 			}
 		}
 	}
