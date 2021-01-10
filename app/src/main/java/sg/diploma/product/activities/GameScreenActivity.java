@@ -81,6 +81,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     public void OnEnter(SurfaceView _view){
         Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal(), GameData.globalInstance);
 
+        particleSystem.Init(999);
+
         //* Create text on screen
         final float textSize = DeviceManager.screenWidthF * 0.05f;
         GameData.textOnScreenFPS = EntityTextOnScreen.Create("Special_gameTextOnScreenFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
@@ -99,7 +101,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         //* Create game player char and start plat
         GameData.gamePlayerChar = EntityGamePlayerChar.Create(
             "gamePlayerChar",
-            R.drawable.player_char
+            R.drawable.player_char,
+            particleSystem
         );
 
         GameData.startPlat = EntityPlat.Create("plat_start");
@@ -138,8 +141,6 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         lastTriggerScaleY = GameData.startPlat.attribs.scale.y;
         EntityManager.Instance.cam.SetPosY(GameData.gamePlayerChar.attribs.pos.y - DeviceManager.screenHeightF * 0.5f);
         EntityManager.Instance.cam.SetVelY(-100.0f);
-
-        particleSystem.Init(999);
     }
 
     @Override

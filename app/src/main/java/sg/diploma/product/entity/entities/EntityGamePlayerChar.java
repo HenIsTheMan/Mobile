@@ -11,6 +11,7 @@ import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
+import sg.diploma.product.entity.ParticleSystem;
 import sg.diploma.product.event.Publisher;
 import sg.diploma.product.event.events.EventEndGame;
 import sg.diploma.product.graphics.ResourceManager;
@@ -18,7 +19,7 @@ import sg.diploma.product.graphics.SpriteAnim;
 import sg.diploma.product.math.Pseudorand;
 
 public final class EntityGamePlayerChar extends EntityAbstract{
-	private EntityGamePlayerChar(final int bitmapID){
+	private EntityGamePlayerChar(final int bitmapID, final ParticleSystem particleSystem){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.GamePlayerChar;
@@ -42,6 +43,8 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		}
 
 		attribs.accel.y = 4000.0f; //Gravitational accel
+
+		this.particleSystem = particleSystem;
 	}
 
 	@Override
@@ -79,6 +82,10 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			Publisher.Broadcast(new EventEndGame());
 			return;
 		}
+		//*/
+
+		//* Spawning of particles
+		EntityParticle particle = particleSystem.ActivateParticle();
 		//*/
 
 		currPlat = null;
@@ -122,8 +129,8 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		}
 	}
 
-	public static EntityGamePlayerChar Create(final String key, final int bitmapID){
-		EntityGamePlayerChar result = new EntityGamePlayerChar(bitmapID);
+	public static EntityGamePlayerChar Create(final String key, final int bitmapID, final ParticleSystem particleSystem){
+		EntityGamePlayerChar result = new EntityGamePlayerChar(bitmapID, particleSystem);
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}
@@ -153,6 +160,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	}
 
 	private EntityPlat currPlat;
+	private final ParticleSystem particleSystem;
 
 	private final SpriteAnim spriteAnim;
 

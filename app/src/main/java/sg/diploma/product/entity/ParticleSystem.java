@@ -18,7 +18,18 @@ public final class ParticleSystem{
 	}
 
 	public void Update(final float dt){
+
+
+	}
+
+	public EntityParticle ActivateParticle(){
 		EntityParticle particle = particlePool.ActivateObj();
+		EntityManager.Instance.AddEntity(particle.GetTag(), particle);
+		return particle;
+	}
+
+	public void DeactivateParticle(final EntityParticle particle){
+		EntityManager.Instance.SendEntityForRemoval(particle.GetTag());
 		particlePool.DeactivateObj(particle);
 	}
 
