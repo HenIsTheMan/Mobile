@@ -23,12 +23,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import java.util.TreeMap;
+
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.game.GameData;
+import sg.diploma.product.rankings.RankingsManager;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
@@ -52,6 +55,10 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		super.onCreate(savedInstanceState);
 		Instance = this;
 		setContentView(R.layout.game_over_screen_layout);
+
+		RankingsManager.Instance.LoadRankings("Rankings.ser");
+		TreeMap<Integer, String> rankings = RankingsManager.Instance.GetRankings();
+		android.util.Log.e("me", String.valueOf(rankings.size()));
 
 		final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
 
@@ -150,6 +157,8 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 					continueButton.startAnimation(continueButtonUpAnimSet);
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
+					RankingsManager.Instance.AddRanking(GameData.score, nameTextInputBox.getText().toString());
+					RankingsManager.Instance.SaveRankings("Rankings.ser");
 					ReturnToMenu();
 					return true;
 			}
