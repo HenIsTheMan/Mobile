@@ -6,8 +6,10 @@ import com.google.common.collect.TreeMultimap;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 
 public class RankingsManager{
 	RankingsManager(){
@@ -15,30 +17,47 @@ public class RankingsManager{
 	}
 
 	public void LoadRankings(final String name){
+		InputStream is = null;
+		ObjectInputStream ois = null;
 		try{
-			FileInputStream fis = new FileInputStream(name);
-			ObjectInputStream ois = new ObjectInputStream(fis);
+			is = new FileInputStream(name);
+			ois = new ObjectInputStream(is);
 
 			rankings = (TreeMultimap<Integer, String>)ois.readObject();
-
-			ois.close();
-			fis.close();
-		} catch(IOException | ClassNotFoundException e){
+		} catch(IOException e){
+			android.util.Log.e("me000", "HERE");
 			e.printStackTrace();
+		} catch(ClassNotFoundException e){
+			e.printStackTrace();
+			android.util.Log.e("me010", "HERE");
+		} finally{
+			try{
+				if (ois != null) ois.close();
+				if (is != null) is.close();
+			} catch(IOException e){
+				android.util.Log.e("me111", "HERE");
+			}
 		}
 	}
 
 	public void SaveRankings(final String name){
+		OutputStream os = null;
+		ObjectOutputStream oos = null;
 		try{
-			FileOutputStream fos = new FileOutputStream(name);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			os = new FileOutputStream(name);
+			oos = new ObjectOutputStream(os);
 
 			oos.writeObject(rankings);
-
-			oos.close();
-			fos.close();
 		} catch(IOException e){
+			android.util.Log.e("me222", "HERE");
 			e.printStackTrace();
+		} finally{
+			try{
+				if (oos != null) oos.close();
+				if (os != null) os.close();
+			} catch(IOException e){
+				android.util.Log.e("me333", "HERE");
+			}
 		}
 	}
 
