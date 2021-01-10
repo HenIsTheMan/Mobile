@@ -23,6 +23,8 @@
     <string name="androidStudioText">AndroidStudioText</string>
     <string name="androidStudioLogo">AndroidStudioLogo</string>
 
+    <string name="SaveScoreText">"  Save Score"</string>
+    <string name="FinalScoreText">"End Score:"</string>
     <string name="GameOverText0">"Game"</string>
     <string name="GameOverText1">"End"</string>
     <string name="RankingsText">"Rankings"</string>

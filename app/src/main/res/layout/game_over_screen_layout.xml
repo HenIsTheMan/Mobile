@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/Gray"
     android:orientation="vertical"
+    android:labelFor="@+id/nameTextInputBox"
     >
 
     <TextView
@@ -19,6 +20,31 @@
         android:layout_height="wrap_content"
         android:text="@string/GameOverText1" />
 
+    <TextView
+        android:id="@+id/finalScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/FinalScoreText" />
+
+    <TextView
+        android:id="@+id/finalScoreVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:id="@+id/saveScoreCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SaveScoreText" />
+
+    <EditText
+        android:id="@+id/nameTextInputBox"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:autofillHints="Enter name..." />
+
     <Button
         android:id="@+id/continueButton"
         android:layout_width="0dp"
@@ -26,5 +52,4 @@
         android:text="@string/ContinueButtonText"
         android:textAlignment="center"
         android:background="@drawable/button2" />
-
 </RelativeLayout>

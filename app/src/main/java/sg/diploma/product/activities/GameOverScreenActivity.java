@@ -16,6 +16,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -25,6 +27,7 @@ import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
+import sg.diploma.product.game.GameData;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
@@ -35,12 +38,16 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		continueButtonUpAnimSet = null;
 
 		continueButton = null;
+		finalScoreText = null;
+		finalScoreVal = null;
+		saveScoreCheckBox = null;
+		nameTextInputBox = null;
 	}
 
 	@SuppressLint("ClickableViewAccessibility")
 	@RequiresApi(api = Build.VERSION_CODES.P)
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		Instance = this;
 		setContentView(R.layout.game_over_screen_layout);
@@ -94,6 +101,34 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		continueButtonUpAnimSet.setFillEnabled(true);
 		continueButtonUpAnimSet.setFillAfter(true);
 		continueButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
+
+		finalScoreText = findViewById(R.id.finalScoreText);
+		finalScoreText.setTextColor(0xFFFF00FF);
+		finalScoreText.setTypeface(font);
+		finalScoreText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.1f / DeviceManager.scaledDensity);
+		finalScoreText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		finalScoreText.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)finalScoreText.getMeasuredWidth() * 0.5f);
+		finalScoreText.setTranslationY(DeviceManager.screenHeightF * 0.35f);
+
+		finalScoreVal = findViewById(R.id.finalScoreVal);
+		finalScoreVal.setText(String.valueOf(GameData.score));
+		finalScoreVal.setTextColor(0xFFFF00FF);
+		finalScoreVal.setTypeface(font);
+		finalScoreVal.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.2f / DeviceManager.scaledDensity);
+		finalScoreVal.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		finalScoreVal.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)finalScoreVal.getMeasuredWidth() * 0.5f);
+		finalScoreVal.setTranslationY(DeviceManager.screenHeightF * 0.45f);
+
+		saveScoreCheckBox = findViewById(R.id.saveScoreCheckBox);
+		saveScoreCheckBox.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		saveScoreCheckBox.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)saveScoreCheckBox.getMeasuredWidth() * 0.5f);
+		saveScoreCheckBox.setTranslationY(DeviceManager.screenHeightF * 0.65f);
+
+		nameTextInputBox = findViewById(R.id.nameTextInputBox);
+		nameTextInputBox.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		nameTextInputBox.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.75f);
+		nameTextInputBox.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)nameTextInputBox.getLayoutParams().width * 0.5f);
+		nameTextInputBox.setTranslationY(DeviceManager.screenHeightF * 0.75f);
 	}
 
 	@Override
@@ -153,6 +188,7 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 	}
 
 	private void ReturnToMenu(){
+		GameData.globalInstance.ResetVars();
 		EntityManager.Instance.SendAllEntitiesForRemoval();
 		StateManager.Instance.ChangeState("MenuScreen");
 
@@ -164,6 +200,10 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 	private AnimationSet continueButtonUpAnimSet;
 
 	private Button continueButton;
+	private TextView finalScoreText;
+	private TextView finalScoreVal;
+	private CheckBox saveScoreCheckBox;
+	private EditText nameTextInputBox;
 
 	public static GameOverScreenActivity Instance;
 

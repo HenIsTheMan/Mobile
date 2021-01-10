@@ -221,9 +221,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                     final long[] pattern = {0, 400, 50};
                     vibrator.vibrate(pattern, -1);
                 }
-                //vibrator.cancel();
 
-                GameData.globalInstance.ResetVars();
                 EntityManager.Instance.SendAllEntitiesForRemoval();
                 StateManager.Instance.ChangeState("GameOverScreen");
 
@@ -244,7 +242,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     private static Vibrator vibrator;
     public static GameScreenActivity Instance;
-    private static ParticleSystem particleSystem;
+    private static final ParticleSystem particleSystem;
 
     static{
         vibrator = null;
