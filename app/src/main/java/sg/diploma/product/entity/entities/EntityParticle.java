@@ -2,6 +2,7 @@ package sg.diploma.product.entity.entities;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
@@ -22,6 +23,8 @@ public final class EntityParticle extends EntityAbstract{
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
 
 		bitmap = ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565);
+		paint = new Paint();
+		paint.setARGB(255, 255, 255, 255);
 
 		maxLife = 0.0f;
 		life = 0.0f;
@@ -38,6 +41,8 @@ public final class EntityParticle extends EntityAbstract{
 		}
 
 		final float lifeRatio = life / maxLife;
+		final int val = (int)(lifeRatio * 255.0f);
+		paint.setARGB(val, val, val, val);
 		attribs.scale.x = attribs.scale.y = (1.0f - lifeRatio) * maxScale + lifeRatio * minScale; //Lerp
 
 		attribs.vel.x += attribs.accel.x * dt;
@@ -70,7 +75,7 @@ public final class EntityParticle extends EntityAbstract{
 				attribs.pos.x + attribs.scale.x * 0.5f,
 				attribs.pos.y + attribs.scale.y * 0.5f
 		);
-		_canvas.drawBitmap(bitmap, src, dst, null);
+		_canvas.drawBitmap(bitmap, src, dst, paint);
 	}
 
 	@Override
@@ -109,6 +114,7 @@ public final class EntityParticle extends EntityAbstract{
 	}
 
 	private final Bitmap bitmap;
+	private final Paint paint;
 
 	private float life;
 	private float maxLife;

@@ -97,8 +97,8 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			EntityParticle particle = particleSystem.ActivateParticle();
 			particle.SetLife(0.8f);
 			particle.SetMaxLife(0.8f);
-			particle.SetMinScale(attribs.boxColliderScale.x * 0.5f);
-			particle.SetMaxScale(attribs.boxColliderScale.x * 0.8f);
+			particle.SetMinScale(attribs.boxColliderScale.x * 0.3f);
+			particle.SetMaxScale(attribs.boxColliderScale.x * 0.9f);
 
 			particle.attribs.pos.x = attribs.boxColliderPos.x;
 			particle.attribs.pos.y = attribs.boxColliderPos.y + attribs.boxColliderScale.y * 0.5f - particle.attribs.scale.y * 0.5f;
