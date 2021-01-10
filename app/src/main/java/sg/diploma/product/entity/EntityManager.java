@@ -165,6 +165,10 @@ public final class EntityManager{ //Singleton
         }
     }
 
+    public SceneCam GetSceneCam(){
+        return cam;
+    }
+
     private final HashMap<String, EntityAbstract> entityList;
     private final ArrayList<String> entityRemovalList;
     public SceneCam cam;

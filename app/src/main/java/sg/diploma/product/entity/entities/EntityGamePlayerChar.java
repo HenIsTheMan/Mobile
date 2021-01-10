@@ -96,9 +96,8 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			EntityParticle particle = particleSystem.ActivateParticle();
 			particle.attribs.pos.x = attribs.pos.x;
 			particle.attribs.pos.y = attribs.pos.y;
-			particle.attribs.scale.x = 200.0f;
-			particle.attribs.scale.y = 200.0f;
-			particle.attribs.vel.y = -1000.0f;
+			particle.attribs.scale.x = particle.attribs.scale.y = 200.0f;
+			//particle.attribs.vel.y = -1000.0f;
 
 			spawnParticleBT = elapsedTime + 1.0f;
 		}

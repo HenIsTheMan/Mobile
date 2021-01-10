@@ -29,6 +29,7 @@ import sg.diploma.product.game.GameView;
 import sg.diploma.product.graphics.Color;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.math.Pseudorand;
+import sg.diploma.product.math.Vector2;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
@@ -152,7 +153,11 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     @Override
     public void Render(Canvas _canvas){
+        Vector2 camPos = EntityManager.Instance.GetSceneCam().GetPos();
+        _canvas.translate(-camPos.x, -camPos.y);
         particleSystem.Render(_canvas);
+        _canvas.translate(camPos.x, camPos.y);
+
         EntityManager.Instance.SpecialRender(_canvas);
     }
 
