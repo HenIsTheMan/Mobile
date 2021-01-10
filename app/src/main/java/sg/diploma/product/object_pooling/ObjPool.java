@@ -19,7 +19,7 @@ public abstract class ObjPool<T>{
 		}
 	}
 
-	T ActivateObj(){
+	public T ActivateObj(){
 		if(BuildConfig.DEBUG && inactiveObjs.size() != 0){
 			throw new AssertionError("Assertion failed");
 		}
