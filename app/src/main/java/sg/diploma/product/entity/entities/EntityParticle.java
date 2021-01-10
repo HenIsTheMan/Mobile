@@ -6,7 +6,7 @@ import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityManager;
 
 public final class EntityParticle extends EntityAbstract{
-	public EntityParticle(){
+	EntityParticle(){
 		super();
 	}
 
