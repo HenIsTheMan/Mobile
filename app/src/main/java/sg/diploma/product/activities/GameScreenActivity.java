@@ -15,6 +15,7 @@ import android.view.View;
 import sg.diploma.product.R;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
+import sg.diploma.product.entity.ParticleSystem;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.entity.entities.EntityPauseButton;
 import sg.diploma.product.entity.entities.EntityPlat;
@@ -35,6 +36,7 @@ import sg.diploma.product.touch.TouchTypes;
 
 public final class GameScreenActivity extends Activity implements IState, IListener{
     public GameScreenActivity(){
+        particleSystem = new ParticleSystem();
         platIndex = 0;
         lastTriggerPosY = 0.0f;
         lastTriggerScaleY = 1.0f;
@@ -136,6 +138,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         lastTriggerScaleY = GameData.startPlat.attribs.scale.y;
         EntityManager.Instance.cam.SetPosY(GameData.gamePlayerChar.attribs.pos.y - DeviceManager.screenHeightF * 0.5f);
         EntityManager.Instance.cam.SetVelY(-100.0f);
+
+        particleSystem.Init(9999);
     }
 
     @Override
@@ -158,6 +162,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         if(GameData.textOnScreenScore != null){
             GameData.textOnScreenScore.SetText("Score: " + GameData.score);
         }
+
+        particleSystem.Update(_dt);
 
         EntityManager.Instance.Update(_dt);
 
@@ -221,6 +227,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         }
     }
 
+    private final ParticleSystem particleSystem;
     private int platIndex;
     private float lastTriggerPosY;
     private float lastTriggerScaleY;

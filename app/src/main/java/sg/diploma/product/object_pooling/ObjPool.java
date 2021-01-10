@@ -1,8 +1,8 @@
 package sg.diploma.product.object_pooling;
 
-import java.util.ArrayList;
+import androidx.annotation.NonNull;
 
-import sg.diploma.product.BuildConfig;
+import java.util.ArrayList;
 
 public abstract class ObjPool<T>{
 	public ObjPool(){
@@ -10,31 +10,25 @@ public abstract class ObjPool<T>{
 		inactiveObjs = null;
 	}
 
-	public void Init(final int size, Class<T> cls) throws InstantiationException, IllegalAccessException{
+	public void Init(final int size, @NonNull final Class<T> cls) throws InstantiationException, IllegalAccessException{
 		activeObjs = new ArrayList<>();
 
 		inactiveObjs = new ArrayList<>();
 		for(int i = 0; i < size; ++i){
 			inactiveObjs.add(cls.newInstance());
 		}
+
+		android.util.Log.e("me000", String.valueOf(inactiveObjs.size()));
 	}
 
 	public T ActivateObj(){
-		if(BuildConfig.DEBUG && inactiveObjs.size() != 0){
-			throw new AssertionError("Assertion failed");
-		}
-
-		T obj = inactiveObjs.get(0);
+		final T obj = inactiveObjs.get(0);
 		activeObjs.add(obj);
 		inactiveObjs.remove(obj);
 		return obj;
 	}
 
 	public void DeactivateObj(final T obj){
-		if(BuildConfig.DEBUG && activeObjs.size() == 0){
-			throw new AssertionError("Assertion failed");
-		}
-
 		if(activeObjs.remove(obj)){
 			inactiveObjs.add(obj);
 		}

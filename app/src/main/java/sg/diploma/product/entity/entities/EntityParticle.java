@@ -6,7 +6,8 @@ import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityManager;
 
 public final class EntityParticle extends EntityAbstract{
-	public EntityParticle(final int notPausedBitmapID, final int pausedBitmapID){
+	public EntityParticle(){
+		super();
 	}
 
 	@Override
@@ -29,8 +30,8 @@ public final class EntityParticle extends EntityAbstract{
 	public void SpecialRender(final Canvas canvas){
 	}
 
-	public static EntityParticle Create(final String key, final int notPausedBitmapID, final int pausedBitmapID){
-		EntityParticle result = new EntityParticle(notPausedBitmapID, pausedBitmapID);
+	public static EntityParticle Create(final String key){
+		EntityParticle result = new EntityParticle();
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}
