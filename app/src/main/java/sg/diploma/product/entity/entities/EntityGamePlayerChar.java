@@ -18,12 +18,17 @@ import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.graphics.SpriteAnim;
 import sg.diploma.product.math.Pseudorand;
 
+import static sg.diploma.product.math.Constants.epsilon;
+
 public final class EntityGamePlayerChar extends EntityAbstract{
 	private EntityGamePlayerChar(final int bitmapID, final ParticleSystem particleSystem){
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.GamePlayerChar;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
+
+		spawnParticleBT = 0.0f;
+		elapsedTime = 0.0f;
 
 		currPlat = null;
 
@@ -45,17 +50,12 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		attribs.accel.y = 4000.0f; //Gravitational accel
 
 		this.particleSystem = particleSystem;
-
-		EntityParticle particle = particleSystem.ActivateParticle();
-		particle.attribs.pos.x = attribs.pos.x;
-		particle.attribs.pos.y = attribs.pos.y;
-		particle.attribs.scale.x = 200.0f;
-		particle.attribs.scale.y = 200.0f;
-		particle.attribs.vel.y = -1000.0f;
 	}
 
 	@Override
 	public void Update(final float dt){
+		elapsedTime += dt;
+
 		if(currPlat != null){
 			attribs.vel.x = attribs.facing * 500.f;
 		} else{
@@ -92,12 +92,16 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		//*/
 
 		//* Spawning of particles
-		/*EntityParticle particle = particleSystem.ActivateParticle();
-		particle.attribs.pos.x = attribs.pos.x;
-		particle.attribs.pos.y = attribs.pos.y;
-		particle.attribs.scale.x = 200.0f;
-		particle.attribs.scale.y = 200.0f;
-		particle.attribs.vel.y = -1000.0f;*/
+		if(spawnParticleBT <= elapsedTime && !(attribs.vel.x <= epsilon && -attribs.vel.x <= epsilon)){
+			EntityParticle particle = particleSystem.ActivateParticle();
+			particle.attribs.pos.x = attribs.pos.x;
+			particle.attribs.pos.y = attribs.pos.y;
+			particle.attribs.scale.x = 200.0f;
+			particle.attribs.scale.y = 200.0f;
+			particle.attribs.vel.y = -1000.0f;
+
+			spawnParticleBT = elapsedTime + 1.0f;
+		}
 		//*/
 
 		currPlat = null;
@@ -170,6 +174,9 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	public void SetSpriteAnimYScale(final float yScale){
 		spriteAnim.SetYScale(yScale);
 	}
+
+	private float spawnParticleBT;
+	private float elapsedTime;
 
 	private EntityPlat currPlat;
 	private final ParticleSystem particleSystem;

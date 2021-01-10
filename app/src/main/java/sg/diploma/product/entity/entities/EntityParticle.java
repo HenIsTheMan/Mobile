@@ -32,7 +32,7 @@ public final class EntityParticle extends EntityAbstract{
 		}
 
 		attribs.vel.x += attribs.accel.x * dt;
-		attribs.vel.y = attribs.accel.y * dt;
+		attribs.vel.y += attribs.accel.y * dt;
 
 		attribs.pos.x += attribs.vel.x * dt;
 		attribs.pos.y += attribs.vel.y * dt;
