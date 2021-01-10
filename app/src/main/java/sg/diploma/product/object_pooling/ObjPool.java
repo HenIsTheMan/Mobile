@@ -42,6 +42,10 @@ public abstract class ObjPool<T>{
 		}
 	}
 
+	public ArrayList<T> RetrieveAtiveObjs(){
+		return activeObjs;
+	}
+
 	private ArrayList<T> activeObjs;
 	private ArrayList<T> inactiveObjs;
 }

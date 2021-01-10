@@ -1,5 +1,7 @@
 package sg.diploma.product.entity;
 
+import java.util.ArrayList;
+
 import sg.diploma.product.entity.entities.EntityParticle;
 import sg.diploma.product.object_pooling.obj_pools.ParticlePool;
 
@@ -11,25 +13,26 @@ public final class ParticleSystem{
 
 	public void Init(final int size){
 		try{
-			particlePool.Init(size, ()->EntityParticle.Create("particle_" + ++particleIndex));
+			particlePool.Init(size, EntityParticle::Create);
 		} catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 
 	public void Update(final float dt){
+		ArrayList<EntityParticle> activeParticles = particlePool.RetrieveActiveParticles();
+		final int activeParticlesSize = activeParticles.size();
 
-
+		for(int i = 0; i < activeParticlesSize; ++i){
+			activeParticles.get(i).Update(dt);
+		}
 	}
 
 	public EntityParticle ActivateParticle(){
-		EntityParticle particle = particlePool.ActivateObj();
-		EntityManager.Instance.AddEntity(particle.GetTag(), particle);
-		return particle;
+		return particlePool.ActivateObj();
 	}
 
 	public void DeactivateParticle(final EntityParticle particle){
-		EntityManager.Instance.SendEntityForRemoval(particle.GetTag());
 		particlePool.DeactivateObj(particle);
 	}
 

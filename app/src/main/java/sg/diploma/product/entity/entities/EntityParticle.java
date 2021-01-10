@@ -1,7 +1,11 @@
 package sg.diploma.product.entity.entities;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
 
+import sg.diploma.product.BuildConfig;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityRenderLayers;
@@ -14,11 +18,18 @@ public final class EntityParticle extends EntityAbstract{
 		attribs.type = EntityTypes.EntityType.Particle;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
 
-		tag = null;
+		bitmap = null;
+		life = 2.0f;
 	}
 
 	@Override
 	public void Update(float dt){
+		life -= dt;
+		if(life <= 0.0f){
+			//??
+			return;
+		}
+
 		attribs.vel.x += attribs.accel.x * dt;
 		attribs.vel.y = attribs.accel.y * dt;
 
@@ -42,6 +53,14 @@ public final class EntityParticle extends EntityAbstract{
 
 	@Override
 	public void Render(Canvas _canvas){
+		Rect src = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+		RectF dst = new RectF(
+				attribs.pos.x - attribs.scale.x * 0.5f,
+				attribs.pos.y - attribs.scale.y * 0.5f,
+				attribs.pos.x + attribs.scale.x * 0.5f,
+				attribs.pos.y + attribs.scale.y * 0.5f
+		);
+		_canvas.drawBitmap(bitmap, src, dst, null);
 	}
 
 	@Override
@@ -54,17 +73,15 @@ public final class EntityParticle extends EntityAbstract{
 
 	@Override
 	public void SpecialRender(final Canvas canvas){
+		if(BuildConfig.DEBUG){
+			throw new AssertionError("Assertion failed");
+		}
 	}
 
-	public static EntityParticle Create(final String tag){
-		EntityParticle particle = new EntityParticle();
-		particle.tag = tag;
-		return particle;
+	public static EntityParticle Create(){
+		return new EntityParticle();
 	}
 
-	public String GetTag(){
-		return tag;
-	}
-
-	private String tag;
+	private Bitmap bitmap;
+	private float life;
 }

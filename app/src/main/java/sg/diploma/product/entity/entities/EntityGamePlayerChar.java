@@ -86,6 +86,9 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 		//* Spawning of particles
 		EntityParticle particle = particleSystem.ActivateParticle();
+		particle.attribs.pos.x = attribs.pos.x;
+		particle.attribs.pos.y = attribs.pos.y;
+		particle.attribs.vel.y = -1000.0f;
 		//*/
 
 		currPlat = null;
