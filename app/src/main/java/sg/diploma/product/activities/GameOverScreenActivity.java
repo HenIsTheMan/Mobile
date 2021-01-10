@@ -56,7 +56,7 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		Instance = this;
 		setContentView(R.layout.game_over_screen_layout);
 
-		RankingsManager.Instance.LoadRankings(Instance, "Rankings.ser");
+		RankingsManager.Instance.LoadRankings(Instance, "Scores.ser", "Names.ser");
 		TreeMultimap<Integer, String> rankings = RankingsManager.Instance.GetRankings();
 		android.util.Log.e("me", String.valueOf(rankings.size()));
 
