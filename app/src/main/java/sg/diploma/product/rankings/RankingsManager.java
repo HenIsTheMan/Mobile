@@ -1,8 +1,11 @@
 package sg.diploma.product.rankings;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.common.collect.Ordering;
 import com.google.common.collect.TreeMultimap;
@@ -21,6 +24,7 @@ public class RankingsManager{
 		rankings = TreeMultimap.create(Ordering.arbitrary(), Ordering.arbitrary());
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.O)
 	public void LoadRankings(final Context context, final String scoresFileName, final String namesFileName){
 		FileInputStream scoresFIS = null;
 		ObjectInputStream scoresOIS = null;
@@ -29,6 +33,13 @@ public class RankingsManager{
 
 		final String pathToAppFolder = context.getExternalFilesDir(null).getAbsolutePath();
 		final File dir = new File(pathToAppFolder + File.separator);
+
+		/*final Path scoresPath = Paths.get(dir + "/" + scoresFileName);
+		final Path namesPath = Paths.get(dir + "/" + namesFileName);
+		if(!(Files.exists(scoresPath) && Files.exists(namesPath))) {
+			ClearDirectory(dir);
+		}*/
+
 		final File scoresFile = new File(dir, scoresFileName);
 		final File namesFile = new File(dir, namesFileName);
 
