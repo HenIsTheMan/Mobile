@@ -7,7 +7,7 @@
     android:orientation="vertical"
     >
 
-    <!-- ScrollView to allow for greater extensibility -->
+    <!-- ScrollView ❌ -->
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -70,7 +70,7 @@
         android:id="@+id/optionsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/SettingsText" /> <!-- Renamed to "settings" lol -->
+        android:text="@string/SettingsText" />
 
     <Button
         android:id="@+id/backButton"
