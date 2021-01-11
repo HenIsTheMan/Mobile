@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
@@ -84,7 +85,8 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		continueButton.getLayoutParams().height = buttonSize;
 		continueButton.setTranslationX(DeviceManager.screenWidthF * 0.5f - continueButton.getLayoutParams().width * 0.5f);
 		continueButton.setTranslationY(buttonTranslateY);
-		continueButton.setTextSize(buttonSize * 0.15f);
+		continueButton.setGravity(Gravity.CENTER);
+		continueButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
 
 		continueButtonDownAnimSet = new AnimationSet(true);
 		continueButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,

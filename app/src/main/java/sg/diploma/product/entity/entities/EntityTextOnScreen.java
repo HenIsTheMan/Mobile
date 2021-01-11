@@ -4,7 +4,9 @@ import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.util.TypedValue;
 
+import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
@@ -24,13 +26,12 @@ public final class EntityTextOnScreen extends EntityAbstract{
 		attribs.type = EntityTypes.EntityType.TextOnScreen;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.None;
 
-		textSize = 55.0f;
+		textSize = 0.0f;
 		text = "";
 
 		paint.setARGB(255, 255, 255, 255);
 		paint.setStrokeWidth(strokeWidth);
 		paint.setStyle(Paint.Style.FILL);
-		paint.setTextSize(textSize);
 		paint.setTypeface(Typeface.createFromAsset(assets, fPath));
 	}
 
@@ -74,7 +75,7 @@ public final class EntityTextOnScreen extends EntityAbstract{
 
 	public void SetTextSize(final float textSize){
 		this.textSize = textSize;
-		paint.setTextSize(textSize);
+		paint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, textSize, DeviceManager.displayMetrics));
 	}
 
 	public void SetText(final String text){

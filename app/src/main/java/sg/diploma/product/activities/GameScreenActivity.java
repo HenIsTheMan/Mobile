@@ -87,7 +87,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         particleSystem.Init(999, R.drawable.smoke_particle);
 
         //* Create text on screen
-        final float textSize = DeviceManager.screenWidthF * 0.05f;
+        final float textSize = DeviceManager.screenWidthF * 0.015f;
         GameData.textOnScreenFPS = EntityTextOnScreen.Create("Special_gameTextOnScreenFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
         GameData.textOnScreenFPS.attribs.pos.x = textSize * 0.5f;
         GameData.textOnScreenFPS.attribs.pos.y = textSize;
