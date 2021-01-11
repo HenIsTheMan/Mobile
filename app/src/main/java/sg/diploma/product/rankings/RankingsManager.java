@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.google.common.collect.Ordering;
+import com.google.common.collect.SortedSetMultimap;
 import com.google.common.collect.TreeMultimap;
 
 import java.io.File;
@@ -18,7 +19,7 @@ import java.util.Objects;
 
 public class RankingsManager{
 	RankingsManager(){
-		rankings = TreeMultimap.create(Ordering.arbitrary(), Ordering.arbitrary());
+		rankings = TreeMultimap.create(Ordering.natural(), Ordering.natural());
 	}
 
 	public void LoadRankings(final Context context, final String scoresFileName, final String namesFileName){
@@ -146,7 +147,7 @@ public class RankingsManager{
 		rankings.put(score, name);
 	}
 
-	public TreeMultimap<Integer, String> GetRankings(){
+	public SortedSetMultimap<Integer, String> GetRankings(){
 		return rankings;
 	}
 
@@ -160,7 +161,7 @@ public class RankingsManager{
 		file.delete();
 	}
 
-	private final TreeMultimap<Integer, String> rankings;
+	private final SortedSetMultimap<Integer, String> rankings;
 
 	public final static RankingsManager Instance;
 

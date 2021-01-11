@@ -24,7 +24,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import com.google.common.collect.TreeMultimap;
+import com.google.common.collect.SortedSetMultimap;
 
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
@@ -119,7 +119,7 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 		);
 
 		RankingsManager.Instance.LoadRankings(Instance, "Scores.ser", "Names.ser");
-		TreeMultimap<Integer, String> rankings = RankingsManager.Instance.GetRankings();
+		SortedSetMultimap<Integer, String> rankings = RankingsManager.Instance.GetRankings();
 		final int rankingsSize = rankings.size();
 
 		rankingsLinearLayout = findViewById(R.id.rankingsLinearLayout);
@@ -136,7 +136,7 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 		}
 
 		for(int i = 0; i < rankingsSize; ++i){
-			TextView textView = (TextView)rankingsLinearLayout.getChildAt(i);
+			TextView textView = (TextView)rankingsLinearLayout.getChildAt(rankingsSize - 1 - i);
 			textView.setText(String.format("%s (%s)", rankings.values().toArray()[i], rankings.keys().toArray()[i]));
 		}
 	}

@@ -23,7 +23,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import com.google.common.collect.TreeMultimap;
+import com.google.common.collect.SortedSetMultimap;
 
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
@@ -57,7 +57,7 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		setContentView(R.layout.game_over_screen_layout);
 
 		RankingsManager.Instance.LoadRankings(Instance, "Scores.ser", "Names.ser");
-		TreeMultimap<Integer, String> rankings = RankingsManager.Instance.GetRankings();
+		SortedSetMultimap<Integer, String> rankings = RankingsManager.Instance.GetRankings();
 		android.util.Log.e("me", String.valueOf(rankings.size()));
 
 		final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
