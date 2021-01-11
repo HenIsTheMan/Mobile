@@ -14,10 +14,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class RankingsManager{
 	RankingsManager(){
@@ -107,25 +103,14 @@ public class RankingsManager{
 		FileOutputStream namesFOS = null;
 		ObjectOutputStream namesOOS = null;
 
-		final int rankingsSize = rankings.size();
-		final Integer[] scores = new Integer[rankingsSize];
-		final String[] names = new String[rankingsSize];
-		final Set<Map.Entry<Integer, String>> rankingsSet = rankings.entries();
-		final List<Map.Entry<Integer, String>> rankingsList = new ArrayList<>(rankingsSet);
-		for(int i = 0; i < rankingsSize; ++i){
-			final Map.Entry<Integer, String> rankingEntry = rankingsList.get(i);
-			scores[i] = rankingEntry.getKey();
-			names[i] = rankingEntry.getValue();
-		}
-
 		try{
 			scoresFOS = new FileOutputStream(scoresFile);
 			scoresOOS = new ObjectOutputStream(scoresFOS);
-			scoresOOS.writeObject(scores);
+			scoresOOS.writeObject(rankings.keys().toArray());
 
 			namesFOS = new FileOutputStream(namesFile);
 			namesOOS = new ObjectOutputStream(namesFOS);
-			namesOOS.writeObject(names);
+			namesOOS.writeObject(rankings.values().toArray());
 		} catch(FileNotFoundException e){
 			Log.e("me222", "HERE");
 			e.printStackTrace();
