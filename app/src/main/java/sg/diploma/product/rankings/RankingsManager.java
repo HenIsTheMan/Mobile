@@ -2,7 +2,6 @@ package sg.diploma.product.rankings;
 
 import android.content.Context;
 import android.os.Environment;
-import android.util.Log;
 
 import com.google.common.collect.Ordering;
 import com.google.common.collect.SortedSetMultimap;
@@ -10,7 +9,6 @@ import com.google.common.collect.TreeMultimap;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -55,15 +53,8 @@ public class RankingsManager{
 			for(int i = 0; i < scoresObjArr.length; ++i){
 				rankings.put(scores[i], names[i]);
 			}
-		} catch(FileNotFoundException e){
-			Log.e("meYES", "HERE");
+		} catch(ClassNotFoundException | IOException e){
 			e.printStackTrace();
-		} catch(IOException e){
-			android.util.Log.e("me000", "HERE");
-			e.printStackTrace();
-		} catch(ClassNotFoundException e){
-			e.printStackTrace();
-			android.util.Log.e("me010", "HERE");
 		} finally{
 			try{
 				if(scoresOIS != null){
@@ -79,7 +70,6 @@ public class RankingsManager{
 					namesFIS.close();
 				}
 			} catch(IOException e){
-				android.util.Log.e("me111", "HERE");
 				e.printStackTrace();
 			}
 		}
@@ -89,7 +79,6 @@ public class RankingsManager{
 	public void SaveRankings(final Context context, final String scoresFileName, final String namesFileName){
 		final String state = Environment.getExternalStorageState();
 		if(!Environment.MEDIA_MOUNTED.equals(state)){
-			Log.e("no", "HERE");
 			return;
 		}
 
@@ -116,11 +105,7 @@ public class RankingsManager{
 			namesFOS = new FileOutputStream(namesFile);
 			namesOOS = new ObjectOutputStream(namesFOS);
 			namesOOS.writeObject(rankings.values().toArray());
-		} catch(FileNotFoundException e){
-			Log.e("me222", "HERE");
-			e.printStackTrace();
 		} catch(IOException e){
-			Log.e("me333", "HERE");
 			e.printStackTrace();
 		} finally{
 			try{
@@ -137,7 +122,6 @@ public class RankingsManager{
 					namesFOS.close();
 				}
 			} catch(IOException e){
-				Log.e("me444", "HERE");
 				e.printStackTrace();
 			}
 		}
