@@ -18,6 +18,7 @@ public final class GameData implements IListener{ //Singleton
 		startPlat = null;
 		textOnScreenFPS = null;
 		textOnScreenScore = null;
+		textOnScreenCoins = null;
 
 		score = -1;
 	}
@@ -36,6 +37,7 @@ public final class GameData implements IListener{ //Singleton
 	public static EntityPlat startPlat;
 	public static EntityTextOnScreen textOnScreenFPS;
 	public static EntityTextOnScreen textOnScreenScore;
+	public static EntityTextOnScreen textOnScreenCoins;
 
 	public static int score;
 
@@ -47,6 +49,7 @@ public final class GameData implements IListener{ //Singleton
 		startPlat = null;
 		textOnScreenFPS = null;
 		textOnScreenScore = null;
+		textOnScreenCoins = null;
 
 		score = -1;
 

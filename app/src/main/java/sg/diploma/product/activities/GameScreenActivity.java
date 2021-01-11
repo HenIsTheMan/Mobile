@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import sg.diploma.product.R;
+import sg.diploma.product.currency.CurrencyManager;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.ParticleSystem;
@@ -53,6 +55,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         View view = new GameView(this);
         setContentView(view);
 
+        CurrencyManager.Instance.LoadCurrencyData();
+
         vibrator = (Vibrator)view.getContext().getSystemService(VIBRATOR_SERVICE);
 
         Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameScreenActivity.GetVal(), this);
@@ -88,17 +92,24 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
         //* Create text on screen
         final float textSize = DeviceManager.screenWidthF * 0.015f;
+        final float realTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, textSize, DeviceManager.displayMetrics);
         GameData.textOnScreenFPS = EntityTextOnScreen.Create("Special_gameTextOnScreenFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
-        GameData.textOnScreenFPS.attribs.pos.x = textSize * 0.5f;
-        GameData.textOnScreenFPS.attribs.pos.y = textSize;
         GameData.textOnScreenFPS.SetStrokeWidth(400.0f);
         GameData.textOnScreenFPS.SetTextSize(textSize);
+        GameData.textOnScreenFPS.attribs.pos.x = DeviceManager.screenWidthF * 0.05f - realTextSize * 0.5f;
+        GameData.textOnScreenFPS.attribs.pos.y = DeviceManager.screenHeightF * 0.05f - realTextSize * 0.5f;
 
         GameData.textOnScreenScore = EntityTextOnScreen.Create("Special_gameTextOnScreenScore", _view.getContext().getAssets(), "fonts/grobold.ttf");
-        GameData.textOnScreenScore.attribs.pos.x = textSize * 0.5f;
-        GameData.textOnScreenScore.attribs.pos.y = textSize * 2.0f;
         GameData.textOnScreenScore.SetStrokeWidth(400.0f);
         GameData.textOnScreenScore.SetTextSize(textSize);
+        GameData.textOnScreenScore.attribs.pos.x = DeviceManager.screenWidthF * 0.05f - realTextSize * 0.5f;
+        GameData.textOnScreenScore.attribs.pos.y = DeviceManager.screenHeightF * 0.1f - realTextSize * 0.5f;
+
+        GameData.textOnScreenCoins = EntityTextOnScreen.Create("Special_gameTextOnScreenCoins", _view.getContext().getAssets(), "fonts/grobold.ttf");
+        GameData.textOnScreenCoins.SetStrokeWidth(400.0f);
+        GameData.textOnScreenCoins.SetTextSize(textSize);
+        GameData.textOnScreenCoins.attribs.pos.x = DeviceManager.screenWidthF * 0.05f - realTextSize * 0.5f;
+        GameData.textOnScreenCoins.attribs.pos.y = DeviceManager.screenHeightF * 0.15f - realTextSize * 0.5f;
         //*/
 
         //* Create game player char and start plat
@@ -166,10 +177,13 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     @Override
     public void Update(float _dt) {
         if(GameData.textOnScreenFPS != null){
-            GameData.textOnScreenFPS.SetText("FPS: " + 1.0f / _dt);
+            GameData.textOnScreenFPS.SetText("FPS   " + 1.0f / _dt);
         }
         if(GameData.textOnScreenScore != null){
-            GameData.textOnScreenScore.SetText("Score: " + GameData.score);
+            GameData.textOnScreenScore.SetText("Score   " + GameData.score);
+        }
+        if(GameData.textOnScreenCoins != null){
+            GameData.textOnScreenCoins.SetText("Coins   " + CurrencyManager.Instance.GetAmtOfCoins());
         }
 
         particleSystem.Update(_dt);
