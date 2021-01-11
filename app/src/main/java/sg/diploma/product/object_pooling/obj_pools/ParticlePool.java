@@ -11,6 +11,6 @@ public final class ParticlePool extends ObjPool<EntityParticle>{
 	}
 
 	public ArrayList<EntityParticle> RetrieveActiveParticles(){
-		return RetrieveAtiveObjs();
+		return RetrieveActiveObjs();
 	}
 }

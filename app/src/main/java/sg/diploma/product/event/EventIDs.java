@@ -3,7 +3,7 @@ package sg.diploma.product.event;
 public final class EventIDs{
 	public enum EventID{
 		EndGame(0),
-		DeactivateParticle(1),
+		SendForDeactivation(1),
 		AddScore(2),
 		EndProg(3),
 		ReturnToMenuWithoutSaving(4),

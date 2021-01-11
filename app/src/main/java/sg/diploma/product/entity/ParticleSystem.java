@@ -10,6 +10,7 @@ import sg.diploma.product.object_pooling.obj_pools.ParticlePool;
 public final class ParticleSystem{
 	public ParticleSystem(){
 		particlePool = new ParticlePool();
+		particlesToDeactivate = new ArrayList<>();
 	}
 
 	public void Init(final int size, final int bitmapID){
@@ -22,10 +23,13 @@ public final class ParticleSystem{
 
 	public void Update(final float dt){
 		ArrayList<EntityParticle> activeParticles = particlePool.RetrieveActiveParticles();
+		final int activeParticlesSize = activeParticles.size();
 
-		for(int i = 0; i < activeParticles.size(); ++i){
-			activeParticles.get(i).Update(dt); //java.lang.NullPointerException: Attempt to invoke virtual method 'void sg.diploma.product.entity.entities.EntityParticle.Update(float)' on a null object reference??
+		for(int i = 0; i < activeParticlesSize; ++i){
+			activeParticles.get(i).Update(dt);
 		}
+
+		DeactivateParticles();
 	}
 
 	public void Render(final Canvas canvas){
@@ -45,5 +49,16 @@ public final class ParticleSystem{
 		particlePool.DeactivateObj(particle);
 	}
 
+	public void AddParticleToDeactivate(final EntityParticle particle){
+		particlesToDeactivate.add(particle);
+	}
+
+	private void DeactivateParticles(){
+		for(EntityParticle particle: particlesToDeactivate){
+			DeactivateParticle(particle);
+		}
+	}
+
 	private final ParticlePool particlePool;
+	private final ArrayList<EntityParticle> particlesToDeactivate;
 }

@@ -4,9 +4,9 @@ import sg.diploma.product.entity.entities.EntityParticle;
 import sg.diploma.product.event.EventAbstract;
 import sg.diploma.product.event.EventIDs;
 
-public final class EventDeactivateParticle extends EventAbstract{
-	public EventDeactivateParticle(final EntityParticle particle){
-		super(EventIDs.EventID.DeactivateParticle);
+public final class EventSendForDeactivation extends EventAbstract{
+	public EventSendForDeactivation(final EntityParticle particle){
+		super(EventIDs.EventID.SendForDeactivation);
 		this.particle = particle;
 	}
 

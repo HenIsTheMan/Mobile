@@ -9,7 +9,7 @@ public final class SharedPrefsManager{
 		view = null;
 	}
 
-	public void Init(final SurfaceView view){ //??
+	public void Init(final SurfaceView view){
 		this.view = view;
 	}
 
