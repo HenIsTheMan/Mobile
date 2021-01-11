@@ -17,6 +17,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,8 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 		backButton = null;
 
 		leftArrowIcon = null;
+
+		rankingsScrollView = null;
 	}
 
 	@SuppressLint("ClickableViewAccessibility")
@@ -100,6 +103,15 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 		leftArrowIcon.setTranslationY(backButton.getTranslationY()
 				+ (backButton.getLayoutParams().height
 				- leftArrowIcon.getLayoutParams().height) * 0.5f);
+
+		rankingsScrollView = findViewById(R.id.rankingsScrollView);
+		rankingsScrollView.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.65f);
+		rankingsScrollView.setTranslationY(
+			(backButton.getTranslationY() + backButton.getLayoutParams().height * 0.5f
+			+ (RankingsText.getTranslationY() + (float)RankingsText.getMeasuredHeight() * 0.5f))
+			* 0.5f
+			- rankingsScrollView.getLayoutParams().height * 0.5f
+		);
 	}
 
 	@Override
@@ -172,6 +184,8 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 	private Button backButton;
 
 	private ImageView leftArrowIcon;
+
+	private ScrollView rankingsScrollView;
 
 	public static RankingsScreenActivity Instance;
 
