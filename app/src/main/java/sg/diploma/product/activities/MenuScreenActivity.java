@@ -272,9 +272,6 @@ public final class MenuScreenActivity
                     exitButton.startAnimation(exitButtonUpAnimSet);
                     AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
-                    finishAndRemoveTask();
-                    System.exit(0);
-
                     return true;
             }
             return false;
@@ -562,8 +559,21 @@ public final class MenuScreenActivity
                 Animation.ABSOLUTE, exitButton.getTranslationY() + otherButtonSize * 0.5f));
         exitButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
         exitButtonUpAnimSet.setDuration(400);
-        exitButtonUpAnimSet.setFillEnabled(true);
-        exitButtonUpAnimSet.setFillAfter(true);
+        exitButtonUpAnimSet.setAnimationListener(new Animation.AnimationListener(){
+            @Override
+            public void onAnimationStart(Animation anim){
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation anim){
+            }
+
+            @Override
+            public void onAnimationEnd(Animation anim){
+                finishAndRemoveTask();
+                System.exit(0);
+            }
+        });
         exitButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
 
         //* Init icons
