@@ -17,7 +17,7 @@ import java.io.ObjectOutputStream;
 
 public class RankingsManager{
 	RankingsManager(){
-		rankings = null;
+		rankings = TreeMultimap.create(Ordering.arbitrary(), Ordering.arbitrary());
 	}
 
 	public void LoadRankings(final Context context, final String scoresFileName, final String namesFileName){
@@ -34,21 +34,27 @@ public class RankingsManager{
 		try{
 			scoresFIS = new FileInputStream(scoresFile);
 			scoresOIS = new ObjectInputStream(scoresFIS);
-			final Integer[] scores = (Integer[])scoresOIS.readObject(); //??
-
 			namesFIS = new FileInputStream(namesFile);
 			namesOIS = new ObjectInputStream(namesFIS);
-			final String[] names = (String[])namesOIS.readObject(); //??
 
-			rankings = TreeMultimap.create(Ordering.arbitrary(), Ordering.arbitrary());
-			final int arrLen = scores.length;
-			for(int i = 0; i < arrLen; ++i){
+			final Object[] scoresObjArr = (Object[])scoresOIS.readObject();
+			final Integer[] scores = new Integer[scoresObjArr.length];
+			for(int i = 0; i < scoresObjArr.length; ++i){
+				scores[i] = (int)scoresObjArr[i];
+			}
+
+			final Object[] namesObjArr = (Object[])namesOIS.readObject();
+			final String[] names = new String[namesObjArr.length];
+			for(int i = 0; i < namesObjArr.length; ++i){
+				names[i] = (String)namesObjArr[i];
+			}
+
+			rankings.clear();
+			for(int i = 0; i < scoresObjArr.length; ++i){
 				rankings.put(scores[i], names[i]);
 			}
 		} catch(FileNotFoundException e){
 			Log.e("meYES", "HERE");
-
-			rankings = TreeMultimap.create(Ordering.arbitrary(), Ordering.arbitrary());
 			e.printStackTrace();
 		} catch(IOException e){
 			android.util.Log.e("me000", "HERE");
@@ -100,11 +106,11 @@ public class RankingsManager{
 		try{
 			scoresFOS = new FileOutputStream(scoresFile);
 			scoresOOS = new ObjectOutputStream(scoresFOS);
-			scoresOOS.writeObject(rankings.keys().toArray()); //??
+			scoresOOS.writeObject(rankings.keys().toArray());
 
 			namesFOS = new FileOutputStream(namesFile);
 			namesOOS = new ObjectOutputStream(namesFOS);
-			namesOOS.writeObject(rankings.values().toArray()); //??
+			namesOOS.writeObject(rankings.values().toArray());
 		} catch(FileNotFoundException e){
 			Log.e("me222", "HERE");
 			e.printStackTrace();
@@ -140,7 +146,7 @@ public class RankingsManager{
 		return rankings;
 	}
 
-	private TreeMultimap<Integer, String> rankings;
+	private final TreeMultimap<Integer, String> rankings;
 
 	public final static RankingsManager Instance;
 
