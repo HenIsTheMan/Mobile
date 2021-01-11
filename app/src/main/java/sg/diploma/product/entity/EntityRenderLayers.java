@@ -4,6 +4,7 @@ public final class EntityRenderLayers{
 	public enum EntityRenderLayer{
 		NormalBack(380),
 		Normal(400),
+		NormalFront(420),
 		UI(9999),
 		Amt(3);
 

@@ -24,7 +24,7 @@ import static sg.diploma.product.math.Constants.epsilon;
 public final class EntityGamePlayerChar extends EntityAbstract{
 	private EntityGamePlayerChar(final int bitmapID, final ParticleSystem particleSystem){
 		super();
-		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
+		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.NormalFront;
 		attribs.type = EntityTypes.EntityType.GamePlayerChar;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
 
