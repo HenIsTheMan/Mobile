@@ -93,7 +93,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		//*/
 
 		//* Spawning of particles
-		if(spawnParticleBT <= elapsedTime && !(attribs.vel.x <= epsilon && -attribs.vel.x <= epsilon)){
+		if(spawnParticleBT <= elapsedTime && !(attribs.vel.x <= epsilon && -attribs.vel.x <= epsilon) && currPlat != null){
 			EntityParticle particle = particleSystem.ActivateParticle();
 			particle.SetLife(0.8f);
 			particle.SetMaxLife(0.8f);
