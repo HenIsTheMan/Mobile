@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Objects;
 
 public class RankingsManager{
 	RankingsManager(){
@@ -93,6 +94,9 @@ public class RankingsManager{
 
 		final String pathToAppFolder = context.getExternalFilesDir(null).getAbsolutePath();
 		final File dir = new File(pathToAppFolder + File.separator);
+		if(dir.exists()){
+			ClearDirectory(dir);
+		}
 		dir.mkdirs();
 
 		final File scoresFile = new File(dir, scoresFileName);
@@ -144,6 +148,16 @@ public class RankingsManager{
 
 	public TreeMultimap<Integer, String> GetRankings(){
 		return rankings;
+	}
+
+	/** @noinspection ResultOfMethodCallIgnored*/
+	private void ClearDirectory(final File file){
+		if(file.isDirectory()){
+			for(File child: Objects.requireNonNull(file.listFiles())){
+				ClearDirectory(child);
+			}
+		}
+		file.delete();
 	}
 
 	private final TreeMultimap<Integer, String> rankings;
