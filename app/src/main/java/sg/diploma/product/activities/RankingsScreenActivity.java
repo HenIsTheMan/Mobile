@@ -136,7 +136,7 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 
 		for(int i = 0; i < rankingsSize; ++i){
 			TextView textView = (TextView)rankingsLinearLayout.getChildAt(i);
-			textView.setText(rankings.values().toArray()[i] + "(" + rankings.keys().toArray()[i] + ")");
+			textView.setText(String.format("%s (%s)", rankings.values().toArray()[i], rankings.keys().toArray()[i]));
 		}
 	}
 
