@@ -1,6 +1,5 @@
 package sg.diploma.product.audio;
 
-import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.view.SurfaceView;
 
@@ -12,7 +11,6 @@ import sg.diploma.product.load_and_save.SharedPrefsManager;
 public final class AudioManager{
 	private AudioManager(){
 		view = null;
-		res = null;
 
 		musicMap = new HashMap<>();
 		soundMap = new HashMap<>();
@@ -23,7 +21,6 @@ public final class AudioManager{
 
 	public void Init(SurfaceView _view){
 		view = _view;
-		res = _view.getResources();
 	}
 
 	public void PlayAudio(final int ID, final AudioTypes.AudioType type){
@@ -78,7 +75,6 @@ public final class AudioManager{
 	}
 
 	private SurfaceView view;
-	private Resources res;
 
 	private final HashMap<Integer, MediaPlayer> musicMap;
 	private final HashMap<Integer, MediaPlayer> soundMap;

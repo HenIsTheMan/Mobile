@@ -9,6 +9,7 @@ import android.view.View;
 import java.util.Objects;
 
 import sg.diploma.product.audio.AudioManager;
+import sg.diploma.product.currency.CurrencyManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.load_and_save.SharedPrefsManager;
@@ -36,6 +37,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         EntityManager.Instance.Init(this.view);
         ResourceManager.Instance.Init(this.view);
         AudioManager.Instance.Init(this.view);
+        CurrencyManager.Instance.Init(this.view);
         SharedPrefsManager.Instance.Init(this.view);
     }
 

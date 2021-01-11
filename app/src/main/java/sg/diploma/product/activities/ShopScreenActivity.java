@@ -25,6 +25,7 @@ import androidx.annotation.RequiresApi;
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
+import sg.diploma.product.currency.CurrencyManager;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.state.IState;
@@ -52,6 +53,8 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		Instance = this;
 		setContentView(R.layout.shop_screen_layout);
 
+		CurrencyManager.Instance.LoadCurrencyData();
+
 		final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
 		final float textTranslationX = DeviceManager.screenWidthF * 0.5f;
 
@@ -65,7 +68,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		currencyText = findViewById(R.id.currencyText);
 		currencyText.setTypeface(font);
 		currencyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.1f / DeviceManager.scaledDensity);
-		currencyText.setText("0");
+		currencyText.setText(String.valueOf(CurrencyManager.Instance.GetAmtOfCoins()));
 		currencyText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
 		currencyText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 		currencyText.setTranslationX(DeviceManager.screenWidthF * 0.75f - (float)currencyText.getMeasuredWidth() * 0.5f);
@@ -79,7 +82,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		final float buttonFactor = DeviceManager.screenWidthF * 0.25f / 300.0f;
 		final int buttonSize = (int)(300.0f * buttonFactor * 0.7f);
 		final float buttonTranslateY = DeviceManager.screenHeightF
-				- (DeviceManager.screenWidthF - (DeviceManager.screenWidthF * 0.85f - buttonSize * 0.5f));
+			- (DeviceManager.screenWidthF - (DeviceManager.screenWidthF * 0.85f - buttonSize * 0.5f));
 
 		backButton = findViewById(R.id.backButton);
 		backButton.setOnTouchListener(this);

@@ -27,6 +27,20 @@ public final class SharedPrefsManager{
 		editor.apply();
 	}
 
+	public Integer LoadDataInt(final String name, final String key){
+		SharedPreferences sharedPrefs = view.getContext().getSharedPreferences(name, Context.MODE_PRIVATE);
+		if(!sharedPrefs.contains(key)){
+			return null;
+		}
+		return sharedPrefs.getInt(key, 0);
+	}
+
+	public void SaveDataInt(final String name, final String key, final int val){
+		SharedPreferences.Editor editor = view.getContext().getSharedPreferences(name, Context.MODE_PRIVATE).edit();
+		editor.putInt(key, val);
+		editor.apply();
+	}
+
 	public static SharedPrefsManager Instance;
 
 	static{
