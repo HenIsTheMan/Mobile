@@ -17,6 +17,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -42,6 +43,7 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 		leftArrowIcon = null;
 
 		rankingsScrollView = null;
+		rankingsLinearLayout = null;
 	}
 
 	@SuppressLint("ClickableViewAccessibility")
@@ -112,6 +114,14 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 			* 0.5f
 			- rankingsScrollView.getLayoutParams().height * 0.5f
 		);
+
+		TextView textView = new TextView(this);
+		textView.setText("Test Test");
+		textView.setTextSize(200);
+		//center??
+
+		rankingsLinearLayout = findViewById(R.id.rankingsLinearLayout);
+		rankingsLinearLayout.addView(textView);
 	}
 
 	@Override
@@ -186,6 +196,7 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 	private ImageView leftArrowIcon;
 
 	private ScrollView rankingsScrollView;
+	private LinearLayout rankingsLinearLayout;
 
 	public static RankingsScreenActivity Instance;
 
