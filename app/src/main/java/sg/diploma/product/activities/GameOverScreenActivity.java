@@ -157,8 +157,10 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 					continueButton.startAnimation(continueButtonUpAnimSet);
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
-					RankingsManager.Instance.AddRanking(GameData.score, nameTextInputBox.getText().toString());
-					RankingsManager.Instance.SaveRankings(Instance, "Scores.ser", "Names.ser");
+					if(saveScoreCheckBox.isChecked()){
+						RankingsManager.Instance.AddRanking(GameData.score, nameTextInputBox.getText().toString());
+						RankingsManager.Instance.SaveRankings(Instance, "Scores.ser", "Names.ser");
+					}
 					ReturnToMenu();
 					return true;
 			}
