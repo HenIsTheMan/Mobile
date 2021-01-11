@@ -36,6 +36,9 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		backButtonDownAnimSet = null;
 		backButtonUpAnimSet = null;
 
+		currencyText = null;
+		currencyImg = null;
+
 		backButton = null;
 
 		leftArrowIcon = null;
@@ -58,6 +61,20 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		shopText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 		shopText.setTranslationX(textTranslationX - (float)shopText.getMeasuredWidth() * 0.5f);
 		shopText.setTranslationY(DeviceManager.screenHeightF * 0.05f);
+
+		currencyText = findViewById(R.id.currencyText);
+		currencyText.setTypeface(font);
+		currencyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.1f / DeviceManager.scaledDensity);
+		currencyText.setText("0");
+		currencyText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+		currencyText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		currencyText.setTranslationX(DeviceManager.screenWidthF * 0.75f - (float)currencyText.getMeasuredWidth() * 0.5f);
+		currencyText.setTranslationY(DeviceManager.screenHeightF * 0.25f - (float)currencyText.getMeasuredHeight() * 0.5f);
+
+		currencyImg = findViewById(R.id.currencyImg);
+		currencyImg.getLayoutParams().width = currencyImg.getLayoutParams().height = (int)(DeviceManager.screenWidthF * 0.1f);
+		currencyImg.setTranslationX(DeviceManager.screenWidthF * 0.9f - currencyImg.getLayoutParams().width * 0.5f);
+		currencyImg.setTranslationY(DeviceManager.screenHeightF * 0.25f - currencyImg.getLayoutParams().height * 0.5f);
 
 		final float buttonFactor = DeviceManager.screenWidthF * 0.25f / 300.0f;
 		final int buttonSize = (int)(300.0f * buttonFactor * 0.7f);
@@ -168,6 +185,9 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 
 	private AnimationSet backButtonDownAnimSet;
 	private AnimationSet backButtonUpAnimSet;
+
+	private TextView currencyText;
+	private ImageView currencyImg;
 
 	private Button backButton;
 

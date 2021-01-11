@@ -6,6 +6,7 @@
     <string name="GameTitleBossText">"BOSS"</string>
     <string name="GameTitleGirlText">"Girl"</string>
 
+    <string name="coinImgInfo">CoinImg</string>
     <string name="playIconInfo">PlayIcon</string>
     <string name="podiumIconInfo">RankingsIcon</string>
     <string name="shoppingCartIconInfo">ShoppingaCartIcon</string>
