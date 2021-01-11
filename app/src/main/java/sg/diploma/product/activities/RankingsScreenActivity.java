@@ -24,11 +24,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import com.google.common.collect.TreeMultimap;
+
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
+import sg.diploma.product.rankings.RankingsManager;
 import sg.diploma.product.state.IState;
 import sg.diploma.product.state.StateManager;
 import sg.diploma.product.touch.TouchManager;
@@ -115,13 +118,26 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 			- rankingsScrollView.getLayoutParams().height * 0.5f
 		);
 
-		TextView textView = new TextView(this);
-		textView.setText("Test Test");
-		textView.setTextSize(200);
-		//center??
+		RankingsManager.Instance.LoadRankings(Instance, "Scores.ser", "Names.ser");
+		TreeMultimap<Integer, String> rankings = RankingsManager.Instance.GetRankings();
+		final int rankingsSize = rankings.size();
 
 		rankingsLinearLayout = findViewById(R.id.rankingsLinearLayout);
-		rankingsLinearLayout.addView(textView);
+		final int amtOfChildren = rankingsLinearLayout.getChildCount();
+
+		if(rankingsSize > amtOfChildren){
+			for(int i = amtOfChildren; i < rankingsSize; ++i){
+				TextView textView = new TextView(this);
+				textView.setTextSize(200);
+				textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+				rankingsLinearLayout.addView(textView);
+			}
+		}
+
+		for(int i = 0; i < rankingsSize; ++i){
+			TextView textView = (TextView)rankingsLinearLayout.getChildAt(i);
+			textView.setText(rankings.values().toArray()[i] + "(" + rankings.keys().toArray()[i] + ")");
+		}
 	}
 
 	@Override
