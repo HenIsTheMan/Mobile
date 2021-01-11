@@ -27,40 +27,20 @@ public final class AudioManager{
 	}
 
 	public void PlayAudio(final int ID, final AudioTypes.AudioType type){
-		if(AudioManager.Instance.IsPlaying(ID, type)){
+		final HashMap<Integer, MediaPlayer> audioMap = type == AudioTypes.AudioType.Music ? musicMap : soundMap;
+		if(audioMap.containsKey(ID) && Objects.requireNonNull(audioMap.get(ID)).isPlaying()){
 			return;
 		}
 
-		final HashMap<Integer, MediaPlayer> audioMap = type == AudioTypes.AudioType.Music ? musicMap : soundMap;
-		if(audioMap.containsKey(ID)){
-			Objects.requireNonNull(audioMap.get(ID)).reset();
-			Objects.requireNonNull(audioMap.get(ID)).start();
-		}
-
 		//* Load audio
-		MediaPlayer mediaPlayer = MediaPlayer.create(view.getContext(), ID);
+		final MediaPlayer mediaPlayer = MediaPlayer.create(view.getContext(), ID);
 		audioMap.put(ID, mediaPlayer);
 
 		final float audioVol = type == AudioTypes.AudioType.Music ? musicVol : soundVol;
 		mediaPlayer.setVolume(audioVol, audioVol);
 
-		mediaPlayer.start();
+		mediaPlayer.setOnPreparedListener(MediaPlayer::start);
 		//*/
-	}
-
-	public boolean IsPlaying(final int ID, final AudioTypes.AudioType type){
-		final HashMap<Integer, MediaPlayer> audioMap = type == AudioTypes.AudioType.Music ? musicMap : soundMap;
-
-		if(!audioMap.containsKey(ID)){
-			return false;
-		}
-
-		return audioMap.get(ID).isPlaying();
-	}
-
-	public void StopAudio(final int ID, final AudioTypes.AudioType type){
-		final HashMap<Integer, MediaPlayer> audioMap = type == AudioTypes.AudioType.Music ? musicMap : soundMap;
-		audioMap.get(ID).stop();
 	}
 
 	public void OnMusicVolChanged(final float amt){
