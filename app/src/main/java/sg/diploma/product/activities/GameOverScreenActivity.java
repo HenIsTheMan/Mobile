@@ -158,7 +158,8 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 					if(saveScoreCheckBox.isChecked()){
-						RankingsManager.Instance.AddRanking(GameData.score, nameTextInputBox.getText().toString());
+						final String name = nameTextInputBox.getText().toString();
+						RankingsManager.Instance.AddRanking(GameData.score, name.equals("") ? nameTextInputBox.getHint().toString() : name);
 						RankingsManager.Instance.SaveRankings(Instance, "Scores.ser", "Names.ser");
 					}
 					ReturnToMenu();

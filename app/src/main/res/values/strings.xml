@@ -34,6 +34,7 @@
     <string name="SoundVolText">"Sound Vol"</string>
 
     <string name="ContinueButtonText">"Continue…"</string>
+    <string name="NameTextInputBoxHint">"Enter name…"</string>
 
     <string name="PercentPostfix">%.1f%%</string>
 

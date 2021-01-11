@@ -128,7 +128,8 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 		if(rankingsSize > amtOfChildren){
 			for(int i = amtOfChildren; i < rankingsSize; ++i){
 				TextView textView = new TextView(this);
-				textView.setTextSize(50);
+				textView.setTypeface(font);
+				textView.setTextSize((int)(DeviceManager.screenWidthF / 40.0f));
 				textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 				rankingsLinearLayout.addView(textView);
 			}

@@ -24,7 +24,7 @@ public final class ParticleSystem{
 		ArrayList<EntityParticle> activeParticles = particlePool.RetrieveActiveParticles();
 
 		for(int i = 0; i < activeParticles.size(); ++i){
-			activeParticles.get(i).Update(dt);
+			activeParticles.get(i).Update(dt); //java.lang.NullPointerException: Attempt to invoke virtual method 'void sg.diploma.product.entity.entities.EntityParticle.Update(float)' on a null object reference??
 		}
 	}
 
