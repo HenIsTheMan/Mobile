@@ -5,12 +5,18 @@ import android.os.Environment;
 import android.view.SurfaceView;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public final class BackgroundManager{
 	private BackgroundManager(){
 		view = null;
-		BGs = null;
+		backgrounds = new ArrayList<>();
 	}
 
 	public void Init(SurfaceView _view){
@@ -18,6 +24,36 @@ public final class BackgroundManager{
 	}
 
 	public void LoadBackgroundData(final Context context, final String backgroundsFileName){
+		FileInputStream backgroundsFIS = null;
+		ObjectInputStream backgroundsOIS = null;
+
+		final String pathToAppFolder = context.getExternalFilesDir(null).getAbsolutePath();
+		final File dir = new File(pathToAppFolder + File.separator + "backgrounds");
+		final File backgroundsFile = new File(dir, backgroundsFileName);
+
+		try{
+			backgroundsFIS = new FileInputStream(backgroundsFile);
+			backgroundsOIS = new ObjectInputStream(backgroundsFIS);
+
+			final Object[] backgroundsObjArr = (Object[])backgroundsOIS.readObject();
+			backgrounds.clear();
+			for(int i = 0; i < backgroundsObjArr.length; ++i){
+				backgrounds.set(i, (BackgroundStatuses.BackgroundStatus)backgroundsObjArr[i]);
+			}
+		} catch(ClassNotFoundException | IOException e){
+			e.printStackTrace();
+		} finally{
+			try{
+				if(backgroundsOIS != null){
+					backgroundsOIS.close();
+				}
+				if(backgroundsFIS != null){
+					backgroundsFIS.close();
+				}
+			} catch(IOException e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/** @noinspection ResultOfMethodCallIgnored*/
@@ -28,48 +64,34 @@ public final class BackgroundManager{
 		}
 
 		final String pathToAppFolder = context.getExternalFilesDir(null).getAbsolutePath();
-		final File dir = new File(pathToAppFolder + File.separator + "scores");
+		final File dir = new File(pathToAppFolder + File.separator + "backgrounds");
 		if(dir.exists()){
 			ClearDirectory(dir);
 		}
 		dir.mkdirs();
 
-		/*final File scoresFile = new File(dir, scoresFileName);
-		final File namesFile = new File(dir, namesFileName);
-
-		FileOutputStream scoresFOS = null;
-		ObjectOutputStream scoresOOS = null;
-		FileOutputStream namesFOS = null;
-		ObjectOutputStream namesOOS = null;
+		final File backgroundsFile = new File(dir, backgroundsFileName);
+		FileOutputStream backgroundsFOS = null;
+		ObjectOutputStream backgroundsOOS = null;
 
 		try{
-			scoresFOS = new FileOutputStream(scoresFile);
-			scoresOOS = new ObjectOutputStream(scoresFOS);
-			scoresOOS.writeObject(rankings.keys().toArray());
-
-			namesFOS = new FileOutputStream(namesFile);
-			namesOOS = new ObjectOutputStream(namesFOS);
-			namesOOS.writeObject(rankings.values().toArray());
+			backgroundsFOS = new FileOutputStream(backgroundsFile);
+			backgroundsOOS = new ObjectOutputStream(backgroundsFOS);
+			backgroundsOOS.writeObject(backgrounds.toArray());
 		} catch(IOException e){
 			e.printStackTrace();
 		} finally{
 			try{
-				if(scoresOOS != null){
-					scoresOOS.close();
+				if(backgroundsOOS != null){
+					backgroundsOOS.close();
 				}
-				if(scoresFOS != null){
-					scoresFOS.close();
-				}
-				if(namesOOS != null){
-					namesOOS.close();
-				}
-				if(namesFOS != null){
-					namesFOS.close();
+				if(backgroundsFOS != null){
+					backgroundsFOS.close();
 				}
 			} catch(IOException e){
 				e.printStackTrace();
 			}
-		}*/
+		}
 	}
 
 	/** @noinspection ResultOfMethodCallIgnored*/
@@ -84,7 +106,7 @@ public final class BackgroundManager{
 
 	private SurfaceView view;
 
-	private BackgroundStatuses.BackgroundStatus[] BGs;
+	private final ArrayList<BackgroundStatuses.BackgroundStatus> backgrounds;
 
 	public final static BackgroundManager Instance;
 
