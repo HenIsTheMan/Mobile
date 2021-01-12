@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.res.ResourcesCompat;
 
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
@@ -136,12 +137,18 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		);
 
 		shopRelativeLayout = findViewById(R.id.shopRelativeLayout);
-		TextView textView = new TextView(this);
+		ImageView imgView = new ImageView(this);
+		imgView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.button, null));
+		/*final int ID = getResources().getIdentifier("yourpackagename:drawable/" + "future_place.gif", null, null);
+		imgView.setImageResource(ID);*/
+		shopRelativeLayout.addView(imgView);
+
+		/*TextView textView = new TextView(this);
 		textView.setTypeface(font);
 		textView.setText("Test Test");
 		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.7f / DeviceManager.scaledDensity);
 		textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-		shopRelativeLayout.addView(textView);
+		shopRelativeLayout.addView(textView);*/
 	}
 
 	@Override
