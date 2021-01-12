@@ -27,7 +27,7 @@ public class RankingsManager{
 		ObjectInputStream namesOIS = null;
 
 		final String pathToAppFolder = context.getExternalFilesDir(null).getAbsolutePath();
-		final File dir = new File(pathToAppFolder + File.separator);
+		final File dir = new File(pathToAppFolder + File.separator + "rankings");
 		final File scoresFile = new File(dir, scoresFileName);
 		final File namesFile = new File(dir, namesFileName);
 
@@ -83,7 +83,7 @@ public class RankingsManager{
 		}
 
 		final String pathToAppFolder = context.getExternalFilesDir(null).getAbsolutePath();
-		final File dir = new File(pathToAppFolder + File.separator);
+		final File dir = new File(pathToAppFolder + File.separator + "rankings");
 		if(dir.exists()){
 			ClearDirectory(dir);
 		}

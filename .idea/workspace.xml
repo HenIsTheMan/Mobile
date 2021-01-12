@@ -32,9 +32,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/background/BackgroundManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/background/BackgroundStatuses.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/background/BackgroundManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/background/BackgroundManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/rankings/RankingsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/rankings/RankingsManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,10 +242,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="881" y="272" key="#xdebugger.XInspectDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610264602850" />
-    <state x="1186" y="238" key="#xdebugger.evaluate" timestamp="1610443653324">
+    <state x="867" y="445" key="#xdebugger.evaluate" timestamp="1610461490234">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1186" y="238" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1610443653324" />
+    <state x="867" y="445" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1610461490234" />
     <state x="691" y="364" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1607439514864">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -326,10 +326,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="501" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610260506873" />
-    <state x="870" y="323" width="849" height="624" key="find.popup" timestamp="1610459711536">
+    <state x="870" y="323" width="849" height="624" key="find.popup" timestamp="1610461585937">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="870" y="323" width="849" height="624" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610459711536" />
+    <state x="870" y="323" width="849" height="624" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610461585937" />
     <state x="477" y="410" width="621" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1607422454863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
