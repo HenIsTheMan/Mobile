@@ -272,6 +272,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 						shopItemImgView.setColorFilter(0x00000000);
 						priceText.setVisibility(View.INVISIBLE);
 
+						buyButton.clearAnimation();
 						buyButton.setVisibility(View.INVISIBLE);
 						buyButton.setClickable(false);
 						cancelButton.setVisibility(View.INVISIBLE);
