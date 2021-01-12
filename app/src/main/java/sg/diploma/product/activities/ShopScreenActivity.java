@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -149,7 +148,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		shopLinearLayout = findViewById(R.id.shopLinearLayout);
 		final int myHeight = shopHorizontalScrollView.getLayoutParams().height; //As only shopHorizontalScrollView is alr sized
 		for(int i = 0; i < 3; ++i){
-			RelativeLayout shopItemRelativeLayout = new RelativeLayout(this);
+			final RelativeLayout shopItemRelativeLayout = new RelativeLayout(this);
 			RelativeLayout.LayoutParams shopItemRelativeLayoutLayoutParams = new RelativeLayout.LayoutParams(
 				(int)(DeviceManager.screenWidthF * 0.75f),
 				shopLinearLayout.getLayoutParams().height
@@ -157,14 +156,14 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			shopItemRelativeLayout.setLayoutParams(shopItemRelativeLayoutLayoutParams);
 			shopItemRelativeLayout.setBackgroundColor((i & 1) == 1 ? 0x77FF00FF : 0x77FFFF00);
 
-			ImageView shopItemImgView = new ImageView(this);
+			final ImageView shopItemImgView = new ImageView(this);
 			shopItemImgView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.future_place, null));
 			shopItemImgView.setScaleType(ImageView.ScaleType.FIT_XY);
 			shopItemImgView.setScaleX(0.95f);
 			shopItemImgView.setScaleY(0.95f);
 			shopItemRelativeLayout.addView(shopItemImgView);
 
-			TextView priceText = new TextView(this);
+			final TextView priceText = new TextView(this);
 			priceText.setVisibility(View.INVISIBLE);
 			priceText.setTypeface(font);
 			priceText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.1f / DeviceManager.scaledDensity);
@@ -176,7 +175,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			priceText.setOnClickListener(view->{});
 			shopItemRelativeLayout.addView(priceText);
 
-			ImageView priceImg = new ImageView(this);
+			final ImageView priceImg = new ImageView(this);
 			priceImg.setVisibility(View.INVISIBLE);
 			priceImg.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.coin, null));
 			priceImg.setLayoutParams(new ViewGroup.LayoutParams((int)(DeviceManager.screenWidthF * 0.1f), (int)(DeviceManager.screenWidthF * 0.1f)));
@@ -184,14 +183,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			priceImg.setTranslationY(myHeight * 0.4f - priceImg.getLayoutParams().height * 0.5f);
 			shopItemRelativeLayout.addView(priceImg);
 
-			shopItemRelativeLayout.setOnClickListener(view->{
-				shopItemImgView.setColorFilter(((ColorDrawable)shopItemRelativeLayout.getBackground()).getColor());
-				priceText.setVisibility(View.VISIBLE);
-				priceImg.setVisibility(View.VISIBLE);
-			});
-			shopLinearLayout.addView(shopItemRelativeLayout);
-
 			buyButton = new Button(this);
+			buyButton.setVisibility(View.INVISIBLE);
+			buyButton.setText(getResources().getString(R.string.BuyButtonText) );
+			buyButton.setTextColor(0xFF000000);
+			buyButton.setBackgroundColor(0xFF00FF00);
+			buyButton.setClickable(true);
 			buyButton.setOnTouchListener(this);
 			buyButton.setTypeface(font);
 			buyButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
@@ -199,6 +196,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			buyButton.setTranslationY(myHeight * 0.6f - buyButton.getLayoutParams().height * 0.5f);
 			buyButton.setGravity(Gravity.CENTER);
 			buyButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
+			buyButton.setOnClickListener(view->{});
 			shopItemRelativeLayout.addView(buyButton);
 
 			buyButtonDownAnimSet = new AnimationSet(true);
@@ -220,6 +218,15 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			buyButtonUpAnimSet.setFillEnabled(true);
 			buyButtonUpAnimSet.setFillAfter(true);
 			buyButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
+
+			final Button buyButtonCopy = buyButton;
+			shopItemRelativeLayout.setOnClickListener(view->{
+				shopItemImgView.setColorFilter(0xAA000000);
+				priceText.setVisibility(View.VISIBLE);
+				priceImg.setVisibility(View.VISIBLE);
+				buyButtonCopy.setVisibility(View.VISIBLE);
+			});
+			shopLinearLayout.addView(shopItemRelativeLayout);
 		}
 	}
 
@@ -232,6 +239,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View view, MotionEvent motionEvent){
+		android.util.Log.e("me2", "here");
 		if(view == backButton){
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
@@ -247,6 +255,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			return false;
 		}
 		if(view == buyButton){
+			android.util.Log.e("me", "here");
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
 					buyButton.startAnimation(buyButtonDownAnimSet);
