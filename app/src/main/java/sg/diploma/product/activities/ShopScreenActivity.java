@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
@@ -42,6 +43,10 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	public ShopScreenActivity(){
 		backButtonDownAnimSet = null;
 		backButtonUpAnimSet = null;
+		buyButtonDownAnimSet = null;
+		buyButtonUpAnimSet = null;
+		cancelButtonDownAnimSet = null;
+		cancelButtonUpAnimSet = null;
 
 		currencyText = null;
 		currencyImg = null;
@@ -50,6 +55,8 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		shopLinearLayout = null;
 
 		backButton = null;
+		buyButton = null;
+		cancelButton = null;
 
 		leftArrowIcon = null;
 	}
@@ -164,8 +171,8 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			priceText.setText(String.valueOf(CurrencyManager.Instance.GetAmtOfCoins()));
 			priceText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
 			priceText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-			priceText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.4f - (float)priceText.getMeasuredWidth() * 0.5f);
-			priceText.setTranslationY(myHeight * 0.45f - (float)priceText.getMeasuredHeight() * 0.5f);
+			priceText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)priceText.getMeasuredWidth() * 0.5f);
+			priceText.setTranslationY(myHeight * 0.2f - (float)priceText.getMeasuredHeight() * 0.5f);
 			priceText.setOnClickListener(view->{});
 			shopItemRelativeLayout.addView(priceText);
 
@@ -173,8 +180,8 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			priceImg.setVisibility(View.INVISIBLE);
 			priceImg.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.coin, null));
 			priceImg.setLayoutParams(new ViewGroup.LayoutParams((int)(DeviceManager.screenWidthF * 0.1f), (int)(DeviceManager.screenWidthF * 0.1f)));
-			priceImg.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.6f - priceImg.getLayoutParams().width * 0.5f);
-			priceImg.setTranslationY(myHeight * 0.45f - priceImg.getLayoutParams().height * 0.5f);
+			priceImg.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - priceImg.getLayoutParams().width * 0.5f);
+			priceImg.setTranslationY(myHeight * 0.4f - priceImg.getLayoutParams().height * 0.5f);
 			shopItemRelativeLayout.addView(priceImg);
 
 			shopItemRelativeLayout.setOnClickListener(view->{
@@ -183,6 +190,36 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				priceImg.setVisibility(View.VISIBLE);
 			});
 			shopLinearLayout.addView(shopItemRelativeLayout);
+
+			buyButton = new Button(this);
+			buyButton.setOnTouchListener(this);
+			buyButton.setTypeface(font);
+			buyButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
+			buyButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - buyButton.getLayoutParams().width * 0.5f);
+			buyButton.setTranslationY(myHeight * 0.6f - buyButton.getLayoutParams().height * 0.5f);
+			buyButton.setGravity(Gravity.CENTER);
+			buyButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
+			shopItemRelativeLayout.addView(buyButton);
+
+			buyButtonDownAnimSet = new AnimationSet(true);
+			buyButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+					Animation.ABSOLUTE, buyButton.getTranslationX() + buttonSize * 0.5f,
+					Animation.ABSOLUTE, buyButton.getTranslationY() + buttonSize * 0.5f));
+			buyButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+			buyButtonDownAnimSet.setDuration(400);
+			buyButtonDownAnimSet.setFillEnabled(true);
+			buyButtonDownAnimSet.setFillAfter(true);
+			buyButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
+
+			buyButtonUpAnimSet = new AnimationSet(true);
+			buyButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
+					Animation.ABSOLUTE, buyButton.getTranslationX() + buttonSize * 0.5f,
+					Animation.ABSOLUTE, buyButton.getTranslationY() + buttonSize * 0.5f));
+			buyButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+			buyButtonUpAnimSet.setDuration(400);
+			buyButtonUpAnimSet.setFillEnabled(true);
+			buyButtonUpAnimSet.setFillAfter(true);
+			buyButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
 		}
 	}
 
@@ -205,6 +242,20 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 					ReturnToMenu();
+					return true;
+			}
+			return false;
+		}
+		if(view == buyButton){
+			switch(motionEvent.getAction()){
+				case MotionEvent.ACTION_DOWN:
+					buyButton.startAnimation(buyButtonDownAnimSet);
+					return true;
+				case MotionEvent.ACTION_UP:
+					buyButton.startAnimation(buyButtonUpAnimSet);
+					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+
+					//??
 					return true;
 			}
 			return false;
@@ -252,6 +303,10 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 
 	private AnimationSet backButtonDownAnimSet;
 	private AnimationSet backButtonUpAnimSet;
+	private AnimationSet buyButtonDownAnimSet;
+	private AnimationSet buyButtonUpAnimSet;
+	private AnimationSet cancelButtonDownAnimSet;
+	private AnimationSet cancelButtonUpAnimSet;
 
 	private TextView currencyText;
 	private ImageView currencyImg;
@@ -260,6 +315,8 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	private LinearLayout shopLinearLayout;
 
 	private Button backButton;
+	private Button buyButton;
+	private Button cancelButton;
 
 	private ImageView leftArrowIcon;
 
