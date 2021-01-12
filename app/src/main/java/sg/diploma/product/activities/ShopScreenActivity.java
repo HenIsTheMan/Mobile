@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -139,11 +140,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		);
 
 		shopLinearLayout = findViewById(R.id.shopLinearLayout);
+		final int myHeight = shopHorizontalScrollView.getLayoutParams().height; //As only shopHorizontalScrollView is alr sized
 		for(int i = 0; i < 3; ++i){
 			RelativeLayout shopItemRelativeLayout = new RelativeLayout(this);
 			RelativeLayout.LayoutParams shopItemRelativeLayoutLayoutParams = new RelativeLayout.LayoutParams(
 				(int)(DeviceManager.screenWidthF * 0.75f),
-				(int)shopLinearLayout.getLayoutParams().height
+				shopLinearLayout.getLayoutParams().height
 			);
 			shopItemRelativeLayout.setLayoutParams(shopItemRelativeLayoutLayoutParams);
 			shopItemRelativeLayout.setBackgroundColor((i & 1) == 1 ? 0x77FF00FF : 0x77FFFF00);
@@ -151,41 +153,36 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			ImageView shopItemImgView = new ImageView(this);
 			shopItemImgView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.future_place, null));
 			shopItemImgView.setScaleType(ImageView.ScaleType.FIT_XY);
-			shopItemImgView.setScaleX(0.9f);
-			shopItemImgView.setScaleY(0.9f);
+			shopItemImgView.setScaleX(0.95f);
+			shopItemImgView.setScaleY(0.95f);
 			shopItemRelativeLayout.addView(shopItemImgView);
 
 			TextView priceText = new TextView(this);
-			priceText.setVisibility(View.VISIBLE);
+			priceText.setVisibility(View.INVISIBLE);
 			priceText.setTypeface(font);
 			priceText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.1f / DeviceManager.scaledDensity);
 			priceText.setText(String.valueOf(CurrencyManager.Instance.GetAmtOfCoins()));
 			priceText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
 			priceText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 			priceText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.4f - (float)priceText.getMeasuredWidth() * 0.5f);
-			priceText.setTranslationY(shopItemRelativeLayoutLayoutParams.height * 0.7f - (float)priceText.getMeasuredHeight() * 0.5f);
+			priceText.setTranslationY(myHeight * 0.45f - (float)priceText.getMeasuredHeight() * 0.5f);
 			shopItemRelativeLayout.addView(priceText);
 
 			ImageView priceImg = new ImageView(this);
-			priceImg.setVisibility(View.VISIBLE);
+			priceImg.setVisibility(View.INVISIBLE);
 			priceImg.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.coin, null));
 			priceImg.setLayoutParams(new ViewGroup.LayoutParams((int)(DeviceManager.screenWidthF * 0.1f), (int)(DeviceManager.screenWidthF * 0.1f)));
 			priceImg.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.6f - priceImg.getLayoutParams().width * 0.5f);
-			priceImg.setTranslationY(shopItemRelativeLayoutLayoutParams.height * 0.7f - priceImg.getLayoutParams().height * 0.5f);
+			priceImg.setTranslationY(myHeight * 0.45f - priceImg.getLayoutParams().height * 0.5f);
 			shopItemRelativeLayout.addView(priceImg);
 
-			shopItemRelativeLayout.setOnClickListener((View.OnClickListener)view->{
-				shopItemImgView.setVisibility(View.GONE);
+			shopItemRelativeLayout.setOnClickListener(view->{
+				shopItemImgView.setColorFilter(((ColorDrawable)shopItemRelativeLayout.getBackground()).getColor());
+				priceText.setVisibility(View.VISIBLE);
+				priceImg.setVisibility(View.VISIBLE);
 			});
 			shopLinearLayout.addView(shopItemRelativeLayout);
 		}
-
-		/*TextView textView = new TextView(this);
-		textView.setTypeface(font);
-		textView.setText("Test Test");
-		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.7f / DeviceManager.scaledDensity);
-		textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-		shopRelativeLayout.addView(textView);*/
 	}
 
 	@Override
