@@ -25,7 +25,11 @@ public final class AudioManager{
 
 	public void PlayAudio(final int ID, final AudioTypes.AudioType type){
 		final HashMap<Integer, MediaPlayer> audioMap = type == AudioTypes.AudioType.Music ? musicMap : soundMap;
-		if(audioMap.containsKey(ID) && Objects.requireNonNull(audioMap.get(ID)).isPlaying()){
+		if(audioMap.containsKey(ID)){
+			final MediaPlayer mediaPlayer = audioMap.get(ID);
+			if(!Objects.requireNonNull(mediaPlayer).isPlaying()){
+				mediaPlayer.start();
+			}
 			return;
 		}
 
