@@ -42,10 +42,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	public ShopScreenActivity(){
 		backButtonDownAnimSet = null;
 		backButtonUpAnimSet = null;
-		buyButtonDownAnimSet = null;
-		buyButtonUpAnimSet = null;
-		cancelButtonDownAnimSet = null;
-		cancelButtonUpAnimSet = null;
 
 		currencyText = null;
 		currencyImg = null;
@@ -54,8 +50,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		shopLinearLayout = null;
 
 		backButton = null;
-		buyButton = null;
-		cancelButton = null;
 
 		leftArrowIcon = null;
 	}
@@ -183,23 +177,22 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			priceImg.setTranslationY(myHeight * 0.4f - priceImg.getLayoutParams().height * 0.5f);
 			shopItemRelativeLayout.addView(priceImg);
 
-			buyButton = new Button(this);
+			final Button buyButton = new Button(this);
 			buyButton.setVisibility(View.INVISIBLE);
 			buyButton.setText(getResources().getString(R.string.BuyButtonText) );
 			buyButton.setTextColor(0xFF000000);
 			buyButton.setBackgroundColor(0xFF00FF00);
 			buyButton.setClickable(true);
-			buyButton.setOnTouchListener(this);
 			buyButton.setTypeface(font);
 			buyButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
 			buyButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - buyButton.getLayoutParams().width * 0.5f);
 			buyButton.setTranslationY(myHeight * 0.6f - buyButton.getLayoutParams().height * 0.5f);
 			buyButton.setGravity(Gravity.CENTER);
 			buyButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
-			buyButton.setOnClickListener(view->{});
+			//buyButton.setOnClickListener(view->{});
 			shopItemRelativeLayout.addView(buyButton);
 
-			buyButtonDownAnimSet = new AnimationSet(true);
+			final AnimationSet buyButtonDownAnimSet = new AnimationSet(true);
 			buyButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
 					Animation.ABSOLUTE, buyButton.getTranslationX() + buttonSize * 0.5f,
 					Animation.ABSOLUTE, buyButton.getTranslationY() + buttonSize * 0.5f));
@@ -209,7 +202,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			buyButtonDownAnimSet.setFillAfter(true);
 			buyButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
 
-			buyButtonUpAnimSet = new AnimationSet(true);
+			final AnimationSet buyButtonUpAnimSet = new AnimationSet(true);
 			buyButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
 					Animation.ABSOLUTE, buyButton.getTranslationX() + buttonSize * 0.5f,
 					Animation.ABSOLUTE, buyButton.getTranslationY() + buttonSize * 0.5f));
@@ -219,12 +212,26 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			buyButtonUpAnimSet.setFillAfter(true);
 			buyButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
 
-			final Button buyButtonCopy = buyButton;
+			buyButton.setOnTouchListener((view, motionEvent)->{
+				switch(motionEvent.getAction()){
+					case MotionEvent.ACTION_DOWN:
+						buyButton.startAnimation(buyButtonDownAnimSet);
+						return true;
+					case MotionEvent.ACTION_UP:
+						buyButton.startAnimation(buyButtonUpAnimSet);
+						AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+
+						//??
+						return true;
+				}
+				return false;
+			});
+
 			shopItemRelativeLayout.setOnClickListener(view->{
 				shopItemImgView.setColorFilter(0xAA000000);
 				priceText.setVisibility(View.VISIBLE);
 				priceImg.setVisibility(View.VISIBLE);
-				buyButtonCopy.setVisibility(View.VISIBLE);
+				buyButton.setVisibility(View.VISIBLE);
 			});
 			shopLinearLayout.addView(shopItemRelativeLayout);
 		}
@@ -239,7 +246,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View view, MotionEvent motionEvent){
-		android.util.Log.e("me2", "here");
 		if(view == backButton){
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
@@ -250,21 +256,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 					ReturnToMenu();
-					return true;
-			}
-			return false;
-		}
-		if(view == buyButton){
-			android.util.Log.e("me", "here");
-			switch(motionEvent.getAction()){
-				case MotionEvent.ACTION_DOWN:
-					buyButton.startAnimation(buyButtonDownAnimSet);
-					return true;
-				case MotionEvent.ACTION_UP:
-					buyButton.startAnimation(buyButtonUpAnimSet);
-					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
-
-					//??
 					return true;
 			}
 			return false;
@@ -312,10 +303,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 
 	private AnimationSet backButtonDownAnimSet;
 	private AnimationSet backButtonUpAnimSet;
-	private AnimationSet buyButtonDownAnimSet;
-	private AnimationSet buyButtonUpAnimSet;
-	private AnimationSet cancelButtonDownAnimSet;
-	private AnimationSet cancelButtonUpAnimSet;
 
 	private TextView currencyText;
 	private ImageView currencyImg;
@@ -324,8 +311,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	private LinearLayout shopLinearLayout;
 
 	private Button backButton;
-	private Button buyButton;
-	private Button cancelButton;
 
 	private ImageView leftArrowIcon;
 
