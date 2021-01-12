@@ -160,24 +160,16 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			final TextView priceText = new TextView(this);
 			priceText.setVisibility(View.INVISIBLE);
 			priceText.setTypeface(font);
-			priceText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.1f / DeviceManager.scaledDensity);
-			priceText.setText(String.valueOf(CurrencyManager.Instance.GetAmtOfCoins()));
-			priceText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+			priceText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
+			priceText.setText(getString(R.string.CoinsPostfix, CurrencyManager.Instance.GetAmtOfCoins()));
+			priceText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 			priceText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 			priceText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)priceText.getMeasuredWidth() * 0.5f);
-			priceText.setTranslationY(myHeight * 0.2f - (float)priceText.getMeasuredHeight() * 0.5f);
-			priceText.setOnClickListener(view->{});
+			priceText.setTranslationY(myHeight * 0.4f - (float)priceText.getMeasuredHeight() * 0.5f);
 			shopItemRelativeLayout.addView(priceText);
 
-			final ImageView priceImg = new ImageView(this);
-			priceImg.setVisibility(View.INVISIBLE);
-			priceImg.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.coin, null));
-			priceImg.setLayoutParams(new ViewGroup.LayoutParams((int)(DeviceManager.screenWidthF * 0.1f), (int)(DeviceManager.screenWidthF * 0.1f)));
-			priceImg.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - priceImg.getLayoutParams().width * 0.5f);
-			priceImg.setTranslationY(myHeight * 0.4f - priceImg.getLayoutParams().height * 0.5f);
-			shopItemRelativeLayout.addView(priceImg);
-
 			final Button buyButton = new Button(this);
+			buyButton.setClickable(false);
 			buyButton.setVisibility(View.INVISIBLE);
 			buyButton.setText(getResources().getString(R.string.BuyButtonText) );
 			buyButton.setTextColor(0xFF000000);
@@ -189,7 +181,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			buyButton.setTranslationY(myHeight * 0.6f - buyButton.getLayoutParams().height * 0.5f);
 			buyButton.setGravity(Gravity.CENTER);
 			buyButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
-			//buyButton.setOnClickListener(view->{});
 			shopItemRelativeLayout.addView(buyButton);
 
 			final AnimationSet buyButtonDownAnimSet = new AnimationSet(true);
@@ -227,11 +218,81 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				return false;
 			});
 
+			final Button cancelButton = new Button(this);
+			cancelButton.setClickable(false);
+			cancelButton.setVisibility(View.INVISIBLE);
+			cancelButton.setText(getResources().getString(R.string.CancelButtonText) );
+			cancelButton.setTextColor(0xFF000000);
+			cancelButton.setBackgroundColor(0xFFFF0000);
+			cancelButton.setClickable(true);
+			cancelButton.setTypeface(font);
+			cancelButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
+			cancelButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - cancelButton.getLayoutParams().width * 0.5f);
+			cancelButton.setTranslationY(myHeight * 0.8f - cancelButton.getLayoutParams().height * 0.5f);
+			cancelButton.setGravity(Gravity.CENTER);
+			cancelButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
+			shopItemRelativeLayout.addView(cancelButton);
+
+			final AnimationSet cancelButtonDownAnimSet = new AnimationSet(true);
+			cancelButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+					Animation.ABSOLUTE, cancelButton.getTranslationX() + buttonSize * 0.5f,
+					Animation.ABSOLUTE, cancelButton.getTranslationY() + buttonSize * 0.5f));
+			cancelButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+			cancelButtonDownAnimSet.setDuration(400);
+			cancelButtonDownAnimSet.setFillEnabled(true);
+			cancelButtonDownAnimSet.setFillAfter(true);
+			cancelButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
+
+			final AnimationSet cancelButtonUpAnimSet = new AnimationSet(true);
+			cancelButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
+					Animation.ABSOLUTE, cancelButton.getTranslationX() + buttonSize * 0.5f,
+					Animation.ABSOLUTE, cancelButton.getTranslationY() + buttonSize * 0.5f));
+			cancelButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+			cancelButtonUpAnimSet.setDuration(400);
+			cancelButtonUpAnimSet.setAnimationListener(new Animation.AnimationListener(){
+				@Override
+				public void onAnimationStart(Animation animation){
+				}
+
+				@Override
+				public void onAnimationEnd(Animation animation){
+					shopItemImgView.setColorFilter(0x00000000);
+					priceText.setVisibility(View.INVISIBLE);
+
+					buyButton.setVisibility(View.INVISIBLE);
+					buyButton.setClickable(false);
+					cancelButton.setVisibility(View.INVISIBLE);
+					cancelButton.setClickable(false);
+				}
+
+				@Override
+				public void onAnimationRepeat(Animation animation){
+				}
+			});
+			cancelButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
+
+			cancelButton.setOnTouchListener((view, motionEvent)->{
+				switch(motionEvent.getAction()){
+					case MotionEvent.ACTION_DOWN:
+						cancelButton.startAnimation(cancelButtonDownAnimSet);
+						return true;
+					case MotionEvent.ACTION_UP:
+						cancelButton.startAnimation(cancelButtonUpAnimSet);
+						AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+
+						return true;
+				}
+				return false;
+			});
+
 			shopItemRelativeLayout.setOnClickListener(view->{
 				shopItemImgView.setColorFilter(0xAA000000);
 				priceText.setVisibility(View.VISIBLE);
-				priceImg.setVisibility(View.VISIBLE);
+
 				buyButton.setVisibility(View.VISIBLE);
+				buyButton.setClickable(true);
+				cancelButton.setVisibility(View.VISIBLE);
+				cancelButton.setClickable(true);
 			});
 			shopLinearLayout.addView(shopItemRelativeLayout);
 		}

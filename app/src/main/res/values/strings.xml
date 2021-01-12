@@ -40,6 +40,7 @@
     <string name="NameTextInputBoxHint">"Enter name…"</string>
 
     <string name="PercentPostfix">%.1f%%</string>
+    <string name="CoinsPostfix">%d Coins</string>
 
     <string name="facebook_app_id">224207475849791</string>
     <string name="fb_login_protocol_scheme">fb224207475849791</string>
