@@ -16,7 +16,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,6 +41,9 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 
 		currencyText = null;
 		currencyImg = null;
+
+		shopHorizontalScrollView = null;
+		shopRelativeLayout = null;
 
 		backButton = null;
 
@@ -72,12 +77,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		currencyText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
 		currencyText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 		currencyText.setTranslationX(DeviceManager.screenWidthF * 0.75f - (float)currencyText.getMeasuredWidth() * 0.5f);
-		currencyText.setTranslationY(DeviceManager.screenHeightF * 0.25f - (float)currencyText.getMeasuredHeight() * 0.5f);
+		currencyText.setTranslationY(DeviceManager.screenHeightF * 0.925f - (float)currencyText.getMeasuredHeight() * 0.5f);
 
 		currencyImg = findViewById(R.id.currencyImg);
 		currencyImg.getLayoutParams().width = currencyImg.getLayoutParams().height = (int)(DeviceManager.screenWidthF * 0.1f);
 		currencyImg.setTranslationX(DeviceManager.screenWidthF * 0.9f - currencyImg.getLayoutParams().width * 0.5f);
-		currencyImg.setTranslationY(DeviceManager.screenHeightF * 0.25f - currencyImg.getLayoutParams().height * 0.5f);
+		currencyImg.setTranslationY(DeviceManager.screenHeightF * 0.925f - currencyImg.getLayoutParams().height * 0.5f);
 
 		final float buttonFactor = DeviceManager.screenWidthF * 0.25f / 300.0f;
 		final int buttonSize = (int)(300.0f * buttonFactor * 0.7f);
@@ -120,6 +125,23 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		leftArrowIcon.setTranslationY(backButton.getTranslationY()
 				+ (backButton.getLayoutParams().height
 				- leftArrowIcon.getLayoutParams().height) * 0.5f);
+
+		shopHorizontalScrollView = findViewById(R.id.shopHorizontalScrollView);
+		shopHorizontalScrollView.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.65f);
+		shopHorizontalScrollView.setTranslationY(
+			(backButton.getTranslationY() + backButton.getLayoutParams().height * 0.5f
+			+ (shopText.getTranslationY() + (float)shopText.getMeasuredHeight() * 0.5f))
+			* 0.5f
+			- shopHorizontalScrollView.getLayoutParams().height * 0.5f
+		);
+
+		shopRelativeLayout = findViewById(R.id.shopRelativeLayout);
+		TextView textView = new TextView(this);
+		textView.setTypeface(font);
+		textView.setText("Test Test");
+		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.7f / DeviceManager.scaledDensity);
+		textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+		shopRelativeLayout.addView(textView);
 	}
 
 	@Override
@@ -191,6 +213,9 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 
 	private TextView currencyText;
 	private ImageView currencyImg;
+
+	private HorizontalScrollView shopHorizontalScrollView;
+	private RelativeLayout shopRelativeLayout;
 
 	private Button backButton;
 

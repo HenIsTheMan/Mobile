@@ -60,12 +60,12 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 		final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/grobold.ttf");
 		final float textTranslationX = DeviceManager.screenWidthF * 0.5f;
 
-		TextView RankingsText = findViewById(R.id.rankingsText);
-		RankingsText.setTypeface(font);
-		RankingsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.18f / DeviceManager.scaledDensity);
-		RankingsText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-		RankingsText.setTranslationX(textTranslationX - (float)RankingsText.getMeasuredWidth() * 0.5f);
-		RankingsText.setTranslationY(DeviceManager.screenHeightF * 0.05f);
+		final TextView rankingsText = findViewById(R.id.rankingsText);
+		rankingsText.setTypeface(font);
+		rankingsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.18f / DeviceManager.scaledDensity);
+		rankingsText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		rankingsText.setTranslationX(textTranslationX - (float)rankingsText.getMeasuredWidth() * 0.5f);
+		rankingsText.setTranslationY(DeviceManager.screenHeightF * 0.05f);
 
 		final float buttonFactor = DeviceManager.screenWidthF * 0.25f / 300.0f;
 		final int buttonSize = (int)(300.0f * buttonFactor * 0.7f);
@@ -113,7 +113,7 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 		rankingsScrollView.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.65f);
 		rankingsScrollView.setTranslationY(
 			(backButton.getTranslationY() + backButton.getLayoutParams().height * 0.5f
-			+ (RankingsText.getTranslationY() + (float)RankingsText.getMeasuredHeight() * 0.5f))
+			+ (rankingsText.getTranslationY() + (float)rankingsText.getMeasuredHeight() * 0.5f))
 			* 0.5f
 			- rankingsScrollView.getLayoutParams().height * 0.5f
 		);
