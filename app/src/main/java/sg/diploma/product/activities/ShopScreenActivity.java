@@ -18,6 +18,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -44,7 +45,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		currencyImg = null;
 
 		shopHorizontalScrollView = null;
-		shopRelativeLayout = null;
+		shopLinearLayout = null;
 
 		backButton = null;
 
@@ -136,17 +137,19 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			- shopHorizontalScrollView.getLayoutParams().height * 0.5f
 		);
 
-		shopRelativeLayout = findViewById(R.id.shopRelativeLayout);
+		shopLinearLayout = findViewById(R.id.shopLinearLayout);
+		for(int i = 0; i < 3; ++i){
+			RelativeLayout shopItemRelativeLayout = new RelativeLayout(this);
+			shopItemRelativeLayout.setLayoutParams(new RelativeLayout.LayoutParams((int)(DeviceManager.screenWidthF * 0.75f), (int)shopLinearLayout.getLayoutParams().height));
+			shopItemRelativeLayout.setBackgroundColor((i & 1) == 1 ? 0x77FF00FF : 0x77FFFF00);
+			shopLinearLayout.addView(shopItemRelativeLayout);
 
-		RelativeLayout shopItemRelativeLayout = new RelativeLayout(this);
-		shopItemRelativeLayout.setLayoutParams(new RelativeLayout.LayoutParams((int)(DeviceManager.screenWidthF * 0.5f), (int)shopRelativeLayout.getLayoutParams().height));
-		shopRelativeLayout.addView(shopItemRelativeLayout);
-
-		ImageView shopItemImgView = new ImageView(this);
-		shopItemImgView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.future_place, null));
-		final RelativeLayout.LayoutParams shopItemRelativeLayoutLayoutParams = (RelativeLayout.LayoutParams)shopItemRelativeLayout.getLayoutParams();
-		shopItemImgView.setLayoutParams(new RelativeLayout.LayoutParams((int)(shopItemRelativeLayoutLayoutParams.width * 0.9f), (int)(shopItemRelativeLayoutLayoutParams.height * 0.6f)));
-		shopItemRelativeLayout.addView(shopItemImgView);
+			ImageView shopItemImgView = new ImageView(this);
+			shopItemImgView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.future_place, null));
+			shopItemImgView.setScaleX(0.8f);
+			shopItemImgView.setScaleY(0.8f);
+			shopItemRelativeLayout.addView(shopItemImgView);
+		}
 
 		/*TextView textView = new TextView(this);
 		textView.setTypeface(font);
@@ -227,7 +230,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	private ImageView currencyImg;
 
 	private HorizontalScrollView shopHorizontalScrollView;
-	private RelativeLayout shopRelativeLayout;
+	private LinearLayout shopLinearLayout;
 
 	private Button backButton;
 
