@@ -16,7 +16,12 @@ import java.util.Objects;
 public final class BackgroundManager{
 	private BackgroundManager(){
 		view = null;
-		backgrounds = new ArrayList<>();
+
+		final int amtOfBackgrounds = 8;
+		backgrounds = new ArrayList<>(amtOfBackgrounds);
+		for(int i = 0; i < amtOfBackgrounds; ++i){
+			backgrounds.add(BackgroundStatuses.BackgroundStatus.NotOwned);
+		}
 	}
 
 	public void Init(SurfaceView _view){
@@ -37,8 +42,8 @@ public final class BackgroundManager{
 
 			final Object[] backgroundsObjArr = (Object[])backgroundsOIS.readObject();
 			backgrounds.clear();
-			for(int i = 0; i < backgroundsObjArr.length; ++i){
-				backgrounds.set(i, (BackgroundStatuses.BackgroundStatus)backgroundsObjArr[i]);
+			for(final Object obj: backgroundsObjArr){
+				backgrounds.add((BackgroundStatuses.BackgroundStatus)obj);
 			}
 		} catch(ClassNotFoundException | IOException e){
 			e.printStackTrace();
@@ -102,6 +107,10 @@ public final class BackgroundManager{
 			}
 		}
 		file.delete();
+	}
+
+	public ArrayList<BackgroundStatuses.BackgroundStatus> GetBackgrounds(){
+		return backgrounds;
 	}
 
 	private SurfaceView view;

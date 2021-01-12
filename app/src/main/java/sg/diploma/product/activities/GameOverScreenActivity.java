@@ -27,6 +27,7 @@ import androidx.annotation.RequiresApi;
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
+import sg.diploma.product.background.BackgroundManager;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.game.GameData;
@@ -135,6 +136,12 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		nameTextInputBox.getLayoutParams().width = (int)(DeviceManager.screenWidthF * 0.75f);
 		nameTextInputBox.setTranslationX(DeviceManager.screenWidthF * 0.5f - (float)nameTextInputBox.getLayoutParams().width * 0.5f);
 		nameTextInputBox.setTranslationY(DeviceManager.screenHeightF * 0.75f);
+	}
+
+	@Override
+	protected void onDestroy(){
+		BackgroundManager.Instance.SaveBackgroundData(Instance, "Backgrounds.ser");
+		super.onDestroy();
 	}
 
 	@Override
