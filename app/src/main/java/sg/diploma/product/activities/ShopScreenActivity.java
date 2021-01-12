@@ -137,11 +137,16 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		);
 
 		shopRelativeLayout = findViewById(R.id.shopRelativeLayout);
-		ImageView imgView = new ImageView(this);
-		imgView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.button, null));
-		/*final int ID = getResources().getIdentifier("yourpackagename:drawable/" + "future_place.gif", null, null);
-		imgView.setImageResource(ID);*/
-		shopRelativeLayout.addView(imgView);
+
+		RelativeLayout shopItemRelativeLayout = new RelativeLayout(this);
+		shopItemRelativeLayout.setLayoutParams(new RelativeLayout.LayoutParams((int)(DeviceManager.screenWidthF * 0.5f), (int)shopRelativeLayout.getLayoutParams().height));
+		shopRelativeLayout.addView(shopItemRelativeLayout);
+
+		ImageView shopItemImgView = new ImageView(this);
+		shopItemImgView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.future_place, null));
+		final RelativeLayout.LayoutParams shopItemRelativeLayoutLayoutParams = (RelativeLayout.LayoutParams)shopItemRelativeLayout.getLayoutParams();
+		shopItemImgView.setLayoutParams(new RelativeLayout.LayoutParams((int)(shopItemRelativeLayoutLayoutParams.width * 0.9f), (int)(shopItemRelativeLayoutLayoutParams.height * 0.6f)));
+		shopItemRelativeLayout.addView(shopItemImgView);
 
 		/*TextView textView = new TextView(this);
 		textView.setTypeface(font);
