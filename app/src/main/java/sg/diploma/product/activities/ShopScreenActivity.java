@@ -166,6 +166,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 			priceText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 			priceText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.4f - (float)priceText.getMeasuredWidth() * 0.5f);
 			priceText.setTranslationY(myHeight * 0.45f - (float)priceText.getMeasuredHeight() * 0.5f);
+			priceText.setOnClickListener(view->{});
 			shopItemRelativeLayout.addView(priceText);
 
 			ImageView priceImg = new ImageView(this);
