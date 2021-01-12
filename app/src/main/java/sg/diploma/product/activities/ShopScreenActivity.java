@@ -177,7 +177,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				buyButton.setText(getResources().getString(R.string.BuyButtonText));
 				buyButton.setTextColor(0xFF000000);
 				buyButton.setBackgroundColor(0xFF00FF00);
-				buyButton.setClickable(true);
 				buyButton.setTypeface(font);
 				buyButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
 				buyButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - buyButton.getLayoutParams().width * 0.5f);
@@ -233,7 +232,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				cancelButton.setText(getResources().getString(R.string.CancelButtonText));
 				cancelButton.setTextColor(0xFF000000);
 				cancelButton.setBackgroundColor(0xFFFF0000);
-				cancelButton.setClickable(true);
 				cancelButton.setTypeface(font);
 				cancelButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
 				cancelButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - cancelButton.getLayoutParams().width * 0.5f);
