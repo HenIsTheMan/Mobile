@@ -428,6 +428,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 							topButtons[j].clearAnimation();
 							topButtons[j].setVisibility(View.INVISIBLE);
 							topButtons[j].setClickable(false);
+							bottomButtons[j].clearAnimation();
 							bottomButtons[j].setVisibility(View.INVISIBLE);
 							bottomButtons[j].setClickable(false);
 						}

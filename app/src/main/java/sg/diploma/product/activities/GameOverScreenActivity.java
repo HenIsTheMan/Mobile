@@ -27,6 +27,7 @@ import androidx.annotation.RequiresApi;
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
+import sg.diploma.product.currency.CurrencyManager;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.game.GameData;
@@ -217,6 +218,8 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 	}
 
 	private void ReturnToMenu(){
+		CurrencyManager.Instance.SetAmtOfCoins(CurrencyManager.Instance.GetAmtOfCoins() + GameData.collectedCoins);
+
 		GameData.globalInstance.ResetVars();
 		EntityManager.Instance.SendAllEntitiesForRemoval();
 		StateManager.Instance.ChangeState("MenuScreen");

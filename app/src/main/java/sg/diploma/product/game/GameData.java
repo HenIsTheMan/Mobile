@@ -20,6 +20,7 @@ public final class GameData implements IListener{ //Singleton
 		textOnScreenScore = null;
 		textOnScreenCoins = null;
 
+		collectedCoins = 0;
 		score = -1;
 	}
 
@@ -39,6 +40,7 @@ public final class GameData implements IListener{ //Singleton
 	public static EntityTextOnScreen textOnScreenScore;
 	public static EntityTextOnScreen textOnScreenCoins;
 
+	public static int collectedCoins;
 	public static int score;
 
 	public static GameData globalInstance;
@@ -51,6 +53,7 @@ public final class GameData implements IListener{ //Singleton
 		textOnScreenScore = null;
 		textOnScreenCoins = null;
 
+		collectedCoins = 0;
 		score = -1;
 
 		globalInstance = new GameData();

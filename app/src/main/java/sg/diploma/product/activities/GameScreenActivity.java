@@ -183,7 +183,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
             GameData.textOnScreenScore.SetText("Score   " + GameData.score);
         }
         if(GameData.textOnScreenCoins != null){
-            GameData.textOnScreenCoins.SetText("Coins   " + CurrencyManager.Instance.GetAmtOfCoins());
+            GameData.textOnScreenCoins.SetText("Coins   " + GameData.collectedCoins);
         }
 
         particleSystem.Update(_dt);
