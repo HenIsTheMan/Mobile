@@ -149,6 +149,10 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		shopLinearLayout = findViewById(R.id.shopLinearLayout);
 		final int amtOfChildren = shopLinearLayout.getChildCount();
 		final int myHeight = shopHorizontalScrollView.getLayoutParams().height; //As only shopHorizontalScrollView is alr sized
+		final ImageView[] shopItemImgViews = new ImageView[backgroundsSize];
+		final TextView[] labelTexts = new TextView[backgroundsSize];
+		final Button[] topButtons =  new Button[backgroundsSize];
+		final Button[] bottomButtons = new Button[backgroundsSize];
 
 		if(backgroundsSize > amtOfChildren){
 			for(int i = amtOfChildren; i < backgroundsSize; ++i){
@@ -158,6 +162,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				shopItemRelativeLayout.setBackgroundColor((i & 1) == 1 ? 0x77FF00FF : 0x77FFFF00);
 
 				final ImageView shopItemImgView = new ImageView(this);
+				shopItemImgViews[i] = shopItemImgView;
 				shopItemImgView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), BackgroundManager.Instance.drawableIDs[i], null));
 				shopItemImgView.setScaleType(ImageView.ScaleType.FIT_XY);
 				shopItemImgView.setScaleX(0.95f);
@@ -167,6 +172,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				final BackgroundStatuses.BackgroundStatus backgroundStatus = backgrounds.get(i);
 
 				final TextView labelText = new TextView(this);
+				labelTexts[i] = labelText;
 				labelText.setVisibility(View.INVISIBLE);
 				labelText.setTypeface(font);
 				labelText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
@@ -191,6 +197,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				final int index = i;
 
 				final Button topButton = new Button(this);
+				topButtons[i] = topButton;
 				topButton.setClickable(false);
 				topButton.setVisibility(View.INVISIBLE);
 				switch(backgroundStatus){
@@ -243,6 +250,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				topButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
 
 				final Button bottomButton = new Button(this);
+				bottomButtons[i] = bottomButton;
 				bottomButton.setClickable(false);
 				bottomButton.setVisibility(View.INVISIBLE);
 				bottomButton.setText(getResources().getString(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned
@@ -384,6 +392,19 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 					topButton.setClickable(true);
 					bottomButton.setVisibility(View.VISIBLE);
 					bottomButton.setClickable(true);
+
+					for(int j = 0; j < backgroundsSize; ++j){
+						if(j != index){
+							shopItemImgViews[j].setColorFilter(0x00000000);
+							labelTexts[j].setVisibility(View.INVISIBLE);
+
+							topButtons[j].clearAnimation();
+							topButtons[j].setVisibility(View.INVISIBLE);
+							topButtons[j].setClickable(false);
+							bottomButtons[j].setVisibility(View.INVISIBLE);
+							bottomButtons[j].setClickable(false);
+						}
+					}
 				});
 				shopLinearLayout.addView(shopItemRelativeLayout);
 			}
