@@ -164,9 +164,12 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		if(view == continueButton){
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
+					continueButton.clearAnimation();
 					continueButton.startAnimation(continueButtonDownAnimSet);
+
 					return true;
 				case MotionEvent.ACTION_UP:
+					continueButton.clearAnimation();
 					continueButton.startAnimation(continueButtonUpAnimSet);
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 

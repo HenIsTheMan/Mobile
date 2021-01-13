@@ -153,9 +153,12 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 		if(view == backButton){
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
+					backButton.clearAnimation();
 					backButton.startAnimation(backButtonDownAnimSet);
+
 					return true;
 				case MotionEvent.ACTION_UP:
+					backButton.clearAnimation();
 					backButton.startAnimation(backButtonUpAnimSet);
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 

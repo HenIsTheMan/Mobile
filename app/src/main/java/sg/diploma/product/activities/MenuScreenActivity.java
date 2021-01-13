@@ -189,9 +189,12 @@ public final class MenuScreenActivity
         if(view == startButton){
             switch(motionEvent.getAction()){
                 case MotionEvent.ACTION_DOWN:
+                    startButton.clearAnimation();
                     startButton.startAnimation(startButtonDownAnimSet);
+
                     return true;
                 case MotionEvent.ACTION_UP:
+                    startButton.clearAnimation();
                     startButton.startAnimation(startButtonUpAnimSet);
                     AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
@@ -208,9 +211,12 @@ public final class MenuScreenActivity
         if(view == rankingsButton){
             switch(motionEvent.getAction()){
                 case MotionEvent.ACTION_DOWN:
+                    rankingsButton.clearAnimation();
                     rankingsButton.startAnimation(rankingsButtonDownAnimSet);
+
                     return true;
                 case MotionEvent.ACTION_UP:
+                    rankingsButton.clearAnimation();
                     rankingsButton.startAnimation(rankingsButtonUpAnimSet);
                     AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
@@ -227,9 +233,12 @@ public final class MenuScreenActivity
         if(view == shopButton){
             switch(motionEvent.getAction()){
                 case MotionEvent.ACTION_DOWN:
+                    shopButton.clearAnimation();
                     shopButton.startAnimation(shopButtonDownAnimSet);
+
                     return true;
                 case MotionEvent.ACTION_UP:
+                    shopButton.clearAnimation();
                     shopButton.startAnimation(shopButtonUpAnimSet);
                     AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
@@ -246,9 +255,12 @@ public final class MenuScreenActivity
         if(view == optionsButton){
             switch(motionEvent.getAction()){
                 case MotionEvent.ACTION_DOWN:
+                    optionsButton.clearAnimation();
                     optionsButton.startAnimation(optionsButtonDownAnimSet);
+
                     return true;
                 case MotionEvent.ACTION_UP:
+                    optionsButton.clearAnimation();
                     optionsButton.startAnimation(optionsButtonUpAnimSet);
                     AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
@@ -266,9 +278,12 @@ public final class MenuScreenActivity
         if(view == exitButton){
             switch(motionEvent.getAction()){
                 case MotionEvent.ACTION_DOWN:
+                    exitButton.clearAnimation();
                     exitButton.startAnimation(exitButtonDownAnimSet);
+
                     return true;
                 case MotionEvent.ACTION_UP:
+                    exitButton.clearAnimation();
                     exitButton.startAnimation(exitButtonUpAnimSet);
                     AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 

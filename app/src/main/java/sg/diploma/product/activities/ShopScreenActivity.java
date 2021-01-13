@@ -311,9 +311,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				topButton.setOnTouchListener((view, motionEvent)->{
 					switch(motionEvent.getAction()){
 						case MotionEvent.ACTION_DOWN:
+							topButton.clearAnimation();
 							topButton.startAnimation(topButtonDownAnimSet);
+
 							return true;
 						case MotionEvent.ACTION_UP:
+							topButton.clearAnimation();
 							topButton.startAnimation(topButtonUpAnimSet);
 							AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
@@ -359,9 +362,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				bottomButton.setOnTouchListener((view, motionEvent)->{
 					switch(motionEvent.getAction()){
 						case MotionEvent.ACTION_DOWN:
+							bottomButton.clearAnimation();
 							bottomButton.startAnimation(bottomButtonDownAnimSet);
+
 							return true;
 						case MotionEvent.ACTION_UP:
+							bottomButton.clearAnimation();
 							bottomButton.startAnimation(bottomButtonUpAnimSet);
 							AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
@@ -408,9 +414,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		if(view == backButton){
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
+					backButton.clearAnimation();
 					backButton.startAnimation(backButtonDownAnimSet);
+
 					return true;
 				case MotionEvent.ACTION_UP:
+					backButton.clearAnimation();
 					backButton.startAnimation(backButtonUpAnimSet);
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 

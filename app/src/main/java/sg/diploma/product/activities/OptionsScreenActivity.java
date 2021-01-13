@@ -303,9 +303,12 @@ public final class OptionsScreenActivity
 		if(view == backButton){
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
+					backButton.clearAnimation();
 					backButton.startAnimation(backButtonDownAnimSet);
+
 					return true;
 				case MotionEvent.ACTION_UP:
+					backButton.clearAnimation();
 					backButton.startAnimation(backButtonUpAnimSet);
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
@@ -328,9 +331,12 @@ public final class OptionsScreenActivity
 			if(saveButton.isClickable()){
 				switch(motionEvent.getAction()){
 					case MotionEvent.ACTION_DOWN:
+						saveButton.clearAnimation();
 						saveButton.startAnimation(saveButtonDownAnimSet);
+
 						return true;
 					case MotionEvent.ACTION_UP:
+						saveButton.clearAnimation();
 						saveButton.startAnimation(saveButtonUpAnimSet);
 						AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
@@ -346,9 +352,12 @@ public final class OptionsScreenActivity
 		if(view == resetButton){
 			switch(motionEvent.getAction()){
 				case MotionEvent.ACTION_DOWN:
+					resetButton.clearAnimation();
 					resetButton.startAnimation(resetButtonDownAnimSet);
+
 					return true;
 				case MotionEvent.ACTION_UP:
+					resetButton.clearAnimation();
 					resetButton.startAnimation(resetButtonUpAnimSet);
 					AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
