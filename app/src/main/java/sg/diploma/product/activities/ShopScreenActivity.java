@@ -107,7 +107,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		backButton.setTranslationY(buttonTranslateY);
 
 		backButtonDownAnimSet = new AnimationSet(true);
-		backButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f, Animation.ABSOLUTE, backButton.getTranslationX() + buttonSize * 0.5f, Animation.ABSOLUTE, backButton.getTranslationY() + buttonSize * 0.5f));
+		backButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+			Animation.ABSOLUTE,
+			backButton.getTranslationX() + buttonSize * 0.5f,
+			Animation.ABSOLUTE,
+			backButton.getTranslationY() + buttonSize * 0.5f)
+		);
 		backButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
 		backButtonDownAnimSet.setDuration(400);
 		backButtonDownAnimSet.setFillEnabled(true);
@@ -115,7 +120,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		backButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
 
 		backButtonUpAnimSet = new AnimationSet(true);
-		backButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f, Animation.ABSOLUTE, backButton.getTranslationX() + buttonSize * 0.5f, Animation.ABSOLUTE, backButton.getTranslationY() + buttonSize * 0.5f));
+		backButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
+			Animation.ABSOLUTE,
+			backButton.getTranslationX() + buttonSize * 0.5f,
+			Animation.ABSOLUTE,
+			backButton.getTranslationY() + buttonSize * 0.5f
+		));
 		backButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
 		backButtonUpAnimSet.setDuration(400);
 		backButtonUpAnimSet.setFillEnabled(true);
@@ -130,7 +140,11 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 
 		shopHorizontalScrollView = findViewById(R.id.shopHorizontalScrollView);
 		shopHorizontalScrollView.getLayoutParams().height = (int)(DeviceManager.screenHeightF * 0.65f);
-		shopHorizontalScrollView.setTranslationY((backButton.getTranslationY() + backButton.getLayoutParams().height * 0.5f + (shopText.getTranslationY() + (float)shopText.getMeasuredHeight() * 0.5f)) * 0.5f - shopHorizontalScrollView.getLayoutParams().height * 0.5f);
+		shopHorizontalScrollView.setTranslationY(
+			(backButton.getTranslationY() + backButton.getLayoutParams().height * 0.5f
+			+ (shopText.getTranslationY() + (float)shopText.getMeasuredHeight() * 0.5f)) * 0.5f
+			- shopHorizontalScrollView.getLayoutParams().height * 0.5f
+		);
 
 		shopLinearLayout = findViewById(R.id.shopLinearLayout);
 		final int amtOfChildren = shopLinearLayout.getChildCount();
@@ -281,6 +295,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				});
 				redButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
 
+				final TextView currencyTextCopy = currencyText;
 				greenButton.setOnTouchListener((view, motionEvent)->{
 					switch(motionEvent.getAction()){
 						case MotionEvent.ACTION_DOWN:
@@ -290,23 +305,30 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 							greenButton.startAnimation(greenButtonUpAnimSet);
 							AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
-							if(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned){ //Buy
+							BackgroundStatuses.BackgroundStatus myBackgroundStatus = backgrounds.get(index);
+
+							if(myBackgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned){ //Buy
 								int amtOfCoins = CurrencyManager.Instance.GetAmtOfCoins();
 								final int price = BackgroundManager.Instance.prices[index];
 								if(amtOfCoins >= price){
 									backgrounds.set(index, BackgroundStatuses.BackgroundStatus.NotEquipped);
 									amtOfCoins -= price;
-
+									currencyTextCopy.setText(String.valueOf(amtOfCoins));
+									
 									labelText.setText(getString(R.string.NotEquippedText));
+									labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+									labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
 									greenButton.setText(R.string.EquipButtonText);
 									redButton.setText(getResources().getString(R.string.UnequipButtonText));
 
 									BackgroundManager.Instance.SaveBackgroundData(Instance, "Backgrounds.ser");
 								}
-							} else if(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotEquipped){ //Equip
+							} else if(myBackgroundStatus == BackgroundStatuses.BackgroundStatus.NotEquipped){ //Equip
 								backgrounds.set(index, BackgroundStatuses.BackgroundStatus.Equipped);
 
 								labelText.setText(getString(R.string.EquippedText));
+								labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+								labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
 								greenButton.setText(R.string.EquipButtonText);
 								redButton.setText(getResources().getString(R.string.UnequipButtonText));
 
