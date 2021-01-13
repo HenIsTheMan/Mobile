@@ -314,14 +314,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 									backgrounds.set(index, BackgroundStatuses.BackgroundStatus.NotEquipped);
 									amtOfCoins -= price;
 									currencyTextCopy.setText(String.valueOf(amtOfCoins));
-									
+
 									labelText.setText(getString(R.string.NotEquippedText));
 									labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 									labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
 									greenButton.setText(R.string.EquipButtonText);
 									redButton.setText(getResources().getString(R.string.UnequipButtonText));
-
-									BackgroundManager.Instance.SaveBackgroundData(Instance, "Backgrounds.ser");
 								}
 							} else if(myBackgroundStatus == BackgroundStatuses.BackgroundStatus.NotEquipped){ //Equip
 								backgrounds.set(index, BackgroundStatuses.BackgroundStatus.Equipped);
@@ -331,8 +329,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 								labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
 								greenButton.setText(R.string.EquipButtonText);
 								redButton.setText(getResources().getString(R.string.UnequipButtonText));
-
-								BackgroundManager.Instance.SaveBackgroundData(Instance, "Backgrounds.ser");
 							}
 
 							return true;
