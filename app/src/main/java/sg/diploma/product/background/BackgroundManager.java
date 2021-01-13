@@ -13,6 +13,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import sg.diploma.product.R;
+
 public final class BackgroundManager{
 	private BackgroundManager(){
 		view = null;
@@ -116,6 +118,28 @@ public final class BackgroundManager{
 	private SurfaceView view;
 
 	private final ArrayList<BackgroundStatuses.BackgroundStatus> backgrounds; //Shld be named "backgroundStatuses" instead
+
+	public final int[] drawableIDs = {
+			R.drawable.simple_place,
+			R.drawable.cool_place,
+			R.drawable.future_place,
+			R.drawable.day_jp,
+			R.drawable.night_jp,
+			R.drawable.night_place,
+			R.drawable.sunset0_place,
+			R.drawable.sunset1_place
+	};
+
+	public final int[] prices = {
+		5,
+		10,
+		15,
+		20,
+		25,
+		30,
+		35,
+		40
+	};
 
 	public final static BackgroundManager Instance;
 

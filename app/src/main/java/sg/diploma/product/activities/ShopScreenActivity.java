@@ -135,16 +135,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		shopLinearLayout = findViewById(R.id.shopLinearLayout);
 		final int amtOfChildren = shopLinearLayout.getChildCount();
 		final int myHeight = shopHorizontalScrollView.getLayoutParams().height; //As only shopHorizontalScrollView is alr sized
-		final int[] drawableIDs = {
-			R.drawable.simple_place,
-			R.drawable.cool_place,
-			R.drawable.future_place,
-			R.drawable.day_jp,
-			R.drawable.night_jp,
-			R.drawable.night_place,
-			R.drawable.sunset0_place,
-			R.drawable.sunset1_place
-		};
 
 		if(backgroundsSize > amtOfChildren){
 			for(int i = amtOfChildren; i < backgroundsSize; ++i){
@@ -154,7 +144,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				shopItemRelativeLayout.setBackgroundColor((i & 1) == 1 ? 0x77FF00FF : 0x77FFFF00);
 
 				final ImageView shopItemImgView = new ImageView(this);
-				shopItemImgView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), drawableIDs[i], null));
+				shopItemImgView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), BackgroundManager.Instance.drawableIDs[i], null));
 				shopItemImgView.setScaleType(ImageView.ScaleType.FIT_XY);
 				shopItemImgView.setScaleX(0.95f);
 				shopItemImgView.setScaleY(0.95f);
@@ -174,14 +164,17 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 						labelText.setText(getString(R.string.NotEquippedText));
 						break;
 					case NotOwned:
-						labelText.setText(getString(R.string.CoinsPostfix, CurrencyManager.Instance.GetAmtOfCoins()));
+						labelText.setText(getString(R.string.CoinsPostfix, BackgroundManager.Instance.prices[i]));
 						break;
 				}
 				labelText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 				labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 				labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
 				labelText.setTranslationY(myHeight * 0.4f - (float)labelText.getMeasuredHeight() * 0.5f);
+				labelText.setOnClickListener(null);
 				shopItemRelativeLayout.addView(labelText);
+
+				final int index = i;
 
 				final Button greenButton = new Button(this);
 				greenButton.setClickable(false);
@@ -225,21 +218,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				greenButtonUpAnimSet.setFillEnabled(true);
 				greenButtonUpAnimSet.setFillAfter(true);
 				greenButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
-
-				greenButton.setOnTouchListener((view, motionEvent)->{
-					switch(motionEvent.getAction()){
-						case MotionEvent.ACTION_DOWN:
-							greenButton.startAnimation(greenButtonDownAnimSet);
-							return true;
-						case MotionEvent.ACTION_UP:
-							greenButton.startAnimation(greenButtonUpAnimSet);
-							AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
-
-							//??
-							return true;
-					}
-					return false;
-				});
 
 				final Button redButton = new Button(this);
 				redButton.setClickable(false);
@@ -303,6 +281,42 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				});
 				redButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
 
+				greenButton.setOnTouchListener((view, motionEvent)->{
+					switch(motionEvent.getAction()){
+						case MotionEvent.ACTION_DOWN:
+							greenButton.startAnimation(greenButtonDownAnimSet);
+							return true;
+						case MotionEvent.ACTION_UP:
+							greenButton.startAnimation(greenButtonUpAnimSet);
+							AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
+
+							if(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned){ //Buy
+								int amtOfCoins = CurrencyManager.Instance.GetAmtOfCoins();
+								final int price = BackgroundManager.Instance.prices[index];
+								if(amtOfCoins >= price){
+									backgrounds.set(index, BackgroundStatuses.BackgroundStatus.NotEquipped);
+									amtOfCoins -= price;
+
+									labelText.setText(getString(R.string.NotEquippedText));
+									greenButton.setText(R.string.EquipButtonText);
+									redButton.setText(getResources().getString(R.string.UnequipButtonText));
+
+									BackgroundManager.Instance.SaveBackgroundData(Instance, "Backgrounds.ser");
+								}
+							} else if(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotEquipped){ //Equip
+								backgrounds.set(index, BackgroundStatuses.BackgroundStatus.Equipped);
+
+								labelText.setText(getString(R.string.EquippedText));
+								greenButton.setText(R.string.EquipButtonText);
+								redButton.setText(getResources().getString(R.string.UnequipButtonText));
+
+								BackgroundManager.Instance.SaveBackgroundData(Instance, "Backgrounds.ser");
+							}
+
+							return true;
+					}
+					return false;
+				});
 				redButton.setOnTouchListener((view, motionEvent)->{
 					switch(motionEvent.getAction()){
 						case MotionEvent.ACTION_DOWN:

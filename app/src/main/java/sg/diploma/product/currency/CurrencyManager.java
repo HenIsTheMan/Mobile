@@ -17,7 +17,7 @@ public final class CurrencyManager{
 
 	public void LoadCurrencyData(){
 		final Integer coinData = SharedPrefsManager.Instance.LoadDataInt("CurrencyData", "CoinData");
-		amtOfCoins = coinData == null ? 0 : coinData;
+		amtOfCoins = coinData == null ? 999 : coinData;
 	}
 
 	public void SaveCurrencyData(){
