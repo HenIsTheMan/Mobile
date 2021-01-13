@@ -39,6 +39,7 @@
     <string name="EquipButtonText">"Equip"</string>
     <string name="UnequipButtonText">"Unequip"</string>
     <string name="CancelButtonText">"Cancel"</string>
+    <string name="BackButtonText">"Back"</string>
     <string name="BuyButtonText">"Buy"</string>
     <string name="ContinueButtonText">"Continue…"</string>
     <string name="NameTextInputBoxHint">"Enter name…"</string>

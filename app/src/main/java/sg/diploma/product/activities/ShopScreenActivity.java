@@ -193,12 +193,21 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				final Button topButton = new Button(this);
 				topButton.setClickable(false);
 				topButton.setVisibility(View.INVISIBLE);
-				topButton.setText(getResources().getString(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned
-					? R.string.BuyButtonText
-					: R.string.EquipButtonText
-				));
+				switch(backgroundStatus){
+					case Equipped:
+						topButton.setText(getResources().getString(R.string.UnequipButtonText));
+						topButton.setBackgroundColor(0xFFFF0000);
+						break;
+					case NotEquipped:
+						topButton.setText(getResources().getString(R.string.EquipButtonText));
+						topButton.setBackgroundColor(0xFF00FF00);
+						break;
+					case NotOwned:
+						topButton.setText(getResources().getString(R.string.BuyButtonText));
+						topButton.setBackgroundColor(0xFF00FF00);
+						break;
+				}
 				topButton.setTextColor(0xFF000000);
-				topButton.setBackgroundColor(0xFF00FF00);
 				topButton.setTypeface(font);
 				topButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
 				topButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - topButton.getLayoutParams().width * 0.5f);
@@ -236,9 +245,15 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				final Button bottomButton = new Button(this);
 				bottomButton.setClickable(false);
 				bottomButton.setVisibility(View.INVISIBLE);
-				bottomButton.setText(getResources().getString(R.string.CancelButtonText));
+				bottomButton.setText(getResources().getString(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned
+						? R.string.CancelButtonText
+						: R.string.BackButtonText
+				));
 				bottomButton.setTextColor(0xFF000000);
-				bottomButton.setBackgroundColor(0xFFFF0000);
+				bottomButton.setBackgroundColor(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned
+					? 0xFFFF0000
+					: getResources().getColor(R.color.Gray, null)
+				);
 				bottomButton.setTypeface(font);
 				bottomButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
 				bottomButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - bottomButton.getLayoutParams().width * 0.5f);
@@ -316,7 +331,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 									labelText.setText(getString(R.string.NotEquippedText));
 									labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 									labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
+
 									topButton.setText(R.string.EquipButtonText);
+									topButton.setBackgroundColor(0xFF00FF00);
+
+									bottomButton.setText(getResources().getString(R.string.BackButtonText));
+									bottomButton.setBackgroundColor(getResources().getColor(R.color.Gray, null));
 								}
 							} else if(myBackgroundStatus == BackgroundStatuses.BackgroundStatus.NotEquipped){ //Equip
 								backgrounds.set(index, BackgroundStatuses.BackgroundStatus.Equipped);
@@ -324,7 +344,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 								labelText.setText(getString(R.string.EquippedText));
 								labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 								labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
+
 								topButton.setText(R.string.UnequipButtonText);
+								topButton.setBackgroundColor(0xFFFF0000);
+
+								bottomButton.setText(getResources().getString(R.string.BackButtonText));
+								bottomButton.setBackgroundColor(getResources().getColor(R.color.Gray, null));
 							}
 
 							return true;
