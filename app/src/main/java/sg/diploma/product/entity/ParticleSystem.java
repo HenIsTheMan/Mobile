@@ -9,11 +9,14 @@ import sg.diploma.product.object_pooling.obj_pools.ParticlePool;
 
 public final class ParticleSystem{
 	public ParticleSystem(){
-		particlePool = new ParticlePool();
-		particlesToDeactivate = new ArrayList<>();
+		particlePool = null;
+		particlesToDeactivate = null;
 	}
 
 	public void Init(final int size, final int bitmapID){
+		particlePool = new ParticlePool();
+		particlesToDeactivate = new ArrayList<>(size);
+
 		try{
 			particlePool.Init(size, ()->EntityParticle.Create(bitmapID));
 		} catch(Exception e){
@@ -59,6 +62,6 @@ public final class ParticleSystem{
 		}
 	}
 
-	private final ParticlePool particlePool;
-	private final ArrayList<EntityParticle> particlesToDeactivate;
+	private ParticlePool particlePool;
+	private ArrayList<EntityParticle> particlesToDeactivate;
 }

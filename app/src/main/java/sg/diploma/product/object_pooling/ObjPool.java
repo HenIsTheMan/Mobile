@@ -15,18 +15,18 @@ public abstract class ObjPool<T>{
 		if(activeObjs != null){
 			return;
 		}
-		activeObjs = new ArrayList<>();
+		activeObjs = new ArrayList<>(size);
 
-		inactiveObjs = new ArrayList<>();
+		inactiveObjs = new ArrayList<>(size);
 		for(int i = 0; i < size; ++i){
 			inactiveObjs.add(cls.newInstance());
 		}
 	}
 
 	public void Init(final int size, Callable<T> func) throws Exception{ //Command SDP
-		activeObjs = new ArrayList<>();
+		activeObjs = new ArrayList<>(size);
 
-		inactiveObjs = new ArrayList<>();
+		inactiveObjs = new ArrayList<>(size);
 		for(int i = 0; i < size; ++i){
 			inactiveObjs.add(func.call());
 		}
