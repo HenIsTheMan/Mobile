@@ -160,64 +160,64 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				shopItemImgView.setScaleY(0.95f);
 				shopItemRelativeLayout.addView(shopItemImgView);
 
-				final TextView priceText = new TextView(this);
-				priceText.setVisibility(View.INVISIBLE);
-				priceText.setTypeface(font);
-				priceText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
-				priceText.setText(getString(R.string.CoinsPostfix, CurrencyManager.Instance.GetAmtOfCoins()));
-				priceText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-				priceText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-				priceText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)priceText.getMeasuredWidth() * 0.5f);
-				priceText.setTranslationY(myHeight * 0.4f - (float)priceText.getMeasuredHeight() * 0.5f);
-				shopItemRelativeLayout.addView(priceText);
+				final TextView labelText = new TextView(this);
+				labelText.setVisibility(View.INVISIBLE);
+				labelText.setTypeface(font);
+				labelText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
+				labelText.setText(getString(R.string.CoinsPostfix, CurrencyManager.Instance.GetAmtOfCoins()));
+				labelText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+				labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+				labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
+				labelText.setTranslationY(myHeight * 0.4f - (float)labelText.getMeasuredHeight() * 0.5f);
+				shopItemRelativeLayout.addView(labelText);
 
-				final Button buyButton = new Button(this);
-				buyButton.setClickable(false);
-				buyButton.setVisibility(View.INVISIBLE);
-				buyButton.setText(getResources().getString(R.string.BuyButtonText));
-				buyButton.setTextColor(0xFF000000);
-				buyButton.setBackgroundColor(0xFF00FF00);
-				buyButton.setTypeface(font);
-				buyButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
-				buyButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - buyButton.getLayoutParams().width * 0.5f);
-				buyButton.setTranslationY(myHeight * 0.6f - buyButton.getLayoutParams().height * 0.5f);
-				buyButton.setGravity(Gravity.CENTER);
-				buyButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
-				shopItemRelativeLayout.addView(buyButton);
+				final Button greenButton = new Button(this);
+				greenButton.setClickable(false);
+				greenButton.setVisibility(View.INVISIBLE);
+				greenButton.setText(getResources().getString(R.string.BuyButtonText));
+				greenButton.setTextColor(0xFF000000);
+				greenButton.setBackgroundColor(0xFF00FF00);
+				greenButton.setTypeface(font);
+				greenButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
+				greenButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - greenButton.getLayoutParams().width * 0.5f);
+				greenButton.setTranslationY(myHeight * 0.6f - greenButton.getLayoutParams().height * 0.5f);
+				greenButton.setGravity(Gravity.CENTER);
+				greenButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
+				shopItemRelativeLayout.addView(greenButton);
 
-				final AnimationSet buyButtonDownAnimSet = new AnimationSet(true);
-				buyButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+				final AnimationSet greenButtonDownAnimSet = new AnimationSet(true);
+				greenButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
 					Animation.ABSOLUTE,
-					buyButton.getTranslationX() + buttonSize * 0.5f,
+					greenButton.getTranslationX() + buttonSize * 0.5f,
 					Animation.ABSOLUTE,
-					buyButton.getTranslationY() + buttonSize * 0.5f)
+					greenButton.getTranslationY() + buttonSize * 0.5f)
 				);
-				buyButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
-				buyButtonDownAnimSet.setDuration(400);
-				buyButtonDownAnimSet.setFillEnabled(true);
-				buyButtonDownAnimSet.setFillAfter(true);
-				buyButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
+				greenButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+				greenButtonDownAnimSet.setDuration(400);
+				greenButtonDownAnimSet.setFillEnabled(true);
+				greenButtonDownAnimSet.setFillAfter(true);
+				greenButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
 
-				final AnimationSet buyButtonUpAnimSet = new AnimationSet(true);
-				buyButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
+				final AnimationSet greenButtonUpAnimSet = new AnimationSet(true);
+				greenButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
 					Animation.ABSOLUTE,
-					buyButton.getTranslationX() + buttonSize * 0.5f,
+					greenButton.getTranslationX() + buttonSize * 0.5f,
 					Animation.ABSOLUTE,
-					buyButton.getTranslationY() + buttonSize * 0.5f)
+					greenButton.getTranslationY() + buttonSize * 0.5f)
 				);
-				buyButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
-				buyButtonUpAnimSet.setDuration(400);
-				buyButtonUpAnimSet.setFillEnabled(true);
-				buyButtonUpAnimSet.setFillAfter(true);
-				buyButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
+				greenButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+				greenButtonUpAnimSet.setDuration(400);
+				greenButtonUpAnimSet.setFillEnabled(true);
+				greenButtonUpAnimSet.setFillAfter(true);
+				greenButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
 
-				buyButton.setOnTouchListener((view, motionEvent)->{
+				greenButton.setOnTouchListener((view, motionEvent)->{
 					switch(motionEvent.getAction()){
 						case MotionEvent.ACTION_DOWN:
-							buyButton.startAnimation(buyButtonDownAnimSet);
+							greenButton.startAnimation(greenButtonDownAnimSet);
 							return true;
 						case MotionEvent.ACTION_UP:
-							buyButton.startAnimation(buyButtonUpAnimSet);
+							greenButton.startAnimation(greenButtonUpAnimSet);
 							AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 							//??
@@ -226,43 +226,43 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 					return false;
 				});
 
-				final Button cancelButton = new Button(this);
-				cancelButton.setClickable(false);
-				cancelButton.setVisibility(View.INVISIBLE);
-				cancelButton.setText(getResources().getString(R.string.CancelButtonText));
-				cancelButton.setTextColor(0xFF000000);
-				cancelButton.setBackgroundColor(0xFFFF0000);
-				cancelButton.setTypeface(font);
-				cancelButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
-				cancelButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - cancelButton.getLayoutParams().width * 0.5f);
-				cancelButton.setTranslationY(myHeight * 0.8f - cancelButton.getLayoutParams().height * 0.5f);
-				cancelButton.setGravity(Gravity.CENTER);
-				cancelButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
-				shopItemRelativeLayout.addView(cancelButton);
+				final Button redButton = new Button(this);
+				redButton.setClickable(false);
+				redButton.setVisibility(View.INVISIBLE);
+				redButton.setText(getResources().getString(R.string.CancelButtonText));
+				redButton.setTextColor(0xFF000000);
+				redButton.setBackgroundColor(0xFFFF0000);
+				redButton.setTypeface(font);
+				redButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
+				redButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - redButton.getLayoutParams().width * 0.5f);
+				redButton.setTranslationY(myHeight * 0.8f - redButton.getLayoutParams().height * 0.5f);
+				redButton.setGravity(Gravity.CENTER);
+				redButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
+				shopItemRelativeLayout.addView(redButton);
 
-				final AnimationSet cancelButtonDownAnimSet = new AnimationSet(true);
-				cancelButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+				final AnimationSet redButtonDownAnimSet = new AnimationSet(true);
+				redButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
 					Animation.ABSOLUTE,
-					cancelButton.getTranslationX() + buttonSize * 0.5f,
+					redButton.getTranslationX() + buttonSize * 0.5f,
 					Animation.ABSOLUTE,
-					cancelButton.getTranslationY() + buttonSize * 0.5f)
+					redButton.getTranslationY() + buttonSize * 0.5f)
 				);
-				cancelButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
-				cancelButtonDownAnimSet.setDuration(400);
-				cancelButtonDownAnimSet.setFillEnabled(true);
-				cancelButtonDownAnimSet.setFillAfter(true);
-				cancelButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
+				redButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+				redButtonDownAnimSet.setDuration(400);
+				redButtonDownAnimSet.setFillEnabled(true);
+				redButtonDownAnimSet.setFillAfter(true);
+				redButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
 
-				final AnimationSet cancelButtonUpAnimSet = new AnimationSet(true);
-				cancelButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
+				final AnimationSet redButtonUpAnimSet = new AnimationSet(true);
+				redButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
 					Animation.ABSOLUTE,
-					cancelButton.getTranslationX() + buttonSize * 0.5f,
+					redButton.getTranslationX() + buttonSize * 0.5f,
 					Animation.ABSOLUTE,
-					cancelButton.getTranslationY() + buttonSize * 0.5f)
+					redButton.getTranslationY() + buttonSize * 0.5f)
 				);
-				cancelButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
-				cancelButtonUpAnimSet.setDuration(400);
-				cancelButtonUpAnimSet.setAnimationListener(new Animation.AnimationListener(){
+				redButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+				redButtonUpAnimSet.setDuration(400);
+				redButtonUpAnimSet.setAnimationListener(new Animation.AnimationListener(){
 					@Override
 					public void onAnimationStart(Animation animation){
 					}
@@ -270,28 +270,28 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 					@Override
 					public void onAnimationEnd(Animation animation){
 						shopItemImgView.setColorFilter(0x00000000);
-						priceText.setVisibility(View.INVISIBLE);
+						labelText.setVisibility(View.INVISIBLE);
 
-						buyButton.clearAnimation();
-						buyButton.setVisibility(View.INVISIBLE);
-						buyButton.setClickable(false);
-						cancelButton.setVisibility(View.INVISIBLE);
-						cancelButton.setClickable(false);
+						greenButton.clearAnimation();
+						greenButton.setVisibility(View.INVISIBLE);
+						greenButton.setClickable(false);
+						redButton.setVisibility(View.INVISIBLE);
+						redButton.setClickable(false);
 					}
 
 					@Override
 					public void onAnimationRepeat(Animation animation){
 					}
 				});
-				cancelButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
+				redButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
 
-				cancelButton.setOnTouchListener((view, motionEvent)->{
+				redButton.setOnTouchListener((view, motionEvent)->{
 					switch(motionEvent.getAction()){
 						case MotionEvent.ACTION_DOWN:
-							cancelButton.startAnimation(cancelButtonDownAnimSet);
+							redButton.startAnimation(redButtonDownAnimSet);
 							return true;
 						case MotionEvent.ACTION_UP:
-							cancelButton.startAnimation(cancelButtonUpAnimSet);
+							redButton.startAnimation(redButtonUpAnimSet);
 							AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 							return true;
@@ -301,12 +301,12 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 
 				shopItemRelativeLayout.setOnClickListener(view->{
 					shopItemImgView.setColorFilter(0xAA000000);
-					priceText.setVisibility(View.VISIBLE);
+					labelText.setVisibility(View.VISIBLE);
 
-					buyButton.setVisibility(View.VISIBLE);
-					buyButton.setClickable(true);
-					cancelButton.setVisibility(View.VISIBLE);
-					cancelButton.setClickable(true);
+					greenButton.setVisibility(View.VISIBLE);
+					greenButton.setClickable(true);
+					redButton.setVisibility(View.VISIBLE);
+					redButton.setClickable(true);
 				});
 				shopLinearLayout.addView(shopItemRelativeLayout);
 			}
