@@ -4,16 +4,24 @@ import android.content.Context;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import sg.diploma.product.R;
 import sg.diploma.product.device.UpdateThread;
 
 public final class GameView extends SurfaceView{
-    public GameView(final Context context){
+    public GameView(final Context context, final int color){
         super(context);
-        updateThread = new UpdateThread(this, R.raw.future_place, 80);
-        updateThread.SetDelay(100);
-        SurfaceHolder surfaceHolder = getHolder(); //Holds content
+        updateThread = new UpdateThread(this, color);
+        InternalInit();
+    }
 
+    public GameView(final Context context, final int ID, final long timeAddPerFrame, final long delay){
+        super(context);
+        updateThread = new UpdateThread(this, ID, timeAddPerFrame);
+        updateThread.SetDelay(delay);
+        InternalInit();
+    }
+
+    private void InternalInit(){
+        final SurfaceHolder surfaceHolder = getHolder(); //Holds content
         if(surfaceHolder != null){
             surfaceHolder.addCallback(new SurfaceHolder.Callback(){
                 @Override

@@ -16,13 +16,26 @@ import sg.diploma.product.load_and_save.SharedPrefsManager;
 import sg.diploma.product.state.StateManager;
 
 public final class UpdateThread extends Thread{ //Need dedicated thread to run Surfaceview's update method
+    public UpdateThread(final SurfaceView view, final int color){
+        this.view = view;
+        isRunning = false;
+        surfaceHolder = this.view.getHolder();
+
+        useGifBG = false;
+        this.color = color;
+
+        movie = null;
+        timeAddPerFrame = 0;
+
+        InternalInit();
+    }
+
     public UpdateThread(final SurfaceView view, final int ID, final long timeAddPerFrame){
         this.view = view;
         isRunning = false;
         surfaceHolder = this.view.getHolder();
 
         useGifBG = true;
-        color = 0xFF333333;
 
         this.view.setLayerType(View.LAYER_TYPE_NONE, null);
         this.view.setWillNotDraw(false);
@@ -32,6 +45,10 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         nextUpdateTime = 0;
         currMovieTime = 0;
 
+        InternalInit();
+    }
+
+    private void InternalInit(){
         ///Init managers (if any)
         StateManager.Instance.Init(this.view);
         EntityManager.Instance.Init(this.view);

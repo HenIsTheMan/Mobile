@@ -120,14 +120,25 @@ public final class BackgroundManager{
 	private final ArrayList<BackgroundStatuses.BackgroundStatus> backgrounds; //Shld be named "backgroundStatuses" instead
 
 	public final int[] drawableIDs = {
-			R.drawable.simple_place,
-			R.drawable.cool_place,
-			R.drawable.future_place,
-			R.drawable.day_jp,
-			R.drawable.night_jp,
-			R.drawable.night_place,
-			R.drawable.sunset0_place,
-			R.drawable.sunset1_place
+		R.drawable.simple_place,
+		R.drawable.cool_place,
+		R.drawable.future_place,
+		R.drawable.day_jp,
+		R.drawable.night_jp,
+		R.drawable.night_place,
+		R.drawable.sunset0_place,
+		R.drawable.sunset1_place
+	};
+
+	public final int[] rawIDs = {
+			R.raw.simple_place,
+			R.raw.cool_place,
+			R.raw.future_place,
+			R.raw.day_jp,
+			R.raw.night_jp,
+			R.raw.night_place,
+			R.raw.sunset0_place,
+			R.raw.sunset1_place
 	};
 
 	public final int[] prices = {

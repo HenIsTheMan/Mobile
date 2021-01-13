@@ -15,7 +15,11 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+
 import sg.diploma.product.R;
+import sg.diploma.product.background.BackgroundManager;
+import sg.diploma.product.background.BackgroundStatuses;
 import sg.diploma.product.currency.CurrencyManager;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
@@ -52,11 +56,53 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         Instance = this;
-        View view = new GameView(this);
+        View view = null;
+        Integer indexBG = null;
+
+        final ArrayList<BackgroundStatuses.BackgroundStatus> backgrounds = BackgroundManager.Instance.GetBackgrounds();
+        final int backgroundsSize = backgrounds.size();
+        for(int i = 0; i < backgroundsSize; ++i){
+            if(backgrounds.get(i) == BackgroundStatuses.BackgroundStatus.Equipped){
+                indexBG = i;
+                break;
+            }
+        }
+
+        if(indexBG == null){
+            view = new GameView(this, 0xFF000000);
+        } else{
+            switch(indexBG){
+                case 0:
+                    view = new GameView(this, BackgroundManager.Instance.rawIDs[0], 80, 100);
+                    break;
+                case 1:
+                    view = new GameView(this, BackgroundManager.Instance.rawIDs[1], 80, 100);
+                    break;
+                case 2:
+                    view = new GameView(this, BackgroundManager.Instance.rawIDs[2], 80, 100);
+                    break;
+                case 3:
+                    view = new GameView(this, BackgroundManager.Instance.rawIDs[3], 80, 100);
+                    break;
+                case 4:
+                    view = new GameView(this, BackgroundManager.Instance.rawIDs[4], 80, 100);
+                    break;
+                case 5:
+                    view = new GameView(this, BackgroundManager.Instance.rawIDs[5], 80, 100);
+                    break;
+                case 6:
+                    view = new GameView(this, BackgroundManager.Instance.rawIDs[6], 80, 100);
+                    break;
+                case 7:
+                    view = new GameView(this, BackgroundManager.Instance.rawIDs[7], 80, 100);
+                    break;
+            }
+        }
         setContentView(view);
 
         CurrencyManager.Instance.LoadCurrencyData();
 
+        assert view != null;
         vibrator = (Vibrator)view.getContext().getSystemService(VIBRATOR_SERVICE);
 
         Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameScreenActivity.GetVal(), this);
