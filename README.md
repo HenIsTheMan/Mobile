@@ -4,11 +4,11 @@
 
 * Back-And-Forth Motion
 
-..* Game player char moves Back-And-Forth
-..* Cam moves Back-And-Forth
-..* Plats move Back-And-Forth
-..* Coins move Back-And-Forth
-..* Enemies move Back-And-Forth
+⋅⋅⋅* Game player char moves Back-And-Forth
+⋅⋅⋅* Cam moves Back-And-Forth
+⋅⋅⋅* Plats move Back-And-Forth
+⋅⋅⋅* Coins move Back-And-Forth
+⋅⋅⋅* Enemies move Back-And-Forth
 
 ## Task list of each member
 
