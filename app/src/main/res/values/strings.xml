@@ -34,6 +34,10 @@
     <string name="MusicVolText">"Music Vol"</string>
     <string name="SoundVolText">"Sound Vol"</string>
 
+    <string name="EquippedText">"Equipped"</string>
+    <string name="NotEquippedText">"Not Equipped"</string>
+    <string name="EquipButtonText">"Equip"</string>
+    <string name="UnequipButtonText">"Unequip"</string>
     <string name="CancelButtonText">"Cancel"</string>
     <string name="BuyButtonText">"Buy"</string>
     <string name="ContinueButtonText">"Continue…"</string>

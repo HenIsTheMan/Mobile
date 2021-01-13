@@ -115,7 +115,7 @@ public final class BackgroundManager{
 
 	private SurfaceView view;
 
-	private final ArrayList<BackgroundStatuses.BackgroundStatus> backgrounds;
+	private final ArrayList<BackgroundStatuses.BackgroundStatus> backgrounds; //Shld be named "backgroundStatuses" instead
 
 	public final static BackgroundManager Instance;
 

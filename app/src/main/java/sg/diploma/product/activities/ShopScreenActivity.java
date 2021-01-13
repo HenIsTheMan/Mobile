@@ -160,11 +160,23 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				shopItemImgView.setScaleY(0.95f);
 				shopItemRelativeLayout.addView(shopItemImgView);
 
+				final BackgroundStatuses.BackgroundStatus backgroundStatus = backgrounds.get(i);
+
 				final TextView labelText = new TextView(this);
 				labelText.setVisibility(View.INVISIBLE);
 				labelText.setTypeface(font);
 				labelText.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
-				labelText.setText(getString(R.string.CoinsPostfix, CurrencyManager.Instance.GetAmtOfCoins()));
+				switch(backgroundStatus){
+					case Equipped:
+						labelText.setText(getString(R.string.EquippedText));
+						break;
+					case NotEquipped:
+						labelText.setText(getString(R.string.NotEquippedText));
+						break;
+					case NotOwned:
+						labelText.setText(getString(R.string.CoinsPostfix, CurrencyManager.Instance.GetAmtOfCoins()));
+						break;
+				}
 				labelText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 				labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 				labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
@@ -174,7 +186,10 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				final Button greenButton = new Button(this);
 				greenButton.setClickable(false);
 				greenButton.setVisibility(View.INVISIBLE);
-				greenButton.setText(getResources().getString(R.string.BuyButtonText));
+				greenButton.setText(getResources().getString(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned
+					? R.string.BuyButtonText
+					: R.string.EquipButtonText
+				));
 				greenButton.setTextColor(0xFF000000);
 				greenButton.setBackgroundColor(0xFF00FF00);
 				greenButton.setTypeface(font);
@@ -229,7 +244,10 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 				final Button redButton = new Button(this);
 				redButton.setClickable(false);
 				redButton.setVisibility(View.INVISIBLE);
-				redButton.setText(getResources().getString(R.string.CancelButtonText));
+				redButton.setText(getResources().getString(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned
+						? R.string.CancelButtonText
+						: R.string.UnequipButtonText
+				));
 				redButton.setTextColor(0xFF000000);
 				redButton.setBackgroundColor(0xFFFF0000);
 				redButton.setTypeface(font);
