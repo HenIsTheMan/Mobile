@@ -190,89 +190,86 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 
 				final int index = i;
 
-				final Button greenButton = new Button(this);
-				greenButton.setClickable(false);
-				greenButton.setVisibility(View.INVISIBLE);
-				greenButton.setText(getResources().getString(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned
+				final Button topButton = new Button(this);
+				topButton.setClickable(false);
+				topButton.setVisibility(View.INVISIBLE);
+				topButton.setText(getResources().getString(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned
 					? R.string.BuyButtonText
 					: R.string.EquipButtonText
 				));
-				greenButton.setTextColor(0xFF000000);
-				greenButton.setBackgroundColor(0xFF00FF00);
-				greenButton.setTypeface(font);
-				greenButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
-				greenButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - greenButton.getLayoutParams().width * 0.5f);
-				greenButton.setTranslationY(myHeight * 0.6f - greenButton.getLayoutParams().height * 0.5f);
-				greenButton.setGravity(Gravity.CENTER);
-				greenButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
-				shopItemRelativeLayout.addView(greenButton);
+				topButton.setTextColor(0xFF000000);
+				topButton.setBackgroundColor(0xFF00FF00);
+				topButton.setTypeface(font);
+				topButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
+				topButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - topButton.getLayoutParams().width * 0.5f);
+				topButton.setTranslationY(myHeight * 0.6f - topButton.getLayoutParams().height * 0.5f);
+				topButton.setGravity(Gravity.CENTER);
+				topButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
+				shopItemRelativeLayout.addView(topButton);
 
-				final AnimationSet greenButtonDownAnimSet = new AnimationSet(true);
-				greenButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+				final AnimationSet topButtonDownAnimSet = new AnimationSet(true);
+				topButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
 					Animation.ABSOLUTE,
-					greenButton.getTranslationX() + buttonSize * 0.5f,
+					topButton.getTranslationX() + buttonSize * 0.5f,
 					Animation.ABSOLUTE,
-					greenButton.getTranslationY() + buttonSize * 0.5f)
+					topButton.getTranslationY() + buttonSize * 0.5f)
 				);
-				greenButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
-				greenButtonDownAnimSet.setDuration(400);
-				greenButtonDownAnimSet.setFillEnabled(true);
-				greenButtonDownAnimSet.setFillAfter(true);
-				greenButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
+				topButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+				topButtonDownAnimSet.setDuration(400);
+				topButtonDownAnimSet.setFillEnabled(true);
+				topButtonDownAnimSet.setFillAfter(true);
+				topButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
 
-				final AnimationSet greenButtonUpAnimSet = new AnimationSet(true);
-				greenButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
+				final AnimationSet topButtonUpAnimSet = new AnimationSet(true);
+				topButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
 					Animation.ABSOLUTE,
-					greenButton.getTranslationX() + buttonSize * 0.5f,
+					topButton.getTranslationX() + buttonSize * 0.5f,
 					Animation.ABSOLUTE,
-					greenButton.getTranslationY() + buttonSize * 0.5f)
+					topButton.getTranslationY() + buttonSize * 0.5f)
 				);
-				greenButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
-				greenButtonUpAnimSet.setDuration(400);
-				greenButtonUpAnimSet.setFillEnabled(true);
-				greenButtonUpAnimSet.setFillAfter(true);
-				greenButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
+				topButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+				topButtonUpAnimSet.setDuration(400);
+				topButtonUpAnimSet.setFillEnabled(true);
+				topButtonUpAnimSet.setFillAfter(true);
+				topButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
 
-				final Button redButton = new Button(this);
-				redButton.setClickable(false);
-				redButton.setVisibility(View.INVISIBLE);
-				redButton.setText(getResources().getString(backgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned
-						? R.string.CancelButtonText
-						: R.string.UnequipButtonText
-				));
-				redButton.setTextColor(0xFF000000);
-				redButton.setBackgroundColor(0xFFFF0000);
-				redButton.setTypeface(font);
-				redButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
-				redButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - redButton.getLayoutParams().width * 0.5f);
-				redButton.setTranslationY(myHeight * 0.8f - redButton.getLayoutParams().height * 0.5f);
-				redButton.setGravity(Gravity.CENTER);
-				redButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
-				shopItemRelativeLayout.addView(redButton);
+				final Button bottomButton = new Button(this);
+				bottomButton.setClickable(false);
+				bottomButton.setVisibility(View.INVISIBLE);
+				bottomButton.setText(getResources().getString(R.string.CancelButtonText));
+				bottomButton.setTextColor(0xFF000000);
+				bottomButton.setBackgroundColor(0xFFFF0000);
+				bottomButton.setTypeface(font);
+				bottomButton.setLayoutParams(new ViewGroup.LayoutParams(buttonSize * 3, buttonSize));
+				bottomButton.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - bottomButton.getLayoutParams().width * 0.5f);
+				bottomButton.setTranslationY(myHeight * 0.8f - bottomButton.getLayoutParams().height * 0.5f);
+				bottomButton.setGravity(Gravity.CENTER);
+				bottomButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
+				shopItemRelativeLayout.addView(bottomButton);
 
-				final AnimationSet redButtonDownAnimSet = new AnimationSet(true);
-				redButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+				final AnimationSet bottomButtonDownAnimSet = new AnimationSet(true);
+				bottomButtonDownAnimSet.addAnimation(new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
 					Animation.ABSOLUTE,
-					redButton.getTranslationX() + buttonSize * 0.5f,
+					bottomButton.getTranslationX() + buttonSize * 0.5f,
 					Animation.ABSOLUTE,
-					redButton.getTranslationY() + buttonSize * 0.5f)
+					bottomButton.getTranslationY() + buttonSize * 0.5f)
 				);
-				redButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
-				redButtonDownAnimSet.setDuration(400);
-				redButtonDownAnimSet.setFillEnabled(true);
-				redButtonDownAnimSet.setFillAfter(true);
-				redButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
+				bottomButtonDownAnimSet.addAnimation(new AlphaAnimation(1.0f, 0.4f));
+				bottomButtonDownAnimSet.setDuration(400);
+				bottomButtonDownAnimSet.setFillEnabled(true);
+				bottomButtonDownAnimSet.setFillAfter(true);
+				bottomButtonDownAnimSet.setInterpolator(this, R.anim.my_accelerate_interpolator);
 
-				final AnimationSet redButtonUpAnimSet = new AnimationSet(true);
-				redButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
+				final AnimationSet bottomButtonUpAnimSet = new AnimationSet(true);
+				bottomButtonUpAnimSet.addAnimation(new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f,
 					Animation.ABSOLUTE,
-					redButton.getTranslationX() + buttonSize * 0.5f,
+					bottomButton.getTranslationX() + buttonSize * 0.5f,
 					Animation.ABSOLUTE,
-					redButton.getTranslationY() + buttonSize * 0.5f)
+					bottomButton.getTranslationY() + buttonSize * 0.5f)
 				);
-				redButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
-				redButtonUpAnimSet.setDuration(400);
-				redButtonUpAnimSet.setAnimationListener(new Animation.AnimationListener(){
+				bottomButtonUpAnimSet.addAnimation(new AlphaAnimation(0.4f, 1.0f));
+				bottomButtonUpAnimSet.setDuration(400);
+				bottomButtonUpAnimSet.setAnimationListener(new Animation.AnimationListener(){
 					@Override
 					public void onAnimationStart(Animation animation){
 					}
@@ -282,27 +279,27 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 						shopItemImgView.setColorFilter(0x00000000);
 						labelText.setVisibility(View.INVISIBLE);
 
-						greenButton.clearAnimation();
-						greenButton.setVisibility(View.INVISIBLE);
-						greenButton.setClickable(false);
-						redButton.setVisibility(View.INVISIBLE);
-						redButton.setClickable(false);
+						topButton.clearAnimation();
+						topButton.setVisibility(View.INVISIBLE);
+						topButton.setClickable(false);
+						bottomButton.setVisibility(View.INVISIBLE);
+						bottomButton.setClickable(false);
 					}
 
 					@Override
 					public void onAnimationRepeat(Animation animation){
 					}
 				});
-				redButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
+				bottomButtonUpAnimSet.setInterpolator(this, R.anim.my_decelerate_interpolator);
 
 				final TextView currencyTextCopy = currencyText;
-				greenButton.setOnTouchListener((view, motionEvent)->{
+				topButton.setOnTouchListener((view, motionEvent)->{
 					switch(motionEvent.getAction()){
 						case MotionEvent.ACTION_DOWN:
-							greenButton.startAnimation(greenButtonDownAnimSet);
+							topButton.startAnimation(topButtonDownAnimSet);
 							return true;
 						case MotionEvent.ACTION_UP:
-							greenButton.startAnimation(greenButtonUpAnimSet);
+							topButton.startAnimation(topButtonUpAnimSet);
 							AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 							BackgroundStatuses.BackgroundStatus myBackgroundStatus = backgrounds.get(index);
@@ -318,8 +315,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 									labelText.setText(getString(R.string.NotEquippedText));
 									labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 									labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
-									greenButton.setText(R.string.EquipButtonText);
-									redButton.setText(getResources().getString(R.string.UnequipButtonText));
+									topButton.setText(R.string.EquipButtonText);
 								}
 							} else if(myBackgroundStatus == BackgroundStatuses.BackgroundStatus.NotEquipped){ //Equip
 								backgrounds.set(index, BackgroundStatuses.BackgroundStatus.Equipped);
@@ -327,21 +323,20 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 								labelText.setText(getString(R.string.EquippedText));
 								labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 								labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
-								greenButton.setText(R.string.EquipButtonText);
-								redButton.setText(getResources().getString(R.string.UnequipButtonText));
+								topButton.setText(R.string.UnequipButtonText);
 							}
 
 							return true;
 					}
 					return false;
 				});
-				redButton.setOnTouchListener((view, motionEvent)->{
+				bottomButton.setOnTouchListener((view, motionEvent)->{
 					switch(motionEvent.getAction()){
 						case MotionEvent.ACTION_DOWN:
-							redButton.startAnimation(redButtonDownAnimSet);
+							bottomButton.startAnimation(bottomButtonDownAnimSet);
 							return true;
 						case MotionEvent.ACTION_UP:
-							redButton.startAnimation(redButtonUpAnimSet);
+							bottomButton.startAnimation(bottomButtonUpAnimSet);
 							AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 							return true;
@@ -353,10 +348,10 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 					shopItemImgView.setColorFilter(0xAA000000);
 					labelText.setVisibility(View.VISIBLE);
 
-					greenButton.setVisibility(View.VISIBLE);
-					greenButton.setClickable(true);
-					redButton.setVisibility(View.VISIBLE);
-					redButton.setClickable(true);
+					topButton.setVisibility(View.VISIBLE);
+					topButton.setClickable(true);
+					bottomButton.setVisibility(View.VISIBLE);
+					bottomButton.setClickable(true);
 				});
 				shopLinearLayout.addView(shopItemRelativeLayout);
 			}
@@ -365,6 +360,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 
 	@Override
 	protected void onDestroy(){
+		CurrencyManager.Instance.SaveCurrencyData();
 		BackgroundManager.Instance.SaveBackgroundData(Instance, "Backgrounds.ser");
 		super.onDestroy();
 	}

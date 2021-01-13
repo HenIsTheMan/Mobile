@@ -27,7 +27,6 @@ import androidx.annotation.RequiresApi;
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
-import sg.diploma.product.background.BackgroundManager;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.game.GameData;
@@ -139,8 +138,17 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 	}
 
 	@Override
+	protected void onStop(){
+		if(saveScoreCheckBox.isChecked()){
+			final String name = nameTextInputBox.getText().toString();
+			RankingsManager.Instance.AddRanking(GameData.score, name.equals("") ? nameTextInputBox.getHint().toString() : name);
+			RankingsManager.Instance.SaveRankings(Instance, "Scores.ser", "Names.ser");
+		}
+		super.onStop();
+	}
+
+	@Override
 	protected void onDestroy(){
-		BackgroundManager.Instance.SaveBackgroundData(Instance, "Backgrounds.ser");
 		super.onDestroy();
 	}
 
