@@ -310,6 +310,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 								if(amtOfCoins >= price){
 									backgrounds.set(index, BackgroundStatuses.BackgroundStatus.NotEquipped);
 									amtOfCoins -= price;
+									CurrencyManager.Instance.SetAmtOfCoins(amtOfCoins);
 									currencyTextCopy.setText(String.valueOf(amtOfCoins));
 
 									labelText.setText(getString(R.string.NotEquippedText));
@@ -359,9 +360,14 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	}
 
 	@Override
-	protected void onDestroy(){
+	protected void onStop(){
 		CurrencyManager.Instance.SaveCurrencyData();
 		BackgroundManager.Instance.SaveBackgroundData(Instance, "Backgrounds.ser");
+		super.onStop();
+	}
+
+	@Override
+	protected void onDestroy(){
 		super.onDestroy();
 	}
 
