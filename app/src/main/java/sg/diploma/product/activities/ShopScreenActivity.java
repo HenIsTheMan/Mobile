@@ -329,15 +329,56 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 							AudioManager.Instance.PlayAudio(R.raw.button_press, AudioTypes.AudioType.Sound);
 
 							BackgroundStatuses.BackgroundStatus myBackgroundStatus = backgrounds.get(index);
+							switch(myBackgroundStatus){
+								case NotOwned:
+									int amtOfCoins = CurrencyManager.Instance.GetAmtOfCoins();
+									final int price = BackgroundManager.Instance.prices[index];
+									if(amtOfCoins >= price){
+										backgrounds.set(index, BackgroundStatuses.BackgroundStatus.NotEquipped);
+										amtOfCoins -= price;
+										CurrencyManager.Instance.SetAmtOfCoins(amtOfCoins);
+										currencyTextCopy.setText(String.valueOf(amtOfCoins));
 
-							if(myBackgroundStatus == BackgroundStatuses.BackgroundStatus.NotOwned){ //Buy
-								int amtOfCoins = CurrencyManager.Instance.GetAmtOfCoins();
-								final int price = BackgroundManager.Instance.prices[index];
-								if(amtOfCoins >= price){
+										labelText.setText(getString(R.string.NotEquippedText));
+										labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+										labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
+
+										topButton.setText(R.string.EquipButtonText);
+										topButton.setBackgroundColor(0xFF00FF00);
+
+										bottomButton.setText(getResources().getString(R.string.BackButtonText));
+										bottomButton.setBackgroundColor(getResources().getColor(R.color.Gray, null));
+									}
+
+									break;
+								case NotEquipped:
+									backgrounds.set(index, BackgroundStatuses.BackgroundStatus.Equipped);
+
+									labelText.setText(getString(R.string.EquippedText));
+									labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+									labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
+
+									topButton.setText(R.string.UnequipButtonText);
+									topButton.setBackgroundColor(0xFFFF0000);
+
+									for(int j = 0; j < backgroundsSize; ++j){
+										if(j != index && backgrounds.get(j) == BackgroundStatuses.BackgroundStatus.Equipped){
+											backgrounds.set(j, BackgroundStatuses.BackgroundStatus.NotEquipped);
+
+											labelTexts[j].setText(getString(R.string.NotEquippedText));
+											labelTexts[j].measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+											labelTexts[j].setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelTexts[j].getMeasuredWidth() * 0.5f);
+
+											topButtons[j].setText(R.string.EquipButtonText);
+											topButtons[j].setBackgroundColor(0xFF00FF00);
+
+											break;
+										}
+									}
+
+									break;
+								case Equipped:
 									backgrounds.set(index, BackgroundStatuses.BackgroundStatus.NotEquipped);
-									amtOfCoins -= price;
-									CurrencyManager.Instance.SetAmtOfCoins(amtOfCoins);
-									currencyTextCopy.setText(String.valueOf(amtOfCoins));
 
 									labelText.setText(getString(R.string.NotEquippedText));
 									labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
@@ -346,33 +387,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 									topButton.setText(R.string.EquipButtonText);
 									topButton.setBackgroundColor(0xFF00FF00);
 
-									bottomButton.setText(getResources().getString(R.string.BackButtonText));
-									bottomButton.setBackgroundColor(getResources().getColor(R.color.Gray, null));
-								}
-							} else if(myBackgroundStatus == BackgroundStatuses.BackgroundStatus.NotEquipped){ //Equip
-								backgrounds.set(index, BackgroundStatuses.BackgroundStatus.Equipped);
-
-								labelText.setText(getString(R.string.EquippedText));
-								labelText.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-								labelText.setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelText.getMeasuredWidth() * 0.5f);
-
-								topButton.setText(R.string.UnequipButtonText);
-								topButton.setBackgroundColor(0xFFFF0000);
-
-								for(int j = 0; j < backgroundsSize; ++j){
-									if(j != index && backgrounds.get(j) == BackgroundStatuses.BackgroundStatus.Equipped){
-										backgrounds.set(j, BackgroundStatuses.BackgroundStatus.NotEquipped);
-
-										labelTexts[j].setText(getString(R.string.NotEquippedText));
-										labelTexts[j].measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-										labelTexts[j].setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelTexts[j].getMeasuredWidth() * 0.5f);
-
-										topButtons[j].setText(R.string.EquipButtonText);
-										topButtons[j].setBackgroundColor(0xFF00FF00);
-
-										break;
-									}
-								}
+									break;
 							}
 
 							return true;
