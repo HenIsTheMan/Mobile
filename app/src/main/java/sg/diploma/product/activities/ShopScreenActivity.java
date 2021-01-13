@@ -359,8 +359,20 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 								topButton.setText(R.string.UnequipButtonText);
 								topButton.setBackgroundColor(0xFFFF0000);
 
-								bottomButton.setText(getResources().getString(R.string.BackButtonText));
-								bottomButton.setBackgroundColor(getResources().getColor(R.color.Gray, null));
+								for(int j = 0; j < backgroundsSize; ++j){
+									if(j != index && backgrounds.get(j) == BackgroundStatuses.BackgroundStatus.Equipped){
+										backgrounds.set(j, BackgroundStatuses.BackgroundStatus.NotEquipped);
+
+										labelTexts[j].setText(getString(R.string.NotEquippedText));
+										labelTexts[j].measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+										labelTexts[j].setTranslationX(shopItemRelativeLayoutLayoutParams.width * 0.5f - (float)labelTexts[j].getMeasuredWidth() * 0.5f);
+
+										topButtons[j].setText(R.string.EquipButtonText);
+										topButtons[j].setBackgroundColor(0xFF00FF00);
+
+										break;
+									}
+								}
 							}
 
 							return true;
