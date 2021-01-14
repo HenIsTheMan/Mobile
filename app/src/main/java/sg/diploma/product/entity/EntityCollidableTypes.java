@@ -5,6 +5,7 @@ public final class EntityCollidableTypes{
 		None,
 		Box,
 		Circle,
+		Plat,
 		Amt;
 	};
 }

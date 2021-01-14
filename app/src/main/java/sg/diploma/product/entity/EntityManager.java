@@ -144,30 +144,38 @@ public final class EntityManager{ //Singleton
         entityRemovalList.addAll(entityList.keySet());
     }
 
+    /** @noinspection UnnecessaryReturnStatement*/
     private void CheckCollision(EntityAbstract entity0, EntityAbstract entity1){
-        final boolean isBox0 = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box;
-        final boolean isBox1 = entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box;
+        if(entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box
+        && entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box
+        && DetectCollision.AABBAABB(entity0, entity1)){
+            ResolveCollision.AABBAABB(entity0, entity1);
+            return;
+        }
 
-        if(isBox0 && isBox1){
-            if(DetectCollision.AABBAABB(entity0, entity1)){
-                ResolveCollision.AABBAABB(entity0, entity1);
-            }
-        } else if(isBox0 ^ isBox1){
+        if(entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Circle
+        && entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Circle
+        && DetectCollision.CircleCircle(entity0, entity1)){
+            ResolveCollision.CircleCircle(entity0, entity1);
+            return;
+        }
+
+        if((entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box
+        && entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Circle)
+        || (entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Circle
+        && entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box)){
             final EntityAbstract circle = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Circle
-                ? entity0
-                : entity1;
+                    ? entity0
+                    : entity1;
 
             final EntityAbstract box = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box
-                ? entity0
-                : entity1;
+                    ? entity0
+                    : entity1;
 
             if(DetectCollision.CircleAABB(circle, box)){
                 ResolveCollision.CircleAABB(circle, box);
             }
-        } else{
-            if(DetectCollision.CircleCircle(entity0, entity1)){
-                ResolveCollision.CircleCircle(entity0, entity1);
-            }
+            return;
         }
     }
 

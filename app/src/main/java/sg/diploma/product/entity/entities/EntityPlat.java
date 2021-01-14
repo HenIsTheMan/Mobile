@@ -19,7 +19,7 @@ public final class EntityPlat extends EntityAbstract{
 		super();
 		attribs.renderLayer = EntityRenderLayers.EntityRenderLayer.Normal;
 		attribs.type = EntityTypes.EntityType.Plat;
-		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Box;
+		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Plat;
 
 		strokeWidth = 50.0f;
 		paintStyle = Paint.Style.FILL;
