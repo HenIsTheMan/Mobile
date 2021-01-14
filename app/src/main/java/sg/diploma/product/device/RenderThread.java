@@ -71,7 +71,9 @@ public final class RenderThread extends Thread{ //Need dedicated thread to run S
 							canvas.drawColor(color);
 						}
 
-						StateManager.Instance.Render(canvas);
+						synchronized(StateManager.Instance){
+							StateManager.Instance.Render(canvas);
+						}
 					}
 					surfaceHolder.unlockCanvasAndPost(canvas);
 				}

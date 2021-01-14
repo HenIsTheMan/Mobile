@@ -80,8 +80,10 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
                 }
                 movie.setTime(currMovieTime);
             }
-            
-            StateManager.Instance.Update(dt);
+
+            synchronized(StateManager.Instance){
+                StateManager.Instance.Update(dt);
+            }
 
             //* Limit frame rate
             if(limitFPS){
