@@ -58,6 +58,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         Instance = this;
         Integer indexBG = null;
 
+        BackgroundManager.Instance.LoadBackgroundData(Instance, "Backgrounds.ser");
         final ArrayList<BackgroundStatuses.BackgroundStatus> backgrounds = BackgroundManager.Instance.GetBackgrounds();
         final int backgroundsSize = backgrounds.size();
         for(int i = 0; i < backgroundsSize; ++i){
