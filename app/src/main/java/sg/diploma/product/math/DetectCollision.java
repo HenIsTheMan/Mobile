@@ -30,7 +30,7 @@ public final class DetectCollision{
         return PtCircle(new Vector2(x, y), circle.attribs.colliderPos, circle.attribs.colliderScale.x * 0.5f);
     }
 
-    public static boolean BoxBoxAABB(final EntityAbstract entity0, final EntityAbstract entity1, CollisionDataBoxBoxAABB collisionData0, CollisionDataBoxBoxAABB collisionData1){
+    public static boolean AABBAABB(final EntityAbstract entity0, final EntityAbstract entity1, CollisionDataAABBAABB collisionData0, CollisionDataAABBAABB collisionData1){
         collisionData0.prevPos = entity0.attribs.prevPos;
         collisionData1.prevPos = entity1.attribs.prevPos;
 

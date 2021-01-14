@@ -13,6 +13,7 @@ import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
+import sg.diploma.product.game.GameData;
 import sg.diploma.product.graphics.ResourceManager;
 
 public final class EntityCoin extends EntityAbstract{
@@ -52,6 +53,10 @@ public final class EntityCoin extends EntityAbstract{
 
 	@Override
 	public void Collided(EntityAbstract other){
+		if(other.attribs.type == EntityTypes.EntityType.GamePlayerChar){
+			++GameData.collectedCoins;
+			EntityManager.Instance.SendEntityForRemoval("coin_" + myIndex);
+		}
 	}
 
 	@Override

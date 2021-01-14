@@ -10,7 +10,7 @@ import java.util.Objects;
 
 import sg.diploma.product.cam.SceneCam;
 import sg.diploma.product.game.GameManager;
-import sg.diploma.product.math.CollisionDataBoxBoxAABB;
+import sg.diploma.product.math.CollisionDataAABBAABB;
 import sg.diploma.product.math.DetectCollision;
 import sg.diploma.product.math.ResolveCollision;
 import sg.diploma.product.math.Vector2;
@@ -152,12 +152,12 @@ public final class EntityManager{ //Singleton
         final boolean isBox1 = entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box;
 
         if(isBox0 && isBox1){
-            CollisionDataBoxBoxAABB collisionData0 = new CollisionDataBoxBoxAABB();
-            CollisionDataBoxBoxAABB collisionData1 = new CollisionDataBoxBoxAABB();
+            CollisionDataAABBAABB collisionData0 = new CollisionDataAABBAABB();
+            CollisionDataAABBAABB collisionData1 = new CollisionDataAABBAABB();
 
-            if(DetectCollision.BoxBoxAABB(entity0, entity1, collisionData0, collisionData1)){
-                ResolveCollision.BoxBoxAABB(entity0, entity1, collisionData0, collisionData1);
-                ResolveCollision.BoxBoxAABB(entity1, entity0, collisionData1, collisionData0);
+            if(DetectCollision.AABBAABB(entity0, entity1, collisionData0, collisionData1)){
+                ResolveCollision.AABBAABB(entity0, entity1, collisionData0, collisionData1);
+                ResolveCollision.AABBAABB(entity1, entity0, collisionData1, collisionData0);
             }
 
             return;
@@ -171,7 +171,7 @@ public final class EntityManager{ //Singleton
                 : entity1;
 
             if(DetectCollision.CircleAABB(circle, box)){
-                android.util.Log.e("HERE", "collided");
+                ResolveCollision.CircleAABB(circle, box);
             }
 
             return;

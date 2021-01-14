@@ -1,7 +1,7 @@
 package sg.diploma.product.math;
 
-public final class CollisionDataBoxBoxAABB{
-	public CollisionDataBoxBoxAABB(){
+public final class CollisionDataAABBAABB{
+	public CollisionDataAABBAABB(){
 		halfWidth = 0.0f;
 		halfHeight = 0.0f;
 
