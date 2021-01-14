@@ -13,6 +13,30 @@ public final class DetectCollision{
         return distSquared <= rSquared;
     }
 
+    public static boolean CircleAABB(final EntityAbstract circle, final EntityAbstract AABB){
+        final float halfWidth = AABB.attribs.colliderScale.x * 0.5f;
+        final float halfHeight = AABB.attribs.colliderScale.y * 0.5f;
+
+        final float minX = AABB.attribs.colliderPos.x - halfWidth;
+        final float maxX = AABB.attribs.colliderPos.x + halfWidth;
+        final float minY = AABB.attribs.colliderPos.y - halfHeight;
+        final float maxY = AABB.attribs.colliderPos.y + halfHeight;
+
+        //* Calc pos of closest pt of AABB to circle
+        final float x = Math.max(minX, Math.min(circle.attribs.colliderPos.x, maxX));
+        final float y = Math.max(minY, Math.min(circle.attribs.colliderPos.y, maxY));
+        //*/
+
+        return IsPtInCircle(new Vector2(x, y), circle.attribs.colliderPos, circle.attribs.colliderScale.x * 0.5f);
+    }
+
+    private static boolean IsPtInCircle(final Vector2 ptPos, final Vector2 circlePos, final float circleRadius){
+        final float x = ptPos.x - circlePos.x;
+        final float y = ptPos.y - circlePos.y;
+
+        return x * x + y * y < circleRadius * circleRadius;
+    }
+
     public static boolean BoxBoxAABB(final EntityAbstract entity0, final EntityAbstract entity1, CollisionDataBoxBoxAABB collisionData0, CollisionDataBoxBoxAABB collisionData1){
         collisionData0.prevPos = entity0.attribs.prevPos;
         collisionData1.prevPos = entity1.attribs.prevPos;

@@ -51,12 +51,10 @@ public final class EntityManager{ //Singleton
         for(int i = 0; i < keysSize; ++i){
             EntityAbstract currEntity = entityList.get(keys.get(i));
 
-            assert currEntity != null;
             if(currEntity.attribs.collidableType != EntityCollidableTypes.EntityCollidableType.None){
                 for(int j = i + 1; j < keysSize; ++j){
                     EntityAbstract otherEntity = entityList.get(keys.get(j));
 
-                    assert otherEntity != null;
                     if(otherEntity.attribs.collidableType != EntityCollidableTypes.EntityCollidableType.None){
                         CheckCollision(currEntity, otherEntity);
                     }
@@ -148,20 +146,37 @@ public final class EntityManager{ //Singleton
         entityRemovalList.addAll(entityList.keySet());
     }
 
+    /** @noinspection UnnecessaryReturnStatement*/
     private void CheckCollision(EntityAbstract entity0, EntityAbstract entity1){
-        if(entity0.attribs.collidableType == entity1.attribs.collidableType){
-            switch(entity0.attribs.collidableType){
-                case Box:
-                    CollisionDataBoxBoxAABB collisionData0 = new CollisionDataBoxBoxAABB();
-                    CollisionDataBoxBoxAABB collisionData1 = new CollisionDataBoxBoxAABB();
-                    if(DetectCollision.BoxBoxAABB(entity0, entity1, collisionData0, collisionData1)){
-                        ResolveCollision.BoxBoxAABB(entity0, entity1, collisionData0, collisionData1);
-                        ResolveCollision.BoxBoxAABB(entity1, entity0, collisionData1, collisionData0);
-                    }
-                    break;
-                case Circle:
-                    break;
+        if(entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box
+            && entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box){
+            CollisionDataBoxBoxAABB collisionData0 = new CollisionDataBoxBoxAABB();
+            CollisionDataBoxBoxAABB collisionData1 = new CollisionDataBoxBoxAABB();
+
+            if(DetectCollision.BoxBoxAABB(entity0, entity1, collisionData0, collisionData1)){
+                ResolveCollision.BoxBoxAABB(entity0, entity1, collisionData0, collisionData1);
+                ResolveCollision.BoxBoxAABB(entity1, entity0, collisionData1, collisionData0);
             }
+
+            return;
+        }
+
+        if(entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box
+            ^ entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box){
+
+            final EntityAbstract circle = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Circle
+                ? entity0
+                : entity1;
+
+            final EntityAbstract box = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box
+                ? entity0
+                : entity1;
+
+            if(DetectCollision.CircleAABB(circle, box)){
+                android.util.Log.e("HERE", "collided");
+            }
+
+            return;
         }
     }
 
