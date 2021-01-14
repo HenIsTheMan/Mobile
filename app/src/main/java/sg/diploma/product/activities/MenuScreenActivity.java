@@ -85,7 +85,8 @@ public final class MenuScreenActivity
 
         ball = null;
         menuPlayerChar = null;
-        textOnScreen = null;
+        textOnScreenUpdateFPS = null;
+        textOnScreenRenderFPS = null;
 
         playIcon = null;
         podiumIcon = null;
@@ -367,21 +368,31 @@ public final class MenuScreenActivity
         menuPlayerChar.attribs.yMax.val = DeviceManager.screenHeightF - menuPlayerChar.GetHeight() * menuPlayerChar.attribs.scale.y * 0.5f;
         //*/
 
-        //* Create text on screen
         final float textSize = DeviceManager.screenWidthF * 0.015f;
-        textOnScreen = EntityTextOnScreen.Create("menuTextOnScreen", _view.getContext().getAssets(), "fonts/grobold.ttf");
-        textOnScreen.attribs.pos.x = DeviceManager.screenWidthF * 0.05f;
-        textOnScreen.attribs.pos.y = DeviceManager.screenHeightF - textOnScreen.attribs.pos.x;
-        textOnScreen.SetColor(Color.green);
-        textOnScreen.SetStrokeWidth(100.0f);
-        textOnScreen.SetTextSize(textSize);
-        //*/
+        final Color textColor = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+
+        textOnScreenUpdateFPS = EntityTextOnScreen.Create("menuTextOnScreenUpdateFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
+        textOnScreenUpdateFPS.attribs.pos.x = DeviceManager.screenWidthF * 0.03f;
+        textOnScreenUpdateFPS.attribs.pos.y = DeviceManager.screenHeightF - textOnScreenUpdateFPS.attribs.pos.x * 6.0f;
+        textOnScreenUpdateFPS.SetColor(textColor);
+        textOnScreenUpdateFPS.SetStrokeWidth(90.0f);
+        textOnScreenUpdateFPS.SetTextSize(textSize);
+
+        textOnScreenRenderFPS = EntityTextOnScreen.Create("menuTextOnScreenRenderFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
+        textOnScreenRenderFPS.attribs.pos.x = DeviceManager.screenWidthF * 0.03f;
+        textOnScreenRenderFPS.attribs.pos.y = DeviceManager.screenHeightF - textOnScreenRenderFPS.attribs.pos.x * 2.5f;
+        textOnScreenRenderFPS.SetColor(textColor);
+        textOnScreenRenderFPS.SetStrokeWidth(90.0f);
+        textOnScreenRenderFPS.SetTextSize(textSize);
     }
 
     @Override
     public void Update(float _dt){
-        if(textOnScreen != null && renderThread != null){
-            textOnScreen.SetText("FPS: " + 1.0f / renderThread.GetDt());
+        if(textOnScreenUpdateFPS != null){
+            textOnScreenUpdateFPS.SetText("UpdateFPS: " + 1.0f / _dt);
+        }
+        if(textOnScreenRenderFPS != null && renderThread != null){
+            textOnScreenRenderFPS.SetText("RenderFPS: " + 1.0f / renderThread.GetDt());
         }
 
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
@@ -729,7 +740,8 @@ public final class MenuScreenActivity
 
     private static EntityBall ball;
     private EntityMenuPlayerChar menuPlayerChar;
-    private EntityTextOnScreen textOnScreen;
+    private EntityTextOnScreen textOnScreenUpdateFPS;
+    private EntityTextOnScreen textOnScreenRenderFPS;
 
     private ImageView playIcon;
     private ImageView podiumIcon;
