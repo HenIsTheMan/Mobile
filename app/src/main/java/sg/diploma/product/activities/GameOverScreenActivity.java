@@ -149,11 +149,6 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 	}
 
 	@Override
-	protected void onDestroy(){
-		super.onDestroy();
-	}
-
-	@Override
 	public boolean onTouchEvent(@NonNull MotionEvent event){
 		TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
 		return true;
@@ -224,8 +219,8 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 		EntityManager.Instance.SendAllEntitiesForRemoval();
 		StateManager.Instance.ChangeState("MenuScreen");
 
+		finishAffinity();
 		startActivity(new Intent(this, MenuScreenActivity.class));
-		finish();
 	}
 
 	private AnimationSet continueButtonDownAnimSet;

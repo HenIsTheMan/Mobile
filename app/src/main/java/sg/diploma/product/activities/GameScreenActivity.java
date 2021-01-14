@@ -109,8 +109,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    protected void onDestroy(){
-        super.onDestroy();
+    protected void onStop(){
+        super.onStop();
         Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.GameScreenActivity.GetVal());
     }
 
@@ -287,8 +287,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 EntityManager.Instance.SendAllEntitiesForRemoval();
                 StateManager.Instance.ChangeState("GameOverScreen");
 
+                finishAffinity();
                 startActivity(new Intent(this, GameOverScreenActivity.class));
-                finish();
 
                 break;
             case SendForDeactivation:

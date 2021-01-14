@@ -170,8 +170,8 @@ public final class MenuScreenActivity
     }
 
     @Override
-    protected void onDestroy(){
-        super.onDestroy();
+    protected void onStop(){
+        super.onStop();
         Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.MenuScreenActivity.GetVal());
     }
 
@@ -216,8 +216,8 @@ public final class MenuScreenActivity
                     EntityManager.Instance.SendAllEntitiesForRemoval();
                     StateManager.Instance.ChangeState("GameScreen");
 
+                    finishAffinity();
                     startActivity(new Intent(this, GameScreenActivity.class));
-                    finish();
 
                     return true;
             }
@@ -238,8 +238,8 @@ public final class MenuScreenActivity
                     EntityManager.Instance.SendAllEntitiesForRemoval();
                     StateManager.Instance.ChangeState("RankingsScreen");
 
+                    finishAffinity();
                     startActivity(new Intent(this, RankingsScreenActivity.class));
-                    finish();
 
                     return true;
             }
@@ -260,8 +260,8 @@ public final class MenuScreenActivity
                     EntityManager.Instance.SendAllEntitiesForRemoval();
                     StateManager.Instance.ChangeState("ShopScreen");
 
+                    finishAffinity();
                     startActivity(new Intent(this, ShopScreenActivity.class));
-                    finish();
 
                     return true;
             }
@@ -283,8 +283,8 @@ public final class MenuScreenActivity
                     AudioManager.Instance.SaveAudioVolData();
                     StateManager.Instance.ChangeState("OptionsScreen");
 
+                    finishAffinity();
                     startActivity(new Intent(this, OptionsScreenActivity.class));
-                    finish();
 
                     return true;
             }

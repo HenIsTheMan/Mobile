@@ -447,11 +447,6 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 	}
 
 	@Override
-	protected void onDestroy(){
-		super.onDestroy();
-	}
-
-	@Override
 	public boolean onTouchEvent(@NonNull MotionEvent event){
 		TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
 		return true;
@@ -514,8 +509,8 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		EntityManager.Instance.SendAllEntitiesForRemoval();
 		StateManager.Instance.ChangeState("MenuScreen");
 
+		finishAffinity();
 		startActivity(new Intent(this, MenuScreenActivity.class));
-		finish();
 	}
 
 	private AnimationSet backButtonDownAnimSet;

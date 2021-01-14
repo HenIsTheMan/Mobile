@@ -286,8 +286,8 @@ public final class OptionsScreenActivity
 	}
 
 	@Override
-	protected void onDestroy(){
-		super.onDestroy();
+	protected void onStop(){
+		super.onStop();
 		Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.OptionsScreenActivity.GetVal());
 	}
 
@@ -474,8 +474,8 @@ public final class OptionsScreenActivity
 		EntityManager.Instance.SendAllEntitiesForRemoval();
 		StateManager.Instance.ChangeState("MenuScreen");
 
+		finishAffinity();
 		startActivity(new Intent(this, MenuScreenActivity.class));
-		finish();
 	}
 
 	private boolean areNewVolsSaved;

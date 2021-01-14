@@ -123,10 +123,8 @@ public final class SplashScreenActivity extends Activity{
                     e.printStackTrace();
                 } finally{
                     finishAffinity();
-
                     StateManager.Instance.ChangeState("MenuScreen");
                     startActivity(new Intent(SplashScreenActivity.this, MenuScreenActivity.class));
-                    finish();
                 }
             }
         };
@@ -165,11 +163,6 @@ public final class SplashScreenActivity extends Activity{
     @Override
     protected void onStop(){
         super.onStop();
-    }
-
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
     }
 
     private boolean _active;

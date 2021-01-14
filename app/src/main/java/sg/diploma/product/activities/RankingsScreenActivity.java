@@ -204,8 +204,8 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 		EntityManager.Instance.SendAllEntitiesForRemoval();
 		StateManager.Instance.ChangeState("MenuScreen");
 
+		finishAffinity();
 		startActivity(new Intent(this, MenuScreenActivity.class));
-		finish();
 	}
 
 	private AnimationSet backButtonDownAnimSet;
