@@ -22,6 +22,7 @@ import sg.diploma.product.background.BackgroundManager;
 import sg.diploma.product.background.BackgroundStatuses;
 import sg.diploma.product.currency.CurrencyManager;
 import sg.diploma.product.device.DeviceManager;
+import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.ParticleSystem;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
@@ -205,7 +206,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         lastTriggerPosY = GameData.startPlat.attribs.pos.y;
         lastTriggerScaleY = GameData.startPlat.attribs.scale.y;
         EntityManager.Instance.cam.SetPosY(GameData.gamePlayerChar.attribs.pos.y - DeviceManager.screenHeightF * 0.5f);
-        EntityManager.Instance.cam.SetVelY(-100.0f);
+        EntityManager.Instance.cam.SetVelY(-100.0f); //##lvl??
     }
 
     @Override
@@ -262,23 +263,44 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     private void SpawnPlats(){
         if(lastTriggerPosY + lastTriggerScaleY * 0.5f >= EntityManager.Instance.cam.GetPos().y){
-            final float offset = Pseudorand.PseudorandFloatMinMax(380.f, 490.f);
-            EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
-            plat.SetMyIndex(platIndex);
+            final float offset = (float)Pseudorand.PseudorandIntMinMax(380, 400); //##lvl??
+            final float posY = lastTriggerPosY - offset;
+            final float scaleY = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.02f, 0.03f);
 
-            plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.4f);
-            plat.attribs.scale.y = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.04f, 0.06f);
-            plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.2f, 0.8f);
-            plat.attribs.pos.y = lastTriggerPosY - offset;
+            if((Pseudorand.PseudorandInt() & 1) == 1){
+                final EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
+                plat.SetMyIndex(platIndex);
 
-            plat.attribs.boxColliderPos.x = plat.attribs.pos.x;
-            plat.attribs.boxColliderPos.y = plat.attribs.pos.y;
-            plat.attribs.boxColliderScale.x = plat.attribs.scale.x;
-            plat.attribs.boxColliderScale.y = plat.attribs.scale.y;
+                plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.0f, 1.0f);
+                plat.attribs.pos.y = posY;
+                plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.25f, 0.5f); //##lvl??
+                plat.attribs.scale.y = scaleY;
+                ConfigBoxCollider(plat);
+            } else{
+                for(int i = 0; i < 2; ++i){
+                    final EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
+                    plat.SetMyIndex(platIndex);
 
-            lastTriggerPosY = plat.attribs.pos.y;
-            lastTriggerScaleY =  plat.attribs.scale.y;
+                    plat.attribs.pos.x = DeviceManager.screenWidthF * ((i & 1) == 1
+                        ? Pseudorand.PseudorandFloatMinMax(0.0f, 0.2f)
+                        : Pseudorand.PseudorandFloatMinMax(0.8f, 1.0f));
+                    plat.attribs.pos.y = posY;
+                    plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.3f, 0.55f); //##lvl??
+                    plat.attribs.scale.y = scaleY;
+                    ConfigBoxCollider(plat);
+                }
+            }
+
+            lastTriggerPosY = posY;
+            lastTriggerScaleY = scaleY;
         }
+    }
+
+    private void ConfigBoxCollider(final EntityAbstract entity){
+        entity.attribs.boxColliderPos.x = entity.attribs.pos.x;
+        entity.attribs.boxColliderPos.y = entity.attribs.pos.y;
+        entity.attribs.boxColliderScale.x = entity.attribs.scale.x;
+        entity.attribs.boxColliderScale.y = entity.attribs.scale.y;
     }
 
     @Override
