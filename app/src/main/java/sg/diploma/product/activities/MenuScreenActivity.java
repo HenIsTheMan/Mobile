@@ -373,14 +373,14 @@ public final class MenuScreenActivity
 
         textOnScreenUpdateFPS = EntityTextOnScreen.Create("menuTextOnScreenUpdateFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
         textOnScreenUpdateFPS.attribs.pos.x = DeviceManager.screenWidthF * 0.03f;
-        textOnScreenUpdateFPS.attribs.pos.y = DeviceManager.screenHeightF - textOnScreenUpdateFPS.attribs.pos.x * 6.0f;
+        textOnScreenUpdateFPS.attribs.pos.y = DeviceManager.screenHeightF - textOnScreenUpdateFPS.attribs.pos.x * 5.5f;
         textOnScreenUpdateFPS.SetColor(textColor);
         textOnScreenUpdateFPS.SetStrokeWidth(90.0f);
         textOnScreenUpdateFPS.SetTextSize(textSize);
 
         textOnScreenRenderFPS = EntityTextOnScreen.Create("menuTextOnScreenRenderFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
         textOnScreenRenderFPS.attribs.pos.x = DeviceManager.screenWidthF * 0.03f;
-        textOnScreenRenderFPS.attribs.pos.y = DeviceManager.screenHeightF - textOnScreenRenderFPS.attribs.pos.x * 2.5f;
+        textOnScreenRenderFPS.attribs.pos.y = DeviceManager.screenHeightF - textOnScreenRenderFPS.attribs.pos.x * 2.0f;
         textOnScreenRenderFPS.SetColor(textColor);
         textOnScreenRenderFPS.SetStrokeWidth(90.0f);
         textOnScreenRenderFPS.SetTextSize(textSize);
@@ -544,7 +544,7 @@ public final class MenuScreenActivity
         shopButtonUpAnimSet.setInterpolator(this, R.anim.my_overshoot_interpolator);
 
         final float otherButtonSize = (float)buttonSize * 0.7f;
-        final float exitButttonTranslateX = DeviceManager.screenWidthF * 0.85f - otherButtonSize * 0.5f;
+        final float exitButttonTranslateX = DeviceManager.screenWidthF * 0.87f - otherButtonSize * 0.5f;
         final float otherButtonTranslateY = DeviceManager.screenHeightF - (DeviceManager.screenWidthF - exitButttonTranslateX);
         final float otherButtonSpacing = DeviceManager.screenWidthF - exitButttonTranslateX;
 
@@ -577,7 +577,6 @@ public final class MenuScreenActivity
         exitButton = findViewById(R.id.exitButton);
         exitButton.setOnTouchListener(this);
         exitButton.getLayoutParams().width = exitButton.getLayoutParams().height = (int)otherButtonSize;
-
         exitButton.setTranslationX(exitButttonTranslateX);
         exitButton.setTranslationY(otherButtonTranslateY);
 
