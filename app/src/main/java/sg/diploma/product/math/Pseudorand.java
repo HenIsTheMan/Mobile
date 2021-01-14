@@ -11,7 +11,7 @@ public final class Pseudorand{ //Static class
 	}
 
 	public static int PseudorandIntMinMax(final int min, final int max){
-		return min + ThreadLocalRandom.current().nextInt() * (max - min);
+		return ThreadLocalRandom.current().nextInt(min, max + 1);
 	}
 
 	public static int PseudorandInt(){
