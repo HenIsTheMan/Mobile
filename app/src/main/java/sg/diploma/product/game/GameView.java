@@ -1,11 +1,13 @@
 package sg.diploma.product.game;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import sg.diploma.product.device.UpdateThread;
 
+@SuppressLint("ViewConstructor")
 public final class GameView extends SurfaceView{
     public GameView(final Context context, final int color){
         super(context);

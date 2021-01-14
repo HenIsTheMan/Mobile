@@ -1,7 +1,5 @@
 package sg.diploma.product.device;
 
-package sg.diploma.product.device;
-
 import android.graphics.Canvas;
 import android.graphics.Movie;
 import android.view.SurfaceHolder;
@@ -17,8 +15,8 @@ import sg.diploma.product.graphics.ResourceManager;
 import sg.diploma.product.load_and_save.SharedPrefsManager;
 import sg.diploma.product.state.StateManager;
 
-public final class UpdateThread extends Thread{ //Need dedicated thread to run Surfaceview's update method
-	public UpdateThread(final SurfaceView view, final int color){
+public final class RenderThread extends Thread{ //Need dedicated thread to run Surfaceview's Render method
+	public RenderThread(final SurfaceView view, final int color){
 		this.view = view;
 		isRunning = false;
 		surfaceHolder = this.view.getHolder();
@@ -32,7 +30,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
 		InternalInit();
 	}
 
-	public UpdateThread(final SurfaceView view, final int ID, final long timeAddPerFrame){
+	public RenderThread(final SurfaceView view, final int ID, final long timeAddPerFrame){
 		this.view = view;
 		isRunning = false;
 		surfaceHolder = this.view.getHolder();
@@ -44,7 +42,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
 		movie = Movie.decodeStream(this.view.getContext().getResources().openRawResource(ID));
 		this.timeAddPerFrame = timeAddPerFrame;
 		delay = 0;
-		nextUpdateTime = 0;
+		nextRenderTime = 0;
 		currMovieTime = 0;
 
 		InternalInit();
@@ -75,11 +73,11 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
 
 			if(useGifBG){
 				final long timeNow = android.os.SystemClock.uptimeMillis();
-				if(nextUpdateTime == 0){
-					nextUpdateTime = timeNow + delay;
-				} else if(timeNow >= nextUpdateTime){
+				if(nextRenderTime == 0){
+					nextRenderTime = timeNow + delay;
+				} else if(timeNow >= nextRenderTime){
 					currMovieTime += timeAddPerFrame;
-					nextUpdateTime = timeNow + delay;
+					nextRenderTime = timeNow + delay;
 				}
 				if(currMovieTime >= movie.duration()){
 					currMovieTime = 0;
@@ -98,7 +96,6 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
 							final float viewHeightF = (float)view.getHeight();
 							final float movieWidthF = (float)movie.width();
 							final float movieHeightF = (float)movie.height();
-							movie.setTime(currMovieTime);
 							canvas.scale(viewWidthF / movieWidthF, viewHeightF / movieHeightF);
 							movie.draw(canvas, 0.0f, 0.0f);
 							canvas.scale(movieWidthF / viewWidthF, movieHeightF / viewHeightF);
@@ -161,7 +158,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
 	private final Movie movie;
 	private final long timeAddPerFrame;
 	private long delay;
-	private long nextUpdateTime;
+	private long nextRenderTime;
 	private int currMovieTime;
 
 	static final long targetFPS;
