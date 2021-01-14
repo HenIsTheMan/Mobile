@@ -28,7 +28,7 @@ public final class StateManager{ //Singleton
             if(nextState == null){
                 throw new Exception("Var 'nextState' is null!");
             }
-        } catch(Exception e){
+        } catch(final Exception e){
             nextState = currState;
             Log.w(tag, e.getMessage());
         }

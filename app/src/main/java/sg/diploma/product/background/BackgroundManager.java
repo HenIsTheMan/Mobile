@@ -47,7 +47,7 @@ public final class BackgroundManager{
 			for(final Object obj: backgroundsObjArr){
 				backgrounds.add((BackgroundStatuses.BackgroundStatus)obj);
 			}
-		} catch(ClassNotFoundException | IOException e){
+		} catch(final ClassNotFoundException | IOException e){
 			e.printStackTrace();
 		} finally{
 			try{
@@ -57,7 +57,7 @@ public final class BackgroundManager{
 				if(backgroundsFIS != null){
 					backgroundsFIS.close();
 				}
-			} catch(IOException e){
+			} catch(final IOException e){
 				e.printStackTrace();
 			}
 		}
@@ -85,7 +85,7 @@ public final class BackgroundManager{
 			backgroundsFOS = new FileOutputStream(backgroundsFile);
 			backgroundsOOS = new ObjectOutputStream(backgroundsFOS);
 			backgroundsOOS.writeObject(backgrounds.toArray());
-		} catch(IOException e){
+		} catch(final IOException e){
 			e.printStackTrace();
 		} finally{
 			try{
@@ -95,7 +95,7 @@ public final class BackgroundManager{
 				if(backgroundsFOS != null){
 					backgroundsFOS.close();
 				}
-			} catch(IOException e){
+			} catch(final IOException e){
 				e.printStackTrace();
 			}
 		}

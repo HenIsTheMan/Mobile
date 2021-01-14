@@ -19,7 +19,7 @@ public final class ParticleSystem{
 
 		try{
 			particlePool.Init(size, ()->EntityParticle.Create(bitmapID));
-		} catch(Exception e){
+		} catch(final Exception e){
 			e.printStackTrace();
 		}
 	}

@@ -53,7 +53,7 @@ public class RankingsManager{
 			for(int i = 0; i < scoresObjArr.length; ++i){
 				rankings.put(scores[i], names[i]);
 			}
-		} catch(ClassNotFoundException | IOException e){
+		} catch(final ClassNotFoundException | IOException e){
 			e.printStackTrace();
 		} finally{
 			try{
@@ -69,7 +69,7 @@ public class RankingsManager{
 				if(namesFIS != null){
 					namesFIS.close();
 				}
-			} catch(IOException e){
+			} catch(final IOException e){
 				e.printStackTrace();
 			}
 		}
@@ -105,7 +105,7 @@ public class RankingsManager{
 			namesFOS = new FileOutputStream(namesFile);
 			namesOOS = new ObjectOutputStream(namesFOS);
 			namesOOS.writeObject(rankings.values().toArray());
-		} catch(IOException e){
+		} catch(final IOException e){
 			e.printStackTrace();
 		} finally{
 			try{
@@ -121,7 +121,7 @@ public class RankingsManager{
 				if(namesFOS != null){
 					namesFOS.close();
 				}
-			} catch(IOException e){
+			} catch(final IOException e){
 				e.printStackTrace();
 			}
 		}
