@@ -214,6 +214,7 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 
 	private void ReturnToMenu(){
 		CurrencyManager.Instance.SetAmtOfCoins(CurrencyManager.Instance.GetAmtOfCoins() + GameData.collectedCoins);
+		CurrencyManager.Instance.SaveCurrencyData();
 
 		GameData.globalInstance.ResetVars();
 		EntityManager.Instance.SendAllEntitiesForRemoval();
