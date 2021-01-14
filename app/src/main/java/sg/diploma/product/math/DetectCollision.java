@@ -3,12 +3,13 @@ package sg.diploma.product.math;
 import sg.diploma.product.entity.EntityAbstract;
 
 public final class DetectCollision{
-    public static boolean CircleCircle(final Vector2 pos0, final Vector2 pos1, final float radius0, final float radius1){
-        final float xVec = pos1.x - pos0.x;
-        final float yVec = pos1.y - pos0.y;
+    public static boolean CircleCircle(final EntityAbstract circle0, final EntityAbstract circle1){
+        final float xVec = circle1.attribs.pos.x - circle0.attribs.pos.x;
+        final float yVec = circle1.attribs.pos.y - circle0.attribs.pos.y;
 
         final float distSquared = xVec * xVec + yVec * yVec;
-        final float rSquared = (radius0 + radius1) * (radius0 + radius1);
+        final float rSum = (circle0.attribs.scale.x + circle1.attribs.scale.x) * 0.5f;
+        final float rSquared = rSum * rSum;
 
         return distSquared <= rSquared;
     }

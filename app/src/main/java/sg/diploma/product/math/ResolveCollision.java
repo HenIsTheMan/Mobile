@@ -5,6 +5,11 @@ import sg.diploma.product.entity.EntityAbstract;
 import static sg.diploma.product.math.Constants.epsilon;
 
 public final class ResolveCollision{
+	public static void CircleCircle(final EntityAbstract circle0, final EntityAbstract circle1){
+		circle0.Collided(circle1);
+		circle1.Collided(circle0);
+	}
+
 	public static void CircleAABB(final EntityAbstract circle, final EntityAbstract AABB){
 		circle.Collided(AABB);
 		AABB.Collided(circle);

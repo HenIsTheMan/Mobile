@@ -145,8 +145,7 @@ public final class EntityManager{ //Singleton
     public void SendAllEntitiesForRemoval(){
         entityRemovalList.addAll(entityList.keySet());
     }
-
-    /** @noinspection UnnecessaryReturnStatement*/
+    
     private void CheckCollision(EntityAbstract entity0, EntityAbstract entity1){
         final boolean isBox0 = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box;
         final boolean isBox1 = entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box;
@@ -159,8 +158,6 @@ public final class EntityManager{ //Singleton
                 ResolveCollision.AABBAABB(entity0, entity1, collisionData0, collisionData1);
                 ResolveCollision.AABBAABB(entity1, entity0, collisionData1, collisionData0);
             }
-
-            return;
         } else if(isBox0 ^ isBox1){
             final EntityAbstract circle = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Circle
                 ? entity0
@@ -173,10 +170,9 @@ public final class EntityManager{ //Singleton
             if(DetectCollision.CircleAABB(circle, box)){
                 ResolveCollision.CircleAABB(circle, box);
             }
-
-            return;
         } else{
-            if(DetectCollision.CircleCircle(entity0.attribs.pos, entity1.attribs.pos, entity0.attribs.scale.x * 0.5f, entity1.attribs.scale.x * 0.5f)){
+            if(DetectCollision.CircleCircle(entity0, entity1)){
+                ResolveCollision.CircleCircle(entity0, entity1);
             }
         }
     }
