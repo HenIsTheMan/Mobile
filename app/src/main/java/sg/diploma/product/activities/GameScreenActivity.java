@@ -135,27 +135,32 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
         particleSystem.Init(999, R.drawable.smoke_particle);
 
-        //* Create text on screen
         final float textSize = DeviceManager.screenWidthF * 0.015f;
         final float realTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, textSize, DeviceManager.displayMetrics);
-        GameData.textOnScreenFPS = EntityTextOnScreen.Create("Special_gameTextOnScreenFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
-        GameData.textOnScreenFPS.SetStrokeWidth(400.0f);
-        GameData.textOnScreenFPS.SetTextSize(textSize);
-        GameData.textOnScreenFPS.attribs.pos.x = DeviceManager.screenWidthF * 0.05f - realTextSize * 0.5f;
-        GameData.textOnScreenFPS.attribs.pos.y = DeviceManager.screenHeightF * 0.05f - realTextSize * 0.5f;
 
         GameData.textOnScreenScore = EntityTextOnScreen.Create("Special_gameTextOnScreenScore", _view.getContext().getAssets(), "fonts/grobold.ttf");
         GameData.textOnScreenScore.SetStrokeWidth(400.0f);
         GameData.textOnScreenScore.SetTextSize(textSize);
         GameData.textOnScreenScore.attribs.pos.x = DeviceManager.screenWidthF * 0.05f - realTextSize * 0.5f;
-        GameData.textOnScreenScore.attribs.pos.y = DeviceManager.screenHeightF * 0.1f - realTextSize * 0.5f;
+        GameData.textOnScreenScore.attribs.pos.y = DeviceManager.screenHeightF * 0.05f - realTextSize * 0.5f;
 
         GameData.textOnScreenCoins = EntityTextOnScreen.Create("Special_gameTextOnScreenCoins", _view.getContext().getAssets(), "fonts/grobold.ttf");
         GameData.textOnScreenCoins.SetStrokeWidth(400.0f);
         GameData.textOnScreenCoins.SetTextSize(textSize);
         GameData.textOnScreenCoins.attribs.pos.x = DeviceManager.screenWidthF * 0.05f - realTextSize * 0.5f;
-        GameData.textOnScreenCoins.attribs.pos.y = DeviceManager.screenHeightF * 0.15f - realTextSize * 0.5f;
-        //*/
+        GameData.textOnScreenCoins.attribs.pos.y = DeviceManager.screenHeightF * 0.1f - realTextSize * 0.5f;
+
+        GameData.textOnScreenUpdateFPS = EntityTextOnScreen.Create("Special_gameTextOnScreenUpdateFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
+        GameData.textOnScreenUpdateFPS.SetStrokeWidth(400.0f);
+        GameData.textOnScreenUpdateFPS.SetTextSize(textSize);
+        GameData.textOnScreenUpdateFPS.attribs.pos.x = DeviceManager.screenWidthF * 0.05f - realTextSize * 0.5f;
+        GameData.textOnScreenUpdateFPS.attribs.pos.y = DeviceManager.screenHeightF * 0.15f - realTextSize * 0.5f;
+
+        GameData.textOnScreenRenderFPS = EntityTextOnScreen.Create("Special_gameTextOnScreenRenderFPS", _view.getContext().getAssets(), "fonts/grobold.ttf");
+        GameData.textOnScreenRenderFPS.SetStrokeWidth(400.0f);
+        GameData.textOnScreenRenderFPS.SetTextSize(textSize);
+        GameData.textOnScreenRenderFPS.attribs.pos.x = DeviceManager.screenWidthF * 0.05f - realTextSize * 0.5f;
+        GameData.textOnScreenRenderFPS.attribs.pos.y = DeviceManager.screenHeightF * 0.2f - realTextSize * 0.5f;
 
         //* Create game player char and start plat
         GameData.gamePlayerChar = EntityGamePlayerChar.Create(
@@ -204,14 +209,17 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     @Override
     public void Update(float _dt) {
-        if(GameData.textOnScreenFPS != null && view != null){
-            GameData.textOnScreenFPS.SetText("FPS   " + 1.0f / ((GameView)view).GetRenderDt());
-        }
         if(GameData.textOnScreenScore != null){
             GameData.textOnScreenScore.SetText("Score   " + GameData.score);
         }
         if(GameData.textOnScreenCoins != null){
             GameData.textOnScreenCoins.SetText("Coins   " + GameData.collectedCoins);
+        }
+        if(GameData.textOnScreenUpdateFPS != null){
+            GameData.textOnScreenUpdateFPS.SetText("UpdateFPS   " + 1.0f / _dt);
+        }
+        if(GameData.textOnScreenRenderFPS != null && view != null){
+            GameData.textOnScreenRenderFPS.SetText("RenderFPS   " + 1.0f / ((GameView)view).GetRenderDt());
         }
 
         particleSystem.Update(_dt);
