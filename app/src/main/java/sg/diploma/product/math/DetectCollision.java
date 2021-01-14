@@ -17,11 +17,11 @@ public final class DetectCollision{
         collisionData0.prevPos = entity0.attribs.prevPos;
         collisionData1.prevPos = entity1.attribs.prevPos;
 
-        Vector2 pos0 = entity0.attribs.boxColliderPos;
-        Vector2 pos1 = entity1.attribs.boxColliderPos;
+        Vector2 pos0 = entity0.attribs.colliderPos;
+        Vector2 pos1 = entity1.attribs.colliderPos;
 
-        Vector2 scale0 = entity0.attribs.boxColliderScale;
-        Vector2 scale1 = entity1.attribs.boxColliderScale;
+        Vector2 scale0 = entity0.attribs.colliderScale;
+        Vector2 scale1 = entity1.attribs.colliderScale;
 
         collisionData0.halfWidth = scale0.x * 0.5f;
         collisionData1.halfWidth = scale1.x * 0.5f;

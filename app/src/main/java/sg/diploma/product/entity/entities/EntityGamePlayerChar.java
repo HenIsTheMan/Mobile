@@ -58,7 +58,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		elapsedTime += dt;
 
 		if(currPlat != null){
-			attribs.vel.x = attribs.facing * 500.f;
+			attribs.vel.x = attribs.facing * 500.f; //##lvl??
 		} else{
 			attribs.vel.y += attribs.accel.y * dt;
 		}
@@ -82,12 +82,12 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			attribs.pos.y = Math.min(attribs.yMax.val, attribs.pos.y);
 		}
 
-		attribs.boxColliderPos.x = attribs.pos.x;
-		attribs.boxColliderPos.y = attribs.pos.y + attribs.boxColliderScale.y * 0.075f;
+		attribs.colliderPos.x = attribs.pos.x;
+		attribs.colliderPos.y = attribs.pos.y + attribs.colliderScale.y * 0.075f;
 
 		//* Check for end of game
-		if(attribs.pos.y + attribs.boxColliderScale.y * 0.5f >= EntityManager.Instance.cam.GetPos().y + DeviceManager.screenHeightF
-			|| attribs.pos.y - attribs.boxColliderScale.y * 0.5f <= EntityManager.Instance.cam.GetPos().y){
+		if(attribs.pos.y + attribs.colliderScale.y * 0.5f >= EntityManager.Instance.cam.GetPos().y + DeviceManager.screenHeightF
+			|| attribs.pos.y - attribs.colliderScale.y * 0.5f <= EntityManager.Instance.cam.GetPos().y){
 			Publisher.Broadcast(new EventEndGame());
 			return;
 		}
@@ -98,11 +98,11 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			EntityParticle particle = particleSystem.ActivateParticle();
 			particle.SetLife(0.8f);
 			particle.SetMaxLife(0.8f);
-			particle.SetMinScale(attribs.boxColliderScale.x * 0.3f);
-			particle.SetMaxScale(attribs.boxColliderScale.x * 0.9f);
+			particle.SetMinScale(attribs.colliderScale.x * 0.3f);
+			particle.SetMaxScale(attribs.colliderScale.x * 0.9f);
 
-			particle.attribs.pos.x = attribs.boxColliderPos.x;
-			particle.attribs.pos.y = attribs.boxColliderPos.y + attribs.boxColliderScale.y * 0.5f - particle.attribs.scale.y * 0.5f;
+			particle.attribs.pos.x = attribs.colliderPos.x;
+			particle.attribs.pos.y = attribs.colliderPos.y + attribs.colliderScale.y * 0.5f - particle.attribs.scale.y * 0.5f;
 
 			particle.attribs.vel.x = attribs.vel.x / abs(attribs.vel.x) * 10.0f;
 			particle.attribs.vel.y = -10.0f;
@@ -137,12 +137,12 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			final float flipMinX = currPlat.attribs.pos.x - currPlat.attribs.scale.x * 0.5f;
 			final float flipMaxX = currPlat.attribs.pos.x + currPlat.attribs.scale.x * 0.5f;
 
-			if(attribs.pos.x - attribs.boxColliderScale.x * 0.5f < flipMinX){
-				attribs.pos.x = flipMinX + attribs.boxColliderScale.x * 0.5f;
+			if(attribs.pos.x - attribs.colliderScale.x * 0.5f < flipMinX){
+				attribs.pos.x = flipMinX + attribs.colliderScale.x * 0.5f;
 				SwitchFacing();
 			}
-			if(attribs.pos.x + attribs.boxColliderScale.x * 0.5f > flipMaxX){
-				attribs.pos.x = flipMaxX - attribs.boxColliderScale.x * 0.5f;
+			if(attribs.pos.x + attribs.colliderScale.x * 0.5f > flipMaxX){
+				attribs.pos.x = flipMaxX - attribs.colliderScale.x * 0.5f;
 				SwitchFacing();
 			}
 		}
@@ -168,7 +168,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		} else{
 			spriteAnim.SetFrames(9 + 1, 9 + 9);
 		}
-		attribs.vel.x = attribs.facing * 500.f;
+		attribs.vel.x = attribs.facing * 500.f; //##lvl??
 	}
 
 	public void Jump(final float jumpMag){

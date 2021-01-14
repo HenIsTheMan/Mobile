@@ -21,6 +21,8 @@ public final class EntityCoin extends EntityAbstract{
 		attribs.type = EntityTypes.EntityType.Coin;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Circle;
 
+		myIndex = 0;
+
 		bitmap = ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565);
 		paint = new Paint();
 		paint.setARGB(255, 255, 255, 255);
@@ -62,6 +64,12 @@ public final class EntityCoin extends EntityAbstract{
 		EntityManager.Instance.AddEntity(key, result);
 		return result;
 	}
+
+	public void SetMyIndex(final int myIndex){
+		this.myIndex = myIndex;
+	}
+
+	private int myIndex;
 
 	private final Bitmap bitmap;
 	private final Paint paint;

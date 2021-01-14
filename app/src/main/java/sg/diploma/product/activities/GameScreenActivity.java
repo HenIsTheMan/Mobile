@@ -25,6 +25,7 @@ import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.ParticleSystem;
+import sg.diploma.product.entity.entities.EntityCoin;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.entity.entities.EntityPauseButton;
 import sg.diploma.product.entity.entities.EntityPlat;
@@ -47,7 +48,9 @@ import sg.diploma.product.touch.TouchTypes;
 
 public final class GameScreenActivity extends Activity implements IState, IListener{
     public GameScreenActivity(){
+        coinIndex = 0;
         platIndex = 0;
+
         lastTriggerPosY = 0.0f;
         lastTriggerScaleY = 1.0f;
         jumpMag = 0.0f;
@@ -176,10 +179,10 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.startPlat.attribs.scale.y = DeviceManager.screenHeightF * 0.03f;
         GameData.startPlat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
         GameData.startPlat.attribs.pos.y = DeviceManager.screenHeightF - GameData.startPlat.attribs.scale.y * 0.5f;
-        GameData.startPlat.attribs.boxColliderPos.x = GameData.startPlat.attribs.pos.x;
-        GameData.startPlat.attribs.boxColliderPos.y = GameData.startPlat.attribs.pos.y;
-        GameData.startPlat.attribs.boxColliderScale.x = GameData.startPlat.attribs.scale.x;
-        GameData.startPlat.attribs.boxColliderScale.y = GameData.startPlat.attribs.scale.y;
+        GameData.startPlat.attribs.colliderPos.x = GameData.startPlat.attribs.pos.x;
+        GameData.startPlat.attribs.colliderPos.y = GameData.startPlat.attribs.pos.y;
+        GameData.startPlat.attribs.colliderScale.x = GameData.startPlat.attribs.scale.x;
+        GameData.startPlat.attribs.colliderScale.y = GameData.startPlat.attribs.scale.y;
         GameData.startPlat.SetSteppedOnColor(new Color(1.0f, 0.0f, 1.0f, 0.7f));
 
         final float playerCharWidth = (float)ResourceManager.Instance.GetBitmap(R.drawable.player_char, Bitmap.Config.RGB_565).getWidth() / 9.f * 0.5f;
@@ -188,8 +191,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         GameData.gamePlayerChar.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
         GameData.gamePlayerChar.attribs.pos.y = DeviceManager.screenHeightF - GameData.startPlat.attribs.scale.y - playerCharHeight * 1.2f * 0.5f;
 
-        GameData.gamePlayerChar.attribs.boxColliderScale.x = playerCharWidth * 1.2f;
-        GameData.gamePlayerChar.attribs.boxColliderScale.y = playerCharHeight * 1.2f;
+        GameData.gamePlayerChar.attribs.colliderScale.x = playerCharWidth * 1.2f;
+        GameData.gamePlayerChar.attribs.colliderScale.y = playerCharHeight * 1.2f;
         GameData.gamePlayerChar.SetSpriteAnimXScale(1.2f);
         GameData.gamePlayerChar.SetSpriteAnimYScale(1.2f);
         //*/
@@ -238,7 +241,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
             }
 
             EntityManager.Instance.cam.SetPosX(GameData.gamePlayerChar.attribs.pos.x - DeviceManager.screenWidthF * 0.5f);
-            SpawnPlats();
+            GenLvl();
         }
 
         EntityManager.Instance.LateUpdate(_dt);
@@ -261,7 +264,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         _canvas.translate(camPos.x, camPos.y);
     }
 
-    private void SpawnPlats(){
+    private void GenLvl(){
         if(lastTriggerPosY + lastTriggerScaleY * 0.5f >= EntityManager.Instance.cam.GetPos().y){
             final float offset = (float)Pseudorand.PseudorandIntMinMax(380, 400); //##lvl??
             final float posY = lastTriggerPosY - offset;
@@ -275,7 +278,9 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 plat.attribs.pos.y = posY;
                 plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.25f, 0.5f); //##lvl??
                 plat.attribs.scale.y = scaleY;
-                ConfigBoxCollider(plat);
+                ConfigCollider(plat);
+
+                SpawnCoin(plat);
             } else{
                 for(int i = 0; i < 2; ++i){
                     final EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
@@ -287,7 +292,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                     plat.attribs.pos.y = posY;
                     plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.3f, 0.55f); //##lvl??
                     plat.attribs.scale.y = scaleY;
-                    ConfigBoxCollider(plat);
+                    ConfigCollider(plat);
                 }
             }
 
@@ -296,11 +301,21 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         }
     }
 
-    private void ConfigBoxCollider(final EntityAbstract entity){
-        entity.attribs.boxColliderPos.x = entity.attribs.pos.x;
-        entity.attribs.boxColliderPos.y = entity.attribs.pos.y;
-        entity.attribs.boxColliderScale.x = entity.attribs.scale.x;
-        entity.attribs.boxColliderScale.y = entity.attribs.scale.y;
+    private void SpawnCoin(final EntityPlat plat){
+        final EntityCoin coin = EntityCoin.Create("coin_" + ++coinIndex, R.drawable.coin);
+        coin.SetMyIndex(coinIndex);
+
+        coin.attribs.scale.x = coin.attribs.scale.y = DeviceManager.screenWidthF * 0.1f;
+        coin.attribs.pos.x = plat.attribs.pos.x;
+        coin.attribs.pos.y = plat.attribs.pos.y - (plat.attribs.scale.y + coin.attribs.scale.y) * 0.5f;
+        ConfigCollider(coin);
+    }
+
+    private void ConfigCollider(final EntityAbstract entity){
+        entity.attribs.colliderPos.x = entity.attribs.pos.x;
+        entity.attribs.colliderPos.y = entity.attribs.pos.y;
+        entity.attribs.colliderScale.x = entity.attribs.scale.x;
+        entity.attribs.colliderScale.y = entity.attribs.scale.y;
     }
 
     @Override
@@ -327,7 +342,9 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         }
     }
 
+    private int coinIndex;
     private int platIndex;
+
     private float lastTriggerPosY;
     private float lastTriggerScaleY;
     private float jumpMag;

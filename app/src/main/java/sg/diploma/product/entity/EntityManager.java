@@ -42,7 +42,7 @@ public final class EntityManager{ //Singleton
         }
 
         for(EntityAbstract entity: entityList.values()){
-            entity.attribs.prevPos = entity.attribs.boxColliderPos;
+            entity.attribs.prevPos = entity.attribs.colliderPos;
             entity.Update(_dt);
         }
 

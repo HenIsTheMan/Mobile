@@ -12,8 +12,8 @@ public final class EntityAttribs{
 	public Vector2 scale = new Vector2(1.0f, 1.0f);
 	public Vector2 targetPos = null;
 
-	public Vector2 boxColliderPos = new Vector2();
-	public Vector2 boxColliderScale = new Vector2();
+	public Vector2 colliderPos = new Vector2();
+	public Vector2 colliderScale = new Vector2();
 
 	public EntityConstraint xMin = null;
 	public EntityConstraint xMax = null;
