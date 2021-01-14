@@ -24,13 +24,13 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         }
     }
 
-    public UpdateThread(final SurfaceView view, final int ID, final long timeAddPerFrame){
+    public UpdateThread(final SurfaceView view, final Movie movie, final long timeAddPerFrame){
         isRunning = false;
         limitFPS = false;
         targetFPS = 60;
 
         useGifBG = true;
-        movie = Movie.decodeStream(view.getContext().getResources().openRawResource(ID));
+        this.movie = movie;
         this.timeAddPerFrame = timeAddPerFrame;
         delay = 0;
         nextUpdateTime = 0;

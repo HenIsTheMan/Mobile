@@ -3,6 +3,7 @@ package sg.diploma.product.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Movie;
 import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -38,6 +39,7 @@ import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
+import sg.diploma.product.device.RenderThread;
 import sg.diploma.product.device.UpdateThread;
 import sg.diploma.product.dialog_frags.MenuDialogFrag;
 import sg.diploma.product.entity.EntityConstraint;
@@ -93,6 +95,7 @@ public final class MenuScreenActivity
         myShape = null;
 
         updateThread = null;
+        renderThread = null;
 
         sensorManager = null;
 
@@ -102,6 +105,8 @@ public final class MenuScreenActivity
         font = null;
 
         callbackManager = null;
+
+        movie = null;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -112,10 +117,14 @@ public final class MenuScreenActivity
 
         Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.MenuScreenActivity.GetVal(), this);
 
-        SurfaceView menuSurfaceView = findViewById(R.id.menuSurfaceView);
-        updateThread = new UpdateThread(menuSurfaceView, R.raw.space, 80);
+        final SurfaceView menuSurfaceView = findViewById(R.id.menuSurfaceView);
+        movie = Movie.decodeStream(menuSurfaceView.getContext().getResources().openRawResource(R.raw.space));
+
+        updateThread = new UpdateThread(menuSurfaceView, movie, 80);
         updateThread.SetDelay(60);
-        SurfaceHolder surfaceHolder = menuSurfaceView.getHolder();
+        renderThread = new RenderThread(menuSurfaceView, movie);
+
+        final SurfaceHolder surfaceHolder = menuSurfaceView.getHolder();
 
         if(surfaceHolder != null){
             surfaceHolder.addCallback(new SurfaceHolder.Callback(){
@@ -124,9 +133,14 @@ public final class MenuScreenActivity
                     if(!updateThread.GetIsRunning()){
                         updateThread.Init();
                     }
-
+                    if(!renderThread.GetIsRunning()){
+                        renderThread.Init();
+                    }
                     if(!updateThread.isAlive()){
                         updateThread.start();
+                    }
+                    if(!renderThread.isAlive()){
+                        renderThread.start();
                     }
                 }
 
@@ -137,6 +151,7 @@ public final class MenuScreenActivity
                 @Override
                 public void surfaceDestroyed(SurfaceHolder surfaceHolder){
                     updateThread.Terminate();
+                    renderThread.Terminate();
                 }
             });
         }
@@ -727,6 +742,7 @@ public final class MenuScreenActivity
     private ImageView myShape;
 
     private UpdateThread updateThread;
+    private RenderThread renderThread;
 
     private SensorManager sensorManager;
 
@@ -736,6 +752,8 @@ public final class MenuScreenActivity
     private Typeface font;
 
     private CallbackManager callbackManager;
+
+    private Movie movie;
 
     private static boolean showMyShape;
 

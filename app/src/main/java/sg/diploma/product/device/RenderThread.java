@@ -15,18 +15,22 @@ public final class RenderThread extends Thread{ //Need dedicated thread to run S
 		this.view = view;
 		isRunning = false;
 		surfaceHolder = this.view.getHolder();
+		limitFPS = false;
+		targetFPS = 60;
 
 		useGifBG = false;
 		this.color = color;
 	}
 
-	public RenderThread(final SurfaceView view, final int ID, final long timeAddPerFrame){
+	public RenderThread(final SurfaceView view, final Movie movie){
 		this.view = view;
 		isRunning = false;
 		surfaceHolder = this.view.getHolder();
+		limitFPS = false;
+		targetFPS = 60;
 
 		useGifBG = true;
-		movie = Movie.decodeStream(this.view.getContext().getResources().openRawResource(ID));
+		this.movie = movie;
 		this.view.setLayerType(View.LAYER_TYPE_NONE, null);
 		this.view.setWillNotDraw(false);
 	}
