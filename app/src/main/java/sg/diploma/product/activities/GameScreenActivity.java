@@ -56,7 +56,6 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         Instance = this;
-        View view = null;
         Integer indexBG = null;
 
         final ArrayList<BackgroundStatuses.BackgroundStatus> backgrounds = BackgroundManager.Instance.GetBackgrounds();
@@ -204,26 +203,9 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     @Override
-    public void OnExit(){
-        Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal());
-
-        Instance.finish();
-    }
-
-    @Override
-    public void Render(Canvas _canvas){
-        EntityManager.Instance.SpecialRender(_canvas);
-
-        Vector2 camPos = EntityManager.Instance.GetSceneCam().GetPos();
-        _canvas.translate(-camPos.x, -camPos.y);
-        particleSystem.Render(_canvas);
-        _canvas.translate(camPos.x, camPos.y);
-    }
-
-    @Override
     public void Update(float _dt) {
-        if(GameData.textOnScreenFPS != null){
-            GameData.textOnScreenFPS.SetText("FPS   " + 1.0f / _dt);
+        if(GameData.textOnScreenFPS != null && view != null){
+            GameData.textOnScreenFPS.SetText("FPS   " + 1.0f / ((GameView)view).GetRenderDt());
         }
         if(GameData.textOnScreenScore != null){
             GameData.textOnScreenScore.SetText("Score   " + GameData.score);
@@ -250,6 +232,23 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         }
 
         EntityManager.Instance.LateUpdate(_dt);
+    }
+
+    @Override
+    public void OnExit(){
+        Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal());
+
+        Instance.finish();
+    }
+
+    @Override
+    public void Render(Canvas _canvas){
+        EntityManager.Instance.SpecialRender(_canvas);
+
+        Vector2 camPos = EntityManager.Instance.GetSceneCam().GetPos();
+        _canvas.translate(-camPos.x, -camPos.y);
+        particleSystem.Render(_canvas);
+        _canvas.translate(camPos.x, camPos.y);
     }
 
     private void SpawnPlats(){
@@ -302,11 +301,15 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     private float lastTriggerScaleY;
     private float jumpMag;
 
+    private static View view;
+
     private static Vibrator vibrator;
     public static GameScreenActivity Instance;
     private static final ParticleSystem particleSystem;
 
     static{
+        view = null;
+
         vibrator = null;
         Instance = null;
         particleSystem = new ParticleSystem();

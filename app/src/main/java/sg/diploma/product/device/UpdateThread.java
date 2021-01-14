@@ -64,7 +64,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         while(isRunning){
             startTime = System.currentTimeMillis();
             final long currTime = System.nanoTime();
-            final float deltaTime = ((currTime - prevTime) / 1000000000.0f);
+            final float dt = ((currTime - prevTime) / 1000000000.0f);
             prevTime = currTime;
 
             if(useGifBG){
@@ -81,7 +81,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
                 movie.setTime(currMovieTime);
             }
             
-            StateManager.Instance.Update(deltaTime);
+            StateManager.Instance.Update(dt);
 
             //* Limit frame rate
             if(limitFPS){

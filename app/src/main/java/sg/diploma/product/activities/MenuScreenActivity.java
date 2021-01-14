@@ -94,9 +94,6 @@ public final class MenuScreenActivity
         leaveIcon = null;
         myShape = null;
 
-        updateThread = null;
-        renderThread = null;
-
         sensorManager = null;
 
         gameTitleBossText = null;
@@ -382,13 +379,9 @@ public final class MenuScreenActivity
     }
 
     @Override
-    public void OnExit(){
-    }
-
-    @Override
     public void Update(float _dt){
-        if(textOnScreen != null){
-            textOnScreen.SetText("FPS: " + 1.0f / _dt);
+        if(textOnScreen != null && renderThread != null){
+            textOnScreen.SetText("FPS: " + 1.0f / renderThread.GetDt());
         }
 
         if(TouchManager.Instance.GetMotionEventAction() == TouchTypes.TouchType.Down.GetVal()) {
@@ -406,6 +399,10 @@ public final class MenuScreenActivity
         }
 
         EntityManager.Instance.Update(_dt);
+    }
+
+    @Override
+    public void OnExit(){
     }
 
     @Override
@@ -741,9 +738,6 @@ public final class MenuScreenActivity
     private ImageView leaveIcon;
     private ImageView myShape;
 
-    private UpdateThread updateThread;
-    private RenderThread renderThread;
-
     private SensorManager sensorManager;
 
     private TextView gameTitleBossText;
@@ -755,9 +749,15 @@ public final class MenuScreenActivity
 
     private Movie movie;
 
+    private static UpdateThread updateThread;
+    private static RenderThread renderThread;
+
     private static boolean showMyShape;
 
     static{
+        updateThread = null;
+        renderThread = null;
+
         showMyShape = true;
     }
 }

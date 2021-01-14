@@ -13,16 +13,16 @@ public final class DeviceManager{
 		screenHeightF = (float)screenHeight;
 	}
 
-	static final DeviceManager Instance;
-
-	static{
-		Instance = new DeviceManager();
-	}
-
 	public static DisplayMetrics displayMetrics;
 	public static float scaledDensity;
 	public static float screenWidthF;
 	public static float screenHeightF;
 	public static int screenWidth;
 	public static int screenHeight;
+
+	static final DeviceManager Instance;
+
+	static{
+		Instance = new DeviceManager();
+	}
 }

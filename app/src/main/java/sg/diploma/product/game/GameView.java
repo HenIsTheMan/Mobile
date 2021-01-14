@@ -69,6 +69,10 @@ public final class GameView extends SurfaceView{
         }
     }
 
+    public float GetRenderDt(){
+        return renderThread.GetDt();
+    }
+
     private final Movie movie;
 
     private final UpdateThread updateThread;

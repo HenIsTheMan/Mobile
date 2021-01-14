@@ -20,18 +20,22 @@ public final class RenderThread extends Thread{ //Need dedicated thread to run S
 		limitFPS = false;
 		targetFPS = 60;
 
-		useGifBG = false;
+		dt = 0.0f;
 		this.color = color;
+
+		useGifBG = false;
 	}
 
 	public RenderThread(final SurfaceView view, final Movie movie){
 		super();
-		
+
 		this.view = view;
 		isRunning = false;
 		surfaceHolder = this.view.getHolder();
 		limitFPS = false;
 		targetFPS = 60;
+
+		dt = 0.0f;
 
 		useGifBG = true;
 		this.movie = movie;
@@ -41,7 +45,16 @@ public final class RenderThread extends Thread{ //Need dedicated thread to run S
 
 	@Override
 	public void run(){
+		final long framePerSecond = 1000 / targetFPS;
+		long startTime;
+		long prevTime = System.nanoTime();
+
 		while(isRunning){
+			startTime = System.currentTimeMillis();
+			final long currTime = System.nanoTime();
+			dt = ((currTime - prevTime) / 1000000000.0f);
+			prevTime = currTime;
+
 			if(!Objects.equals(StateManager.Instance.GetCurrentStateName(), "")){
 				Canvas canvas = surfaceHolder.lockCanvas(null); //Origin is top left
 				if(canvas != null){
@@ -59,14 +72,10 @@ public final class RenderThread extends Thread{ //Need dedicated thread to run S
 						}
 
 						StateManager.Instance.Render(canvas);
-
 					}
 					surfaceHolder.unlockCanvasAndPost(canvas);
 				}
 			}
-
-			final long framePerSecond = 1000 / targetFPS;
-			final long startTime = System.currentTimeMillis();
 
 			//* Limit frame rate
 			if(limitFPS){
@@ -97,6 +106,10 @@ public final class RenderThread extends Thread{ //Need dedicated thread to run S
 		isRunning = false;
 	}
 
+	public float GetDt(){
+		return dt;
+	}
+
 	public void SetLimitFPS(final boolean limitFPS){
 		this.limitFPS = limitFPS;
 	}
@@ -115,6 +128,7 @@ public final class RenderThread extends Thread{ //Need dedicated thread to run S
 	private boolean limitFPS;
 	private long targetFPS;
 
+	private float dt;
 	private int color;
 
 	private final boolean useGifBG;
