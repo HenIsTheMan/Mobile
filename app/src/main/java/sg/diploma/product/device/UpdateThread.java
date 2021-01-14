@@ -102,17 +102,22 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         }
     }
 
-    /** @noinspection BooleanMethodIsAlwaysInverted*/
     public boolean GetIsRunning(){
         return isRunning;
     }
 
-    public void Init(){
+    public void Begin(){
         isRunning = true;
+        if(!isAlive()){
+            start();
+        }
     }
 
     public void Terminate(){
         isRunning = false;
+        if(isAlive()){
+            interrupt();
+        }
     }
 
     public void SetLimitFPS(final boolean limitFPS){

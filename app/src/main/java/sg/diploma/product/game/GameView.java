@@ -41,16 +41,10 @@ public final class GameView extends SurfaceView{
                 @Override
                 public void surfaceCreated(SurfaceHolder surfaceHolder){
                     if(!updateThread.GetIsRunning()){
-                        updateThread.Init();
+                        updateThread.Begin();
                     }
                     if(!renderThread.GetIsRunning()){
-                        renderThread.Init();
-                    }
-                    if(!updateThread.isAlive()){
-                        updateThread.start();
-                    }
-                    if(!renderThread.isAlive()){
-                        renderThread.start();
+                        renderThread.Begin();
                     }
                 }
 
@@ -62,8 +56,12 @@ public final class GameView extends SurfaceView{
 
                 @Override
                 public void surfaceDestroyed(SurfaceHolder surfaceHolder){
-                    updateThread.Terminate();
-                    renderThread.Terminate();
+                    if(updateThread.GetIsRunning()){
+                        updateThread.Terminate();
+                    }
+                    if(renderThread.GetIsRunning()){
+                        renderThread.Terminate();
+                    }
                 }
             });
         }

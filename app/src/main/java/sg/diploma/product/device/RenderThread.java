@@ -100,12 +100,18 @@ public final class RenderThread extends Thread{ //Need dedicated thread to run S
 		return isRunning;
 	}
 
-	public void Init(){
+	public void Begin(){
 		isRunning = true;
+		if(!isAlive()){
+			start();
+		}
 	}
 
 	public void Terminate(){
 		isRunning = false;
+		if(isAlive()){
+			interrupt();
+		}
 	}
 
 	public float GetDt(){
