@@ -2,8 +2,6 @@ package sg.diploma.product.math;
 
 import sg.diploma.product.entity.EntityAbstract;
 
-import static sg.diploma.product.math.Constants.epsilon;
-
 public final class ResolveCollision{
 	public static void CircleCircle(final EntityAbstract circle0, final EntityAbstract circle1){
 		circle0.Collided(circle1);
@@ -15,23 +13,8 @@ public final class ResolveCollision{
 		AABB.Collided(circle);
 	}
 
-	public static void AABBAABB(EntityAbstract entity, EntityAbstract other, CollisionDataAABBAABB myData, CollisionDataAABBAABB otherData){
-		entity.Collided(other);
-
-		if(entity.attribs.vel.x <= epsilon
-			&& -entity.attribs.vel.x <= epsilon
-			&& entity.attribs.vel.y <= epsilon
-			&& -entity.attribs.vel.y <= epsilon){
-			return; //Return if vel is a zero/null/isotropic vec
-		}
-
-		if(entity.attribs.prevPos.y + myData.halfHeight >= otherData.yMin
-			&& (myData.xMin <= otherData.xMax
-			|| myData.xMax >= otherData.xMin)
-			&& entity.attribs.vel.y > 0.0f
-		){
-			entity.attribs.colliderPos.y = otherData.yMin - myData.halfHeight;
-			entity.attribs.pos.y = entity.attribs.colliderPos.y - entity.attribs.colliderScale.y * 0.075f;
-		}
+	public static void AABBAABB(final EntityAbstract AABB0, final EntityAbstract AABB1){
+		AABB0.Collided(AABB1);
+		AABB1.Collided(AABB0);
 	}
 }

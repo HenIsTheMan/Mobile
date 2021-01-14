@@ -31,38 +31,35 @@ public final class DetectCollision{
         return PtCircle(new Vector2(x, y), circle.attribs.colliderPos, circle.attribs.colliderScale.x * 0.5f);
     }
 
-    public static boolean AABBAABB(final EntityAbstract entity0, final EntityAbstract entity1, CollisionDataAABBAABB collisionData0, CollisionDataAABBAABB collisionData1){
-        collisionData0.prevPos = entity0.attribs.prevPos;
-        collisionData1.prevPos = entity1.attribs.prevPos;
+    public static boolean AABBAABB(final EntityAbstract AABB0, final EntityAbstract AABB1){
+        Vector2 pos0 = AABB0.attribs.colliderPos;
+        Vector2 pos1 = AABB1.attribs.colliderPos;
 
-        Vector2 pos0 = entity0.attribs.colliderPos;
-        Vector2 pos1 = entity1.attribs.colliderPos;
+        Vector2 scale0 = AABB0.attribs.colliderScale;
+        Vector2 scale1 = AABB1.attribs.colliderScale;
 
-        Vector2 scale0 = entity0.attribs.colliderScale;
-        Vector2 scale1 = entity1.attribs.colliderScale;
+        final float halfWidth0 = scale0.x * 0.5f;
+        final float halfWidth1 = scale1.x * 0.5f;
 
-        collisionData0.halfWidth = scale0.x * 0.5f;
-        collisionData1.halfWidth = scale1.x * 0.5f;
+        final float halfHeight0 = scale0.y * 0.5f;
+        final float halfHeight1 = scale1.y * 0.5f;
 
-        collisionData0.halfHeight = scale0.y * 0.5f;
-        collisionData1.halfHeight = scale1.y * 0.5f;
+        final float minX0 = pos0.x - halfWidth0;
+        final float minX1 = pos1.x - halfWidth1;
 
-        collisionData0.xMin = pos0.x - collisionData0.halfWidth;
-        collisionData1.xMin = pos1.x - collisionData1.halfWidth;
+        final float maxX0 = pos0.x + halfWidth0;
+        final float maxX1 = pos1.x + halfWidth1;
 
-        collisionData0.xMax = pos0.x + collisionData0.halfWidth;
-        collisionData1.xMax = pos1.x + collisionData1.halfWidth;
+        final float minY0 = pos0.y - halfHeight0;
+        final float minY1 = pos1.y - halfHeight1;
 
-        collisionData0.yMin = pos0.y - collisionData0.halfHeight;
-        collisionData1.yMin = pos1.y - collisionData1.halfHeight;
+        final float maxY0 = pos0.y + halfHeight0;
+        final float maxY1 = pos1.y + halfHeight1;
 
-        collisionData0.yMax = pos0.y + collisionData0.halfHeight;
-        collisionData1.yMax = pos1.y + collisionData1.halfHeight;
-
-        return collisionData0.xMin < collisionData1.xMax
-            && collisionData0.xMax > collisionData1.xMin
-            && collisionData0.yMin < collisionData1.yMax
-            && collisionData0.yMax > collisionData1.yMin;
+        return minX0 < maxX1
+            && maxX0 > minX1
+            && minY0 < maxY1
+            && maxY0 > minY1;
     }
 
     public static boolean PtCircle(final Vector2 ptPos, final Vector2 circlePos, final float circleRadius){

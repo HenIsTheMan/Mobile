@@ -7,7 +7,6 @@ public final class EntityAttribs{
 	public EntityRenderLayers.EntityRenderLayer renderLayer = EntityRenderLayers.EntityRenderLayer.Amt;
 	public EntityTypes.EntityType type = EntityTypes.EntityType.Amt;
 
-	public Vector2 prevPos = new Vector2();
 	public Vector2 pos = new Vector2();
 	public Vector2 scale = new Vector2(1.0f, 1.0f);
 	public Vector2 targetPos = null;

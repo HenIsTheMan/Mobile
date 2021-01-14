@@ -10,7 +10,6 @@ import java.util.Objects;
 
 import sg.diploma.product.cam.SceneCam;
 import sg.diploma.product.game.GameManager;
-import sg.diploma.product.math.CollisionDataAABBAABB;
 import sg.diploma.product.math.DetectCollision;
 import sg.diploma.product.math.ResolveCollision;
 import sg.diploma.product.math.Vector2;
@@ -42,7 +41,6 @@ public final class EntityManager{ //Singleton
         }
 
         for(EntityAbstract entity: entityList.values()){
-            entity.attribs.prevPos = entity.attribs.colliderPos;
             entity.Update(_dt);
         }
 
@@ -51,11 +49,11 @@ public final class EntityManager{ //Singleton
         for(int i = 0; i < keysSize; ++i){
             EntityAbstract currEntity = entityList.get(keys.get(i));
 
-            if(currEntity.attribs.collidableType != EntityCollidableTypes.EntityCollidableType.None){
+            if(Objects.requireNonNull(currEntity).attribs.collidableType != EntityCollidableTypes.EntityCollidableType.None){
                 for(int j = i + 1; j < keysSize; ++j){
                     EntityAbstract otherEntity = entityList.get(keys.get(j));
 
-                    if(otherEntity.attribs.collidableType != EntityCollidableTypes.EntityCollidableType.None){
+                    if(Objects.requireNonNull(otherEntity).attribs.collidableType != EntityCollidableTypes.EntityCollidableType.None){
                         CheckCollision(currEntity, otherEntity);
                     }
                 }
@@ -145,18 +143,14 @@ public final class EntityManager{ //Singleton
     public void SendAllEntitiesForRemoval(){
         entityRemovalList.addAll(entityList.keySet());
     }
-    
+
     private void CheckCollision(EntityAbstract entity0, EntityAbstract entity1){
         final boolean isBox0 = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box;
         final boolean isBox1 = entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box;
 
         if(isBox0 && isBox1){
-            CollisionDataAABBAABB collisionData0 = new CollisionDataAABBAABB();
-            CollisionDataAABBAABB collisionData1 = new CollisionDataAABBAABB();
-
-            if(DetectCollision.AABBAABB(entity0, entity1, collisionData0, collisionData1)){
-                ResolveCollision.AABBAABB(entity0, entity1, collisionData0, collisionData1);
-                ResolveCollision.AABBAABB(entity1, entity0, collisionData1, collisionData0);
+            if(DetectCollision.AABBAABB(entity0, entity1)){
+                ResolveCollision.AABBAABB(entity0, entity1);
             }
         } else if(isBox0 ^ isBox1){
             final EntityAbstract circle = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Circle
