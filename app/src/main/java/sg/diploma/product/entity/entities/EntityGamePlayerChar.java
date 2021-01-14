@@ -86,7 +86,8 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		attribs.boxColliderPos.y = attribs.pos.y + attribs.boxColliderScale.y * 0.075f;
 
 		//* Check for end of game
-		if(attribs.pos.y + attribs.boxColliderScale.y * 0.5f >= EntityManager.Instance.cam.GetPos().y + DeviceManager.screenHeightF){
+		if(attribs.pos.y + attribs.boxColliderScale.y * 0.5f >= EntityManager.Instance.cam.GetPos().y + DeviceManager.screenHeightF
+			|| attribs.pos.y - attribs.boxColliderScale.y * 0.5f <= EntityManager.Instance.cam.GetPos().y){
 			Publisher.Broadcast(new EventEndGame());
 			return;
 		}
