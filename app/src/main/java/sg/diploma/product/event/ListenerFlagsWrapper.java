@@ -2,10 +2,9 @@ package sg.diploma.product.event;
 
 public final class ListenerFlagsWrapper{
 	public enum ListenerFlags{ //Flags enum
-		GameData(0),
-		GameScreenActivity(1),
-		MenuScreenActivity(2),
-		OptionsScreenActivity(3);
+		GameScreenActivity(0),
+		MenuScreenActivity(1),
+		OptionsScreenActivity(2);
 
 		ListenerFlags(final int val){
 			this.val = 1 << val;

@@ -11,8 +11,7 @@ import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.EntityRenderLayers;
 import sg.diploma.product.entity.EntityTypes;
-import sg.diploma.product.event.Publisher;
-import sg.diploma.product.event.events.EventAddScore;
+import sg.diploma.product.game.GameData;
 import sg.diploma.product.graphics.Color;
 
 public final class EntityPlat extends EntityAbstract{
@@ -91,7 +90,7 @@ public final class EntityPlat extends EntityAbstract{
 		if(!collided && other.attribs.type == EntityTypes.EntityType.GamePlayerChar && other.attribs.vel.y >= 0.0f){
 			collided = true;
 			ChangeColor(steppedOnColor);
-			Publisher.Broadcast(new EventAddScore(1));
+			++GameData.score;
 
 			currPopTime = maxPopTime;
 		}

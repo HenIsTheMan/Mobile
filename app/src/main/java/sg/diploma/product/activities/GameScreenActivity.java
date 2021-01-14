@@ -136,8 +136,6 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     @Override
     public void OnEnter(@NonNull SurfaceView _view){
-        Publisher.AddListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal(), GameData.globalInstance);
-
         particleSystem.Init(999, R.drawable.smoke_particle);
 
         final float textSize = DeviceManager.screenWidthF * 0.015f;
@@ -249,8 +247,6 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     @Override
     public void OnExit(){
-        Publisher.RemoveListener(ListenerFlagsWrapper.ListenerFlags.GameData.GetVal());
-
         Instance.finish();
     }
 
