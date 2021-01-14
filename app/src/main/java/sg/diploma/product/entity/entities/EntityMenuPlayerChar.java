@@ -35,7 +35,7 @@ public final class EntityMenuPlayerChar extends EntityAbstract{
 	public void Update(final float dt){
 		if(attribs.targetPos != null){
 			Vector2 vec = new Vector2(attribs.targetPos.x - attribs.pos.x, attribs.targetPos.y - attribs.pos.y);
-			if(vec.Len() < attribs.spd * dt){
+			if(vec.LenSquared() < (attribs.spd * dt) * (attribs.spd * dt)){
 				if(storedVal > 0.0f){
 					spriteAnim.SetFrames(3 * 9, 3 * 9);
 				} else{
