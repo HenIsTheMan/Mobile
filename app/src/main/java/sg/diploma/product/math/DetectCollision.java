@@ -79,14 +79,17 @@ public final class DetectCollision{
 
         final float minX = AABB.attribs.colliderPos.x - halfWidth;
         final float maxX = AABB.attribs.colliderPos.x + halfWidth;
+        final float minY = AABB.attribs.colliderPos.y - halfHeight;
         final float maxY = AABB.attribs.colliderPos.y + halfHeight;
 
         final float platMinX = plat.attribs.colliderPos.x - platHalfWidth;
         final float platMaxX = plat.attribs.colliderPos.x + platHalfWidth;
         final float platMinY = plat.attribs.colliderPos.y - platHalfHeight;
+        final float platMaxY = plat.attribs.colliderPos.y + platHalfHeight;
 
         return minX < platMaxX
             && maxX > platMinX
+            && minY < platMaxY
             && maxY > platMinY
             && AABB.attribs.vel.y - plat.attribs.vel.y >= 0.0f; //Check relative vel
     }
