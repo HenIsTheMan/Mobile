@@ -177,6 +177,24 @@ public final class EntityManager{ //Singleton
             }
             return;
         }
+
+        if((entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box
+        && entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Plat)
+        || (entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Plat
+        && entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box)){
+            final EntityAbstract plat = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Plat
+                    ? entity0
+                    : entity1;
+
+            final EntityAbstract box = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box
+                    ? entity0
+                    : entity1;
+
+            if(DetectCollision.PlatAABB(plat, box)){
+                ResolveCollision.PlatAABB(plat, box);
+            }
+            return;
+        }
     }
 
     public SceneCam GetSceneCam(){

@@ -152,6 +152,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	public void Collided(EntityAbstract other){
 		if(other.attribs.type == EntityTypes.EntityType.Plat && currPlat == null && attribs.vel.y >= 0.0f){
 			currPlat = (EntityPlat)other;
+			attribs.pos.y = attribs.colliderPos.y = other.attribs.colliderPos.y - (other.attribs.colliderScale.y + attribs.colliderScale.y) * 0.5f;
 		}
 	}
 

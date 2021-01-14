@@ -3,6 +3,14 @@ package sg.diploma.product.math;
 import sg.diploma.product.entity.EntityAbstract;
 
 public final class DetectCollision{
+    public static boolean CircleCircle(final Vector2 pos0, final Vector2 pos1, final float radius0, final float radius1){
+        final float xVec = pos1.x - pos0.x;
+        final float yVec = pos1.y - pos0.y;
+        final float distSquared = xVec * xVec + yVec * yVec;
+        final float rSquared = (radius0 + radius1) * (radius0 + radius1);
+        return distSquared <= rSquared;
+    }
+
     public static boolean CircleCircle(final EntityAbstract circle0, final EntityAbstract circle1){
         final float xVec = circle1.attribs.pos.x - circle0.attribs.pos.x;
         final float yVec = circle1.attribs.pos.y - circle0.attribs.pos.y;
@@ -60,6 +68,27 @@ public final class DetectCollision{
             && maxX0 > minX1
             && minY0 < maxY1
             && maxY0 > minY1;
+    }
+
+    public static boolean PlatAABB(final EntityAbstract plat, final EntityAbstract AABB){
+        final float halfWidth = AABB.attribs.colliderScale.x * 0.5f;
+        final float halfHeight = AABB.attribs.colliderScale.y * 0.5f;
+
+        final float platHalfWidth = plat.attribs.colliderScale.x * 0.5f;
+        final float platHalfHeight = plat.attribs.colliderScale.y * 0.5f;
+
+        final float minX = AABB.attribs.colliderPos.x - halfWidth;
+        final float maxX = AABB.attribs.colliderPos.x + halfWidth;
+        final float maxY = AABB.attribs.colliderPos.y + halfHeight;
+
+        final float platMinX = plat.attribs.colliderPos.x - platHalfWidth;
+        final float platMaxX = plat.attribs.colliderPos.x + platHalfWidth;
+        final float platMinY = plat.attribs.colliderPos.y - platHalfHeight;
+
+        return minX < platMaxX
+            && maxX > platMinX
+            && maxY > platMinY
+            && AABB.attribs.vel.y - plat.attribs.vel.y >= 0.0f; //Check relative vel
     }
 
     public static boolean PtCircle(final Vector2 ptPos, final Vector2 circlePos, final float circleRadius){

@@ -17,4 +17,9 @@ public final class ResolveCollision{
 		AABB0.Collided(AABB1);
 		AABB1.Collided(AABB0);
 	}
+
+	public static void PlatAABB(final EntityAbstract plat, final EntityAbstract AABB){
+		plat.Collided(AABB);
+		AABB.Collided(plat);
+	}
 }
