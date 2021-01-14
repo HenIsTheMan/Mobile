@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 import sg.diploma.product.BuildConfig;
+import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
@@ -30,6 +31,11 @@ public final class EntityCoin extends EntityAbstract{
 
 	@Override
 	public void Update(float dt){
+		//* Despawn if outside view
+		if(attribs.pos.y - attribs.scale.y * 0.5f >= EntityManager.Instance.cam.GetPos().y + DeviceManager.screenHeightF){
+			EntityManager.Instance.SendEntityForRemoval("coin_" + myIndex);
+		}
+		//*/
 	}
 
 	@Override

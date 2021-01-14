@@ -280,7 +280,9 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 plat.attribs.scale.y = scaleY;
                 ConfigCollider(plat);
 
-                SpawnCoin(plat);
+                if(Pseudorand.PseudorandIntMinMax(1, 5) == 1){
+                    SpawnCoin(plat);
+                }
             } else{
                 for(int i = 0; i < 2; ++i){
                     final EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
@@ -293,6 +295,10 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                     plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.3f, 0.55f); //##lvl??
                     plat.attribs.scale.y = scaleY;
                     ConfigCollider(plat);
+
+                    if(Pseudorand.PseudorandIntMinMax(1, 10) == 1){
+                        SpawnCoin(plat);
+                    }
                 }
             }
 
