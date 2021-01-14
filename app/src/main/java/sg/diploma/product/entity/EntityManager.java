@@ -148,8 +148,10 @@ public final class EntityManager{ //Singleton
 
     /** @noinspection UnnecessaryReturnStatement*/
     private void CheckCollision(EntityAbstract entity0, EntityAbstract entity1){
-        if(entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box
-            && entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box){
+        final boolean isBox0 = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box;
+        final boolean isBox1 = entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box;
+
+        if(isBox0 && isBox1){
             CollisionDataBoxBoxAABB collisionData0 = new CollisionDataBoxBoxAABB();
             CollisionDataBoxBoxAABB collisionData1 = new CollisionDataBoxBoxAABB();
 
@@ -159,11 +161,7 @@ public final class EntityManager{ //Singleton
             }
 
             return;
-        }
-
-        if(entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box
-            ^ entity1.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Box){
-
+        } else if(isBox0 ^ isBox1){
             final EntityAbstract circle = entity0.attribs.collidableType == EntityCollidableTypes.EntityCollidableType.Circle
                 ? entity0
                 : entity1;
@@ -177,6 +175,9 @@ public final class EntityManager{ //Singleton
             }
 
             return;
+        } else{
+            if(DetectCollision.CircleCircle(entity0.attribs.pos, entity1.attribs.pos, entity0.attribs.scale.x * 0.5f, entity1.attribs.scale.x * 0.5f)){
+            }
         }
     }
 

@@ -27,14 +27,7 @@ public final class DetectCollision{
         final float y = Math.max(minY, Math.min(circle.attribs.colliderPos.y, maxY));
         //*/
 
-        return IsPtInCircle(new Vector2(x, y), circle.attribs.colliderPos, circle.attribs.colliderScale.x * 0.5f);
-    }
-
-    private static boolean IsPtInCircle(final Vector2 ptPos, final Vector2 circlePos, final float circleRadius){
-        final float x = ptPos.x - circlePos.x;
-        final float y = ptPos.y - circlePos.y;
-
-        return x * x + y * y < circleRadius * circleRadius;
+        return PtCircle(new Vector2(x, y), circle.attribs.colliderPos, circle.attribs.colliderScale.x * 0.5f);
     }
 
     public static boolean BoxBoxAABB(final EntityAbstract entity0, final EntityAbstract entity1, CollisionDataBoxBoxAABB collisionData0, CollisionDataBoxBoxAABB collisionData1){
@@ -69,5 +62,12 @@ public final class DetectCollision{
             && collisionData0.xMax > collisionData1.xMin
             && collisionData0.yMin < collisionData1.yMax
             && collisionData0.yMax > collisionData1.yMin;
+    }
+
+    public static boolean PtCircle(final Vector2 ptPos, final Vector2 circlePos, final float circleRadius){
+        final float x = ptPos.x - circlePos.x;
+        final float y = ptPos.y - circlePos.y;
+
+        return x * x + y * y < circleRadius * circleRadius;
     }
 }
