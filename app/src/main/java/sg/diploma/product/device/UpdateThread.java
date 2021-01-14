@@ -12,6 +12,8 @@ import sg.diploma.product.state.StateManager;
 
 public final class UpdateThread extends Thread{ //Need dedicated thread to run Surfaceview's update method
     public UpdateThread(final SurfaceView view){
+        super();
+
         isRunning = false;
         limitFPS = false;
         targetFPS = 60;
@@ -25,6 +27,8 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
     }
 
     public UpdateThread(final SurfaceView view, final Movie movie, final long timeAddPerFrame){
+        super();
+
         isRunning = false;
         limitFPS = false;
         targetFPS = 60;
