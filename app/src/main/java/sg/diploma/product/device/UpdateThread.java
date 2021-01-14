@@ -57,7 +57,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         long startTime;
         long prevTime = System.nanoTime();
 
-        while(isRunning){ //Main loop
+        while(isRunning){
             startTime = System.currentTimeMillis();
             final long currTime = System.nanoTime();
             final float deltaTime = ((currTime - prevTime) / 1000000000.0f);
@@ -115,6 +115,10 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
 
     public void SetTargetFPS(final long targetFPS){
         this.targetFPS = targetFPS;
+    }
+
+    public void SetDelay(final long delay){
+        this.delay = delay;
     }
 
     private boolean isRunning;
