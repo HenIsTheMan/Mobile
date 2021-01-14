@@ -125,6 +125,8 @@ public final class SplashScreenActivity extends Activity{
                     finishAffinity();
                     StateManager.Instance.ChangeState("MenuScreen");
                     startActivity(new Intent(SplashScreenActivity.this, MenuScreenActivity.class));
+
+                    interrupt();
                 }
             }
         };
@@ -135,6 +137,7 @@ public final class SplashScreenActivity extends Activity{
             for(;;){
                 if(!_active){
                     splashThread.interrupt();
+                    interrupt();
                     break;
                 }
             }

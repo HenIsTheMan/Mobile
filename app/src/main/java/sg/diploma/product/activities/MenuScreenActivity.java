@@ -111,7 +111,7 @@ public final class MenuScreenActivity
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_screen_layout);
 
@@ -216,7 +216,7 @@ public final class MenuScreenActivity
                     EntityManager.Instance.SendAllEntitiesForRemoval();
                     StateManager.Instance.ChangeState("GameScreen");
 
-                    finishAffinity();
+                    finish();
                     startActivity(new Intent(this, GameScreenActivity.class));
 
                     return true;
@@ -238,7 +238,7 @@ public final class MenuScreenActivity
                     EntityManager.Instance.SendAllEntitiesForRemoval();
                     StateManager.Instance.ChangeState("RankingsScreen");
 
-                    finishAffinity();
+                    finish();
                     startActivity(new Intent(this, RankingsScreenActivity.class));
 
                     return true;
@@ -260,7 +260,7 @@ public final class MenuScreenActivity
                     EntityManager.Instance.SendAllEntitiesForRemoval();
                     StateManager.Instance.ChangeState("ShopScreen");
 
-                    finishAffinity();
+                    finish();
                     startActivity(new Intent(this, ShopScreenActivity.class));
 
                     return true;
@@ -283,7 +283,7 @@ public final class MenuScreenActivity
                     AudioManager.Instance.SaveAudioVolData();
                     StateManager.Instance.ChangeState("OptionsScreen");
 
-                    finishAffinity();
+                    finish();
                     startActivity(new Intent(this, OptionsScreenActivity.class));
 
                     return true;

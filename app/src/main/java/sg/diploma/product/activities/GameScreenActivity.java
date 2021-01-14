@@ -287,7 +287,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 EntityManager.Instance.SendAllEntitiesForRemoval();
                 StateManager.Instance.ChangeState("GameOverScreen");
 
-                finishAffinity();
+                finish();
                 startActivity(new Intent(this, GameOverScreenActivity.class));
 
                 break;

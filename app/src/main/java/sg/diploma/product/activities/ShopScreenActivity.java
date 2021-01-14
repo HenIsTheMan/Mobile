@@ -509,7 +509,7 @@ public final class ShopScreenActivity extends Activity implements View.OnTouchLi
 		EntityManager.Instance.SendAllEntitiesForRemoval();
 		StateManager.Instance.ChangeState("MenuScreen");
 
-		finishAffinity();
+		finish();
 		startActivity(new Intent(this, MenuScreenActivity.class));
 	}
 
