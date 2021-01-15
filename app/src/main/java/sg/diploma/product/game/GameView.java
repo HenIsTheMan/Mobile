@@ -18,7 +18,7 @@ public final class GameView extends SurfaceView{
 
         updateThread = new UpdateThread(this);
         updateThread.SetLimitFPS(true);
-        updateThread.SetTargetFPS(360);
+        updateThread.SetTargetFPS(240);
         renderThread = new RenderThread(this, color);
 
         InternalInit();
@@ -32,7 +32,7 @@ public final class GameView extends SurfaceView{
         updateThread = new UpdateThread(this, movie, timeAddPerFrame);
         updateThread.SetDelay(delay);
         updateThread.SetLimitFPS(true);
-        updateThread.SetTargetFPS(360);
+        updateThread.SetTargetFPS(240);
         renderThread = new RenderThread(this, movie);
 
         InternalInit();
