@@ -68,7 +68,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
                 final long framePerSecond = 1000 / targetFPS;
                 try{
                     final long sleepTime = framePerSecond - (System.currentTimeMillis() - startTime);
-
+                    
                     if(sleepTime > 0){
                         sleep(sleepTime);
                     }
@@ -118,7 +118,11 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
     public void Terminate(){
         isRunning = false;
         if(isAlive()){
-            interrupt();
+            try{
+                join();
+            } catch(InterruptedException e){
+                e.printStackTrace();
+            }
         }
     }
 

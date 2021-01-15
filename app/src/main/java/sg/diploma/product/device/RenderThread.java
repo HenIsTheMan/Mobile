@@ -112,7 +112,11 @@ public final class RenderThread extends Thread{ //Need dedicated thread to run S
 	public void Terminate(){
 		isRunning = false;
 		if(isAlive()){
-			interrupt();
+			try{
+				join();
+			} catch(InterruptedException e){
+				e.printStackTrace();
+			}
 		}
 	}
 
