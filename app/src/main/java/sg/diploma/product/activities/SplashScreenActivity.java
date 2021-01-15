@@ -138,7 +138,7 @@ public final class SplashScreenActivity extends Activity{
             }
         };
 
-        splashThread.setName("splashThread");
+        splashThread.setName("splashThread_193541T");
         splashThread.start();
     }
 
@@ -165,6 +165,7 @@ public final class SplashScreenActivity extends Activity{
     @Override
     protected void onDestroy(){
         try{
+            splashThread.interrupt();
             splashThread.join();
         } catch(InterruptedException e){
             e.printStackTrace();
