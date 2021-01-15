@@ -26,6 +26,7 @@ import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.ParticleSystem;
 import sg.diploma.product.entity.entities.EntityCoin;
+import sg.diploma.product.entity.entities.EntityEnemy;
 import sg.diploma.product.entity.entities.EntityGamePlayerChar;
 import sg.diploma.product.entity.entities.EntityPauseButton;
 import sg.diploma.product.entity.entities.EntityPlat;
@@ -49,6 +50,7 @@ import sg.diploma.product.touch.TouchTypes;
 public final class GameScreenActivity extends Activity implements IState, IListener{
     public GameScreenActivity(){
         coinIndex = 0;
+        enemyIndex = 0;
         platIndex = 0;
 
         lastTriggerPosY = 0.0f;
@@ -276,9 +278,10 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 plat.attribs.scale.y = scaleY;
                 ConfigCollider(plat);
 
-                if(Pseudorand.PseudorandIntMinMax(1, 5) == 1){
+                SpawnEnemy(plat);
+                /*if(Pseudorand.PseudorandIntMinMax(1, 5) == 1){
                     SpawnCoin(plat);
-                }
+                }*/
             } else{
                 for(int i = 0; i < 2; ++i){
                     final EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
@@ -316,6 +319,17 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         ConfigCollider(coin);
     }
 
+    private void SpawnEnemy(final EntityPlat plat){
+        final EntityEnemy enemy = EntityEnemy.Create("enemy_" + ++enemyIndex, R.drawable.enemy);
+        enemy.SetMyIndex(enemyIndex);
+
+        enemy.attribs.scale.x = enemy.attribs.scale.y = DeviceManager.screenWidthF * 0.1f;
+        enemy.attribs.pos.x = plat.attribs.pos.x;
+        enemy.attribs.pos.y = plat.attribs.pos.y - (plat.attribs.scale.y + enemy.attribs.scale.y) * 0.5f - DeviceManager.screenHeightF * 0.005f;
+
+        ConfigCollider(enemy);
+    }
+
     private void ConfigCollider(final EntityAbstract entity){
         entity.attribs.colliderPos.x = entity.attribs.pos.x;
         entity.attribs.colliderPos.y = entity.attribs.pos.y;
@@ -348,6 +362,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     }
 
     private int coinIndex;
+    private int enemyIndex;
     private int platIndex;
 
     private float lastTriggerPosY;

@@ -40,6 +40,14 @@ public final class EntityEnemy extends EntityAbstract{
 
 	@Override
 	public void Render(Canvas _canvas){
+		_canvas.drawRect(
+			attribs.colliderPos.x - attribs.colliderScale.x * 0.5f,
+			attribs.colliderPos.y - attribs.colliderScale.y * 0.5f,
+			attribs.colliderPos.x + attribs.colliderScale.x * 0.5f,
+			attribs.colliderPos.y + attribs.colliderScale.y * 0.5f,
+			paint
+		);
+
 		Rect src = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
 		RectF dst = new RectF(
 				attribs.pos.x - attribs.scale.x * 0.5f,
