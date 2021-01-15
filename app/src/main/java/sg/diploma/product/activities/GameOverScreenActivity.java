@@ -139,16 +139,6 @@ public final class GameOverScreenActivity extends Activity implements View.OnTou
 	}
 
 	@Override
-	protected void onStop(){
-		if(saveScoreCheckBox.isChecked()){
-			final String name = nameTextInputBox.getText().toString();
-			RankingsManager.Instance.AddRanking(GameData.score, name.equals("") ? nameTextInputBox.getHint().toString() : name);
-			RankingsManager.Instance.SaveRankings(Instance, "Scores.ser", "Names.ser");
-		}
-		super.onStop();
-	}
-
-	@Override
 	public boolean onTouchEvent(@NonNull MotionEvent event){
 		TouchManager.Instance.Update(event.getX(), event.getY(), event.getAction());
 		return true;
