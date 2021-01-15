@@ -213,16 +213,16 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     @Override
     public void Update(float _dt) {
         if(GameData.textOnScreenScore != null){
-            GameData.textOnScreenScore.SetText("Score   " + GameData.score);
+            GameData.textOnScreenScore.SetText("Score: " + GameData.score);
         }
         if(GameData.textOnScreenCoins != null){
-            GameData.textOnScreenCoins.SetText("Coin(s)   " + GameData.collectedCoins);
+            GameData.textOnScreenCoins.SetText("Coin(s): " + GameData.collectedCoins);
         }
         if(GameData.textOnScreenUpdateFPS != null){
-            GameData.textOnScreenUpdateFPS.SetText("UpdateFPS   " + 1.0f / _dt);
+            GameData.textOnScreenUpdateFPS.SetText("UpdateFPS: " + 1.0f / _dt);
         }
         if(GameData.textOnScreenRenderFPS != null && view != null){
-            GameData.textOnScreenRenderFPS.SetText("RenderFPS   " + 1.0f / ((GameView)view).GetRenderDt());
+            GameData.textOnScreenRenderFPS.SetText("RenderFPS: " + 1.0f / ((GameView)view).GetRenderDt());
         }
 
         particleSystem.Update(_dt);
