@@ -138,6 +138,7 @@ public final class SplashScreenActivity extends Activity{
             }
         };
 
+        splashThread.setName("splashThread");
         splashThread.start();
     }
 

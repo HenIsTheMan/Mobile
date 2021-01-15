@@ -13,6 +13,7 @@ import sg.diploma.product.state.StateManager;
 public final class RenderThread extends Thread{ //Need dedicated thread to run Surfaceview's Render method
 	public RenderThread(final SurfaceView view, final int color){
 		super();
+		setName("RenderThread");
 
 		this.view = view;
 		isRunning = false;
@@ -28,6 +29,7 @@ public final class RenderThread extends Thread{ //Need dedicated thread to run S
 
 	public RenderThread(final SurfaceView view, final Movie movie){
 		super();
+		setName("RenderThread");
 
 		this.view = view;
 		isRunning = false;
