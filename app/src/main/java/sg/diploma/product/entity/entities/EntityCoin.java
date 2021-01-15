@@ -23,6 +23,9 @@ public final class EntityCoin extends EntityAbstract{
 		attribs.type = EntityTypes.EntityType.Coin;
 		attribs.collidableType = EntityCollidableTypes.EntityCollidableType.Circle;
 
+		elapsedTime = 0.0f;
+		yOffsetMag = 0.0f;
+		yOffsetSpd = 0.0f;
 		myIndex = 0;
 
 		bitmap = ResourceManager.Instance.GetBitmap(bitmapID, Bitmap.Config.RGB_565);
@@ -37,16 +40,22 @@ public final class EntityCoin extends EntityAbstract{
 			EntityManager.Instance.SendEntityForRemoval("coin_" + myIndex);
 		}
 		//*/
+
+		elapsedTime += dt;
+
+		final float yOffset = (float)Math.sin(elapsedTime * yOffsetSpd) * yOffsetMag * dt;
+		attribs.pos.y += yOffset;
+		attribs.colliderPos.y += yOffset;
 	}
 
 	@Override
 	public void Render(Canvas _canvas){
 		Rect src = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
 		RectF dst = new RectF(
-				attribs.pos.x - attribs.scale.x * 0.5f,
-				attribs.pos.y - attribs.scale.y * 0.5f,
-				attribs.pos.x + attribs.scale.x * 0.5f,
-				attribs.pos.y + attribs.scale.y * 0.5f
+			attribs.pos.x - attribs.scale.x * 0.5f,
+			attribs.pos.y - attribs.scale.y * 0.5f,
+			attribs.pos.x + attribs.scale.x * 0.5f,
+			attribs.pos.y + attribs.scale.y * 0.5f
 		);
 		_canvas.drawBitmap(bitmap, src, dst, paint);
 	}
@@ -76,10 +85,21 @@ public final class EntityCoin extends EntityAbstract{
 		return result;
 	}
 
+	public void SetYOffsetMag(final float yOffsetMag){
+		this.yOffsetMag = yOffsetMag;
+	}
+
+	public void SetYOffsetSpd(final float yOffsetSpd){
+		this.yOffsetSpd = yOffsetSpd;
+	}
+
 	public void SetMyIndex(final int myIndex){
 		this.myIndex = myIndex;
 	}
 
+	private float elapsedTime;
+	private float yOffsetMag;
+	private float yOffsetSpd;
 	private int myIndex;
 
 	private final Bitmap bitmap;

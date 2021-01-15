@@ -309,7 +309,10 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
         coin.attribs.scale.x = coin.attribs.scale.y = DeviceManager.screenWidthF * 0.1f;
         coin.attribs.pos.x = plat.attribs.pos.x;
-        coin.attribs.pos.y = plat.attribs.pos.y - (plat.attribs.scale.y + coin.attribs.scale.y) * 0.5f - DeviceManager.screenHeightF * 0.01f;
+        coin.attribs.pos.y = plat.attribs.pos.y - (plat.attribs.scale.y + coin.attribs.scale.y) * 0.5f - DeviceManager.screenHeightF * 0.04f;
+
+        coin.SetYOffsetSpd(5.0f);
+        coin.SetYOffsetMag(DeviceManager.screenHeightF * 0.04f * 2.0f);
         ConfigCollider(coin);
     }
 
