@@ -8,7 +8,7 @@
 ⋅⋅⋅* Cam moves Back-And-Forth
 ⋅⋅⋅* Plats move Back-And-Forth
 ⋅⋅⋅* Coins move Back-And-Forth
-⋅⋅⋅* Enemies move Back-And-Forth
+//* Enemies move Back-And-Forth (too OP so removed lol)
 
 ## Task list of each member
 
@@ -43,7 +43,31 @@
 
 ### A2
 
-*
+* Game Over screen
+
+* Game screen
+
+* Menu screen
+	- Pressing the back button opens a dialog
+
+* Options screen
+
+* Rankings screen
+	- Left Arrow button
+
+* Shop screen
+	- Horizontal scrolling
+	- Buy button
+	- Cancel button
+	- Equip/Unequip button
+	- Back button
+	- Left Arrow button
+
+* Splash screen
+	- Smoother transition between opening the app to splash screen and between splash screen to menu screen
+
+* Misc
+	- Exit button
 
 ## Tasks not done
 
@@ -59,4 +83,4 @@
 
 ### A2
 
-* Polish for several areas
+* Polish for several areas (moving on because I'm gonna run out of time if I don't)
