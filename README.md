@@ -46,13 +46,34 @@
 * Game Over screen
 
 * Game screen
+	- Gif BG
+	- Particle system
+	- Platform pop with easing
+	- Improved scrolling of level
+	- Created a camera and made it follow the player horizontally
+	- CircleAABB (collision between player and coin)
+	- PlatAABB (collision between player and platform)
+	- AABBAABB (collision betwen player and enemy)
+	- CircleCircle (not used)
 
 * Menu screen
 	- Pressing the back button opens a dialog
+	- Gif BG
+	- Show UpdateFPS and RenderFPS on screen
+	- Adjusted menu player character 
 
 * Options screen
+	- Music and sound vol can be adjusted
+	- Stylized sliders
+	- Percentage is shown on screen and follows thumb
+	- Save button
+	- Reset button
+	- Left Arrow button
+	- Pressing Left Arrow button without saving causes a dialog to pop up
 
 * Rankings screen
+	- Sorting of rankings from highest to lowest
+	- Vertical scrolling (only works if there are enough rankings shown)
 	- Left Arrow button
 
 * Shop screen
@@ -68,6 +89,11 @@
 
 * Misc
 	- Exit button
+	- Button animations with easing
+	- Vibrational feedback on player death
+	- Social Media (connecting to Facebook)
+	- Used 1 thread for updating and 1 thread for rendering
+	- All elements scale according to screen dimensions
 
 ## Tasks not done
 
