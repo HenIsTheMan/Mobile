@@ -49,13 +49,15 @@ import sg.diploma.product.touch.TouchTypes;
 
 public final class GameScreenActivity extends Activity implements IState, IListener{
     public GameScreenActivity(){
-        coinIndex = 0;
-        enemyIndex = 0;
-        platIndex = 0;
+        canSpawnEnemy = false;
 
         lastTriggerPosY = 0.0f;
         lastTriggerScaleY = 1.0f;
         jumpMag = 0.0f;
+
+        coinIndex = 0;
+        enemyIndex = 0;
+        platIndex = 0;
     }
 
     @Override
@@ -209,7 +211,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         lastTriggerPosY = GameData.startPlat.attribs.pos.y;
         lastTriggerScaleY = GameData.startPlat.attribs.scale.y;
         EntityManager.Instance.cam.SetPosY(GameData.gamePlayerChar.attribs.pos.y - DeviceManager.screenHeightF * 0.5f);
-        EntityManager.Instance.cam.SetVelY(-100.0f); //##lvl??
+        EntityManager.Instance.cam.SetVelY(-100.0f);
     }
 
     @Override
@@ -234,7 +236,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         if(GameData.gamePlayerChar != null){
             final int motionEventAction = TouchManager.Instance.GetMotionEventAction();
             if(motionEventAction == TouchTypes.TouchType.Down.GetVal()){
-                jumpMag = -2000.0f; //??
+                jumpMag = -2000.0f;
             } else if(motionEventAction == TouchTypes.TouchType.Up.GetVal()){
                 GameData.gamePlayerChar.Jump(jumpMag);
                 jumpMag = 0.0f;
@@ -264,24 +266,37 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
     private void GenLvl(){
         if(lastTriggerPosY + lastTriggerScaleY * 0.5f >= EntityManager.Instance.cam.GetPos().y){
-            final float offset = (float)Pseudorand.PseudorandIntMinMax(380, 400); //##lvl??
+            final float offset = (float)Pseudorand.PseudorandIntMinMax(380, 400);
             final float posY = lastTriggerPosY - offset;
             final float scaleY = DeviceManager.screenHeightF * Pseudorand.PseudorandFloatMinMax(0.02f, 0.03f);
 
-            if((Pseudorand.PseudorandInt() & 1) == 1){
+            if(Pseudorand.PseudorandIntMinMax(1, 5) != 1){
                 final EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
                 plat.SetMyIndex(platIndex);
 
-                plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.0f, 1.0f);
-                plat.attribs.pos.y = posY;
-                plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.25f, 0.5f); //##lvl??
-                plat.attribs.scale.y = scaleY;
-                ConfigCollider(plat);
+                if(Pseudorand.PseudorandIntMinMax(1, 5) == 1 && canSpawnEnemy){
+                    plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
+                    plat.attribs.pos.y = posY;
+                    plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(1.0f, 1.2f);
+                    plat.attribs.scale.y = scaleY;
+                    ConfigCollider(plat);
 
-                SpawnEnemy(plat);
-                /*if(Pseudorand.PseudorandIntMinMax(1, 5) == 1){
-                    SpawnCoin(plat);
-                }*/
+                    SpawnEnemy(plat);
+
+                    canSpawnEnemy = false;
+                } else{
+                    plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.0f, 1.0f);
+                    plat.attribs.pos.y = posY;
+                    plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.25f, 0.5f);
+                    plat.attribs.scale.y = scaleY;
+                    ConfigCollider(plat);
+
+                    if(Pseudorand.PseudorandIntMinMax(1, 5) == 1){
+                        SpawnCoin(plat);
+                    }
+
+                    canSpawnEnemy = true;
+                }
             } else{
                 for(int i = 0; i < 2; ++i){
                     final EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
@@ -291,7 +306,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                         ? Pseudorand.PseudorandFloatMinMax(0.0f, 0.2f)
                         : Pseudorand.PseudorandFloatMinMax(0.8f, 1.0f));
                     plat.attribs.pos.y = posY;
-                    plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.3f, 0.55f); //##lvl??
+                    plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.3f, 0.55f);
                     plat.attribs.scale.y = scaleY;
                     ConfigCollider(plat);
 
@@ -299,6 +314,8 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                         SpawnCoin(plat);
                     }
                 }
+
+                canSpawnEnemy = true;
             }
 
             lastTriggerPosY = posY;
@@ -324,7 +341,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         enemy.SetMyIndex(enemyIndex);
 
         enemy.attribs.scale.x = enemy.attribs.scale.y = DeviceManager.screenWidthF * 0.1f;
-        enemy.attribs.pos.x = plat.attribs.pos.x;
+        enemy.attribs.pos.x = plat.attribs.pos.x + plat.attribs.scale.x * Pseudorand.PseudorandFloatMinMax(-0.4f, 0.4f);
         enemy.attribs.pos.y = plat.attribs.pos.y - (plat.attribs.scale.y + enemy.attribs.scale.y) * 0.5f - DeviceManager.screenHeightF * 0.005f;
 
         ConfigCollider(enemy);
@@ -361,13 +378,15 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         }
     }
 
-    private int coinIndex;
-    private int enemyIndex;
-    private int platIndex;
+    private boolean canSpawnEnemy;
 
     private float lastTriggerPosY;
     private float lastTriggerScaleY;
     private float jumpMag;
+
+    private int coinIndex;
+    private int enemyIndex;
+    private int platIndex;
 
     private static View view;
 

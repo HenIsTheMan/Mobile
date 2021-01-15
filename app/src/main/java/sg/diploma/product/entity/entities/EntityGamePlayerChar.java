@@ -58,7 +58,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		elapsedTime += dt;
 
 		if(currPlat != null){
-			attribs.vel.x = attribs.facing * 500.f; //##lvl??
+			attribs.vel.x = attribs.facing * 500.f;
 		} else{
 			attribs.vel.y += attribs.accel.y * dt;
 		}
@@ -177,7 +177,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		} else{
 			spriteAnim.SetFrames(9 + 1, 9 + 9);
 		}
-		attribs.vel.x = attribs.facing * 500.f; //##lvl??
+		attribs.vel.x = attribs.facing * 500.f;
 	}
 
 	public void Jump(final float jumpMag){
