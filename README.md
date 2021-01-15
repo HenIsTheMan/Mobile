@@ -44,11 +44,18 @@
 ### A2
 
 * Game Over screen
+	- Display of score
+	- Checkbox to indicate whether or not to save score
+	- Text input box to indicate player name
+	- Continue button
 
 * Game screen
 	- Gif BG
+	- Game player character dies when hitting enemy, top of screen and bottom of screen
+	- Player can collect coins
 	- Particle system
 	- Platform pop with easing
+	- Improved level generation
 	- Improved scrolling of level
 	- Created a camera and made it follow the player horizontally
 	- CircleAABB (collision between player and coin)
@@ -79,6 +86,7 @@
 
 * Shop screen
 	- Horizontal scrolling
+	- Display of amount of coins
 	- Buy button
 	- Cancel button
 	- Equip/Unequip button
