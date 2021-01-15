@@ -17,8 +17,8 @@ import sg.diploma.product.touch.TouchTypes;
 
 public final class SplashScreenActivity extends Activity{
     public SplashScreenActivity(){
-        _active = true;
-        _splashTime = 7000;
+        isRunning = true;
+        splashThread = null;
 
         androidLogo0 = null;
         androidLogo1 = null;
@@ -36,7 +36,7 @@ public final class SplashScreenActivity extends Activity{
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event){
         if(event.getAction() == TouchTypes.TouchType.Down.GetVal()){
-            _active = false;
+            isRunning = false;
         }
         return true;
     }
@@ -114,35 +114,31 @@ public final class SplashScreenActivity extends Activity{
         androidStudioText.getLayoutParams().width = (int)(850.0f * factor2);
         androidStudioText.getLayoutParams().height = (int)(90.0f * factor2);
 
-        Thread splashThread = new Thread(){
+        splashThread = new Thread(){
             @Override
             public void run(){
-                try{
-                    sleep(_splashTime);
-                } catch(InterruptedException e){
-                    e.printStackTrace();
-                } finally{
-                    finishAffinity();
-                    StateManager.Instance.ChangeState("MenuScreen");
-                    startActivity(new Intent(SplashScreenActivity.this, MenuScreenActivity.class));
+                long prevTime = System.nanoTime();
+                float elapsedTime = 0.0f;
+                
+                while(isRunning){
+                    final long currTime = System.nanoTime();
+
+                    final float dt = ((currTime - prevTime) / 1000000000.0f);
+                    elapsedTime += dt;
+                    if(elapsedTime >= 7.0f){
+                        break;
+                    }
+
+                    prevTime = currTime;
                 }
+
+                finishAffinity();
+                StateManager.Instance.ChangeState("MenuScreen");
+                startActivity(new Intent(SplashScreenActivity.this, MenuScreenActivity.class));
             }
         };
 
-        /*Thread splashControlThread = new Thread(){
-            @Override
-            public void run(){
-                for(;;){
-                    if(!_active){
-                        splashThread.interrupt();
-                        break;
-                    }
-                }
-            }
-        };*/
-
         splashThread.start();
-        //splashControlThread.start();
     }
 
     @Override
@@ -162,6 +158,11 @@ public final class SplashScreenActivity extends Activity{
 
     @Override
     protected void onStop(){
+        try{
+            splashThread.join();
+        } catch(InterruptedException e){
+            e.printStackTrace();
+        }
         super.onStop();
     }
 
@@ -170,8 +171,8 @@ public final class SplashScreenActivity extends Activity{
         super.onDestroy();
     }
 
-    private boolean _active;
-    private final int _splashTime;
+    private volatile boolean isRunning;
+    private Thread splashThread;
 
     private ImageView androidLogo0;
     private ImageView androidLogo1;
