@@ -120,6 +120,8 @@ public final class MenuScreenActivity
 
         updateThread = new UpdateThread(menuSurfaceView, movie, 80);
         updateThread.SetDelay(60);
+        updateThread.SetLimitFPS(true);
+        updateThread.SetTargetFPS(120);
         renderThread = new RenderThread(menuSurfaceView, movie);
 
         final SurfaceHolder surfaceHolder = menuSurfaceView.getHolder();
