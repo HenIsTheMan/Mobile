@@ -158,16 +158,16 @@ public final class SplashScreenActivity extends Activity{
 
     @Override
     protected void onStop(){
-        try{
-            splashThread.join();
-        } catch(InterruptedException e){
-            e.printStackTrace();
-        }
         super.onStop();
     }
 
     @Override
     protected void onDestroy(){
+        try{
+            splashThread.join();
+        } catch(InterruptedException e){
+            e.printStackTrace();
+        }
         super.onDestroy();
     }
 
