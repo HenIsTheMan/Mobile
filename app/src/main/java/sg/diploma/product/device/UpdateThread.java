@@ -120,6 +120,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         isRunning = false;
         if(isAlive()){
             try{
+                interrupt();
                 join();
             } catch(InterruptedException e){
                 e.printStackTrace();
