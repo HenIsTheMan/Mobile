@@ -60,7 +60,8 @@
 	- Pressing the back button opens a dialog
 	- Gif BG
 	- Show UpdateFPS and RenderFPS on screen
-	- Adjusted menu player character 
+	- Adjusted menu player character
+	- Ball with accelerometer
 
 * Options screen
 	- Music and sound vol can be adjusted
@@ -94,6 +95,11 @@
 	- Social Media (connecting to Facebook)
 	- Used 1 thread for updating and 1 thread for rendering
 	- All elements scale according to screen dimensions
+	- Object Pooling
+	- Saving and loading of music and sound vol with shared preferences
+	- Saving and loading of amount of coins with shared preferences
+	- Saving and loading of backgrounds bought and equipped with serialization
+	- Saving and loading of rankings with serialization
 
 ## Tasks not done
 
