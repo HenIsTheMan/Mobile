@@ -61,6 +61,7 @@ public final class RenderThread extends Thread{ //Need dedicated thread to run S
 						sleep(sleepTime);
 					}
 				} catch(final InterruptedException e){
+					e.printStackTrace();
 					isRunning = false;
 					Terminate();
 				}

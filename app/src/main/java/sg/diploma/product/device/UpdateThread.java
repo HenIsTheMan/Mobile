@@ -73,7 +73,7 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
                         sleep(sleepTime);
                     }
                 } catch(final InterruptedException e){
-                    android.util.Log.e("me", "here"); //??
+                    e.printStackTrace();
                     isRunning = false;
                     Terminate();
                 }
