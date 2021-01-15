@@ -61,25 +61,6 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
         long prevTime = System.nanoTime();
 
         while(isRunning){
-            startTime = System.currentTimeMillis();
-
-            //* Limit frame rate
-            if(limitFPS){
-                final long framePerSecond = 1000 / targetFPS;
-                try{
-                    final long sleepTime = framePerSecond - (System.currentTimeMillis() - startTime);
-                    
-                    if(sleepTime > 0){
-                        sleep(sleepTime);
-                    }
-                } catch(final InterruptedException e){
-                    e.printStackTrace();
-                    isRunning = false;
-                    Terminate();
-                }
-            }
-            //*/
-
             final long currTime = System.nanoTime();
             final float dt = ((currTime - prevTime) / 1000000000.0f);
             prevTime = currTime;
@@ -101,6 +82,24 @@ public final class UpdateThread extends Thread{ //Need dedicated thread to run S
             synchronized(StateManager.Instance){
                 StateManager.Instance.Update(dt);
             }
+
+            //* Limit frame rate
+            startTime = System.currentTimeMillis();
+            if(limitFPS){
+                final long framePerSecond = 1000 / targetFPS;
+                try{
+                    final long sleepTime = framePerSecond - (System.currentTimeMillis() - startTime);
+
+                    if(sleepTime > 0){
+                        sleep(sleepTime);
+                    }
+                } catch(final InterruptedException e){
+                    e.printStackTrace();
+                    isRunning = false;
+                    Terminate();
+                }
+            }
+            //*/
         }
     }
 
