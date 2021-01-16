@@ -69,11 +69,12 @@
 	- Cam tries to catch up if game player character goes too high
 
 * Menu screen
-	- Pressing the back button opens a dialog
+	- Pressing the built-in android back button opens a dialog
 	- Gif BG
 	- Show UpdateFPS and RenderFPS on screen
 	- Adjusted menu player character
 	- Ball with accelerometer
+	- Buttons for going to different screens
 
 * Options screen
 	- Music and sound vol can be adjusted
@@ -87,6 +88,8 @@
 * Rankings screen
 	- Sorting of rankings from highest to lowest
 	- Vertical scrolling (only works if there are enough rankings shown)
+	- Allows for multiple different players to have the same score
+	- Allows for the same player to have multiple different scores
 	- Left Arrow button
 
 * Shop screen

@@ -311,18 +311,17 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 final EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
                 plat.SetMyIndex(platIndex);
 
-                if(Pseudorand.PseudorandIntMinMax(1, 5) == 1){
-                    if(canSpawnEnemy){
-                        plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
-                        plat.attribs.pos.y = posY;
-                        plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(1.0f, 1.2f);
-                        plat.attribs.scale.y = scaleY;
-                        ConfigCollider(plat);
+                if(canSpawnEnemy && Pseudorand.PseudorandIntMinMax(1, 5) == 1){
+                    plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
+                    plat.attribs.pos.y = posY;
+                    plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(1.0f, 1.2f);
+                    plat.attribs.scale.y = scaleY;
+                    ConfigCollider(plat);
 
-                        SpawnEnemy(plat);
-
-                        canSpawnEnemy = false;
-                    } else{
+                    SpawnEnemy(plat);
+                    canSpawnEnemy = false;
+                } else{
+                    if(Pseudorand.PseudorandIntMinMax(1, 10) <= 3){
                         plat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
                         plat.attribs.pos.y = posY;
                         plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
@@ -332,19 +331,17 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                         plat.SetXOffsetMag(plat.attribs.scale.x * 0.2f);
                         plat.SetXOffsetSpd(3.0f);
                         plat.SetEasing(easingTypes[Pseudorand.PseudorandIntMinMax(0, easingTypes.length - 1)]);
-                        canSpawnEnemy = true;
-                    }
-                } else{
-                    plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.3f, 0.7f);
-                    plat.attribs.pos.y = posY;
-                    plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.25f, 0.5f);
-                    plat.attribs.scale.y = scaleY;
-                    ConfigCollider(plat);
+                    } else{
+                        plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.3f, 0.7f);
+                        plat.attribs.pos.y = posY;
+                        plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.35f, 0.5f);
+                        plat.attribs.scale.y = scaleY;
+                        ConfigCollider(plat);
 
-                    if(Pseudorand.PseudorandIntMinMax(1, 5) == 1){
-                        SpawnCoin(plat);
+                        if(Pseudorand.PseudorandIntMinMax(1, 5) == 1){
+                            SpawnCoin(plat);
+                        }
                     }
-
                     canSpawnEnemy = true;
                 }
             } else{
@@ -364,7 +361,6 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                         SpawnCoin(plat);
                     }
                 }
-
                 canSpawnEnemy = true;
             }
 
