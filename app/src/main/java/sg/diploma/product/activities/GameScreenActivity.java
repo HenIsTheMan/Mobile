@@ -22,9 +22,36 @@ import sg.diploma.product.background.BackgroundManager;
 import sg.diploma.product.background.BackgroundStatuses;
 import sg.diploma.product.currency.CurrencyManager;
 import sg.diploma.product.device.DeviceManager;
+import sg.diploma.product.easing.EaseInBack;
+import sg.diploma.product.easing.EaseInBounce;
+import sg.diploma.product.easing.EaseInCirc;
+import sg.diploma.product.easing.EaseInCubic;
+import sg.diploma.product.easing.EaseInElastic;
+import sg.diploma.product.easing.EaseInExpo;
+import sg.diploma.product.easing.EaseInOutBack;
 import sg.diploma.product.easing.EaseInOutBounce;
+import sg.diploma.product.easing.EaseInOutCirc;
 import sg.diploma.product.easing.EaseInOutCubic;
+import sg.diploma.product.easing.EaseInOutElastic;
+import sg.diploma.product.easing.EaseInOutExpo;
+import sg.diploma.product.easing.EaseInOutQuad;
+import sg.diploma.product.easing.EaseInOutQuart;
+import sg.diploma.product.easing.EaseInOutQuint;
+import sg.diploma.product.easing.EaseInOutSine;
+import sg.diploma.product.easing.EaseInQuad;
+import sg.diploma.product.easing.EaseInQuart;
+import sg.diploma.product.easing.EaseInQuint;
+import sg.diploma.product.easing.EaseInSine;
+import sg.diploma.product.easing.EaseOutBack;
 import sg.diploma.product.easing.EaseOutBounce;
+import sg.diploma.product.easing.EaseOutCirc;
+import sg.diploma.product.easing.EaseOutCubic;
+import sg.diploma.product.easing.EaseOutElastic;
+import sg.diploma.product.easing.EaseOutExpo;
+import sg.diploma.product.easing.EaseOutQuad;
+import sg.diploma.product.easing.EaseOutQuart;
+import sg.diploma.product.easing.EaseOutQuint;
+import sg.diploma.product.easing.EaseOutSine;
 import sg.diploma.product.easing.Easing;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityManager;
@@ -421,9 +448,36 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         particleSystem = new ParticleSystem();
 
         easingTypes = new Easing[]{
-            EaseOutBounce.globalObj,
+            EaseInBack.globalObj,
+            EaseInBounce.globalObj,
+            EaseInCirc.globalObj,
+            EaseInCubic.globalObj,
+            EaseInElastic.globalObj,
+            EaseInExpo.globalObj,
+            EaseInOutBack.globalObj,
             EaseInOutBounce.globalObj,
+            EaseInOutCirc.globalObj,
             EaseInOutCubic.globalObj,
+            EaseInOutElastic.globalObj,
+            EaseInOutExpo.globalObj,
+            EaseInOutQuad.globalObj,
+            EaseInOutQuart.globalObj,
+            EaseInOutQuint.globalObj,
+            EaseInOutSine.globalObj,
+            EaseInQuad.globalObj,
+            EaseInQuart.globalObj,
+            EaseInQuint.globalObj,
+            EaseInSine.globalObj,
+            EaseOutBack.globalObj,
+            EaseOutBounce.globalObj,
+            EaseOutCirc.globalObj,
+            EaseOutCubic.globalObj,
+            EaseOutElastic.globalObj,
+            EaseOutExpo.globalObj,
+            EaseOutQuad.globalObj,
+            EaseOutQuart.globalObj,
+            EaseOutQuint.globalObj,
+            EaseOutSine.globalObj,
         };
     }
 }

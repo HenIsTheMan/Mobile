@@ -5,9 +5,9 @@ import sg.diploma.product.math.Constants;
 public final class EaseInElastic extends Easing{
 	@Override
 	public float Ease(final float x){
-		return (int)x == 0
+		return x <= Constants.epsilon && -x <= Constants.epsilon
 			? 0.0f
-			: ((int)x == 1
+			: (x - 1.0f <= Constants.epsilon && 1.0f - x <= Constants.epsilon
 			? 1.0f
 			: -(float)Math.pow(2.0, 10.0 * (double)x - 10.0) * (float)Math.sin(((double)x * 10.0 - 10.75) * c4));
 	}
