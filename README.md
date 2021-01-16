@@ -1,5 +1,9 @@
 # Mobile
 
+## Info
+
+* Apk can run on android devices with API level 25 to API level 30
+
 ## Unique Selling Point
 
 * Back-And-Forth Motion
@@ -9,6 +13,12 @@
 ⋅⋅⋅* Plats move Back-And-Forth
 ⋅⋅⋅* Coins move Back-And-Forth
 //* Enemies move Back-And-Forth (too OP so removed lol)
+
+## Jingle lyrics
+
+She is a boss~
+She is a girl~
+She is a BOSS Girl~
 
 ## Task list of each member
 
