@@ -26,6 +26,8 @@ import androidx.annotation.RequiresApi;
 
 import com.google.common.collect.SortedSetMultimap;
 
+import java.util.Locale;
+
 import sg.diploma.product.R;
 import sg.diploma.product.audio.AudioManager;
 import sg.diploma.product.audio.AudioTypes;
@@ -129,7 +131,7 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 			for(int i = amtOfChildren; i < rankingsSize; ++i){
 				TextView textView = new TextView(this);
 				textView.setTypeface(font);
-				textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.08f / DeviceManager.scaledDensity);
+				textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.07f / DeviceManager.scaledDensity);
 				textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 				rankingsLinearLayout.addView(textView);
 			}
@@ -137,7 +139,7 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 
 		for(int i = 0; i < rankingsSize; ++i){
 			TextView textView = (TextView)rankingsLinearLayout.getChildAt(rankingsSize - 1 - i);
-			textView.setText(String.format("%s (%s)", rankings.values().toArray()[i], rankings.keys().toArray()[i]));
+			textView.setText(String.format(Locale.ENGLISH, "%d. %s (%s)", rankingsSize - 1 - i + 1, rankings.values().toArray()[i], rankings.keys().toArray()[i]));
 		}
 	}
 
