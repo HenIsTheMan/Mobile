@@ -7,6 +7,9 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 import sg.diploma.product.BuildConfig;
+import sg.diploma.product.R;
+import sg.diploma.product.audio.AudioManager;
+import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
@@ -65,6 +68,7 @@ public final class EntityCoin extends EntityAbstract{
 		if(other.attribs.type == EntityTypes.EntityType.GamePlayerChar){
 			++GameData.collectedCoins;
 			EntityManager.Instance.SendEntityForRemoval("coin_" + myIndex);
+			AudioManager.Instance.PlayAudio(R.raw.coin, AudioTypes.AudioType.Sound);
 		}
 	}
 

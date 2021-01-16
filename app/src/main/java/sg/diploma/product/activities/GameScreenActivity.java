@@ -268,7 +268,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
             final int motionEventAction = TouchManager.Instance.GetMotionEventAction();
             if(motionEventAction == TouchTypes.TouchType.Down.GetVal()){
                 jumpMag = -DeviceManager.screenHeightF * 0.95f;
-            } else if(motionEventAction == TouchTypes.TouchType.Up.GetVal()){
+            } else if(motionEventAction == TouchTypes.TouchType.Up.GetVal() && jumpMag < 0.0f){
                 GameData.gamePlayerChar.Jump(jumpMag);
                 jumpMag = 0.0f;
             }
@@ -305,7 +305,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 final EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
                 plat.SetMyIndex(platIndex);
 
-                if(Pseudorand.PseudorandIntMinMax(1, 5) >= 1){
+                if(Pseudorand.PseudorandIntMinMax(1, 5) == 1){
                     if(canSpawnEnemy){
                         plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
                         plat.attribs.pos.y = posY;

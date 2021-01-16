@@ -55,6 +55,7 @@
 	- Player can collect coins
 	- Particle system
 	- Platform pop with easing
+	- Moving platforms move horizontally with random easing function
 	- Improved level generation
 	- Improved scrolling of level
 	- Created a camera and made it follow the player horizontally

@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 
 import sg.diploma.product.BuildConfig;
 import sg.diploma.product.R;
+import sg.diploma.product.audio.AudioManager;
+import sg.diploma.product.audio.AudioTypes;
 import sg.diploma.product.device.DeviceManager;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
@@ -189,6 +191,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 	public void Jump(final float jumpMag){
 		if(currPlat != null){
 			attribs.vel.y = jumpMag;
+			AudioManager.Instance.PlayAudio(R.raw.jump, AudioTypes.AudioType.Sound);
 		}
 	}
 
