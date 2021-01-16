@@ -211,7 +211,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         lastTriggerPosY = GameData.startPlat.attribs.pos.y;
         lastTriggerScaleY = GameData.startPlat.attribs.scale.y;
         EntityManager.Instance.cam.SetPosY(GameData.gamePlayerChar.attribs.pos.y - DeviceManager.screenHeightF * 0.5f);
-        EntityManager.Instance.cam.SetVelY(-100.0f);
+        EntityManager.Instance.cam.SetVelY(-DeviceManager.screenHeightF * 0.1f);
     }
 
     @Override
@@ -297,7 +297,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                         canSpawnEnemy = true;
                     }
                 } else{
-                    plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.0f, 1.0f);
+                    plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.3f, 0.7f);
                     plat.attribs.pos.y = posY;
                     plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.25f, 0.5f);
                     plat.attribs.scale.y = scaleY;

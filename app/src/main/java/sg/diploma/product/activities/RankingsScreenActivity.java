@@ -133,6 +133,8 @@ public final class RankingsScreenActivity extends Activity implements View.OnTou
 				textView.setTypeface(font);
 				textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, DeviceManager.screenWidthF * 0.07f / DeviceManager.scaledDensity);
 				textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+				final int val = (int)(DeviceManager.screenWidthF * 0.05f);
+				textView.setPadding(val, val, val, val);
 				rankingsLinearLayout.addView(textView);
 			}
 		}
