@@ -297,7 +297,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                         ConfigCollider(plat);
 
                         plat.SetXOffsetMag(plat.attribs.scale.x * 0.2f);
-                        plat.SetXOffsetSpd(4.0f);
+                        plat.SetXOffsetSpd(3.0f);
                         plat.SetEasing(easingTypes[Pseudorand.PseudorandIntMinMax(0, easingTypes.length - 1)]);
                         canSpawnEnemy = true;
                     }

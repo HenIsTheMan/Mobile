@@ -1,6 +1,6 @@
 package sg.diploma.product.easing;
 
-public class EaseOutBounce extends Easing{
+public final class EaseOutBounce extends Easing{
 	@Override
 	public float Ease(float x){
 		final float n1 = 7.5625f;
