@@ -48,7 +48,8 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 			attribs.facing = -1;
 		}
 
-		attribs.accel.y = 4000.0f; //Gravitational accel
+		attribs.spd = DeviceManager.screenWidthF * 0.5f;
+		attribs.accel.y = DeviceManager.screenHeightF * 2.0f; //Gravitational accel
 
 		this.particleSystem = particleSystem;
 	}
@@ -58,12 +59,12 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		elapsedTime += dt;
 
 		if(currPlat != null){
-			attribs.vel.x = attribs.facing * 500.f;
+			attribs.vel.x = attribs.facing * attribs.spd;
 		} else{
 			attribs.vel.y += attribs.accel.y * dt;
 		}
 		attribs.vel.x += attribs.accel.x * dt;
-		attribs.vel.y = Math.min(attribs.vel.y, 3000.0f);
+		attribs.vel.y = Math.min(attribs.vel.y, DeviceManager.screenHeightF * 1.5f);
 
 		attribs.pos.x += attribs.vel.x * dt;
 		attribs.pos.y += attribs.vel.y * dt;
@@ -177,7 +178,7 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 		} else{
 			spriteAnim.SetFrames(9 + 1, 9 + 9);
 		}
-		attribs.vel.x = attribs.facing * 500.f;
+		attribs.vel.x = attribs.facing * attribs.spd;
 	}
 
 	public void Jump(final float jumpMag){
