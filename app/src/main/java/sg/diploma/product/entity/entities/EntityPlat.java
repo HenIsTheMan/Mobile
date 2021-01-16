@@ -5,6 +5,7 @@ import android.graphics.Paint;
 
 import sg.diploma.product.BuildConfig;
 import sg.diploma.product.device.DeviceManager;
+import sg.diploma.product.easing.Easing;
 import sg.diploma.product.easing.EaseInOutCubic;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
@@ -31,12 +32,17 @@ public final class EntityPlat extends EntityAbstract{
 		paint.setStyle(paintStyle);
 
 		collided = false;
+		elapsedTime = 0.0f;
 		myIndex = 0;
 
 		currPopTime = 0.0f;
 		maxPopTime = 0.4f;
 		renderScaleX = 1.0f;
 		renderScaleY = 1.0f;
+
+		xOffsetMag = 0.0f;
+		xOffsetSpd = 0.0f;
+		easing = null;
 	}
 
 	@Override
@@ -47,8 +53,17 @@ public final class EntityPlat extends EntityAbstract{
 		}
 		//*/
 
-		attribs.colliderPos.x = attribs.pos.x;
-		attribs.colliderPos.y = attribs.pos.y;
+		elapsedTime += dt;
+
+		if(easing != null){
+			final float startX = xOffsetMag;
+			final float endX = -xOffsetMag;
+			final float lerpFactor = easing.Ease((float)(Math.sin(elapsedTime * xOffsetSpd) * 0.5f + 0.5f));
+
+			attribs.vel.x = (1.0f - lerpFactor) * startX + lerpFactor * endX;
+			attribs.pos.x += attribs.vel.x * dt;
+			attribs.colliderPos.x = attribs.pos.x;
+		}
 
 		if(currPopTime >= 0.0f){
 			final float startScale = 1.0f;
@@ -109,6 +124,10 @@ public final class EntityPlat extends EntityAbstract{
 		paint.setARGB((int)(color.a * 255.0f), (int)(color.r * 255.0f), (int)(color.g * 255.0f), (int)(color.b * 255.0f));
 	}
 
+	public Easing GetEasing(){
+		return easing;
+	}
+
 	public void SetStrokeWidth(final float strokeWidth){
 		this.strokeWidth = strokeWidth;
 		paint.setStrokeWidth(strokeWidth);
@@ -127,16 +146,33 @@ public final class EntityPlat extends EntityAbstract{
 		this.myIndex = myIndex;
 	}
 
+	public void SetXOffsetMag(final float xOffsetMag){
+		this.xOffsetMag = xOffsetMag;
+	}
+
+	public void SetXOffsetSpd(final float xOffsetSpd){
+		this.xOffsetSpd = xOffsetSpd;
+	}
+
+	public void SetEasing(final Easing easing){
+		this.easing = easing;
+	}
+
 	private float strokeWidth;
 	private Paint.Style paintStyle;
 	private final Paint paint;
 	private Color steppedOnColor;
 
 	private boolean collided;
+	private float elapsedTime;
 	private int myIndex;
 
 	private float currPopTime;
 	private final float maxPopTime;
 	private float renderScaleX;
 	private float renderScaleY;
+
+	private float xOffsetMag;
+	private float xOffsetSpd;
+	private Easing easing;
 }
