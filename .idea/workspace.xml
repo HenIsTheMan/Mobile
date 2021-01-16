@@ -32,26 +32,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInCirc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInCubic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInElastic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutCirc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutElastic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutQuint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutSine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInQuint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInSine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseOutCirc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseOutCubic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseOutElastic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseOutQuint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseOutSine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInBack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInBounce.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInExpo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutBack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutExpo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutQuad.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutQuart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInQuad.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInQuart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseOutBack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseOutExpo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseOutQuad.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseOutQuart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/GameScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/GameScreenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutBounce.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutBounce.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutCubic.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutCubic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseOutBounce.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseOutBounce.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/math/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/math/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
