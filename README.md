@@ -52,17 +52,21 @@
 * Game screen
 	- Gif BG
 	- Game player character dies when hitting enemy, top of screen and bottom of screen
+	- Vibrational feedback on game player character's death
 	- Player can collect coins
 	- Particle system
 	- Platform pop with easing
 	- Moving platforms move horizontally with random easing function
 	- Improved level generation
 	- Improved scrolling of level
-	- Created a camera and made it follow the player horizontally
-	- CircleAABB (collision between player and coin)
-	- PlatAABB (collision between player and platform)
-	- AABBAABB (collision betwen player and enemy)
+	- Created a camera and made it follow the game player character horizontally
+	- CircleAABB (collision between game player character and coin)
+	- PlatAABB (collision between game player character and platform)
+	- AABBAABB (collision betwen game player character and enemy)
 	- CircleCircle (not used)
+	- Sound for collecting coins
+	- Sound for jumping
+	- Cam tries to catch up if game player character goes too high
 
 * Menu screen
 	- Pressing the back button opens a dialog
@@ -100,7 +104,6 @@
 * Misc
 	- Exit button
 	- Button animations with easing
-	- Vibrational feedback on player death
 	- Social Media (connecting to Facebook)
 	- Used 1 thread for updating and 1 thread for rendering
 	- All elements scale according to screen dimensions

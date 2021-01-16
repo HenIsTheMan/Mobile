@@ -242,7 +242,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
         lastTriggerPosY = GameData.startPlat.attribs.pos.y;
         lastTriggerScaleY = GameData.startPlat.attribs.scale.y;
         EntityManager.Instance.cam.SetPosY(GameData.gamePlayerChar.attribs.pos.y - DeviceManager.screenHeightF * 0.5f);
-        EntityManager.Instance.cam.SetVelY(-DeviceManager.screenHeightF * 0.1f);
+        EntityManager.Instance.cam.SetVelY(-DeviceManager.screenHeightF * 0.07f);
     }
 
     @Override
@@ -271,6 +271,12 @@ public final class GameScreenActivity extends Activity implements IState, IListe
             } else if(motionEventAction == TouchTypes.TouchType.Up.GetVal() && jumpMag < 0.0f){
                 GameData.gamePlayerChar.Jump(jumpMag);
                 jumpMag = 0.0f;
+            }
+
+            if(GameData.gamePlayerChar.attribs.colliderPos.y <= EntityManager.Instance.cam.GetPos().y + DeviceManager.screenHeightF * 0.25f){
+                EntityManager.Instance.cam.SetVelY(-DeviceManager.screenHeightF * 0.25f);
+            } else{
+                EntityManager.Instance.cam.SetVelY(-DeviceManager.screenHeightF * 0.07f);
             }
 
             EntityManager.Instance.cam.SetPosX(GameData.gamePlayerChar.attribs.pos.x - DeviceManager.screenWidthF * 0.5f);
