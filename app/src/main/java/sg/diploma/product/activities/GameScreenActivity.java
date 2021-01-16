@@ -22,6 +22,10 @@ import sg.diploma.product.background.BackgroundManager;
 import sg.diploma.product.background.BackgroundStatuses;
 import sg.diploma.product.currency.CurrencyManager;
 import sg.diploma.product.device.DeviceManager;
+import sg.diploma.product.easing.EaseInOutBounce;
+import sg.diploma.product.easing.EaseInOutCubic;
+import sg.diploma.product.easing.EaseOutBounce;
+import sg.diploma.product.easing.Easing;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.ParticleSystem;
@@ -274,7 +278,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 final EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
                 plat.SetMyIndex(platIndex);
 
-                if(Pseudorand.PseudorandIntMinMax(1, 5) == 1){
+                if(Pseudorand.PseudorandIntMinMax(1, 5) >= 1){
                     if(canSpawnEnemy){
                         plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
                         plat.attribs.pos.y = posY;
@@ -286,16 +290,15 @@ public final class GameScreenActivity extends Activity implements IState, IListe
 
                         canSpawnEnemy = false;
                     } else{
-                        plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
+                        plat.attribs.pos.x = DeviceManager.screenWidthF * 0.5f;
                         plat.attribs.pos.y = posY;
                         plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
                         plat.attribs.scale.y = scaleY;
                         ConfigCollider(plat);
 
-                        //plat.SetXOffsetMag(plat.attribs.scale.x * 0.8f);
-                        //plat.SetXOffsetSpd(4.0f);
-                        //plat.SetEasing(new EaseInOutBounce());
-
+                        plat.SetXOffsetMag(plat.attribs.scale.x * 0.2f);
+                        plat.SetXOffsetSpd(4.0f);
+                        plat.SetEasing(easingTypes[Pseudorand.PseudorandIntMinMax(0, easingTypes.length - 1)]);
                         canSpawnEnemy = true;
                     }
                 } else{
@@ -408,11 +411,19 @@ public final class GameScreenActivity extends Activity implements IState, IListe
     public static GameScreenActivity Instance;
     private static final ParticleSystem particleSystem;
 
+    private static final Easing[] easingTypes;
+
     static{
         view = null;
 
         vibrator = null;
         Instance = null;
         particleSystem = new ParticleSystem();
+
+        easingTypes = new Easing[]{
+            EaseOutBounce.globalObj,
+            EaseInOutBounce.globalObj,
+            EaseInOutCubic.globalObj,
+        };
     }
 }

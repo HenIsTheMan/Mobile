@@ -60,9 +60,6 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 		if(currPlat != null){
 			attribs.vel.x = attribs.facing * attribs.spd;
-			if(currPlat.GetEasing() != null){
-				attribs.vel.x += currPlat.attribs.vel.x;
-			}
 		} else{
 			attribs.vel.y += attribs.accel.y * dt;
 		}
@@ -72,6 +69,10 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 		attribs.pos.x += attribs.vel.x * dt;
 		attribs.pos.y += attribs.vel.y * dt;
+
+		if(currPlat != null && currPlat.GetEasing() != null){
+			attribs.pos.x += currPlat.GetXOffset() - currPlat.GetXOffsetPrev();
+		}
 
 		if(attribs.xMin != null){
 			attribs.pos.x = Math.max(attribs.xMin.val, attribs.pos.x);

@@ -40,6 +40,8 @@ public final class EntityPlat extends EntityAbstract{
 		renderScaleX = 1.0f;
 		renderScaleY = 1.0f;
 
+		xOffset = 0.0f;
+		xOffsetPrev = 0.0f;
 		xOffsetMag = 0.0f;
 		xOffsetSpd = 0.0f;
 		easing = null;
@@ -56,12 +58,13 @@ public final class EntityPlat extends EntityAbstract{
 		elapsedTime += dt;
 
 		if(easing != null){
+			xOffsetPrev = xOffset;
 			final float startX = -xOffsetMag;
 			final float endX = xOffsetMag;
 			final float lerpFactor = easing.Ease((float)(Math.sin(elapsedTime * xOffsetSpd) * 0.5f + 0.5f));
+			xOffset = (1.0f - lerpFactor) * startX + lerpFactor * endX;
 
-			attribs.vel.x = (1.0f - lerpFactor) * startX + lerpFactor * endX;
-			attribs.pos.x += attribs.vel.x * dt;
+			attribs.pos.x += xOffset - xOffsetPrev;
 			attribs.colliderPos.x = attribs.pos.x;
 		}
 
@@ -124,6 +127,14 @@ public final class EntityPlat extends EntityAbstract{
 		paint.setARGB((int)(color.a * 255.0f), (int)(color.r * 255.0f), (int)(color.g * 255.0f), (int)(color.b * 255.0f));
 	}
 
+	public float GetXOffset(){
+		return xOffset;
+	}
+
+	public float GetXOffsetPrev(){
+		return xOffsetPrev;
+	}
+
 	public Easing GetEasing(){
 		return easing;
 	}
@@ -172,6 +183,8 @@ public final class EntityPlat extends EntityAbstract{
 	private float renderScaleX;
 	private float renderScaleY;
 
+	private float xOffset;
+	private float xOffsetPrev;
 	private float xOffsetMag;
 	private float xOffsetSpd;
 	private Easing easing;
