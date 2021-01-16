@@ -5,7 +5,7 @@ import android.graphics.Paint;
 
 import sg.diploma.product.BuildConfig;
 import sg.diploma.product.device.DeviceManager;
-import sg.diploma.product.easing.Easing;
+import sg.diploma.product.easing.EaseInOutCubic;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityCollidableTypes;
 import sg.diploma.product.entity.EntityManager;
@@ -53,7 +53,7 @@ public final class EntityPlat extends EntityAbstract{
 		if(currPopTime >= 0.0f){
 			final float startScale = 1.0f;
 			final float endScale = 1.2f;
-			final float lerpFactor = Easing.EaseInOutCubic(currPopTime / maxPopTime);
+			final float lerpFactor = EaseInOutCubic.globalObj.Ease(currPopTime / maxPopTime);
 			final float scaleFactor = (1.0f - lerpFactor) * startScale + lerpFactor * endScale;
 
 			renderScaleX = attribs.scale.x * scaleFactor;

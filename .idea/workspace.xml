@@ -32,8 +32,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4416795c-94c6-4ae4-a666-71d9e78cade1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutBounce.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseInOutCubic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/EaseOutBounce.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/GameScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/activities/GameScreenActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/Easing.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/easing/Easing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityPlat.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/diploma/product/entity/entities/EntityPlat.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +47,7 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[FUHQWOGILFHE6T8D]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -226,10 +229,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="713" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607914578978" />
-    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1610459744039">
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1610769935036">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1610459744039" />
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1610769935036" />
     <state x="743" y="414" width="433" height="218" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1610617210482">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -330,10 +333,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="501" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610260506873" />
-    <state x="794" y="258" width="849" height="624" key="find.popup" timestamp="1610714095192">
+    <state x="794" y="258" width="849" height="624" key="find.popup" timestamp="1610770538228">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="258" width="849" height="624" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610714095192" />
+    <state x="794" y="258" width="849" height="624" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610770538228" />
     <state x="477" y="410" width="621" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1607422454863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
