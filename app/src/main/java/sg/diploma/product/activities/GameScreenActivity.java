@@ -274,16 +274,28 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 final EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
                 plat.SetMyIndex(platIndex);
 
-                if(Pseudorand.PseudorandIntMinMax(1, 5) == 1 && canSpawnEnemy){
-                    plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
-                    plat.attribs.pos.y = posY;
-                    plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(1.0f, 1.2f);
-                    plat.attribs.scale.y = scaleY;
-                    ConfigCollider(plat);
+                if(Pseudorand.PseudorandIntMinMax(1, 5) == 1){
+                    if(canSpawnEnemy){
+                        plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
+                        plat.attribs.pos.y = posY;
+                        plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(1.0f, 1.2f);
+                        plat.attribs.scale.y = scaleY;
+                        ConfigCollider(plat);
 
-                    SpawnEnemy(plat);
+                        SpawnEnemy(plat);
 
-                    canSpawnEnemy = false;
+                        canSpawnEnemy = false;
+                    } else{
+                        plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
+                        plat.attribs.pos.y = posY;
+                        plat.attribs.scale.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
+                        plat.attribs.scale.y = scaleY;
+                        ConfigCollider(plat);
+
+                        plat.attribs.spd = 400.0f;
+
+                        canSpawnEnemy = true;
+                    }
                 } else{
                     plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.0f, 1.0f);
                     plat.attribs.pos.y = posY;

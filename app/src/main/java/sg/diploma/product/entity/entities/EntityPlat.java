@@ -47,6 +47,9 @@ public final class EntityPlat extends EntityAbstract{
 		}
 		//*/
 
+		attribs.colliderPos.x = attribs.pos.x;
+		attribs.colliderPos.y = attribs.pos.y;
+
 		if(currPopTime >= 0.0f){
 			final float startScale = 1.0f;
 			final float endScale = 1.2f;
