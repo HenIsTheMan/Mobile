@@ -56,8 +56,8 @@ public final class EntityPlat extends EntityAbstract{
 		elapsedTime += dt;
 
 		if(easing != null){
-			final float startX = xOffsetMag;
-			final float endX = -xOffsetMag;
+			final float startX = -xOffsetMag;
+			final float endX = xOffsetMag;
 			final float lerpFactor = easing.Ease((float)(Math.sin(elapsedTime * xOffsetSpd) * 0.5f + 0.5f));
 
 			attribs.vel.x = (1.0f - lerpFactor) * startX + lerpFactor * endX;

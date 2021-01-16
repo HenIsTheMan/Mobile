@@ -60,16 +60,15 @@ public final class EntityGamePlayerChar extends EntityAbstract{
 
 		if(currPlat != null){
 			attribs.vel.x = attribs.facing * attribs.spd;
+			if(currPlat.GetEasing() != null){
+				attribs.vel.x += currPlat.attribs.vel.x;
+			}
 		} else{
 			attribs.vel.y += attribs.accel.y * dt;
 		}
 
 		attribs.vel.x += attribs.accel.x * dt;
 		attribs.vel.y = Math.min(attribs.vel.y, DeviceManager.screenHeightF * 1.5f);
-
-		if(currPlat != null && currPlat.GetEasing() != null){
-			attribs.vel.x += currPlat.attribs.vel.x;
-		}
 
 		attribs.pos.x += attribs.vel.x * dt;
 		attribs.pos.y += attribs.vel.y * dt;

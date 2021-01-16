@@ -22,7 +22,6 @@ import sg.diploma.product.background.BackgroundManager;
 import sg.diploma.product.background.BackgroundStatuses;
 import sg.diploma.product.currency.CurrencyManager;
 import sg.diploma.product.device.DeviceManager;
-import sg.diploma.product.easing.EaseInOutBounce;
 import sg.diploma.product.entity.EntityAbstract;
 import sg.diploma.product.entity.EntityManager;
 import sg.diploma.product.entity.ParticleSystem;
@@ -275,7 +274,7 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                 final EntityPlat plat = EntityPlat.Create("plat_" + ++platIndex);
                 plat.SetMyIndex(platIndex);
 
-                if(Pseudorand.PseudorandIntMinMax(1, 5) >= 1){
+                if(Pseudorand.PseudorandIntMinMax(1, 5) == 1){
                     if(canSpawnEnemy){
                         plat.attribs.pos.x = DeviceManager.screenWidthF * Pseudorand.PseudorandFloatMinMax(0.4f, 0.6f);
                         plat.attribs.pos.y = posY;
@@ -293,9 +292,9 @@ public final class GameScreenActivity extends Activity implements IState, IListe
                         plat.attribs.scale.y = scaleY;
                         ConfigCollider(plat);
 
-                        plat.SetXOffsetMag(plat.attribs.scale.x * 0.8f);
-                        plat.SetXOffsetSpd(4.0f);
-                        plat.SetEasing(new EaseInOutBounce());
+                        //plat.SetXOffsetMag(plat.attribs.scale.x * 0.8f);
+                        //plat.SetXOffsetSpd(4.0f);
+                        //plat.SetEasing(new EaseInOutBounce());
 
                         canSpawnEnemy = true;
                     }
