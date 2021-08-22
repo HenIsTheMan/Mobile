@@ -15,8 +15,8 @@
 
 ## Jingle lyrics
 
-She is a boss~
-She is a girl~
+She is a boss~\
+She is a girl~\
 She is a BOSS Girl~
 
 ## Task list of each member
